@@ -1,8 +1,8 @@
 import Footer from './footer/Footer';
 import Header from './header/Header';
-import scss from './Layout.module.scss';
+import scss from './LayoutSide.module.scss';
 
-const Layout = () => {
+const LayoutSide = () => {
 	return (
 		<div className={scss.Layout}>
 			<Header />
@@ -12,4 +12,4 @@ const Layout = () => {
 	);
 };
 
-export default Layout;
+export default LayoutSide;
