@@ -1,11 +1,11 @@
-import scss from "./CustomInputText.module.scss";
+import scss from './CustomInputText.module.scss';
 
 const CustomInputText = () => {
-  return (
-    <>
-      <input className={scss.input} type="text" />
-    </>
-  );
+	return (
+		<>
+			<input className={scss.input} type="text" />
+		</>
+	);
 };
 
 export default CustomInputText;

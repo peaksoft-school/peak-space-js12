@@ -1,10 +1,10 @@
-import scss from "./CustomLoginButton.module.scss";
+import scss from './CustomLoginButton.module.scss';
 const CustomLoginButton = () => {
-  return (
-    <>
-      <button className={scss.button}></button>
-    </>
-  );
+	return (
+		<>
+			<button className={scss.button}></button>
+		</>
+	);
 };
 
 export default CustomLoginButton;

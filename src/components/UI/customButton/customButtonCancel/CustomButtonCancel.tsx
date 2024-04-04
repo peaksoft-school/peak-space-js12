@@ -1,10 +1,10 @@
-import scss from "./CustomButtonCancel.module.scss";
+import scss from './CustomButtonCancel.module.scss';
 const CustomButtonCancel = () => {
-  return (
-    <>
-      <button className={scss.button}> </button>
-    </>
-  );
+	return (
+		<>
+			<button className={scss.button}> </button>
+		</>
+	);
 };
 
 export default CustomButtonCancel;

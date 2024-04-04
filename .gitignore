@@ -15,7 +15,7 @@
 .yarnrc
 .yarnrc.yml
 .yarn-integrity
-/.env
+# /.env
 .env.local
 .env.development.local
 .env.test.local
