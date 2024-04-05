@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 import scss from './CustomInput.module.scss';
 
 interface CustomInputType {
 	type: string;
 	placeholder: string;
-	onChange: () => void;
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 	value: string | number;
 }
 
