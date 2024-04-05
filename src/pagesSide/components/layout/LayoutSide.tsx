@@ -2,8 +2,8 @@ import CustomSelect from '@/src/UI/customSelect/CustomSelect';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import scss from './LayoutSide.module.scss';
-import CustomInputText from '@/src/UI/customInputText/CustomInputText';
-import CustomTextTarea from '@/src/UI/cusotmTextTarea/CustomTextTarea';
+import CustomInputText from '@/src/UI/customInput/CustomInput';
+import CustomTextTarea from '@/src/UI/cusotmTextarea/CustomTextTarea';
 
 const LayoutSide = () => {
 	return (

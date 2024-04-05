@@ -1,15 +1,35 @@
 import scss from './CustomSelect.module.scss';
 
 const CustomSelect = () => {
+	const data = [
+		{
+			name: 'BATKEN'
+		},
+		{
+			name: 'NARYN'
+		},
+		{
+			name: 'ысык-кол'
+		},
+		{
+			name: 'Жалал-абад'
+		},
+		{
+			name: 'талас'
+		},
+		{
+			name: 'Ош'
+		},
+		{
+			name: 'чуй'
+		}
+	];
 	return (
 		<div className={scss.select}>
 			<select className={scss.select} name="" id="">
-				<option className={scss.option} value="bATKEN">
-					BATKEN
-				</option>
-				<option className={scss.option} value="нарын">
-					НАРЫН
-				</option>
+				{data.map((item) => (
+					<option value="">{item.name}</option>
+				))}
 			</select>
 		</div>
 	);

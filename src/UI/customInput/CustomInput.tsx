@@ -1,4 +1,4 @@
-import scss from './CustomInputText.module.scss';
+import scss from './CustomInput.module.scss';
 import React from 'react';
 
 const CustomInputText = () => {

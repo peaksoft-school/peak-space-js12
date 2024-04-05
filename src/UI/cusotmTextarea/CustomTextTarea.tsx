@@ -1,4 +1,4 @@
-import scss from './customTextTarea.module.scss';
+import scss from './CustomTextarea.module.scss';
 
 const CustomTextTarea = () => {
 	return (
