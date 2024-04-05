@@ -1,5 +1,5 @@
 import scss from './CustomInput.module.scss';
-import React from 'react';
+
 
 const CustomInputText = () => {
 	return (
