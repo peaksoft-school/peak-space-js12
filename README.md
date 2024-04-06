@@ -14,9 +14,9 @@ After finishing your bugfix, merge your current branch into the `dev` branch
 
 ##### `hotfix/branch-name`
 
-If you are fixing a urgent bug on a production, you should chekout from `master` branch and name the branch as `hotfix/branch-name`\
+If you are fixing a urgent bug on a production, you should chekout from `main` branch and name the branch as `hotfix/branch-name`\
 After finishing your hotfix, merge your current branch into the `staging` branche by creating `pull request`.\
-Then test your changes on the `staging` environment, if it's OK, then you must merge changes with `dev` and `master` branches.
+Then test your changes on the `staging` environment, if it's OK, then you must merge changes with `dev` and `main` branches.
 
 
 ### `npm run build` fails to minify
