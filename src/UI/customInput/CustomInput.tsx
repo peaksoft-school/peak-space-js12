@@ -15,16 +15,13 @@ const CustomInput: FC<CustomInputType> = ({
 	placeholder
 }) => {
 	return (
-		<>
-			<input
-				className={scss.input}
-				onChange={onChange}
-				value={value}
-				placeholder={placeholder}
-				type={type}
-			/>
-			<p>new</p>
-		</>
+		<input
+			className={scss.input}
+			onChange={onChange}
+			value={value}
+			placeholder={placeholder}
+			type={type}
+		/>
 	);
 };
 
