@@ -1,16 +1,16 @@
-import { EditProfileImg } from '@/src/assets/icons';
-import fisrtMan from '../../assets/FirstMan2.png';
 import scss from './Style.module.scss';
-import EditProfilName from '@/src/assets/icons/EditProfilName';
+import { EditProfileImg, EditProfileName } from '@/src/assets/icons';
+import firstMan from '../../assets/FirstMan2.png';
+
 const UserEditProfile = () => {
 	return (
 		<>
 			<div className={scss.aside}>
-				<img className={scss.userEditProfile} src={fisrtMan} alt="" />
+				<img className={scss.userEditProfile} src={firstMan} alt="firstMan" />
 				<EditProfileImg className={scss.editProfileIcon} />
 				<div className={scss.bar}>
-					<p className={scss.title}>Ivanov ivan</p>
-					<EditProfilName />
+					<p className={scss.title}>Ivanov Ivan</p>
+					<EditProfileName />
 				</div>
 			</div>
 		</>
