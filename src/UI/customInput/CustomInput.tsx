@@ -1,31 +1,12 @@
-import { ChangeEvent, FC } from 'react';
 import scss from './CustomInput.module.scss';
+import React from 'react';
 
-interface CustomInputType {
-	type: string;
-	placeholder: string;
-	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-	value: string | number;
-}
-
-const CustomInput: FC<CustomInputType> = ({
-	onChange,
-	value,
-	type,
-	placeholder
-}) => {
+const CustomInputText = () => {
 	return (
-		<>
-			<input
-				className={scss.input}
-				onChange={onChange}
-				value={value}
-				placeholder={placeholder}
-				type={type}
-			/>
-			<p>new</p>
-		</>
+		<div className={scss.container}>
+			<input className={scss.input} type="text" placeholder="text" />
+		</div>
 	);
 };
 
-export default CustomInput;
+export default CustomInputText;
