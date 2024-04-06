@@ -1,11 +1,16 @@
 interface EditProfileNameProps {
 	className?: string;
+	onClick: () => void;
 }
-const EditProfilName: React.FC<EditProfileNameProps> = ({ className }) => {
+const EditProfilName: React.FC<EditProfileNameProps> = ({
+	className,
+	onClick
+}) => {
 	return (
 		<div>
 			<svg
 				className={className}
+				onClick={onClick}
 				width="28.000000"
 				height="28.000000"
 				viewBox="0 0 28 28"

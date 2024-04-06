@@ -2,12 +2,14 @@ import React from 'react';
 
 interface EditImgProps {
 	className?: string;
+	onClick: () => void;
 }
 
-const EditImg: React.FC<EditImgProps> = ({ className }) => {
+const EditImg: React.FC<EditImgProps> = ({ className, onClick }) => {
 	return (
 		<svg
 			className={className}
+			onClick={onClick}
 			width="23.000000"
 			height="22.000000"
 			viewBox="0 0 23 22"
