@@ -1,5 +1,5 @@
 import userImgStory from '../../assets/userStory.png';
-import scss from './UerImages.module.scss';
+import scss from './Style.module.scss';
 const UserStory = () => {
 	return (
 		<>

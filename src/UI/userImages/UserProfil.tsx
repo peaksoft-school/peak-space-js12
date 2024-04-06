@@ -1,5 +1,5 @@
 import imgProfil from '../../assets/userProfil.png';
-import scss from './UerImages.module.scss';
+import scss from './Style.module.scss';
 const UserProfile = () => {
 	return (
 		<>

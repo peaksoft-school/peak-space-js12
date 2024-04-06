@@ -1,6 +1,6 @@
 import addImgStory from '../../assets/FirstMan.png';
 import plusImg from '../../assets/Plusicon.svg';
-import scss from './UerImages.module.scss';
+import scss from './Style.module.scss';
 const AddStory = () => {
 	return (
 		<>
