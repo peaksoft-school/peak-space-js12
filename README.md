@@ -1,30 +1,24 @@
-# React + TypeScript + Vite
+## How to work with Git?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### How to name a branch?
 
-Currently, two official plugins are available:
+##### `feature/branch-name`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+If you are working on a new feature, you should checkout from `dev` branch and name the branch as `feature/branch-name`.\
+After finishing your task, merge your current branch into the `dev` branch by creating `pull request`
 
-## Expanding the ESLint configuration
+##### `bugfix/branch-name`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+If you are fixing a bug on a development environment, you should checkout from `dev` and name the branch as `bugfix/branch-name`.\
+After finishing your bugfix, merge your current branch into the `dev` branch
 
-- Configure the top-level `parserOptions` property like this:
+##### `hotfix/branch-name`
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+If you are fixing a urgent bug on a production, you should chekout from `main` branch and name the branch as `hotfix/branch-name`\
+After finishing your hotfix, merge your current branch into the `staging` branche by creating `pull request`.\
+Then test your changes on the `staging` environment, if it's OK, then you must merge changes with `dev` and `main` branches.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
