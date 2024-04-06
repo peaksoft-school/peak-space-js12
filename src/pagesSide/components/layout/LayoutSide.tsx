@@ -6,7 +6,7 @@ const LayoutSide = () => {
 	return (
 		<div className={scss.Layout}>
 			<Header />
-			<main></main>
+			<main>main</main>
 			<Footer />
 		</div>
 	);

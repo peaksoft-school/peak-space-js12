@@ -24,5 +24,4 @@ const CustomInput: FC<CustomInputType> = ({
 		/>
 	);
 };
-
 export default CustomInput;

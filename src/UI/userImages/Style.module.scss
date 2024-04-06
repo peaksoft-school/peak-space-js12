@@ -1,0 +1,19 @@
+.userStory {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 5px solid transparent;
+
+	border-color: #a4ed47 #7cd36a #4ca074 #2e6b7e;
+}
+.plusImg {
+	position: relative;
+	left: -130px;
+	bottom: 90px;
+	z-index: 10;
+}
+.userProfile {
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+}
