@@ -1,0 +1,44 @@
+.customButton{
+  width: 229px;
+  height: 25px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  background: rgb(6, 5, 75);
+  opacity: 0.7;
+  color: rgb(255, 255, 255);
+  font-family: GFS Neohellenic;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 2%;
+  text-align: center;
+}
+.whiteButton{
+  border: 1px solid rgb(211, 203, 221);
+border-radius: 5px;
+width: 229px;
+height: 25px;
+color: rgb(0, 0, 0);
+font-family: GFS Neohellenic;
+font-size: 12px;
+font-weight: 700;
+line-height: 18px;
+letter-spacing: 2%;
+text-align: center;
+}
+.boldButton{
+  width: 298px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgb(9, 7, 85);
+  opacity: 0.7;
+  color: rgb(255, 255, 255);
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0%;
+  text-align: center;
+  outline: none;
+  border: none;
+}
