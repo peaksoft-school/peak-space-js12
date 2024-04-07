@@ -66,22 +66,10 @@
 					background: transparent;
 				}
 			}
-
-			.grid {
-				display: flex;
-				align-items: center;
-				gap: 5px;
-				p {
-					color: #737373;
-					font-size: 16px;
-					font-weight: 500;
-				}
-				.checkbox {
-					width: 20px;
-					height: 20px;
-					border-radius: 8px;
-					background: rgba(219, 219, 219, 0);
-				}
+			.text {
+				color: #737373;
+				font-size: 16px;
+				font-weight: 500;
 			}
 		}
 		button {
