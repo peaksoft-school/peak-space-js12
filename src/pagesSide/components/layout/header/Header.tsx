@@ -1,5 +1,11 @@
+import CustomSearchInput from '@/src/UI/customInput/CustomSearchInput';
+
 const Header = () => {
-	return <header>Header</header>;
+	return (
+		<header>
+			<CustomSearchInput />
+		</header>
+	);
 };
 
 export default Header;

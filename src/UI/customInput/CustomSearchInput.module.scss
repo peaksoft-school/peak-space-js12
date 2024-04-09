@@ -1,0 +1,97 @@
+.headerContainer {
+	display: flex;
+	column-gap: 14px;
+	align-items: center;
+	.aside {
+		display: flex;
+		align-items: center;
+		border: 1px solid;
+		width: 100%;
+		height: 100%;
+		max-width: 914px;
+		max-height: 23px;
+		padding: 15px 0 15px 15px;
+		input {
+			border: none;
+			outline: none;
+			max-width: 914px;
+			max-height: 23px;
+			width: 100%;
+			height: 100%;
+		}
+		.magnifyingGlass {
+			width: 17px;
+		}
+	}
+
+	.profilePictureAndIconDown {
+		display: flex;
+		align-items: center;
+		column-gap: 10px;
+		.profilePicture {
+			max-width: 40px;
+			max-height: 50px;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+		}
+		.iconDown {
+			width: 10px;
+			height: 6px;
+			cursor: pointer;
+		}
+	}
+}
+
+@media (max-width: 762px) {
+	.headerContainer {
+		width: 762px;
+		padding: 20px;
+		.aside {
+			max-width: 44%;
+		}
+		.profilePictureAndIconDown {
+			.profilePicture,
+			.iconDown {
+				display: none;
+			}
+		}
+		.burgerMenu {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			div {
+				transition: .2s;
+				width: 40px;
+				height: 5px;
+				background-color: black;
+			}
+		}
+		.burgerMenu_active {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			gap: 5px;
+			div {
+				width: 40px;
+				height: 5px;
+				background-color: black;
+			}
+			:nth-child(1) {
+				transform: rotate(45deg);
+				transition: .2s;
+				position: absolute;
+				margin-top: -1px;
+			}
+			:nth-child(3) {
+				display: none;	
+			}
+
+			:nth-child(2) {
+				transform: rotate(-45deg);
+				transition: .2s;
+			}
+		}
+	}
+}
