@@ -3,13 +3,14 @@ import scss from './Style.module.scss';
 
 interface ButtonBoldProps {
 	children: ReactNode;
-	onClick: () => void;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	type: any;
 }
 
-const CustomButtonBold: FC<ButtonBoldProps> = ({ children, onClick }) => {
+const CustomButtonBold: FC<ButtonBoldProps> = ({ children, type }) => {
 	return (
 		<>
-			<button className={scss.boldButton} onClick={onClick}>
+			<button className={scss.boldButton} type={type}>
 				{children}
 			</button>
 		</>
