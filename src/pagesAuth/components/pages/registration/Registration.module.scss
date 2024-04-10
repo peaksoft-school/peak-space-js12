@@ -12,7 +12,7 @@
 	width: 100%;
 	height: 100%;
 	max-width: 420px;
-	max-height: 625px;
+	max-height: 645px;
 	border-radius: 8px;
 	border: 1px solid rgb(219, 219, 219);
 	background: rgb(255, 255, 255);
@@ -25,12 +25,15 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		gap: 30px;
-		padding-block: 40px;
+		gap: 25px;
+		padding-block: 30px;
 
 		border-radius: 8px;
 		background: rgb(255, 255, 255);
 		width: 100%;
+		// max-width: 600px;
+
+		height: auto;
 
 		img {
 			width: 100%;
@@ -43,20 +46,64 @@
 			display: flex;
 			flex-direction: column;
 			gap: 25px;
+
+			.textError {
+				position: absolute;
+				top: 294px;
+				left: 810px;
+				color: rgba(255, 0, 0, 0.723);
+				font-size: 12.5px;
+			}
+			.errorName {
+				position: absolute;
+				top: 360px;
+				left: 810px;
+				color: rgba(255, 0, 0, 0.723);
+				font-size: 12.5px;
+			}
+			.errorUserName {
+				position: absolute;
+				top: 425px;
+				left: 810px;
+				color: rgba(255, 0, 0, 0.723);
+				font-size: 12.5px;
+			}
+			.errorEmail {
+				position: absolute;
+				top: 486px;
+				left: 810px;
+				color: rgba(255, 0, 0, 0.723);
+				font-size: 12.5px;
+			}
+			.errorPassword {
+				position: absolute;
+				top: 548px;
+				left: 810px;
+				color: rgba(255, 0, 0, 0.723);
+
+				font-size: 12.5px;
+			}
+			.errorConfirm {
+				position: absolute;
+				top: 635px;
+				left: 500px;
+				color: rgba(255, 0, 0, 0.723);
+
+				font-size: 12.5px;
+			}
 			.inputPassword {
 				border: none;
 				outline: none;
 				border: 2px solid rgb(219, 219, 219);
 				border-radius: 3px;
 				background: rgb(250, 250, 250);
-				color: rgb(115, 115, 115);
-				padding: 6.5px;
+				color: rgb(147, 147, 147);
+				padding: 6.3px;
 				width: 300px;
 				height: 38px;
 
-				font-family: Roboto;
-				font-size: 15px;
-				font-weight: 800;
+				font-size: 14px;
+				font-weight: 400;
 				line-height: 36px;
 
 				&:focus::placeholder {
@@ -70,25 +117,6 @@
 				color: #737373;
 				font-size: 16px;
 				font-weight: 500;
-			}
-		}
-		button {
-			width: 298px;
-			height: 32px;
-			border-radius: 8px;
-			background: rgb(9, 7, 85);
-			opacity: 0.7;
-			border: none;
-			outline: none;
-			color: rgb(255, 255, 255);
-			font-family: Roboto;
-			font-size: 14px;
-			font-weight: 600;
-			line-height: 18px;
-			letter-spacing: 0%;
-			text-align: center;
-			.buttonLink {
-				color: rgb(255, 255, 255);
 			}
 		}
 	}
