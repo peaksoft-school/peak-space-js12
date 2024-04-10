@@ -1,26 +1,33 @@
-import { ChangeEvent, FC } from 'react';
+import { FC } from 'react';
 import scss from './CustomInput.module.scss';
 
 interface CustomInputType {
 	type: string;
 	placeholder: string;
-	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-	value: string | number;
+	// onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+	// value: string;
+	// name: string;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	style: any;
 }
 
 const CustomInput: FC<CustomInputType> = ({
-	onChange,
-	value,
+	// onChange,
 	type,
-	placeholder
+	placeholder,
+	// name,
+	// value,
+	style
 }) => {
 	return (
 		<input
 			className={scss.input}
-			onChange={onChange}
-			value={value}
+			// onChange={onChange}
 			placeholder={placeholder}
 			type={type}
+			// value={value}
+			// name={name}
+			style={style}
 		/>
 	);
 };
