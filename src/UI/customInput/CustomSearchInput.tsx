@@ -8,6 +8,9 @@ const CustomSearchInput = () => {
 	const changeBurgerMenuStateHandler = () => {
 		setIsBurgerMenuActive((prevState) => !prevState);
 	};
+
+	console.log(isBurgerMenuActive);
+
 	return (
 		<div className={scss.headerContainer}>
 			<div className={scss.aside}>
@@ -20,12 +23,29 @@ const CustomSearchInput = () => {
 					src={ProfilePicture}
 					alt="profile-picture"
 				/>
-				<img src={IconDown} alt="icon-down" className={scss.iconDown} />
+				<img
+					src={IconDown}
+					alt="icon-down"
+					className={`${scss.iconDown} ${isBurgerMenuActive && `${scss.iconDownActive}`}`}
+					onClick={changeBurgerMenuStateHandler}
+				/>
 			</div>
-			<div className={isBurgerMenuActive ? scss.burgerMenu_active : scss.burgerMenu} onClick={changeBurgerMenuStateHandler}>
+			<div
+				className={
+					isBurgerMenuActive ? scss.burgerMenu_active : scss.burgerMenu
+				}
+				onClick={changeBurgerMenuStateHandler}
+			>
 				<div></div>
 				<div></div>
 				<div></div>
+			</div>
+			<div
+				className={`${scss.menuList} ${isBurgerMenuActive ? `${scss.menuListActive}` : ''}`}
+			>
+				<ul>
+					<li>Выйти с аккаунта</li>
+				</ul>
 			</div>
 		</div>
 	);

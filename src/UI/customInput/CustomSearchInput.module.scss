@@ -39,16 +39,37 @@
 			width: 10px;
 			height: 6px;
 			cursor: pointer;
+			transition: 0.2s;
+		}
+		.iconDownActive {
+			rotate: (180deg);
+		}
+	}
+	.menuList {
+		ul {
+			display: none;
+			margin-left: -150px;
+			position: absolute;
+		}
+	}
+	.menuList.menuListActive {
+		ul {
+			display: flex;
+			margin-top: 25px;
+			li {
+				cursor: pointer;
+			}
 		}
 	}
 }
 
 @media (max-width: 762px) {
 	.headerContainer {
-		width: 762px;
+		width: 100%;
+		justify-content: space-between;
 		padding: 20px;
 		.aside {
-			max-width: 44%;
+			max-width: 100%;
 		}
 		.profilePictureAndIconDown {
 			.profilePicture,
@@ -61,7 +82,7 @@
 			flex-direction: column;
 			gap: 5px;
 			div {
-				transition: .2s;
+				transition: 0.2s;
 				width: 40px;
 				height: 5px;
 				background-color: black;
@@ -70,27 +91,63 @@
 		.burgerMenu_active {
 			display: flex;
 			align-items: center;
-			justify-content: center;
+			justify-content: space-between;
 			flex-direction: column;
 			gap: 5px;
+			z-index: 1;
 			div {
 				width: 40px;
 				height: 5px;
-				background-color: black;
+				background-color: white;
 			}
 			:nth-child(1) {
 				transform: rotate(45deg);
-				transition: .2s;
+				transition: 0.2s;
 				position: absolute;
 				margin-top: -1px;
 			}
 			:nth-child(3) {
-				display: none;	
+				display: none;
 			}
 
 			:nth-child(2) {
 				transform: rotate(-45deg);
-				transition: .2s;
+				transition: 0.2s;
+			}
+		}
+		.menuList {
+			display: flex;
+			justify-content: center;
+			position: absolute;
+			background-color: gray;
+			width: 50vw;
+			height: 100vh;
+			margin-top: 435px;
+			left: 110%;
+			transition: 0.2s;
+			ul {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				width: 90%;
+				height: 100px;
+				margin-top: 50px;
+				margin-left: 1px;
+				li {
+					text-align: end;
+					font-size: 1.5rem;
+				}
+			}
+		}
+		.menuList.menuListActive {
+			position: fixed;
+			background-color: black;
+			width: 100vw;
+			opacity: 70%;
+			left: 0;
+			transition: 0.2s;
+			ul {
+				color: white;
 			}
 		}
 	}
