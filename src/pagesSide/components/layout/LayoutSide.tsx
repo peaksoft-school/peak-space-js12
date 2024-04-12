@@ -7,7 +7,6 @@ const LayoutSide = () => {
 		<div className={scss.Layout}>
 			<Header />
 			<main>main</main>
-
 			<Footer />
 		</div>
 	);
