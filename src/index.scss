@@ -23,3 +23,18 @@ body {
 	color: #000000 !important;
 	background: #ffffff !important;
 }
+
+.container {
+	width: 100%;
+	max-width: 1040px;
+	margin-inline: auto;
+	padding-inline: 20px;
+}
+@media (max-width: 310px) {
+	.container {
+		padding-inline: 20px;
+		transition:
+			padding 1.5s,
+			background 1.5s;
+	}
+}
