@@ -1,57 +1,11 @@
 import scss from './EditProfilePage.module.scss';
-import { useRef, useState } from 'react';
+
 import backgroundsWhite from '../../../../assets/backWhite.jpeg';
 import CustomSelect from '@/src/UI/customSelect/CustomSelect';
-import Camera from '@/src/assets/icons/Camera';
-import EditImg from '@/src/assets/icons/EditImg';
-import {
-	useGetEditQuery,
-	usePatchEditMutation
-} from '@/src/redux/api/editPage';
+
 import UserEditProfile from '@/src/UI/userImages/UserEditProfile';
 
 const EditProfilePage = () => {
-	const { data, isLoading } = useGetEditQuery();
-	// const [update] = usePatchEditMutation();
-	// const [isEdit, setIsEdit] = useState<null | boolean>(false);
-	// const [userImg, setUserImg] = useState('');
-	// const fileInputRef = useRef<HTMLInputElement>(null);
-	// const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-	// 	const file = event.target.files ? event.target.files[0] : null;
-	// 	if (file) {
-	// 		const reader = new FileReader();
-	// 		reader.onload = (e) => {
-	// 			if (e.target) {
-	// 				setUserImg(e.target.result as string);
-	// 			}
-	// 		};
-	// 		reader.readAsDataURL(file);
-	// 	}
-	// };
-
-	// const edit = (item: any) => {
-	// 	setUserImg(item.img);
-	// 	setIsEdit(item.id);
-	// 	if (fileInputRef.current) {
-	// 		fileInputRef.current.click();
-	// 	}
-	// };
-
-	// const saveImg = (id: number | string) => {
-	// 	const newImg = {
-	// 		id,
-	// 		img: userImg
-	// 	};
-	// 	update({ id, newImg })
-	// 		.unwrap()
-	// 		.then(() => {
-	// 			setIsEdit(null);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error('Failed to save image:', error);
-	// 		});
-	// };
-
 	return (
 		<div className={scss.section}>
 			<div className={scss.navbar}>
@@ -68,35 +22,7 @@ const EditProfilePage = () => {
 					<img className={scss.backgroundImg} src={backgroundsWhite} alt="" />
 
 					<div>
-						{data &&
-							// eslint-disable-next-line @typescript-eslint/no-explicit-any
-							data.map((item: any) => (
-								<div className={scss.editImg} key={item.id}>
-									<UserEditProfile />
-									<></>
-									{/* <>
-										<input
-											type="file"
-											ref={fileInputRef}
-											onChange={handleFileChange}
-										/>
-										<button onClick={() => saveImg(item.id)}>Save</button>
-										<button onClick={() => setIsEdit(null)}>Cancel</button>
-									</>
-
-									<>
-										<img src={item.img} alt="" />
-										<Camera
-											className={scss.cameraImg}
-											onClick={() => edit(item)}
-										/>
-										<button className={scss.editPen} onClick={() => edit(item)}>
-											<EditImg onClick={() => edit(item)} />
-											Change Cover
-										</button>
-									</> */}
-								</div>
-							))}
+						<UserEditProfile />
 					</div>
 
 					<div className={scss.body}>
