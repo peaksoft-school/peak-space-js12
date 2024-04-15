@@ -9,8 +9,6 @@ const CustomSearchInput = () => {
 		setIsBurgerMenuActive((prevState) => !prevState);
 	};
 
-	console.log(isBurgerMenuActive);
-
 	return (
 		<div className={scss.headerContainer}>
 			<div className={scss.aside}>
