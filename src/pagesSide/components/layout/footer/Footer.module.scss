@@ -1,0 +1,32 @@
+.content {
+	background: #3f3d64;
+	width: 100%;
+	max-width: 1440px;
+	height: 3rem;
+}
+
+@media screen and (max-width: 480px) {
+	.content {
+		flex-direction: column;
+		flex-wrap: wrap;
+		p {
+			font-size: 10px;
+		}
+	}
+}
+@media screen and (max-width: 580px) {
+  .content {
+		// flex-wrap: wrap;
+		p {
+			font-size: 13px;
+		}
+	}
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: white;
+	padding-block: 1rem;
+}
