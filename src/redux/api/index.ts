@@ -5,7 +5,7 @@ import {
 } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-	baseUrl: 'text'
+	baseUrl: import.meta.env.VITE_BACKEND_EDIT
 });
 
 const baseQueryExtended: BaseQueryFn = async (args, api, extraOptions) => {

@@ -1,15 +1,18 @@
 import { useRef, useState } from 'react';
 import { EditProfileImg } from '@/src/assets/icons';
 import scss from './Style.module.scss';
-import EditProfileName from '@/src/assets/icons/EditProfilName';
+import {
+	useGetEditQuery,
+	usePatchEditMutation
+} from '@/src/redux/api/editPage';
 
 const UserEditProfile: React.FC = () => {
 	const [imageSrc, setImageSrc] = useState<string>('');
-	const [userName, setUserName] = useState('Ivanov Ivan');
-	const [userNameEdit, setUserNameEdit] = useState('');
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const { data } = useGetEditQuery();
+	const [update] = usePatchEditMutation();
 
-	const handleButtonClick = () => {
+	const handleChooseFileButtonClick = () => {
 		if (fileInputRef.current) {
 			fileInputRef.current.click();
 		}
@@ -25,16 +28,13 @@ const UserEditProfile: React.FC = () => {
 				}
 			};
 			reader.readAsDataURL(file);
+
+			if (data && data.id) {
+				const formData = new FormData();
+				formData.append('newImg', file);
+				update({ id: data.id, newImg: formData });
+			}
 		}
-	};
-
-	const handleEditName = () => {
-		setUserNameEdit(userName);
-	};
-
-	const handleSaveName = () => {
-		setUserName(userNameEdit);
-		setUserNameEdit('');
 	};
 
 	return (
@@ -45,24 +45,17 @@ const UserEditProfile: React.FC = () => {
 				style={{ display: 'none' }}
 				onChange={handleFileChange}
 			/>
-			<img className={scss.userEditProfile} src={imageSrc} alt="" />
+			<img
+				className={scss.userEditProfile}
+				src={imageSrc || data?.profileImage}
+				alt=""
+			/>
 			<EditProfileImg
-				onClick={handleButtonClick}
+				onClick={handleChooseFileButtonClick}
 				className={scss.editProfileIcon}
 			/>
 			<div className={scss.bar}>
-				{userNameEdit ? (
-					<input
-						type="text"
-						value={userNameEdit}
-						onChange={(e) => setUserNameEdit(e.target.value)}
-						className={scss.title}
-					/>
-				) : (
-					<p className={scss.title}>{userName}</p>
-				)}
-				{!userNameEdit && <EditProfileName onClick={handleEditName} />}
-				{userNameEdit && <button onClick={handleSaveName}>Save</button>}
+				{/* Add logic to display user name and edit functionality */}
 			</div>
 		</div>
 	);
