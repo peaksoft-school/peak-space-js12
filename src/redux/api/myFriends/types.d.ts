@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-namespace MYFRIENDS {
+export namespace MYFRIENDS {
 	type GetMyFriendsResponse = {
 		_id: Key | null | undefined;
 		name: string;
