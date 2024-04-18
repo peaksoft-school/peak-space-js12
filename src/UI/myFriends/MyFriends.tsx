@@ -27,37 +27,40 @@ const navigationBar = [
 const MyFriends = () => {
 	const [selectedLink, setSelectedLink] = useState<string>('');
 
-	const { data } = useGetMyFriendsQuery();
+	const { data, isLoading } = useGetMyFriendsQuery();
 
 	return (
-			<div className={scss.container}>
-				<h1 className={scss.mainText}>Друзья</h1>
-				<nav className={scss.navbar}>
-					<ul className={scss.navList}>
-						{navigationBar.map((nav) => (
-							<div className={scss.linkContainer}>
-								<Link
-									to={nav.link}
-									className={`${selectedLink === nav.link ? `${scss.selectedLink}` : `${scss.link}`}`}
-									onClick={() => setSelectedLink(nav.link)}
-								>
-									{nav.name}
-								</Link>
-								<div
-									className={`${selectedLink === nav.link ? `${scss.circle}` : ''}`}
-								></div>
-							</div>
-						))}
-					</ul>
-					<PlusIcon className={scss.plusIcon} onClick={() => {}} />
-				</nav>
+		<div className={scss.container}>
+			<h1 className={scss.mainText}>Друзья</h1>
+			<nav className={scss.navbar}>
+				<ul className={scss.navList}>
+					{navigationBar.map((nav) => (
+						<div className={scss.linkContainer}>
+							<Link
+								to={nav.link}
+								className={`${selectedLink === nav.link ? `${scss.selectedLink}` : `${scss.link}`}`}
+								onClick={() => setSelectedLink(nav.link)}
+							>
+								{nav.name}
+							</Link>
+							<div
+								className={`${selectedLink === nav.link ? `${scss.circle}` : ''}`}
+							></div>
+						</div>
+					))}
+				</ul>
+				<PlusIcon className={scss.plusIcon} onClick={() => {}} />
+			</nav>
 
-				<div className={scss.searchContainer}>
-					<SearchImg className={scss.searchImg} onClick={() => {}} />
-					<input placeholder="Поиск" className={scss.searchInput} />
-				</div>
-				<ul className={scss.usersList}>
-					{data?.map((user) => (
+			<div className={scss.searchContainer}>
+				<SearchImg className={scss.searchImg} onClick={() => {}} />
+				<input placeholder="Поиск" className={scss.searchInput} />
+			</div>
+			<ul className={scss.usersList}>
+				{isLoading ? (
+					<h1>loading...</h1>
+				) : (
+					data?.map((user) => (
 						<li className={scss.userInfo}>
 							<div className={scss.leftPart}>
 								<img className={scss.userProfileImg} src={UserProfile} />
@@ -69,9 +72,10 @@ const MyFriends = () => {
 
 							<button className={scss.messageBtn}>Написать</button>
 						</li>
-					))}
-				</ul>
-			</div>
+					))
+				)}
+			</ul>
+		</div>
 	);
 };
 

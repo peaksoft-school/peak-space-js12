@@ -71,7 +71,7 @@
 	::-webkit-scrollbar-track {
 		background-color: lightgray;
 		border-radius: 5px;
-        scrollbar-width: 10px;
+		scrollbar-width: 10px;
 	}
 
 	::-webkit-scrollbar-thumb {
@@ -79,10 +79,10 @@
 		height: 1px;
 		border-radius: 10px;
 		border: 2px solid lightgray;
-        scrollbar-width: 10px;
+		scrollbar-width: 10px;
 	}
 	::-webkit-scrollbar {
-        width: 15px;
+		width: 15px;
 		height: 2px;
 	}
 	.usersList {
@@ -101,7 +101,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-            padding: 0px 18px 0 0px;
+			padding: 0px 18px 0 0px;
 			.messageBtn {
 				width: 110px;
 				height: 20px;
@@ -113,14 +113,34 @@
 
 				border-radius: 8px;
 				border: none;
-                
-                cursor: pointer;
+
+				cursor: pointer;
 			}
 		}
 		.userProfileImg {
 			width: 55px;
 			height: 55px;
 			border-radius: 100px;
+		}
+	}
+}
+
+// adaptive
+
+@media (min-width: 350px) and (max-width: 720px) {
+	.container {
+		width: 100%;
+        padding: 20px;
+		.navbar {
+			flex-direction: column;
+            gap: 20px;
+			.navList {
+				width: 100%;
+			}
+            .plusIcon {
+                width: 20px;
+                height: 20px;
+            }
 		}
 	}
 }
