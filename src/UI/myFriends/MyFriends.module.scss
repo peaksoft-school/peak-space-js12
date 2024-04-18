@@ -1,0 +1,126 @@
+.container {
+	max-width: 700px;
+	max-height: 800px;
+	width: 100%;
+
+	background-color: white;
+	color: black;
+
+	border-radius: 4px;
+
+	padding: 20px 30px;
+
+	.mainText {
+		font-size: 25px;
+		margin-bottom: 15px;
+	}
+	.selectedLink {
+		color: #4c3f9b;
+		font-weight: bold;
+	}
+	.link {
+		color: black;
+	}
+	.linkContainer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 27px;
+	}
+	.circle {
+		width: 5px;
+		height: 5px;
+		background: #8683d8;
+		border-radius: 100px;
+		box-shadow: 0px 1px 5px black;
+	}
+	.navbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		.navList {
+			display: flex;
+			justify-content: space-between;
+
+			width: 470px;
+			height: 20px;
+		}
+		.plusIcon {
+			cursor: pointer;
+		}
+	}
+	.searchContainer {
+		display: flex;
+		align-items: center;
+		margin-top: 15px;
+		outline: solid 1px gray;
+		border-radius: 4px;
+		padding: 5px 5px;
+		gap: 5px;
+		.searchImg {
+			width: 16px;
+			height: 16px;
+		}
+		.searchInput {
+			border: none;
+			outline: none;
+			width: 100%;
+		}
+	}
+
+	::-webkit-scrollbar-track {
+		background-color: lightgray;
+		border-radius: 5px;
+        scrollbar-width: 10px;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #b7b7b7;
+		height: 1px;
+		border-radius: 10px;
+		border: 2px solid lightgray;
+        scrollbar-width: 10px;
+	}
+	::-webkit-scrollbar {
+        width: 15px;
+		height: 2px;
+	}
+	.usersList {
+		height: 600px;
+		overflow: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 17px;
+		margin-top: 20px;
+		.leftPart {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+		}
+		.userInfo {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+            padding: 0px 18px 0 0px;
+			.messageBtn {
+				width: 110px;
+				height: 20px;
+
+				background-color: #535188;
+				color: white;
+
+				text-align: center;
+
+				border-radius: 8px;
+				border: none;
+                
+                cursor: pointer;
+			}
+		}
+		.userProfileImg {
+			width: 55px;
+			height: 55px;
+			border-radius: 100px;
+		}
+	}
+}
