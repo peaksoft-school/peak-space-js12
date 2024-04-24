@@ -1,13 +1,11 @@
 import scss from './Login.module.scss';
 import peakSpace from '../../../../assets/peakSpace.png';
-// import CustomInput from '@/src/UI/customInput/CustomInput';
 import { useState } from 'react';
 import { Input, Checkbox } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { GoogleImg } from '@/src/assets/icons';
 import { Link } from 'react-router-dom';
 import line from '../../../../assets/line.svg';
-
 import CustomButtonBold from '@/src/UI/customButton/CustomButtonBold';
 import { Controller, useForm } from 'react-hook-form';
 

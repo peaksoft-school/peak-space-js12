@@ -4,7 +4,6 @@ import peakSpace from '../../../../assets/peakSpace.png';
 import { Input } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import CustomButtonBold from '@/src/UI/customButton/CustomButtonBold';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -14,11 +13,7 @@ interface ErrorProps {
 
 const NewPassword = () => {
 	const [showPassword] = useState<boolean>(false);
-	const navigate = useNavigate();
 
-	const navigateUserPassword = () => {
-		navigate('/auth/login');
-	};
 	const {
 		control,
 		formState: { errors },
@@ -29,7 +24,6 @@ const NewPassword = () => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onSubmit = (data: any) => {
 		console.log(data);
-
 		reset();
 	};
 

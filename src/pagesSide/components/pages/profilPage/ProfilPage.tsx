@@ -19,21 +19,13 @@ const ProfilPage = () => {
 
 	return (
 		<div className={scss.mainPage}>
-			<div className={scss.nav}>
-				<nav>
-					<ul>
-						<li>3</li>
-					</ul>
-				</nav>
-			</div>
-
 			<div className={scss.aside}>
 				<div className={scss.head}>
 					<div>
 						<img src={backgroundImg} alt="" />
 					</div>
 					<div className={scss.bar}>
-						<div>
+						<div className={scss.userImg}>
 							<img src={userProfilImg} alt="" />
 						</div>
 						<div className={scss.sidebar}>
@@ -47,7 +39,7 @@ const ProfilPage = () => {
 								<div>
 									<p>Что-то что-то</p>
 								</div>
-								<div>
+								<div className={scss.mobile}>
 									<div
 										style={{
 											display: 'flex',
