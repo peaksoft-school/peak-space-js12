@@ -1,4 +1,4 @@
-import { IconDown, PlusIcon, SearchImg } from '@/src/assets/icons';
+import { IconDown, PlusIcon, SearchIcon } from '@/src/assets/icons';
 import FirstMan from '@/src/assets/FirstMan2.png';
 import UserStory from '@/src/assets/userStory.png';
 import { useState } from 'react';
@@ -33,7 +33,7 @@ const Header = () => {
 						<img src={Logo} alt="logo" />
 					</div>
 					<div className={scss.aside}>
-						<SearchImg className={scss.magnifyingGlass} onClick={() => {}} />
+						<SearchIcon className={scss.magnifyingGlass} onClick={() => {}} />
 						<input type="text" />
 					</div>
 					<div className={scss.profilePictureAndIconDown}>
