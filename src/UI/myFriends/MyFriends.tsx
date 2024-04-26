@@ -3,7 +3,7 @@ import scss from './MyFriends.module.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { PlusIcon, SearchIcon } from '@/src/assets/icons/index';
-import UserProfile from '@/src/assets/userProfil.png';
+import UserProfile from '@/src/assets/userProfile.png';
 
 const navigationBar = [
 	{
@@ -53,7 +53,7 @@ const MyFriends = () => {
 			</nav>
 
 			<div className={scss.searchContainer}>
-				<SearchImg className={scss.searchImg} onClick={() => {}} />
+				<SearchIcon className={scss.searchImg} onClick={() => {}} />
 				<input placeholder="Поиск" className={scss.searchInput} />
 			</div>
 			<ul className={scss.usersList}>
