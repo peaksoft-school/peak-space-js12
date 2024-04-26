@@ -2,7 +2,7 @@ import { useGetMyFriendsQuery } from '@/src/redux/api/myFriends';
 import scss from './MyFriends.module.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { PlusIcon, SearchImg } from '@/src/assets/icons/index';
+import { PlusIcon, SearchIcon } from '@/src/assets/icons/index';
 import UserProfile from '@/src/assets/userProfil.png';
 
 const navigationBar = [

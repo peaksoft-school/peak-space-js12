@@ -25,4 +25,4 @@ const PlusIcon: FC<plusIconProps> = ({ className, onClick }) => {
 	);
 };
 
-export default PlusIcon;
+export default PlusIcon
