@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-interface SearchImgProps {
+interface SearchIconProps {
 	className: string;
 	onClick: () => void;
 }
 
-const SearchImg: FC<SearchImgProps> = ({ className, onClick }) => {
+const SearchIcon: FC<SearchIconProps> = ({ className, onClick }) => {
 	return (
 		<>
 			<svg
@@ -31,4 +31,4 @@ const SearchImg: FC<SearchImgProps> = ({ className, onClick }) => {
 	);
 };
 
-export default SearchImg;
+export default SearchIcon;
