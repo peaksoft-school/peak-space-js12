@@ -46,7 +46,7 @@ const Header = () => {
 							className={`${scss.iconDown} ${isBurgerMenuActive && `${scss.iconDownActive}`}`}
 							onClick={changeBurgerMenuStateHandler}
 						/>
-					</div>
+					</div>.
 					<div
 						className={
 							isBurgerMenuActive ? scss.burgerMenu_active : scss.burgerMenu
