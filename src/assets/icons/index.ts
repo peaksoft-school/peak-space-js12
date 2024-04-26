@@ -6,7 +6,7 @@ export { default as HomeImg } from './HomeImg';
 export { default as ChatImg } from './ChatImg';
 export { default as NotificationsIgm } from './NotificationsIgm';
 export { default as SettingdImg } from './SettingdImg';
-export { default as SearchImg } from './SearchImg';
+export { default as SearchImg } from './SearchIcon';
 export { default as IconDown } from './IconDown';
 export { default as PlusIcon } from './PlusIcon';
 export { default as EditProfil } from './EditProfil';
