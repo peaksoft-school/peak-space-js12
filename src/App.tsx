@@ -1,14 +1,30 @@
 import { Routes, Route } from 'react-router-dom';
 import LayoutAuth from './pagesAuth/components/layout/LayoutAuth';
 import LayoutSide from './pagesSide/components/layout/LayoutSide';
+import { useEffect, useState } from 'react';
+import Preloader from './UI/preloader/Preloader';
 
 const App = () => {
+	const [isLoading, setIsLoading] = useState(true);
+	useEffect(() => {
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 1500);
+	}, []);
 	return (
 		<>
-			<Routes>
-				<Route path="/*" element={<LayoutSide />} />
-				<Route path="/auth/*" element={<LayoutAuth />} />
-			</Routes>
+			{isLoading ? (
+				<>
+					<Preloader />
+				</>
+			) : (
+				<>
+					<Routes>
+						<Route path="/*" element={<LayoutSide />} />
+						<Route path="/auth/*" element={<LayoutAuth />} />
+					</Routes>
+				</>
+			)}
 		</>
 	);
 };

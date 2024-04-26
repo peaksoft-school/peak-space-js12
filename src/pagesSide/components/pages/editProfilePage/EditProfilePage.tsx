@@ -1,27 +1,13 @@
 import scss from './EditProfilePage.module.scss';
-
-import backgroundsWhite from '../../../../assets/backWhite.jpeg';
 import CustomSelect from '@/src/UI/customSelect/CustomSelect';
-
 import UserEditProfile from '@/src/UI/userImages/UserEditProfile';
 
 const EditProfilePage = () => {
 	return (
 		<div className={scss.section}>
-			<div className={scss.navbar}>
-				<nav>
-					<ul>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
-				</nav>
-			</div>
 			<div className={scss.content}>
 				<div className={scss.head}>
-					<img className={scss.backgroundImg} src={backgroundsWhite} alt="" />
-
-					<div>
+					<div className={scss.editImg}>
 						<UserEditProfile />
 					</div>
 

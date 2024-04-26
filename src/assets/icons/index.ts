@@ -16,3 +16,4 @@ export { default as GreenBag } from './GreenBag';
 export { default as Mountain } from './Mountain';
 export { default as Heart } from './Heart';
 export { default as Strengthen } from './Strengthen';
+export { default as Fire } from './Fire';

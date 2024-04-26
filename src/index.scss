@@ -26,11 +26,11 @@ body {
 
 .container {
 	width: 100%;
-	max-width: 1040px;
+	max-width: 1360px;
 	margin-inline: auto;
 	padding-inline: 20px;
 }
-@media (max-width: 310px) {
+@media (max-width: 360px) {
 	.container {
 		padding-inline: 20px;
 		transition:
