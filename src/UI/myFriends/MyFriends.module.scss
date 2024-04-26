@@ -130,17 +130,17 @@
 @media (min-width: 350px) and (max-width: 720px) {
 	.container {
 		width: 100%;
-        padding: 20px;
+		padding: 20px;
 		.navbar {
 			flex-direction: column;
-            gap: 20px;
+			gap: 20px;
 			.navList {
 				width: 100%;
 			}
-            .plusIcon {
-                width: 20px;
-                height: 20px;
-            }
+			.plusIcon {
+				width: 20px;
+				height: 20px;
+			}
 		}
 	}
-}
+};
