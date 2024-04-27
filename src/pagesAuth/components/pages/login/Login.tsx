@@ -128,7 +128,6 @@ const Login = () => {
 								<img src={line} alt="#" />
 							</div>
 						</form>
-
 						<Link to="/auth/registration">Зарегистрироваться</Link>
 					</div>
 				</div>

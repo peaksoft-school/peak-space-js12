@@ -1,10 +1,17 @@
 import scss from './EditProfilePage.module.scss';
 import CustomSelect from '@/src/UI/customSelect/CustomSelect';
 import UserEditProfile from '@/src/UI/userImages/UserEditProfile';
-
+import ConfidentPage from './ConfidentPage';
+import ConfidentTwoRegest from './ConfidentTwoRegest';
+import { useLocation } from 'react-router-dom';
 const EditProfilePage = () => {
+	const localtion = useLocation();
+	const isConfident = localtion.pathname === '/ConfidentTwoRegest';
+	
+	
 	return (
 		<div className={scss.section}>
+			<ConfidentPage />
 			<div className={scss.content}>
 				<div className={scss.head}>
 					<div className={scss.editImg}>
@@ -59,15 +66,16 @@ const EditProfilePage = () => {
 						<div className={scss.row}>
 							<p style={{ fontWeight: 'bold', fontSize: '20px' }}>Status</p>
 							<div className={scss.radio}>
-								<input type="radio" /> <p>Employed</p>
+								<input placeholder="radio" type="radio" /> <p>Employed</p>
 							</div>
 							<div className={scss.radio}>
-								<input type="radio" /> <p>Unemployed</p>
+								<input placeholder="radio" type="radio" /> <p>Unemployed</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			{/* {isConfident ? null : <EditProfilePage />} */}
 		</div>
 	);
 };

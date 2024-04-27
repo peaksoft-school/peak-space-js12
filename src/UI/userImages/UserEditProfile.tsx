@@ -28,6 +28,7 @@ const UserEditProfile: React.FC = () => {
 	return (
 		<div className={scss.aside}>
 			<input
+				placeholder="file"
 				type="file"
 				ref={fileInputRef}
 				style={{ display: 'none' }}

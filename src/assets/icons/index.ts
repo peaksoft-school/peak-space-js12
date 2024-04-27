@@ -12,3 +12,7 @@ export { default as Mountain } from './Mountain';
 export { default as Heart } from './Heart';
 export { default as Strengthen } from './Strengthen';
 export { default as Fire } from './Fire';
+export { default as Circle } from './Circle'
+export { default as Zip  } from './Zip'
+export { default as SubTract } from  './SubTract'
+export { default as Info } from './Info'

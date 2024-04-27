@@ -1,7 +1,6 @@
 import { Input, Checkbox } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Controller, useForm } from 'react-hook-form';
-
 import CustomButtonBold from '@/src/UI/customButton/CustomButtonBold';
 import peakSpaceImg from '../../../../assets/peakSpace.png';
 import scss from './Registration.module.scss';

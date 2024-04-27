@@ -5,6 +5,8 @@ import Footer from './footer/Footer';
 import ProfilPage from '../pages/profilPage/ProfilPage';
 import NavBar from '@/src/UI/navBar/NavBar';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
+import ConfidentTwoRegest from '../pages/editProfilePage/ConfidentTwoRegest';
+import ConfidentPage from '../pages/editProfilePage/ConfidentPage';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -19,6 +21,14 @@ const LayoutSide = () => {
 					<Routes>
 						<Route path="side/*" element={<ProfilPage />} />
 						<Route path="/Settings" element={<EditProfilePage />} />
+						<Route
+							path="/ConfidentTwoRegest"
+							element={<ConfidentTwoRegest />}
+						/>
+						<Route
+							path="/ConfidentPage"
+							element={<ConfidentPage />}
+						/>
 					</Routes>
 				</main>
 			</div>
