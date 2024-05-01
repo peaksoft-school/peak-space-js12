@@ -13,6 +13,6 @@ export { default as Heart } from './Heart';
 export { default as Strengthen } from './Strengthen';
 export { default as Fire } from './Fire';
 export {default as MicrophoneImg } from './MicrophoneImg';
-export {default as VidoeImg} from './VidoeImg';
+export {default as VidoeImg} from './VidoeImg'
 export {default as CallImg} from './CallImg';
 export {default as ArrowImg} from './ArrowImg'
