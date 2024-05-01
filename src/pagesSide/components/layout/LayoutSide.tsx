@@ -25,10 +25,7 @@ const LayoutSide = () => {
 							path="/ConfidentTwoRegest"
 							element={<ConfidentTwoRegest />}
 						/>
-						<Route
-							path="/ConfidentPage"
-							element={<ConfidentPage />}
-						/>
+						<Route path="/ConfidentPage" element={<ConfidentPage />} />
 					</Routes>
 				</main>
 			</div>
