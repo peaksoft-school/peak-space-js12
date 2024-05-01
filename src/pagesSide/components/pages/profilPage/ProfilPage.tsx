@@ -4,15 +4,14 @@ import Favourites from './Favourites';
 import PhotoWith from './PhotoWith';
 import userProfilImg from '../../../../assets/FirstMan2.png';
 import backgroundImg from '../../../../assets/backgroundWhite.jpeg';
-import {
-	EditProfil,
-	GreenBag,
-	Heart,
-	Mountain,
-	Strengthen
-} from '@/src/assets/icons';
+
 import { useState } from 'react';
 import scss from './Style.module.scss';
+import { IconEdit } from '@tabler/icons-react';
+import { IconBasket } from '@tabler/icons-react';
+import { IconPhoto } from '@tabler/icons-react';
+import { IconHeart } from '@tabler/icons-react';
+import { IconPinned } from '@tabler/icons-react';
 
 const ProfilPage = () => {
 	const [activeItem, setActiveItem] = useState<string>('/');
@@ -34,7 +33,7 @@ const ProfilPage = () => {
 									style={{ display: 'flex', gap: '5px', alignItems: 'center' }}
 								>
 									<h4>Ivanov ivan</h4>
-									<EditProfil />
+									<IconEdit />
 								</div>
 								<div>
 									<p>Что-то что-то</p>
@@ -47,7 +46,7 @@ const ProfilPage = () => {
 											alignItems: 'center'
 										}}
 									>
-										<GreenBag />
+										<IconBasket color="green" />
 										<p style={{ fontSize: '13.4px', color: 'gray' }}>
 											Фотограф
 										</p>
@@ -75,7 +74,7 @@ const ProfilPage = () => {
 							to="side/public"
 							onClick={() => setActiveItem('side/public')}
 						>
-							<Mountain />
+							<IconPhoto color="black" />
 							<p>Мои публикации</p>
 						</Link>
 					</div>
@@ -85,7 +84,7 @@ const ProfilPage = () => {
 							to="side/favorite"
 							onClick={() => setActiveItem('side/favorite')}
 						>
-							<Heart />
+							<IconHeart color="black" />
 							<p>Избранное</p>
 						</Link>
 					</div>
@@ -95,7 +94,7 @@ const ProfilPage = () => {
 							to="side/photo"
 							onClick={() => setActiveItem('side/photo')}
 						>
-							<Strengthen />
+							<IconPinned color="black"/>
 							<p>Фото с вами</p>
 						</Link>
 					</div>

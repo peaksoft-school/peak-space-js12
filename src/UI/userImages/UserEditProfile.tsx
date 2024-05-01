@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { EditProfileImg } from '@/src/assets/icons';
+import { IconCamera } from '@tabler/icons-react';
 import scss from './Style.module.scss';
 
 const UserEditProfile: React.FC = () => {
@@ -34,7 +34,8 @@ const UserEditProfile: React.FC = () => {
 				onChange={handleFileChange}
 			/>
 			<img className={scss.userEditProfile} src={imageSrc} alt="" />
-			<EditProfileImg
+			<IconCamera
+				color="rgba(255, 255, 255, 0.637)"
 				onClick={handleChooseFileButtonClick}
 				className={scss.editProfileIcon}
 			/>
