@@ -13,7 +13,7 @@
 	nav {
 		padding-inline: 10px;
 		padding-block: 20px;
-		position: relative;
+		position: fixed;
 		.button_burger {
 			display: none;
 			@media (max-width: 768px) {
@@ -27,7 +27,6 @@
 				top: 100px;
 				left: -200px;
 				transition: 1s;
-				// background: red;
 			}
 		}
 		ul {
@@ -44,16 +43,13 @@
 				display: grid;
 				grid-template-rows: 1fr;
 				gap: 25px;
-				// display: flex;
-				// flex-direction: column;
-				// background: red;
-				// gap: 25px;
 
 				span {
 					opacity: 0;
 					transition: all 1s ease-in-out;
 				}
 			}
+
 			li {
 				display: flex;
 				align-items: center;
@@ -61,7 +57,6 @@
 				gap: 15px;
 				@media (max-width: 768px) {
 					transition: all 1s ease-in;
-
 					svg {
 						width: 27px !important;
 						height: 27px !important;
@@ -71,6 +66,7 @@
 						height: 27px !important;
 					}
 				}
+
 				span {
 					text-align: center;
 					color: rgba(0, 0, 0, 0.8);
