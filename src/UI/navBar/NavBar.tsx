@@ -16,30 +16,30 @@ const NavBar = () => {
 	const navigate = useNavigate();
 
 	const navigateMainPage = () => {
-		navigate('/Main pages')
-		setActiveItem('/Main page')
+		navigate('/Main pages');
+		setActiveItem('/Main page');
 	};
 
-	const navigateChat = ()=> {
-		navigate('/Chat')
-		setActiveItem('/Chat')
-	}
-	const navigateNotice = ()=> {
-		navigate('/Notice')
-		setActiveItem('/Notice')
-	}
-	const navigateSettings = ()=> {
-		navigate('/Settings')
-		setActiveItem('/Settings')
-	}
-	const navigateSide = ()=> {
-		navigate('/Side')
-		setActiveItem('/Side')
-	}
-	const navigateMoiPublic = ()=> {
-		navigate('/Moi public')
-		setActiveItem('/Moi public')
-	}
+	const navigateChat = () => {
+		navigate('/Chat');
+		setActiveItem('/Chat');
+	};
+	const navigateNotice = () => {
+		navigate('/Notice');
+		setActiveItem('/Notice');
+	};
+	const navigateSettings = () => {
+		navigate('/Settings');
+		setActiveItem('/Settings');
+	};
+	const navigateSide = () => {
+		navigate('/Side');
+		setActiveItem('/Side');
+	};
+	const navigateMoiPublic = () => {
+		navigate('/public');
+		setActiveItem('/public');
+	};
 
 	return (
 		<>
@@ -106,12 +106,12 @@ const NavBar = () => {
 						</li>
 						<li onClick={navigateMoiPublic}>
 							<Link
-								className={`${activeItem === '/Moi public' ? scss.activePage : scss.activePages} `}
-								onClick={() => setActiveItem('/Moi public')}
-								to={'/Moi public'}
+								className={`${activeItem === '/public' ? scss.activePage : scss.activePages} `}
+								onClick={() => setActiveItem('/public')}
+								to={'/public'}
 							>
 								<img
-									className={`${activeItem === '/Moi public' && scss.img}`}
+									className={`${activeItem === '/public' && scss.img}`}
 									src={userPublicImg}
 									alt="foto"
 								/>

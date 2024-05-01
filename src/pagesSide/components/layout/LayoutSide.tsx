@@ -6,6 +6,7 @@ import NavBar from '@/src/UI/navBar/NavBar';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
+import PublicPage from '../pages/profilPage/PublicPage';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -23,6 +24,7 @@ const LayoutSide = () => {
 						<Route path="side/*" element={<ProfilPage />} />
 						<Route path="/Settings" element={<EditProfilePage />} />
 						<Route path="/main" element={<MainPage />} />
+						<Route path="/public" element={<PublicPage />} />
 					</Routes>
 				</main>
 			</div>
