@@ -6,7 +6,6 @@ import NavBar from '@/src/UI/navBar/NavBar';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
-import ConfidentPage from '../pages/editProfilePage/ConfidentPage';
 import ConfidentTwoPage from '../pages/editProfilePage/ConfidentTwoPage';
 
 const LayoutSide = () => {
@@ -26,8 +25,7 @@ const LayoutSide = () => {
 						<Route path="side/*" element={<ProfilPage />} />
 						<Route path="/Settings" element={<EditProfilePage />} />
 						<Route path="/main" element={<MainPage />} />
-						<Route path="/ConfidentPage" element={<ConfidentPage />} />
-						<Route path="/ConfidentTwoPage" element={<ConfidentTwoPage />} />
+						<Route path='/ConfidentTwoPage' element={<ConfidentTwoPage/>}/>
 					</Routes>
 				</main>
 			</div>

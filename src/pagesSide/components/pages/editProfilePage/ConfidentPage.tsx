@@ -4,6 +4,7 @@ import Zip from '@/src/assets/icons/Zip';
 import SubTract from '@/src/assets/icons/SubTract';
 import Info from '@/src/assets/icons/Info';
 import scss from './Style.module.scss'
+import ConfidentTwoPage from './ConfidentTwoPage';
 const ConfidentPage = () => {
 	return (
 		<div className={scss.section1}>
@@ -30,6 +31,9 @@ const ConfidentPage = () => {
 					</div>
 				</div>
 			</div>
+			<Routes>
+				
+			</Routes>
 		</div>
 	);
 };

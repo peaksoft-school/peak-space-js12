@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import scss from './Style.module.scss';
-import vector from '../../../../assets/Vector (2).svg'
+import vector from '../../../../assets/Vector (2).svg';
 // import { Siwtchback } from '../../../../assets/icons/Siwtchback';
 import { Link } from 'react-router-dom';
 import Siwtchback from '@/src/assets/icons/Switchback';
@@ -9,7 +9,7 @@ const ConfidentTwoPage: FC = () => {
 		<div className={scss.confident_Content}>
 			<div className={scss.vector_Switch}>
 				<div className={scss.vector}>
-					<Link to="/ConfidentPage">
+					<Link to="/Settings">
 						<img src={vector} alt="" />
 					</Link>
 					<h2>Конфиденциальность</h2>
