@@ -1,4 +1,4 @@
-import scss from './EditProfilePage.module.scss';
+import scss from './Style.module.scss';
 import CustomSelect from '@/src/UI/customSelect/CustomSelect';
 import UserEditProfile from '@/src/UI/userImages/UserEditProfile';
 import ConfidentPage from './ConfidentPage';
@@ -6,9 +6,8 @@ import ConfidentTwoRegest from './ConfidentTwoRegest';
 import { useLocation } from 'react-router-dom';
 const EditProfilePage = () => {
 	const localtion = useLocation();
-	const isConfident = localtion.pathname === '/ConfidentTwoRegest';
-	
-	
+	// const isConfident = localtion.pathname === '/ConfidentTwoRegest';
+
 	return (
 		<div className={scss.section}>
 			<ConfidentPage />

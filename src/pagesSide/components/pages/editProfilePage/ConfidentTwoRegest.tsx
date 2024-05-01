@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import scss from './EditProfilePage.module.scss';
-import vector from '../../../../assets/Vector 9.svg';
+import scss from './Style.module.scss';
+import vector from '../../../../assets/Vector 9 (1).svg';
 import { Switch } from '@mui/material';
 import FormItemLabel from 'antd/es/form/FormItemLabel';
 import { Link } from 'react-router-dom';

@@ -13,6 +13,7 @@ import {
 } from '@/src/assets/icons';
 import { useState } from 'react';
 import scss from './Style.module.scss';
+import EditProfilePage from '../editProfilePage/EditProfilePage';
 
 const ProfilPage = () => {
 	const [activeItem, setActiveItem] = useState<string>('/');
@@ -34,7 +35,9 @@ const ProfilPage = () => {
 									style={{ display: 'flex', gap: '5px', alignItems: 'center' }}
 								>
 									<h4>Ivanov ivan</h4>
+									<Link to='/Settings'>
 									<EditProfil />
+									</Link>
 								</div>
 								<div>
 									<p>Что-то что-то</p>
@@ -106,6 +109,7 @@ const ProfilPage = () => {
 						<Route path="side/public" element={<Publications />} />
 						<Route path="side/favorite" element={<Favourites />} />
 						<Route path="side/photo" element={<PhotoWith />} />
+						<Route path="/Settings" element={<EditProfilePage />} />
 					</Routes>
 				</div>
 			</div>
