@@ -1,6 +1,6 @@
-import { FC } from 'react';
 
-const VidoeImg: FC = () => {
+
+const VidoeImg = () => {
 	return (
 		<>
 			<svg

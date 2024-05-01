@@ -1,8 +1,8 @@
-import { FC } from "react";
 
 
 
-const MicrophoneImg:FC = () => {
+
+const MicrophoneImg = () => {
 	return (
 		<>
 			<svg
