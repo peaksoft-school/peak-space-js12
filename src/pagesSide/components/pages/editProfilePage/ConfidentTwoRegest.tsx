@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import scss from './Style.module.scss';
 import vector from '../../../../assets/Vector 9 (1).svg';
-import { Switch } from '@mui/material';
-import FormItemLabel from 'antd/es/form/FormItemLabel';
+// import { Siwtchback } from '../../../../assets/icons/Siwtchback';
 import { Link } from 'react-router-dom';
+import Siwtchback from '@/src/assets/icons/Siwtchback';
 const ConfidentTwoRegest: FC = () => {
 	return (
 		<div className={scss.confident_Content}>
@@ -16,7 +16,7 @@ const ConfidentTwoRegest: FC = () => {
 				</div>
 				<div className={scss.Switch}>
 					<p>Закрытый аккаунт </p>
-					<Switch {...FormItemLabel} defaultChecked />
+					<Siwtchback />
 				</div>
 				<div className={scss.Lorem_Confident}>
 					<p>
