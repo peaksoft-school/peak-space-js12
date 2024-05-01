@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import scss from './NavBar.module.scss';
 import {
 	ChatImg,
@@ -13,6 +13,33 @@ import userPublicImg from '../../assets/Ellipse 60.svg';
 const NavBar = () => {
 	const [activeItem, setActiveItem] = useState<string>('/');
 	const [test, setTest] = useState(false);
+	const navigate = useNavigate();
+
+	const navigateMainPage = () => {
+		navigate('/Main pages')
+		setActiveItem('/Main page')
+	};
+
+	const navigateChat = ()=> {
+		navigate('/Chat')
+		setActiveItem('/Chat')
+	}
+	const navigateNotice = ()=> {
+		navigate('/Notice')
+		setActiveItem('/Notice')
+	}
+	const navigateSettings = ()=> {
+		navigate('/Settings')
+		setActiveItem('/Settings')
+	}
+	const navigateSide = ()=> {
+		navigate('/Side')
+		setActiveItem('/Side')
+	}
+	const navigateMoiPublic = ()=> {
+		navigate('/Moi public')
+		setActiveItem('/Moi public')
+	}
 
 	return (
 		<>
@@ -22,7 +49,7 @@ const NavBar = () => {
 						burger
 					</button>
 					<ul className={test ? '' : scss.none}>
-						<li>
+						<li onClick={navigateMainPage}>
 							<Link
 								className={`${activeItem === '/main' ? scss.activePage : scss.activePages} `}
 								onClick={() => setActiveItem('/main')}
@@ -32,7 +59,7 @@ const NavBar = () => {
 								<span>Главная</span>
 							</Link>
 						</li>
-						<li>
+						<li onClick={navigateChat}>
 							<Link
 								className={`${activeItem === '/Chat' ? scss.activePage : scss.activePages} `}
 								onClick={() => setActiveItem('/Chat')}
@@ -43,7 +70,7 @@ const NavBar = () => {
 							</Link>
 						</li>
 
-						<li>
+						<li onClick={navigateNotice}>
 							<Link
 								className={`${activeItem === '/Notice' ? scss.activePage : scss.activePages} `}
 								onClick={() => setActiveItem('/Notice')}
@@ -53,7 +80,7 @@ const NavBar = () => {
 								<span>Уведомления</span>
 							</Link>
 						</li>
-						<li>
+						<li onClick={navigateSettings}>
 							<Link
 								className={`${activeItem === '/Settings' ? scss.activePage : scss.activePages} `}
 								onClick={() => setActiveItem('/Settings')}
@@ -63,21 +90,21 @@ const NavBar = () => {
 								<span>Настройки</span>
 							</Link>
 						</li>
-						<li>
+						<li onClick={navigateSide}>
 							<Link
-								className={`${activeItem === '/side' ? scss.activePage : scss.activePages} `}
-								onClick={() => setActiveItem('/side')}
-								to={'/side'}
+								className={`${activeItem === '/Side' ? scss.activePage : scss.activePages} `}
+								onClick={() => setActiveItem('/Side')}
+								to={'/Side'}
 							>
 								<img
-									className={`${activeItem === '/side' && scss.img}`}
+									className={`${activeItem === '/Side' && scss.img}`}
 									src={userProfileImg}
 									alt="foto"
 								/>
 								<span>Мой профиль</span>
 							</Link>
 						</li>
-						<li>
+						<li onClick={navigateMoiPublic}>
 							<Link
 								className={`${activeItem === '/Moi public' ? scss.activePage : scss.activePages} `}
 								onClick={() => setActiveItem('/Moi public')}
