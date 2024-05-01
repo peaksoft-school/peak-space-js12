@@ -2,6 +2,7 @@ import scss from './EditProfilePage.module.scss';
 import CustomSelect from '@/src/UI/customSelect/CustomSelect';
 import UserEditProfile from '@/src/UI/userImages/UserEditProfile';
 
+
 const EditProfilePage = () => {
 	return (
 		<div className={scss.section}>

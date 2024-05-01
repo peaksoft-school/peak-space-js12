@@ -1,9 +1,13 @@
-import { IconDown, PlusIcon, SearchIcon } from '@/src/assets/icons';
+
 import FirstMan from '@/src/assets/FirstMan2.png';
 import UserStory from '@/src/assets/userStory.png';
 import { useState } from 'react';
 import scss from './Header.module.scss';
 import Logo from '@/src/assets/peacSpaceLogo.png';
+import { IconSearch } from '@tabler/icons-react';
+// import { IconArrowBigDown } from '@tabler/icons-react';
+import { IconCirclePlus } from '@tabler/icons-react';
+import { IconCaretDown } from '@tabler/icons-react';
 
 const Header = () => {
 	const users = [
@@ -33,7 +37,7 @@ const Header = () => {
 						<img src={Logo} alt="logo" />
 					</div>
 					<div className={scss.aside}>
-						<SearchIcon className={scss.magnifyingGlass} onClick={() => {}} />
+						<IconSearch className={scss.magnifyingGlass} onClick={() => {}} />
 						<input type="text" />
 					</div>
 					<div className={scss.profilePictureAndIconDown}>
@@ -42,7 +46,7 @@ const Header = () => {
 							src={FirstMan}
 							alt="profile-picture"
 						/>
-						<IconDown
+						<IconCaretDown 
 							className={`${scss.iconDown} ${isBurgerMenuActive && `${scss.iconDownActive}`}`}
 							onClick={changeBurgerMenuStateHandler}
 						/>
@@ -68,7 +72,7 @@ const Header = () => {
 								</li>
 							))}
 							<div className={scss.addNewAccountContainer}>
-								<PlusIcon
+								<IconCirclePlus
 									className={scss.addNewAccountButton}
 									onClick={() => {}}
 								/>
