@@ -24,9 +24,9 @@ const NavBar = () => {
 					<ul className={test ? '' : scss.none}>
 						<li>
 							<Link
-								className={`${activeItem === '/Main page' ? scss.activePage : scss.activePages} `}
-								onClick={() => setActiveItem('/Main page')}
-								to={'/Main page'}
+								className={`${activeItem === '/main' ? scss.activePage : scss.activePages} `}
+								onClick={() => setActiveItem('/main')}
+								to={'/main'}
 							>
 								<HomeImg className={''} />
 								<span>Главная</span>
