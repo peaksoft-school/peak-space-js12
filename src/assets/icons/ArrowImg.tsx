@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 
-const ArrowImg: FC<ArrowImgProps> = () => {
+const ArrowImg: FC= () => {
 	return (
 		<>
 			<svg
