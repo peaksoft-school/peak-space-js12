@@ -34,7 +34,9 @@ const ProfilPage = () => {
 									style={{ display: 'flex', gap: '5px', alignItems: 'center' }}
 								>
 									<h4>Ivanov ivan</h4>
-									<EditProfil />
+									<Link to="/Settings">
+										<EditProfil />
+									</Link>
 								</div>
 								<div>
 									<p>Что-то что-то</p>

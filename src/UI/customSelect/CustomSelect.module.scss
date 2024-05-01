@@ -1,9 +1,9 @@
 .selectBox {
 	position: relative;
 	display: grid;
-	grid-template-columns: repeat(1, 900px);
+	grid-template-columns: repeat(1, 600px);
 	width: 100%;
-	max-width: 900px;
+	max-width: 620px;
 	overflow: hidden;
 
 	@media (max-width: 1114px) {
@@ -52,7 +52,7 @@
 	top: calc(100% + 5px);
 	left: 0;
 	width: 100%;
-	max-width: 900px;
+	max-width: 600px;
 	max-height: 150px;
 	overflow-y: auto;
 	background: #ebeff3;

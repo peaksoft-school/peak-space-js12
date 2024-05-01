@@ -2,11 +2,12 @@ import scss from './LayoutSide.module.scss';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Header from './header/Header';
 import ProfilPage from '../pages/profilPage/ProfilPage';
-import MyFriends from '@/src/UI/myFriends/MyFriends';
 import NavBar from '@/src/UI/navBar/NavBar';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
+import ConfidentPage from '../pages/editProfilePage/ConfidentPage';
+import ConfidentTwoPage from '../pages/editProfilePage/ConfidentTwoPage';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -17,13 +18,7 @@ const LayoutSide = () => {
 	return (
 		<div className={scss.Layout}>
 			<Header />
-			<MyFriends />
-			<main>
-				<Routes>
-					<Route path="side/*" element={<ProfilPage />} />
-				</Routes>
-			</main>
-			<Footer />
+
 			<div style={{ background: '#ebeff3' }}>
 				<main className="container">
 					<NavBar />
@@ -31,6 +26,8 @@ const LayoutSide = () => {
 						<Route path="side/*" element={<ProfilPage />} />
 						<Route path="/Settings" element={<EditProfilePage />} />
 						<Route path="/main" element={<MainPage />} />
+						<Route path="/ConfidentPage" element={<ConfidentPage />} />
+						<Route path="/ConfidentTwoPage" element={<ConfidentTwoPage />} />
 					</Routes>
 				</main>
 			</div>
