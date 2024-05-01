@@ -1,6 +1,8 @@
 export { default as EditProfileImg } from './EditImg';
 export { default as EditProfileName } from './EditProfilName';
 export { default as GoogleImg } from './Google';
+export { default as ProfilePicture } from '../FirstMan2.png';
+export { default as IconDownImg } from '../IconDown.png';
 export { default as ArrowDown } from './ArrowDown';
 export { default as HomeImg } from './HomeImg';
 export { default as ChatImg } from './ChatImg';
@@ -12,7 +14,7 @@ export { default as Mountain } from './Mountain';
 export { default as Heart } from './Heart';
 export { default as Strengthen } from './Strengthen';
 export { default as Fire } from './Fire';
-export {default as MicrophoneImg } from './MicrophoneImg';
-export {default as VidoeImg} from './VidoeImg'
-export {default as CallImg} from './CallImg';
-export {default as ArrowImg} from './ArrowImg'
+export { default as MicrophoneImg } from './MicrophoneImg';
+export { default as VidoeImg } from './VidoeImg';
+export { default as CallImg } from './CallImg';
+export { default as ArrowImg } from './ArrowImg';
