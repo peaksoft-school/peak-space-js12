@@ -16,13 +16,8 @@ const NavBar = () => {
 	const navigate = useNavigate();
 
 	const navigateMainPage = () => {
-<<<<<<< HEAD
-		navigate('/Main pages');
-		setActiveItem('/Main page');
-=======
 		navigate('/main')
 		setActiveItem('/main')
->>>>>>> 222d55099c53c9c2d3affc52410170fac272d874
 	};
 
 	const navigateChat = () => {
