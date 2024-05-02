@@ -6,7 +6,7 @@ import NavBar from '@/src/UI/navBar/NavBar';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
-import PublicPage from '../pages/profilPage/PublicPage';
+import PublicPage from '../pages/publicPage/PublicPage';
 
 const LayoutSide = () => {
 	const location = useLocation();

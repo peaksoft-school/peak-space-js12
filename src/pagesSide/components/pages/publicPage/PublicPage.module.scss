@@ -1,0 +1,48 @@
+.container {
+	max-width: 980px;
+	width: 100%;
+	height: 100vh;
+	.content {
+		background-color: white;
+		width: 100%;
+		height: 260px;
+		.empty_avatar {
+			width: 150px;
+			height: 150px;
+			border-radius: 100px;
+			background: #d9d9d9;
+			position: relative;
+			left: 10px;
+			top: 90px;
+		}
+		.head {
+			position: relative;
+			width: 979px;
+			height: 158px;
+			left: 1px;
+			background: #d9d9d959;
+		}
+		.publics {
+			padding-top: 19px;
+			text-align: center;
+			p {
+				font-family: Inter;
+				font-weight: 400;
+				font-size: 25px;
+				color: #000000cc;
+				margin-bottom: 7px;
+			}
+			.addNewPublicButton {
+                font-weight: 700;
+                font-size: 12px;
+                letter-spacing: 2%;
+				padding: 7px 42px;
+				border: 1px solid #000000e5;
+				cursor: pointer;
+				background-color: white;
+				border-radius: 8px;
+				color: #000000e5;
+			}
+		}
+	}
+}
