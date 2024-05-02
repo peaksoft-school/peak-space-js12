@@ -4,7 +4,6 @@ import Favourites from './Favourites';
 import PhotoWith from './PhotoWith';
 import userProfilImg from '../../../../assets/FirstMan2.png';
 import backgroundImg from '../../../../assets/backgroundWhite.jpeg';
-
 import { useState } from 'react';
 import scss from './Style.module.scss';
 import { IconEdit } from '@tabler/icons-react';
@@ -94,7 +93,7 @@ const ProfilPage = () => {
 							to="side/photo"
 							onClick={() => setActiveItem('side/photo')}
 						>
-							<IconPinned color="black"/>
+							<IconPinned color="black" />
 							<p>Фото с вами</p>
 						</Link>
 					</div>
