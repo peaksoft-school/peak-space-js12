@@ -1,5 +1,5 @@
-.mainPage {
-	height: 100vh;
+.main_page {
+	height: 100%;
 	width: 100%;
 
 	.aside {
@@ -20,6 +20,7 @@
 				max-width: 979px;
 				max-height: 158px;
 				object-fit: cover;
+				border-radius: 3px;
 			}
 			.bar {
 				display: flex;
@@ -54,6 +55,16 @@
 						display: flex;
 						gap: 40px;
 						padding-block: 20px;
+						text-align: center;
+						&:nth-child(2) {
+							cursor: pointer;
+						}
+						.active_modal {
+							transition: 0.6s;
+							background: #dedede;
+							padding: 5px 22px;
+							border-radius: 9px;
+						}
 					}
 				}
 			}
@@ -85,19 +96,19 @@
 				width: 20px;
 				height: 20px;
 			}
-			.activePage {
-				color: black;
+			.active_page {
 				display: flex;
 				align-items: center;
 				gap: 5px;
 				border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+				color: black;
 			}
 		}
 	}
 }
 
 @media (max-width: 1155px) {
-	.mainPage {
+	.main_page {
 		.aside {
 			transition: all 1s ease-in-out;
 			width: 1000px;
@@ -131,7 +142,7 @@
 	}
 }
 @media (max-width: 1000px) {
-	.mainPage {
+	.main_page {
 		.aside {
 			transition: all 1s ease-in-out;
 			width: 100%;
@@ -156,7 +167,7 @@
 	}
 }
 @media (max-width: 768px) {
-	.mainPage {
+	.main_page {
 		.aside {
 			width: 100%;
 			.head {
@@ -177,12 +188,12 @@
 }
 
 @media (max-width: 480px) {
-	.mainPage {
+	.main_page {
 		.aside {
 			width: 100%;
 			.head {
 				.bar {
-					.userImg img {
+					.user_img img {
 						height: 100px;
 					}
 				}
@@ -230,13 +241,30 @@
 		font-family: 'Courier New';
 		font-weight: bold;
 	}
+	.bar {
+		width: 320px;
+		height: 320px;
+		background: white;
+		display: grid;
+		align-items: center;
+		justify-content: center;
+		:first-child {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 20px;
+		}
+	}
 	.section {
 		display: flex;
 		flex-direction: column;
 		gap: 6px;
+		flex-wrap: wrap;
 		img {
 			width: 320px;
 			height: 320px;
+			object-fit: cover;
 		}
 	}
 }
@@ -257,6 +285,7 @@
 		img {
 			width: 320px;
 			height: 350px;
+			object-fit: cover;
 		}
 	}
 }
@@ -270,13 +299,20 @@
 		font-family: 'Courier New';
 		font-weight: bold;
 	}
-	.photoUser {
+	.photo_user {
 		display: flex;
 		flex-direction: column;
 		gap: 6px;
 		img {
 			width: 320px;
 			height: 320px;
+			object-fit: cover;
 		}
 	}
+}
+
+.aside_modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

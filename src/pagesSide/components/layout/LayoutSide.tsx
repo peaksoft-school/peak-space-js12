@@ -6,6 +6,7 @@ import NavBar from '@/src/UI/navBar/NavBar';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
+import Notifications from '../pages/notifications/Notifications';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -20,14 +21,15 @@ const LayoutSide = () => {
 				<main className="container">
 					<NavBar />
 					<Routes>
-						<Route path="side/*" element={<ProfilPage />} />
+						<Route path="/side/*" element={<ProfilPage />} />
 						<Route path="/Settings" element={<EditProfilePage />} />
 						<Route path="/main" element={<MainPage />} />
+						<Route path="/notification" element={<Notifications />} />
 					</Routes>
 				</main>
 			</div>
 			{isSettingsPage ? null : <Footer />}
-			{/* {!isMainPage && <Footer />} */}
+			{/* {isMainPage ? null :<Footer/>} */}
 		</div>
 	);
 };

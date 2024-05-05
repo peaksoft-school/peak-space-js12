@@ -11,7 +11,7 @@ const PhotoWith = () => {
 			) : (
 				<>
 					{data?.map((item) => (
-						<div className={scss.photoUser} key={item._id}>
+						<div className={scss.photo_user} key={item._id}>
 							<img src={item.img} alt="" />
 						</div>
 					))}

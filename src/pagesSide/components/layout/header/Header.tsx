@@ -26,30 +26,32 @@ const Header = () => {
 	};
 
 	return (
-		<header className={scss.headerContainer}>
+		<header className={scss.header_container}>
 			<div className="container">
 				<div className={scss.content}>
-					<div className={scss.logoContainer}>
+					<div className={scss.logo_container}>
 						<img src={Logo} alt="logo" />
 					</div>
 					<div className={scss.aside}>
-						<SearchIcon className={scss.magnifyingGlass} onClick={() => {}} />
+						<SearchIcon className={scss.magnifying_glass} onClick={() => {}} />
 						<input type="text" />
 					</div>
-					<div className={scss.profilePictureAndIconDown}>
+					<div className={scss.profile_picture_and_icon_down}>
 						<img
-							className={scss.profilePicture}
-							src={FirstMan}
+							className={scss.profile_picture}
+							src={
+								'https://i.pinimg.com/564x/24/3c/4a/243c4a01b41e1e66862c4733ee7c3ed2.jpg'
+							}
 							alt="profile-picture"
 						/>
 						<IconDown
-							className={`${scss.iconDown} ${isBurgerMenuActive && `${scss.iconDownActive}`}`}
+							className={`${scss.icon_down} ${isBurgerMenuActive && `${scss.icon_down_active}`}`}
 							onClick={changeBurgerMenuStateHandler}
 						/>
 					</div>
 					<div
 						className={
-							isBurgerMenuActive ? scss.burgerMenu_active : scss.burgerMenu
+							isBurgerMenuActive ? scss.burger_menu_active : scss.burger_menu
 						}
 						onClick={changeBurgerMenuStateHandler}
 					>
@@ -58,21 +60,21 @@ const Header = () => {
 						<div></div>
 					</div>
 					<div
-						className={`${scss.menuList} ${isBurgerMenuActive ? `${scss.active}` : ''}`}
+						className={`${scss.menu_list} ${isBurgerMenuActive ? `${scss.active}` : ''}`}
 					>
 						<ul>
 							{users.map((user) => (
 								<li key={user.id}>
-									<img className={scss.accountAvatar} src={user.avatar} />
-									<p className={scss.accountName}>{user.name}</p>
+									<img className={scss.account_avatar} src={user.avatar} />
+									<p className={scss.account_name}>{user.name}</p>
 								</li>
 							))}
-							<div className={scss.addNewAccountContainer}>
+							<div className={scss.add_new_account_container}>
 								<PlusIcon
-									className={scss.addNewAccountButton}
+									className={scss.add_new_account_button}
 									onClick={() => {}}
 								/>
-								<p className={scss.addNewAccountText}>Добавить новый аккаунт</p>
+								<p className={scss.add_new_account_text}>Добавить аккаунт</p>
 							</div>
 						</ul>
 					</div>

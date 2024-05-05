@@ -7,7 +7,7 @@ const EditProfilePage = () => {
 		<div className={scss.section}>
 			<div className={scss.content}>
 				<div className={scss.head}>
-					<div className={scss.editImg}>
+					<div className={scss.edit_img}>
 						<UserEditProfile />
 					</div>
 

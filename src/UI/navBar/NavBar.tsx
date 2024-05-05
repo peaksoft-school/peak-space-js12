@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import scss from './NavBar.module.scss';
 import {
 	ChatImg,
@@ -11,7 +11,7 @@ import userProfileImg from '../../assets/FirstMan2.png';
 import userPublicImg from '../../assets/Ellipse 60.svg';
 
 const NavBar = () => {
-	const [activeItem, setActiveItem] = useState<string>('/');
+	const [, setActiveItem] = useState<string>('/');
 	const [test, setTest] = useState(false);
 	const navigate = useNavigate();
 
@@ -25,8 +25,8 @@ const NavBar = () => {
 		setActiveItem('/Chat');
 	};
 	const navigateNotice = () => {
-		navigate('/Notice');
-		setActiveItem('/Notice');
+		navigate('/notification');
+		setActiveItem('/notification');
 	};
 	const navigateSettings = () => {
 		navigate('/Settings');
@@ -41,6 +41,8 @@ const NavBar = () => {
 		setActiveItem('/Moi public');
 	};
 
+	const { pathname } = useLocation();
+
 	return (
 		<>
 			<div className={scss.content}>
@@ -51,7 +53,7 @@ const NavBar = () => {
 					<ul className={test ? '' : scss.none}>
 						<li onClick={navigateMainPage}>
 							<Link
-								className={`${activeItem === '/main' ? scss.activePage : scss.activePages} `}
+								className={`${pathname === '/main' ? scss.active_page : scss.active_default} `}
 								onClick={() => setActiveItem('/main')}
 								to={'/main'}
 							>
@@ -61,7 +63,7 @@ const NavBar = () => {
 						</li>
 						<li onClick={navigateChat}>
 							<Link
-								className={`${activeItem === '/Chat' ? scss.activePage : scss.activePages} `}
+								className={`${pathname === '/Chat' ? scss.active_page : scss.active_default} `}
 								onClick={() => setActiveItem('/Chat')}
 								to={'/Chat'}
 							>
@@ -72,9 +74,9 @@ const NavBar = () => {
 
 						<li onClick={navigateNotice}>
 							<Link
-								className={`${activeItem === '/Notice' ? scss.activePage : scss.activePages} `}
-								onClick={() => setActiveItem('/Notice')}
-								to={'/Notice'}
+								className={`${pathname === '/notification' ? scss.active_page : scss.active_default} `}
+								onClick={() => setActiveItem('/notification')}
+								to={'/notification'}
 							>
 								<NotificationsIgm className={''} />
 								<span>Уведомления</span>
@@ -82,7 +84,7 @@ const NavBar = () => {
 						</li>
 						<li onClick={navigateSettings}>
 							<Link
-								className={`${activeItem === '/Settings' ? scss.activePage : scss.activePages} `}
+								className={`${pathname === '/Settings' ? scss.active_page : scss.active_default} `}
 								onClick={() => setActiveItem('/Settings')}
 								to={'/Settings'}
 							>
@@ -92,12 +94,12 @@ const NavBar = () => {
 						</li>
 						<li onClick={navigateSide}>
 							<Link
-								className={`${activeItem === '/Side' ? scss.activePage : scss.activePages} `}
+								className={`${pathname === '/Side' ? scss.active_page : scss.active_default} `}
 								onClick={() => setActiveItem('/Side')}
 								to={'/Side'}
 							>
 								<img
-									className={`${activeItem === '/Side' && scss.img}`}
+									className={`${pathname === '/Side' && scss.img}`}
 									src={userProfileImg}
 									alt="foto"
 								/>
@@ -106,12 +108,12 @@ const NavBar = () => {
 						</li>
 						<li onClick={navigateMoiPublic}>
 							<Link
-								className={`${activeItem === '/Moi public' ? scss.activePage : scss.activePages} `}
+								className={`${pathname === '/Moi public' ? scss.active_page : scss.active_default} `}
 								onClick={() => setActiveItem('/Moi public')}
 								to={'/Moi public'}
 							>
 								<img
-									className={`${activeItem === '/Moi public' && scss.img}`}
+									className={`${pathname === '/Moi public' && scss.img}`}
 									src={userPublicImg}
 									alt="foto"
 								/>

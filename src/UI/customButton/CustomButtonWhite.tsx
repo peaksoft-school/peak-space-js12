@@ -8,7 +8,7 @@ interface ButtonWhiteProps {
 const CustomButtonWhite: FC<ButtonWhiteProps> = ({ children, onClick }) => {
 	return (
 		<>
-			<button className={scss.whiteButton} onClick={onClick}>
+			<button className={scss.white_button} onClick={onClick}>
 				{children}
 			</button>
 		</>

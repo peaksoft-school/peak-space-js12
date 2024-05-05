@@ -1,11 +1,11 @@
-import scss from './MainPage.module.scss';
 import MainPost from './MainPost';
 import MainStory from './MainStory';
+import scss from './Style.module.scss';
 
 const MainPage = () => {
 	return (
 		<>
-			<div className={scss.MainPage}>
+			<div className={scss.Main_page}>
 				<div className={scss.container}>
 					<div className={scss.content}>
 						<MainStory />

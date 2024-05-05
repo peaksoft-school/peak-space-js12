@@ -32,9 +32,8 @@ const UserEditProfile: React.FC = () => {
 				ref={fileInputRef}
 				style={{ display: 'none' }}
 				onChange={handleFileChange}
-				
 			/>
-			<img className={scss.userEditProfile} src={imageSrc} alt="" />
+			<img className={scss.user_edit_profile} src={imageSrc} alt="" />
 			<EditProfileImg
 				onClick={handleChooseFileButtonClick}
 				className={scss.editProfileIcon}

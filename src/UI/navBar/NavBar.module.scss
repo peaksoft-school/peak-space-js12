@@ -13,7 +13,7 @@
 	nav {
 		padding-inline: 10px;
 		padding-block: 20px;
-		// position: fixed;
+		position: fixed;
 		.button_burger {
 			display: none;
 			@media (max-width: 768px) {
@@ -90,7 +90,7 @@
 					color: #4c3f9b;
 				}
 			}
-			.activePage {
+			.active_page {
 				color: #4c3f9b;
 				display: flex;
 				align-items: center;
@@ -99,7 +99,7 @@
 					color: #4c3f9b;
 				}
 			}
-			.activePages {
+			.active_default {
 				color: black;
 				display: flex;
 				align-items: center;
