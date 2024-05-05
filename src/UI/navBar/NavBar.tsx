@@ -4,11 +4,10 @@ import scss from './NavBar.module.scss';
 import userProfileImg from '../../assets/FirstMan2.png';
 import userPublicImg from '../../assets/Ellipse 60.svg';
 
-import {IconMessageCircle} from '@tabler/icons-react'
-import {IconHome} from '@tabler/icons-react'
-import {IconBell} from '@tabler/icons-react'
-import {IconSettings} from '@tabler/icons-react'
-
+import { IconMessageCircle } from '@tabler/icons-react';
+import { IconHome } from '@tabler/icons-react';
+import { IconBell } from '@tabler/icons-react';
+import { IconSettings } from '@tabler/icons-react';
 
 const NavBar = () => {
 	const [, setActiveItem] = useState<string>('/');
@@ -16,8 +15,8 @@ const NavBar = () => {
 	const navigate = useNavigate();
 
 	const navigateMainPage = () => {
-		navigate('/main')
-		setActiveItem('/main')
+		navigate('/main');
+		setActiveItem('/main');
 	};
 
 	const navigateChat = () => {
@@ -57,7 +56,7 @@ const NavBar = () => {
 								onClick={() => setActiveItem('/main')}
 								to={'/main'}
 							>
-								<IconHome/>
+								<IconHome />
 								<span>Главная</span>
 							</Link>
 						</li>
@@ -67,7 +66,7 @@ const NavBar = () => {
 								onClick={() => setActiveItem('/Chat')}
 								to={'/Chat'}
 							>
-								<IconMessageCircle/>
+								<IconMessageCircle />
 								<span>Чаты</span>
 							</Link>
 						</li>
@@ -78,7 +77,7 @@ const NavBar = () => {
 								onClick={() => setActiveItem('/notification')}
 								to={'/notification'}
 							>
-								<IconBell/>
+								<IconBell />
 								<span>Уведомления</span>
 							</Link>
 						</li>
@@ -88,7 +87,7 @@ const NavBar = () => {
 								onClick={() => setActiveItem('/Settings')}
 								to={'/Settings'}
 							>
-								<IconSettings/>
+								<IconSettings />
 								<span>Настройки</span>
 							</Link>
 						</li>
