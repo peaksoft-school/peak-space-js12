@@ -1,7 +1,7 @@
 import { useGetStotyQuery } from '@/src/redux/api/story';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
-import scss from './MainPage.module.scss';
+import scss from './Style.module.scss';
 const MainStory = () => {
 	const { data, isLoading } = useGetStotyQuery();
 

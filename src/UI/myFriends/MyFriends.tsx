@@ -3,7 +3,6 @@ import scss from './MyFriends.module.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { PlusIcon, SearchIcon } from '@/src/assets/icons/index';
-import UserProfile from '@/src/assets/userProfile.png';
 
 const navigationBar = [
 	{
@@ -26,19 +25,18 @@ const navigationBar = [
 
 const MyFriends = () => {
 	const [selectedLink, setSelectedLink] = useState<string>('');
-
 	const { data, isLoading } = useGetMyFriendsQuery();
 
 	return (
 		<div className={scss.container}>
-			<h1 className={scss.mainText}>Друзья</h1>
-			<nav className={scss.navbar}>
-				<ul className={scss.navList}>
+			<h1>Друзья</h1>
+			<nav className={scss.nav_bar}>
+				<ul className={scss.nav_list}>
 					{navigationBar.map((nav) => (
-						<div className={scss.linkContainer}>
+						<div className={scss.link_container}>
 							<Link
 								to={nav.link}
-								className={`${selectedLink === nav.link ? `${scss.selectedLink}` : `${scss.link}`}`}
+								className={`${selectedLink === nav.link ? `${scss.selected_link}` : `${scss.link}`}`}
 								onClick={() => setSelectedLink(nav.link)}
 							>
 								{nav.name}
@@ -49,28 +47,31 @@ const MyFriends = () => {
 						</div>
 					))}
 				</ul>
-				<PlusIcon className={scss.plusIcon} onClick={() => {}} />
+				<PlusIcon className={scss.plus_icon} onClick={() => {}} />
 			</nav>
 
-			<div className={scss.searchContainer}>
-				<SearchIcon className={scss.searchImg} onClick={() => {}} />
-				<input placeholder="Поиск" className={scss.searchInput} />
+			<div className={scss.search_container}>
+				<SearchIcon className={scss.search_img} onClick={() => {}} />
+				<input placeholder="Поиск" />
 			</div>
-			<ul className={scss.usersList}>
+			<ul className={scss.users_list}>
 				{isLoading ? (
 					<h1>loading...</h1>
 				) : (
 					data?.map((user) => (
-						<li className={scss.userInfo}>
-							<div className={scss.leftPart}>
-								<img className={scss.userProfileImg} src={UserProfile} />
-								<div className={scss.userNameDescription}>
+						<li className={scss.user_info}>
+							<div className={scss.left_part}>
+								<img
+									className={scss.user_profile_img}
+									src={user.ProfilePicture}
+								/>
+								<div className={scss.user_name_description}>
 									<h3>{user.name}</h3>
 									<p>{user.description}</p>
 								</div>
 							</div>
 
-							<button className={scss.messageBtn}>Написать</button>
+							<button className={scss.message_btn}>Написать</button>
 						</li>
 					))
 				)}

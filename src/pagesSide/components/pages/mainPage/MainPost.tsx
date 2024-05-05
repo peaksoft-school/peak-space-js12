@@ -1,6 +1,4 @@
 import {
-	// ArrowLeft,
-	// ArrowRight,
 	Comments,
 	Like,
 	Point,
@@ -9,26 +7,16 @@ import {
 	Smile
 } from '@/src/assets/icons';
 import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
-import scss from './MainPage.module.scss';
 import { useState } from 'react';
-import Modal from '@/src/UI/Modal/Modal';
-import { useKeenSlider } from 'keen-slider/react';
+import scss from './Style.module.scss';
+import ModalTs from '@/src/UI/Modal/Modal';
+import SliderMain from './SliderMain';
 
 const MainPost = () => {
-	const { data, isLoading } = useGetMainPageQuery();
+	const { data } = useGetMainPageQuery();
 	const [isState, setIsState] = useState(false);
 	const [isModal, setIsModal] = useState(false);
-	const [currentSlide, setCurrentSlide] = useState(0);
-	const [loaded, setLoaded] = useState(false);
-	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-		initial: 0,
-		slideChanged(slider) {
-			setCurrentSlide(slider.track.details.rel);
-		},
-		created() {
-			setLoaded(true);
-		}
-	});
+
 	const changeState = () => {
 		setIsState(!isState);
 	};
@@ -38,33 +26,6 @@ const MainPost = () => {
 	const closeModal = () => {
 		setIsModal(false);
 	};
-	// sllider
-
-	function Arrow(props: {
-		disabled: boolean;
-		left?: boolean;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		onClick: (e: any) => void;
-	}) {
-		const disabled = props.disabled ? ' arrow--disabled' : '';
-		return (
-			<svg
-				onClick={props.onClick}
-				className={`arrow ${
-					props.left ? 'arrow--left' : 'arrow--right'
-				} ${disabled}`}
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 24 24"
-			>
-				{props.left && (
-					<path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-				)}
-				{!props.left && (
-					<path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-				)}
-			</svg>
-		);
-	}
 
 	return (
 		<div>
@@ -79,13 +40,15 @@ const MainPost = () => {
 									<p>{item.localtion}</p>
 								</div>
 							</div>
-							<Point onClick={changeState} />
+							<button onClick={changeState}>
+								<Point />
+							</button>
 						</div>
 						<div
 							className={isState ? scss.one : scss.two}
 							onClick={changeState}
 						>
-							<p>Не интересно</p>
+							<p className={scss.red}>заблокировать пользователя</p>
 							<p>Пожаловаться</p>
 							<p>Отписаться</p>
 						</div>
@@ -96,7 +59,7 @@ const MainPost = () => {
 							<div className={scss.icons}>
 								<div className={scss.inner}>
 									<Like />
-									<Comments />
+									<Comments onClick={openModal} />
 									<SendIcon />
 								</div>
 								<div>
@@ -104,66 +67,11 @@ const MainPost = () => {
 								</div>
 							</div>
 						</div>
-						<p onClick={openModal} className={scss.comment}>
-							Добавить комментарий...
-						</p>
-						<Modal isOpen={isModal} onClose={closeModal}>
-							<div className={scss.modalAside}>
+						<p className={scss.comment}>Добавить комментарий...</p>
+						<ModalTs open={isModal} onCancel={closeModal}>
+							<div className={scss.modal_aside}>
 								<div className={scss.widget}>
-									{isLoading ? (
-										<>
-											<p>Loading . .</p>
-										</>
-									) : (
-										<>
-											<div ref={sliderRef} className="keen-slider">
-												{/* <img src={item.secondPost} alt="" />
-												<img src={item.postImg} alt="" /> */}
-
-												<div className="keen-slider__slide number-slide1">
-													1
-												</div>
-												<div className="keen-slider__slide number-slide2">
-													2
-												</div>
-												<div className="keen-slider__slide number-slide3">
-													3
-												</div>
-												<div className="keen-slider__slide number-slide4">
-													4
-												</div>
-												<div className="keen-slider__slide number-slide5">
-													5
-												</div>
-												<div className="keen-slider__slide number-slide6">
-													6
-												</div>
-											</div>
-										</>
-									)}
-									{loaded && instanceRef.current && (
-										<>
-											<Arrow
-												left
-												// eslint-disable-next-line @typescript-eslint/no-explicit-any
-												onClick={(e: any) =>
-													e.stopPropagation() || instanceRef.current?.prev()
-												}
-												disabled={currentSlide === 0}
-											/>
-
-											<Arrow
-												// eslint-disable-next-line @typescript-eslint/no-explicit-any
-												onClick={(e: any) =>
-													e.stopPropagation() || instanceRef.current?.next()
-												}
-												disabled={
-													currentSlide ===
-													instanceRef.current.track.details.slides.length - 1
-												}
-											/>
-										</>
-									)}
+									<SliderMain />
 								</div>
 								<div className={scss.main}>
 									<div className={scss.excerpt}>
@@ -192,9 +100,11 @@ const MainPost = () => {
 														dolore magna aliqua. Ut enim ad minim veniam, quis
 														nostrud exercitation ullamco laboris nisi ut aliquip
 													</p>
-													<Like />
+													<button>
+														<Like />
+													</button>
 												</div>
-												<div className={scss.endMessage}>
+												<div className={scss.end_message}>
 													<p>17:27 19.03.2024</p>
 													<h5>Ответить</h5>
 												</div>
@@ -202,13 +112,13 @@ const MainPost = () => {
 										</div>
 									</div>
 									{/* inputSmile */}
-									<div className={scss.InputSmile}>
+									<div className={scss.input_smile}>
 										<Smile />
 										<input type="text" placeholder="Добавить комментарий..." />
 									</div>
 								</div>
 							</div>
-						</Modal>
+						</ModalTs>
 					</div>
 				</div>
 			))}

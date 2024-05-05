@@ -25,8 +25,8 @@ const CustomSelect = () => {
 	];
 
 	return (
-		<div className={scss.selectBox}>
-			<div className={scss.selectedOption} onClick={toggleDropdown}>
+		<div className={scss.select_box}>
+			<div className={scss.selected_option} onClick={toggleDropdown}>
 				{selectedOption ? selectedOption : 'Выберите'}
 			</div>
 			{isOpen && (

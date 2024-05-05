@@ -1,21 +1,24 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+import { Modal } from 'antd';
 import scss from './Modal.module.scss';
-interface ModalProps {
-	isOpen: boolean;
-	onClose: () => void;
+const ModalTs: React.FC<{
+	open: boolean;
+	onCancel: () => void;
 	children: ReactNode;
-}
-
-const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+}> = ({ open, onCancel, children }) => {
+	if (!open) return null;
 	return (
-		<div>
-			{isOpen && (
-				<div onClick={() => onClose} className={scss.modalOverlay}>
-					<div className={scss.modal}>{children}</div>
-				</div>
-			)}
-		</div>
+		<>
+			<Modal
+				visible={open}
+				onCancel={onCancel}
+				footer={null}
+				className={scss.modal}
+			>
+				{children}
+			</Modal>
+		</>
 	);
 };
 
-export default Modal;
+export default ModalTs;

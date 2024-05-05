@@ -8,7 +8,7 @@ interface CustomButtonProps {
 const CustomButton: FC<CustomButtonProps> = ({ children, onClick }) => {
 	return (
 		<>
-			<button className={scss.customButton} onClick={onClick}>
+			<button className={scss.custom_button} onClick={onClick}>
 				{children}
 			</button>
 		</>

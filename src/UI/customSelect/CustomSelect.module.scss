@@ -1,4 +1,4 @@
-.selectBox {
+.select_box {
 	position: relative;
 	display: grid;
 	grid-template-columns: repeat(1, 900px);
@@ -34,7 +34,7 @@
 	}
 }
 
-.selectedOption {
+.selected_option {
 	padding: 13px;
 	background: #ebeff3;
 	border-radius: 8px;

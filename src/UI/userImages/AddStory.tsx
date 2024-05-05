@@ -5,7 +5,7 @@ const AddStory = () => {
 	return (
 		<>
 			<img src={addImgStory} alt="" />
-			<img className={scss.plusImg} src={plusImg} alt="" />
+			<img className={scss.plus_img} src={plusImg} alt="" />
 		</>
 	);
 };

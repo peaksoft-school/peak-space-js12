@@ -10,7 +10,7 @@ interface ButtonBoldProps {
 const CustomButtonBold: FC<ButtonBoldProps> = ({ children, type }) => {
 	return (
 		<>
-			<button className={scss.boldButton} type={type}>
+			<button className={scss.bold_button} type={type}>
 				{children}
 			</button>
 		</>

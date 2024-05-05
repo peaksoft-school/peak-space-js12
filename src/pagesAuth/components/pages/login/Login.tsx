@@ -48,7 +48,7 @@ const Login = () => {
 								rules={{ required: 'Пожалуйста, введите ваш email.' }}
 								render={({ field }) => (
 									<Input
-										className={scss.inputPassword}
+										className={scss.input_password}
 										{...field}
 										placeholder="Номер телефона или email"
 										type="email"
@@ -67,7 +67,7 @@ const Login = () => {
 								)}
 							/>
 							{errors?.email && (
-								<span className={scss.errorEmail}>{errors.email.message}</span>
+								<span className={scss.error_email}>{errors.email.message}</span>
 							)}
 							<Controller
 								name="password"
@@ -81,7 +81,7 @@ const Login = () => {
 											visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
 										}
 										placeholder=" Пароль"
-										className={scss.inputPassword}
+										className={scss.input_password}
 										visibilityToggle
 										type={showPassword ? 'text' : 'password'}
 										style={{
@@ -99,7 +99,7 @@ const Login = () => {
 								)}
 							/>
 							{errors.password && (
-								<span className={scss.errorPassword}>
+								<span className={scss.error_password}>
 									{errors?.password?.message || 'error!'}
 								</span>
 							)}
