@@ -33,7 +33,7 @@ const Header = () => {
 						<img src={Logo} alt="logo" />
 					</div>
 					<div className={scss.aside}>
-						<SearchIcon className={scss.magnifying_glass} onClick={() => {}} />
+						<SearchIcon className={scss.magnifyingGlass} onClick={() => {}} />
 						<input type="text" />
 					</div>
 					<div className={scss.profile_picture_and_icon_down}>
@@ -45,7 +45,7 @@ const Header = () => {
 							alt="profile-picture"
 						/>
 						<IconDown
-							className={`${scss.icon_down} ${isBurgerMenuActive && `${scss.icon_down_active}`}`}
+							className={`${scss.iconDown} ${isBurgerMenuActive && `${scss.iconDownActive}`}`}
 							onClick={changeBurgerMenuStateHandler}
 						/>
 					</div>
@@ -69,12 +69,12 @@ const Header = () => {
 									<p className={scss.account_name}>{user.name}</p>
 								</li>
 							))}
-							<div className={scss.add_new_account_container}>
+							<div className={scss.addNewAccountContainer}>
 								<PlusIcon
-									className={scss.add_new_account_button}
+									className={scss.addNewAccountButton}
 									onClick={() => {}}
 								/>
-								<p className={scss.add_new_account_text}>Добавить аккаунт</p>
+								<p className={scss.addNewAccountText}>Добавить аккаунт</p>
 							</div>
 						</ul>
 					</div>
