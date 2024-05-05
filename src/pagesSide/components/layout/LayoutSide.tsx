@@ -36,7 +36,6 @@
 
 // export default LayoutSide;
 
-
 import scss from './LayoutSide.module.scss';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Header from './header/Header';
