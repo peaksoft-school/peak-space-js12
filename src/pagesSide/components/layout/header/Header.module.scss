@@ -8,11 +8,13 @@
 	.content {
 		display: flex;
 		align-items: center;
+		width: 100%;
 	}
 	.aside {
 		max-width: 914px;
 		display: flex;
 		align-items: center;
+		gap: 8px;
 		border: 0.5px solid rgba(0, 0, 0, 0.4);
 		width: 100%;
 		height: 100%;
@@ -27,14 +29,21 @@
 		}
 		.magnifyingGlass {
 			width: 17px;
+			color: gray;
+		}
+		svg {
+			color: gray;
+			&:hover{
+				color: red;
+			}
 		}
 	}
 
 	.profile_picture_and_icon_down {
 		display: flex;
-		width: 90px;
 		align-items: center;
-		column-gap: 10px;
+		// column-gap: 10px;
+		width: 80px;
 		.profile_picture {
 			max-width: 40px;
 			max-height: 40px;

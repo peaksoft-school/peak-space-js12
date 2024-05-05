@@ -1,4 +1,3 @@
-
 import FirstMan from '@/src/assets/FirstMan2.png';
 import UserStory from '@/src/assets/userStory.png';
 import { useState } from 'react';
@@ -48,7 +47,7 @@ const Header = () => {
 							}
 							alt="profile-picture"
 						/>
-						<IconCaretDown 
+						<IconCaretDown
 							className={`${scss.iconDown} ${isBurgerMenuActive && `${scss.iconDownActive}`}`}
 							onClick={changeBurgerMenuStateHandler}
 						/>
