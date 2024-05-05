@@ -2,7 +2,6 @@ import { Link, Route, Routes } from 'react-router-dom';
 import Publications from './Publications';
 import Favourites from './Favourites';
 import PhotoWith from './PhotoWith';
-
 import { useState } from 'react';
 import scss from './Style.module.scss';
 import { IconEdit } from '@tabler/icons-react';
