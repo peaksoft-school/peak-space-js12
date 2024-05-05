@@ -268,7 +268,7 @@ const ProfilPage = () => {
 							to="side/photo"
 							onClick={() => setActiveItem('side/photo')}
 						>
-							<IconPinned color="black" />
+							<IconPinned color="black"/>
 							<p>Фото с вами</p>
 						</Link>
 					</div>
