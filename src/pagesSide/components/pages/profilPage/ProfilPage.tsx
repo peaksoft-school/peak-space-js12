@@ -160,6 +160,9 @@ import { IconHeart } from '@tabler/icons-react';
 import { IconPinned } from '@tabler/icons-react';
 
 
+
+
+
 const ProfilPage = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [isModalOpen, setIsModalOpen] = useState(false);

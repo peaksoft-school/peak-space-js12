@@ -41,6 +41,8 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Header from './header/Header';
 import ProfilPage from '../pages/profilPage/ProfilPage';
 
+
+
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
