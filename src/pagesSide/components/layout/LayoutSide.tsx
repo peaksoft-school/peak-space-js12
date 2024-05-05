@@ -52,9 +52,10 @@ const LayoutSide = () => {
 	const isSettingsPage = location.pathname === '/Settings';
 	// const isMainPage = location.pathname === '/main';
 
+
 	return (
 		<div className={scss.Layout}>
-			<Header />v
+			<Header />
 			<div style={{ background: '#ebeff3' }}>
 				<main className="container">
 					<NavBar />
