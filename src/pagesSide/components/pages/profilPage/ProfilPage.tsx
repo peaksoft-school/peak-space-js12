@@ -159,10 +159,6 @@ import { IconPhoto } from '@tabler/icons-react';
 import { IconHeart } from '@tabler/icons-react';
 import { IconPinned } from '@tabler/icons-react';
 
-
-
-
-
 const ProfilPage = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -272,7 +268,7 @@ const ProfilPage = () => {
 							to="side/photo"
 							onClick={() => setActiveItem('side/photo')}
 						>
-							<IconPinned color="black"/>
+							<IconPinned color="black" />
 							<p>Фото с вами</p>
 						</Link>
 					</div>
