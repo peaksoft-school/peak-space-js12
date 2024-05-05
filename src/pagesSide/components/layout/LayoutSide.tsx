@@ -42,12 +42,12 @@ import Header from './header/Header';
 import ProfilPage from '../pages/profilPage/ProfilPage';
 
 
+import NavBar from '@/src/UI/navBar/NavBar';
 
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
 import Notifications from '../pages/notifications/Notifications';
-import NavBar from '@/src/UI/navBar/NavBar';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -58,6 +58,13 @@ const LayoutSide = () => {
 	return (
 		<div className={scss.Layout}>
 			<Header />
+
+
+
+
+
+
+
 
 
 
