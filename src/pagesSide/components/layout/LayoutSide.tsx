@@ -7,6 +7,7 @@ import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
 import PublicPage from '../pages/publicPage/PublicPage';
+import NewPublic from '../pages/publicPage/NewPublic';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -25,6 +26,7 @@ const LayoutSide = () => {
 						<Route path="/Settings" element={<EditProfilePage />} />
 						<Route path="/main" element={<MainPage />} />
 						<Route path="/public" element={<PublicPage />} />
+						<Route path="/public/new-publication" element={<NewPublic />} />
 					</Routes>
 				</main>
 			</div>

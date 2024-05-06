@@ -1,0 +1,51 @@
+.container {
+	max-width: 980px;
+	width: 100%;
+	.userAvatarAndCover {
+        width: 980px;
+		height: 253px;
+		background-color: #bac0c6;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.userAvatar {
+			height: 170px;
+		}
+	}
+	.publicContent {
+		max-width: 980px;
+		width: 100%;
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+        padding: 20px 0px 0px 50px;
+        div {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+		p {
+			font-weight: 700;
+			font-size: 20px;
+		}
+		input,
+		textarea {
+			width: 100%;
+			resize: none;
+			outline: none;
+			background-color: #ebeff3;
+			border: none;
+			border-radius: 8px;
+			font-size: 20px;
+		}
+		input {
+			padding: 14px 13px;
+		}
+		textarea {
+			padding: 14px 0px 142px 13px;
+		}
+	}
+}
