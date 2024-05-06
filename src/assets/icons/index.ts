@@ -27,3 +27,4 @@ export { default as Smile } from './Smile';
 export { default as ArrowRight } from './ArrowRight';
 export { default as ArrowLeft } from './ArrowLeft';
 export { default as PlusIconSecond } from './PlusIconSecond';
+export {default as NavBar} from './NavBar'
