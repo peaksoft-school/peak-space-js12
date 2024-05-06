@@ -47,7 +47,7 @@ const NavBar = () => {
 			<div className={scss.content}>
 				<nav>
 					<button className={scss.button_burger} onClick={() => setTest(!test)}>
-						burger
+						<NavBar />
 					</button>
 					<ul className={test ? '' : scss.none}>
 						<li onClick={navigateMainPage}>

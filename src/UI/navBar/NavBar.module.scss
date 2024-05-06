@@ -5,14 +5,16 @@
 	max-width: 335px;
 	background: #ffffff;
 	@media (max-width: 768px) {
-		width: 110px;
-		height: 100vh;
-		overflow-y: auto;
+		max-width: 101px !important;
+		width: 100%;
+		background: #ffffff;
+		z-index: 888 !important;
 	}
 
 	nav {
 		padding-inline: 10px;
 		padding-block: 20px;
+
 		position: fixed;
 		.button_burger {
 			display: none;
@@ -34,15 +36,17 @@
 			flex-direction: column;
 			gap: 15px;
 			position: relative;
+
 			@media (max-width: 768px) {
 				position: fixed;
-				top: 75px;
-				left: 38px;
+				top: 120px;
+				left: 49px;
 				transition: 1s;
 				z-index: 100;
 				display: grid;
 				grid-template-rows: 1fr;
 				gap: 25px;
+				z-index: 888;
 
 				span {
 					opacity: 0;
@@ -60,6 +64,11 @@
 					svg {
 						width: 27px !important;
 						height: 27px !important;
+						&:hover {
+							background: rgb(234, 234, 234);
+							height: 100%;
+							width: 100%;
+						}
 					}
 					img {
 						width: 27px !important;
