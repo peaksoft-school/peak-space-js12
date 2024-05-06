@@ -9,6 +9,7 @@ const App = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false);
+			console.log('hello 06.05.24');
 		}, 1500);
 	}, []);
 	return (
@@ -18,13 +19,12 @@ const App = () => {
 					<Preloader />
 				</>
 			) : (
-				<>
-					<Routes>
-						<Route path="/*" element={<LayoutSide />} />
-						<Route path="/auth/*" element={<LayoutAuth />} />
-					</Routes>
-				</>
+				<></>
 			)}
+			<Routes>
+				<Route path="/*" element={<LayoutSide />} />
+				<Route path="/auth/*" element={<LayoutAuth />} />
+			</Routes>
 		</>
 	);
 };
