@@ -3,12 +3,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import scss from './NavBar.module.scss';
 import userProfileImg from '../../assets/FirstMan2.png';
 import userPublicImg from '../../assets/Ellipse 60.svg';
-
 import { IconMessageCircle } from '@tabler/icons-react';
 import { IconHome } from '@tabler/icons-react';
 import { IconBell } from '@tabler/icons-react';
 import { IconSettings } from '@tabler/icons-react';
-
 const NavBar = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [test, setTest] = useState(false);
@@ -46,9 +44,10 @@ const NavBar = () => {
 		<>
 			<div className={scss.content}>
 				<nav>
-					<button className={scss.button_burger} onClick={() => setTest(!test)}>
-						<NavBar />
-					</button>
+					<button
+						className={scss.button_burger}
+						onClick={() => setTest(!test)}
+					>burger</button>
 					<ul className={test ? '' : scss.none}>
 						<li onClick={navigateMainPage}>
 							<Link
