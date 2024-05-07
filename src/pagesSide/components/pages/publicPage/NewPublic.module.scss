@@ -1,25 +1,26 @@
 .container {
 	max-width: 980px;
 	width: 100%;
-	.userAvatarAndCover {
+	padding: 0px 0px 40px 0px;
+	.user_avatar_and_cover {
         width: 980px;
 		height: 253px;
 		background-color: #bac0c6;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		.userAvatar {
+		.user_avatar {
 			height: 170px;
 		}
 	}
-	.publicContent {
+	.public_content {
 		max-width: 980px;
 		width: 100%;
 		background-color: white;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-        padding: 20px 0px 0px 50px;
+        padding: 20px 0px 30px 50px;
         div {
             max-width: 900px;
             width: 100%;
