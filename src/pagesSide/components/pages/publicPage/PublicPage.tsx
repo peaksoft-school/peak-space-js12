@@ -17,7 +17,7 @@ const PublicPage = () => {
 						>
 							<button
 								onClick={() => setActiveItem('new-publication')}
-								className={scss.addNewPublicButton}
+								className={scss.add_new_public_button}
 							>
 								Создать паблик
 							</button>
