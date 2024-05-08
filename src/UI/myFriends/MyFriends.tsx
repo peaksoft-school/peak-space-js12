@@ -66,7 +66,9 @@ const MyFriends = () => {
 									src={user.ProfilePicture}
 								/>
 								<div className={scss.user_name_description}>
+									<Link to="/UsersProfile">
 									<h3>{user.name}</h3>
+									</Link>
 									<p>{user.description}</p>
 								</div>
 							</div>

@@ -86,6 +86,7 @@ const Publications = () => {
 			)}
 
 			<input
+			placeholder='text'
 				type="file"
 				ref={fileInputRef}
 				style={{ display: 'none' }}

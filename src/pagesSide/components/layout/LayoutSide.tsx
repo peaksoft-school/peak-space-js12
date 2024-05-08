@@ -47,6 +47,7 @@ import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
 import Notifications from '../pages/notifications/Notifications';
+import UsersProfile from '../pages/profilPage/UsersProfile';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -66,6 +67,7 @@ const LayoutSide = () => {
 						<Route path="/Settings" element={<EditProfilePage />} />
 						<Route path="/main" element={<MainPage />} />
 						<Route path="/notification" element={<Notifications />} />
+						<Route path="/usersProfile/*" element={<UsersProfile />} />
 					</Routes>
 				</main>
 			</div>
