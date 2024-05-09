@@ -11,11 +11,21 @@ import { useState } from 'react';
 import scss from './Style.module.scss';
 import ModalTs from '@/src/UI/Modal/Modal';
 import SliderMain from './SliderMain';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 
 const MainPost = () => {
-	const { data } = useGetMainPageQuery();
+	const { data: items } = useGetMainPageQuery();
 	const [isState, setIsState] = useState(false);
 	const [isModal, setIsModal] = useState(false);
+	const [inputStr, setInputStr] = useState('');
+	const [showPicker, setShowPicker] = useState(false);
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const handleGetEmoji = (event: any) => {
+		setInputStr((prevInput) => prevInput + event.native);
+		setShowPicker(false);
+	};
 
 	const changeState = () => {
 		setIsState(!isState);
@@ -29,7 +39,7 @@ const MainPost = () => {
 
 	return (
 		<div>
-			{data?.map((item) => (
+			{items?.map((item) => (
 				<div className={scss.section} key={item._id}>
 					<div className={scss.holder}>
 						<div className={scss.wrapper}>
@@ -41,7 +51,7 @@ const MainPost = () => {
 								</div>
 							</div>
 							<button onClick={changeState}>
-								<Point />
+								<Point onClick={changeState} />
 							</button>
 						</div>
 						<div
@@ -88,7 +98,7 @@ const MainPost = () => {
 										{/* comments */}
 										<div className={scss.preview}>
 											<img
-												src="https://s3-alpha-sig.figma.com/img/8362/89d6/df84eab2ac2d1f2d0f1dcd527f30304d?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=itGFHD8ViNM3gRtya1RJUxyRbAIALEaij237pOBWhesENyx7lZiVlC2z5aEc7x9SDkkBoGnzH04DppT4WfL19oQ~~9H9M4VuPLe77XlFJLTP7zAysaBDd2xV8dU0VSP1G9w1KhfN0LkXOA3Rrgps6fBhFnl17U8hDrA6JJBHI~zapbNx0iTZsff7yhRFdBqwp~IXkFReGanIMpvsOH5SiI1DAT48yvxPhiwkBaD24tyj4jcyhytlwzzVFK4SHzitt2r6-OjimF4HTGpAPuSHpEUL1BXIq~jfyBNiqKEp9gRk1ETVrrXhJlwXPun9eP5g3F7PqzJZa1lS1GTxwJyUfw__"
+												src="https://i.pinimg.com/564x/42/91/b4/4291b466ec6093fd98c40f213e17c8e6.jpg"
 												alt=""
 											/>
 											<div className={scss.tip}>
@@ -113,8 +123,20 @@ const MainPost = () => {
 									</div>
 									{/* inputSmile */}
 									<div className={scss.input_smile}>
-										<Smile />
-										<input type="text" placeholder="Добавить комментарий..." />
+										<Smile onClick={() => setShowPicker((val) => !val)} />
+										<input
+											type="text"
+											placeholder="Добавить комментарий..."
+											value={inputStr}
+											onChange={(e) => setInputStr(e.target.value)}
+										/>
+										{showPicker && (
+											<Picker
+												data={data}
+												onEmojiSelect={handleGetEmoji}
+												theme={'light'}
+											/>
+										)}
 									</div>
 								</div>
 							</div>

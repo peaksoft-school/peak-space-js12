@@ -65,7 +65,7 @@ const ProfilPage = () => {
 										}}
 									>
 										<IconBasket color="green" />
-										<p style={{ fontSize: '13.4px', color: 'gray' }}>
+										<p style={{ fontSize: '13.2px', color: 'gray' }}>
 											Фотограф
 										</p>
 									</div>

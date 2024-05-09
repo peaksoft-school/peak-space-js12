@@ -1,9 +1,13 @@
 import { FC } from 'react';
 
-const Point: FC<PointProps> = () => {
+interface PointProps {
+	onClick: () => void;
+}
+const Point: FC<PointProps> = ({ onClick }) => {
 	return (
 		<div>
 			<svg
+				onClick={onClick}
 				width="31.000000"
 				height="7.000000"
 				viewBox="0 0 31 7"

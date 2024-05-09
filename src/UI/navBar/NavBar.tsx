@@ -9,7 +9,7 @@ import { IconBell } from '@tabler/icons-react';
 import { IconSettings } from '@tabler/icons-react';
 const NavBar = () => {
 	const [, setActiveItem] = useState<string>('/');
-	const [test, setTest] = useState(false);
+	const [test] = useState(false);
 	const navigate = useNavigate();
 
 	const navigateMainPage = () => {
@@ -44,11 +44,7 @@ const NavBar = () => {
 		<>
 			<div className={scss.content}>
 				<nav>
-					<button
-						className={scss.button_burger}
-						onClick={() => setTest(!test)}
-					>burger</button>
-					<ul className={test ? '' : scss.none}>
+					<ul className={!test ? scss.isNone : scss.none}>
 						<li onClick={navigateMainPage}>
 							<Link
 								className={`${pathname === '/main' ? scss.active_page : scss.active_default} `}

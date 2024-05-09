@@ -1,6 +1,39 @@
 .notifi {
 	max-width: 980px;
 	width: 100%;
+	@media (max-width: 480px) {
+		.aside {
+			.head {
+			}
+			.bar {
+				.box {
+					display: flex;
+
+					.comment {
+						.start {
+							.user_img {
+								width: 60px;
+								height: 60px;
+							}
+							h4 {
+								font-size: 13px;
+							}
+							.text {
+								font-size: 12.2px;
+								font-weight: 400;
+								line-height: 19px;
+								letter-spacing: 0%;
+							}
+						}
+					}
+					img {
+						width: 50px;
+						height: 50px;
+					}
+				}
+			}
+		}
+	}
 	.aside {
 		display: flex;
 		flex-direction: column;
@@ -47,19 +80,97 @@
 		}
 	}
 }
+
 //modal
 .tool_tip {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
 	.open_modal {
 		display: flex;
-		// background: white;
+
+		.slider {
+			position: relative;
+
+			.bar_slider {
+				width: 500px;
+
+				.aside_slider {
+					img {
+						object-fit: cover;
+						height: 672px;
+					}
+				}
+			}
+		}
+
+		img {
+			object-fit: cover;
+			height: 750px;
+		}
 
 		.aside_bar {
 			background: rgba(255, 255, 255);
 			width: 490px;
-			text-align: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			.user_data {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				width: 100%;
+				max-width: 470px;
+				.row {
+					display: flex;
+					align-items: center;
+					gap: 7px;
+				}
+				img {
+					width: 60px;
+					height: 60px;
+					border-radius: 50%;
+				}
+			}
+			.input_smile {
+				border-top: 0.5px solid rgba(0, 0, 0, 0.3);
+				width: 100%;
+				padding: 5px;
+				position: relative;
+				svg {
+					position: absolute;
+					top: 7px;
+					left: 0;
+					bottom: 6px;
+					cursor: pointer;
+				}
+				input {
+					outline: 0;
+					border: 0;
+					color: rgb(28, 28, 28);
+					font-size: 16px;
+					font-weight: 400;
+					line-height: 21px;
+					width: calc(100% - 40px);
+					position: relative;
+					left: 18px;
+					&:focus {
+						border: 0;
+						outline: 0;
+					}
+					&:focus::placeholder {
+						opacity: 0;
+					}
+				}
+				em-emoji-picker {
+					position: absolute;
+					bottom: 33px;
+					left: 0;
+					z-index: 555;
+					height: 260px;
+				}
+			}
 		}
 
 		img {

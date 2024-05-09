@@ -1,9 +1,22 @@
 import ModalTs from '@/src/UI/Modal/Modal';
 import scss from './Notifications.module.scss';
 import { useState } from 'react';
-
+import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
+import { Point, Smile } from '@/src/assets/icons';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
+import NotificationsSlider from './NotificationsSlider';
 const Notifications = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const { data: datas } = useGetMainPageQuery();
+	const [inputStr, setInputStr] = useState('');
+	const [showPicker, setShowPicker] = useState(false);
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const handleGetEmoji = (event: any) => {
+		setInputStr((prevInput) => prevInput + event.native);
+		setShowPicker(false);
+	};
 
 	const showModal = () => {
 		setIsModalOpen(true);
@@ -12,7 +25,7 @@ const Notifications = () => {
 	const handleCancel = () => {
 		setIsModalOpen(false);
 	};
-	const data = [
+	const data2 = [
 		{
 			userImg:
 				'https://s3-alpha-sig.figma.com/img/c2e3/da27/27ce9a1c90f33014c90379b00de8ed9f?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TLR1RUrbiQvjXn8C-sRHLByudUC6p8v4jzs1U92rIvcov1KwQ5bsiuCAnBsRy0kb5LSWqhDFZ2-j93Wbvafs44GrnCGQmbG3vqcEY-O-WgPe2fkL66pKQ24nRa2by3qt7EM9~bcqjsoiLkLQ9yUc-lVIUnUv6MT7yBApal-8duONBHGCSKlgdaoFfJFK8vYW2Lxd9LXfvub6KaG8CY-A2AkSak7Dyqs7im4xT9NPetMmablKvjsiICy4dNguvyrkeJkjxP6i9JKaCngHdQiMNR-Chk2QLHTlI6iFV6w93bSLWEiT~Xq0vAM-AT8ib7Xib-sQoMXqN24wD6zx9sQ8qQ__',
@@ -46,7 +59,7 @@ const Notifications = () => {
 					<h2>Уведомления</h2>
 				</div>
 				<div className={scss.bar}>
-					{data.map((item) => (
+					{data2.map((item) => (
 						<>
 							<div className={scss.box}>
 								<div className={scss.comment}>
@@ -54,7 +67,7 @@ const Notifications = () => {
 										<img className={scss.user_img} src={item.userImg} alt="" />
 										<div>
 											<h4>{item.title}</h4>
-											<p>{item.comment}</p>
+											<p className={scss.text}>{item.comment}</p>
 										</div>
 									</div>
 									<p style={{ color: 'gray', fontSize: '10px' }}>{item.time}</p>
@@ -64,14 +77,50 @@ const Notifications = () => {
 									<ModalTs open={isModalOpen} onCancel={handleCancel}>
 										<div className={scss.tool_tip}>
 											<div className={scss.open_modal}>
-												<div>
-													<img
-														src="https://s3-alpha-sig.figma.com/img/90b6/6318/ba3b4f15a85b13d7edbf43fef661e60b?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pTs7wGVqo-0kEJ1EXZsaCSYjPMRVhNpm95e3ELcQ7OAo3M-4FWCB8~NsR-ZbxCPXHP9CHi5scbp9Xxl47PCQIRO9hbLL~zTn~EH5h18syvyjo~9ivyk4Vi3psnMDQ~mlHeQHm-w0mlHtnwBRGSxaRaLwd9-qDX8TSruxcXWcLy1Df6hLg9L-hMq1Z5FMS9Hx6qMN3L6fEcpt1hAxIQEaTpAN~j7J02LKaE36mYTeQ9FESPsP5G8Mb1CZ5v5fi2NkUjS-l4JCutEgbsbriMHySGIW~zvfzCNlm2y0JME6YhKghzg5bM-Bpri17ATTYr8uBSmvY-oj~uM~mqIdoBYjIw__"
+												<div className={scss.slider}>
+													{/* <img
+														src="https://i.pinimg.com/736x/5c/66/81/5c6681240a66a3b61aeb579bf154e7e4.jpg"
 														alt=""
-													/>
+													/> */}
+													<NotificationsSlider />
 												</div>
 												<div className={scss.aside_bar}>
-													<p>test</p>
+													<div>
+														{datas?.map((item) => (
+															<div>
+																<div className={scss.user_data}>
+																	<div className={scss.row}>
+																		<img src={item.avatar} alt="" />
+
+																		<div>
+																			<h4>{item.nicname}</h4>
+																			<p>{item.localtion}</p>
+																		</div>
+																	</div>
+
+																	<Point onClick={() => console.log('hello')} />
+																</div>
+															</div>
+														))}
+													</div>
+													<div className={scss.input_smile}>
+														<Smile
+															onClick={() => setShowPicker((val) => !val)}
+														/>
+														<input
+															type="text"
+															placeholder="Добавить комментарий..."
+															value={inputStr}
+															onChange={(e) => setInputStr(e.target.value)}
+														/>
+														{showPicker && (
+															<Picker
+																data={data}
+																onEmojiSelect={handleGetEmoji}
+																theme={'light'}
+															/>
+														)}
+													</div>
 												</div>
 											</div>
 										</div>
