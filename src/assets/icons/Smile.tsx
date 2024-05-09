@@ -1,7 +1,13 @@
-const Smile = () => {
+import { FC } from 'react';
+
+interface SmileProps {
+	onClick: () => void;
+}
+const Smile: FC<SmileProps> = ({ onClick }) => {
 	return (
 		<div>
 			<svg
+				onClick={onClick}
 				width="21.000000"
 				height="21.000000"
 				viewBox="0 0 21 21"

@@ -59,6 +59,7 @@
 					gap: 6px;
 					width: 100%;
 					max-width: 912px;
+					position: relative;
 					@media (max-width: 1118px) {
 						max-width: 860px;
 
@@ -90,7 +91,10 @@
 						max-width: 340px;
 						overflow: hidden;
 					}
-					@media (max-width: 300px) {
+					@media (max-width: 340px) {
+						max-width: 280px;
+					}
+					@media (max-width: 320px) {
 						max-width: 250px;
 					}
 
@@ -98,6 +102,9 @@
 						display: flex;
 						align-items: center;
 						justify-content: space-between;
+						position: relative;
+						top: 0;
+						left: 0;
 						.wrap {
 							display: flex;
 							gap: 10px;
@@ -116,8 +123,8 @@
 							}
 
 							img {
-								width: 70px;
-								height: 70px;
+								width: 60px;
+								height: 60px;
 								border-radius: 50%;
 							}
 						}
@@ -134,8 +141,8 @@
 					}
 					.one {
 						position: absolute;
-						bottom: 383px;
-						left: 1327px;
+						bottom: 590px;
+						left: 671px;
 						z-index: 50;
 						width: 250px;
 						height: 170px;
@@ -171,7 +178,7 @@
 					.two {
 						position: absolute;
 						top: 0;
-						left: -260px;
+						left: -960px;
 					}
 					img {
 						width: 100%;
@@ -211,6 +218,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
 
 	.widget {
 		position: relative;
@@ -322,10 +330,22 @@
 		}
 		.input_smile {
 			border-top: 0.5px solid rgba(0, 0, 0, 0.3);
-			display: flex;
-			align-items: center;
-			gap: 8px;
+			// display: flex;
+			// align-items: center;
+			// gap: 23px;
+			width: 100%;
 			padding: 5px;
+			position: relative;
+			svg {
+				position: absolute;
+				top: 7px;
+				left: 0;
+				bottom: 6px;
+				cursor: pointer;
+				&:active {
+					color: red;
+				}
+			}
 			input {
 				outline: 0;
 				border: 0;
@@ -333,7 +353,9 @@
 				font-size: 16px;
 				font-weight: 400;
 				line-height: 21px;
-				width: 100%;
+				width: calc(100% - 40px);
+				position: relative;
+				left: 18px;
 				&:focus {
 					border: 0;
 					outline: 0;
@@ -341,6 +363,13 @@
 				&:focus::placeholder {
 					opacity: 0;
 				}
+			}
+			em-emoji-picker {
+				position: absolute;
+				bottom: 33px;
+				left: 0;
+				z-index: 555;
+				height: 260px;
 			}
 		}
 	}
