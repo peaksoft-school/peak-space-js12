@@ -8,6 +8,12 @@ dependencies:
   '@ant-design/icons':
     specifier: ^5.3.6
     version: 5.3.6(react-dom@18.2.0)(react@18.2.0)
+  '@emoji-mart/data':
+    specifier: ^1.2.1
+    version: 1.2.1
+  '@emoji-mart/react':
+    specifier: ^1.1.1
+    version: 1.1.1(emoji-mart@5.6.0)(react@18.2.0)
   '@reduxjs/toolkit':
     specifier: ^2.2.3
     version: 2.2.3(react-redux@9.1.0)(react@18.2.0)
@@ -17,6 +23,9 @@ dependencies:
   antd:
     specifier: ^5.16.1
     version: 5.16.1(react-dom@18.2.0)(react@18.2.0)
+  emoji-mart:
+    specifier: ^5.6.0
+    version: 5.6.0
   keen-slider:
     specifier: ^6.8.6
     version: 6.8.6
@@ -150,6 +159,20 @@ packages:
   /@ctrl/tinycolor@3.6.1:
     resolution: {integrity: sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==}
     engines: {node: '>=10'}
+    dev: false
+
+  /@emoji-mart/data@1.2.1:
+    resolution: {integrity: sha512-no2pQMWiBy6gpBEiqGeU77/bFejDqUTRY7KX+0+iur13op3bqUsXdnwoZs6Xb1zbv0gAj5VvS1PWoUUckSr5Dw==}
+    dev: false
+
+  /@emoji-mart/react@1.1.1(emoji-mart@5.6.0)(react@18.2.0):
+    resolution: {integrity: sha512-NMlFNeWgv1//uPsvLxvGQoIerPuVdXwK/EUek8OOkJ6wVOWPUizRBJU0hDqWZCOROVpfBgCemaC3m6jDOXi03g==}
+    peerDependencies:
+      emoji-mart: ^5.2
+      react: ^16.8 || ^17 || ^18
+    dependencies:
+      emoji-mart: 5.6.0
+      react: 18.2.0
     dev: false
 
   /@emotion/hash@0.8.0:
@@ -1312,6 +1335,10 @@ packages:
 
   /emoji-emoticon-to-unicode@0.2.2:
     resolution: {integrity: sha512-fZ/wYomR+zc1/Sp/uY85M06XaGr+P+mH/uzh4l3rPPnv3YXrF3W2Cm/IqWcXvMw8m65/vmVvigBVqvkUfPJi4A==}
+    dev: false
+
+  /emoji-mart@5.6.0:
+    resolution: {integrity: sha512-eJp3QRe79pjwa+duv+n7+5YsNhRcMl812EcFVwrnRvYKoNPoQb5qxU8DG6Bgwji0akHdp6D4Ln6tYLG58MFSow==}
     dev: false
 
   /envify@3.4.1:

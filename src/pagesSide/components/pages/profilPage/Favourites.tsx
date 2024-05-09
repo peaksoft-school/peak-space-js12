@@ -1,5 +1,5 @@
 import scss from './Style.module.scss';
-import { useGetFavouritesQuery } from '@/src/redux/api/favourites';
+import { useGetFavouritesQuery } from '@/src/redux/api/editPage/favourites';
 const Favourites = () => {
 	const { data, isLoading } = useGetFavouritesQuery();
 

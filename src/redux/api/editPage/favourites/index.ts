@@ -1,4 +1,4 @@
-import { api as index } from '..';
+import { api as index } from '../..';
 const api = index.injectEndpoints({
 	endpoints: (builder) => ({
 		getFavourites: builder.query<

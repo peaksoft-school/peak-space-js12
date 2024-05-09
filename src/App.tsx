@@ -4,6 +4,7 @@ import LayoutSide from './pagesSide/components/layout/LayoutSide';
 import { useEffect, useState } from 'react';
 import Preloader from './UI/preloader/Preloader';
 
+
 const App = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {

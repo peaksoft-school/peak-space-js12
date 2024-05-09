@@ -1,0 +1,242 @@
+.chat_meg {
+	max-width: 979px;
+	width: 100%;
+	background: white;
+	padding-inline: 20px;
+	padding-block: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	.input_text {
+		padding-block: 22px;
+		transition: 0.2s;
+		display: flex;
+		max-width: 940px;
+		flex-direction: column;
+		gap: 15px;
+		width: 100%;
+
+		.inputs {
+			height: 20px;
+			max-width: 940px;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			padding-block: 18px;
+			padding-inline: 12px;
+			background: #e7e8e9b1;
+			height: 20px;
+			// position: fixed;
+
+			.icons {
+				width: 20px;
+				height: 20px;
+			}
+
+			input {
+				max-width: 950px;
+				width: 100%;
+				border: none;
+				outline: none;
+				background: transparent;
+			}
+		}
+	}
+	.box {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		.aside {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.form {
+				display: flex;
+				align-items: center;
+				gap: 30px;
+
+				.images {
+					width: 60px;
+					height: 60px;
+					border-radius: 50%;
+					border: 5px solid green;
+				}
+				.text {
+					display: flex;
+					flex-direction: column;
+					h1 {
+						font-size: 20px;
+						cursor: pointer;
+					}
+					p {
+						font-size: 14px;
+					}
+				}
+			}
+			p {
+				font-size: 15px;
+			}
+		}
+	}
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////!
+.chat_person {
+	// overflow: hidden;
+	max-width: 1350px;
+	display: flex;
+	gap: 5px;
+	width: 100%;
+
+	.box {
+		max-width: 351px;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		background-color: white;
+
+		.aside {
+			width: 351px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px;
+
+			.form {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+
+				.image {
+					width: 60px;
+					height: 60px;
+					border-radius: 50%;
+					border: 5px solid green;
+				}
+
+				.text {
+					display: flex;
+					flex-direction: column;
+
+					h1 {
+						font-size: 15px;
+						cursor: pointer;
+					}
+					p {
+						font-size: 12px;
+					}
+				}
+			}
+
+			p {
+				text-align: center;
+				font-size: 12px;
+			}
+		}
+	}
+
+	// !
+	.cards {
+		display: flex;
+		justify-content: space-between;
+		align-items: end;
+		flex-direction: column;
+		max-width: 950px;
+		width: 100%;
+		// position: relative;
+
+		em-emoji-picker {
+			height: 255px;
+			position: absolute;
+			top: 190px;
+			left: 0;
+		}
+
+		.card {
+			background: white;
+			display: flex;
+			align-items: center;
+			padding-block: 20px;
+			max-width: 940px;
+			width: 100%;
+
+			.arrow {
+				width: 60px;
+				height: 60px;
+				cursor: pointer;
+			}
+
+			.bar {
+				max-width: 770px;
+				display: flex;
+				gap: 20px;
+				align-items: center;
+				width: 100%;
+
+				img {
+					width: 80px;
+					height: 80px;
+					border-radius: 50%;
+					border: 5px solid green;
+				}
+
+				.text {
+					display: flex;
+					flex-direction: column;
+
+					h1 {
+						font-size: 20px;
+					}
+					p {
+						font-size: 13px;
+					}
+				}
+			}
+
+			.icons {
+				display: flex;
+				gap: 20px;
+
+				.icon {
+					width: 30px;
+					height: 30px;
+					cursor: pointer;
+				}
+			}
+		}
+
+		.input {
+			display: flex;
+			align-items: center;
+			border: none;
+			padding-block: 14px;
+			padding-inline: 12px;
+			gap: 10px;
+			background: white;
+			border-radius: 15px;
+			max-width: 950px;
+			width: 100%;
+			height: auto;
+
+			textarea {
+				border: none;
+				outline: none;
+				font-size: 20px;
+				width: 100%;
+				resize: none;
+				padding-top: 20px;
+			}
+
+			textarea::placeholder {
+				font-size: 22px;
+			}
+			.icons {
+				width: 35px;
+				height: 35px;
+				cursor: pointer;
+			}
+		}
+	}
+}

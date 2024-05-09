@@ -21,8 +21,8 @@ const NavBar = () => {
 	};
 
 	const navigateChat = ()=> {
-		navigate('/Chat')
-		setActiveItem('/Chat')
+		navigate('/chatMeg')
+		setActiveItem('/chatMeg')
 	}
 	const navigateNotice = ()=> {
 		navigate('/Notice')
@@ -61,9 +61,9 @@ const NavBar = () => {
 						</li>
 						<li onClick={navigateChat}>
 							<Link
-								className={`${activeItem === '/Chat' ? scss.activePage : scss.activePages} `}
-								onClick={() => setActiveItem('/Chat')}
-								to={'/Chat'}
+								className={`${activeItem === '/chatMeg' ? scss.activePage : scss.activePages} `}
+								onClick={() => setActiveItem('/chatMeg')}
+								to={'/chatMeg'}
 							>
 								<IconMessageCircle/>
 								<span>Чаты</span>

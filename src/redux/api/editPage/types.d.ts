@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ds/* eslint-disable @typescript-eslint/no-unused-vars */
 
 interface Img {
 	img: string;
