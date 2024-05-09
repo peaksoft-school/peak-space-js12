@@ -319,163 +319,220 @@
 
 // !! UsersProfile
 
-
-	.content_Type {
-		height: 100vh;
-		// background: #fff;
-		.bag_Frame {
-			display: flex;
-			// width: 980px;
-			
-			svg {
-				width: Hug (6px) px;
-				height: Hug (26px) px;
-				position: relative;
-				right: 15px;
-				bottom: 50px;
-				gap: 4px;
-				opacity: 0px;
-			}
-		}
-		
-		.teg_is {
-			display: flex;
-			gap: 40px;
-			background: #fff;
-			height: 100px;
-			width: 980px;
-			
-			.user_R {
-				display: flex;
-				.user {
-					width: 150px;
-					height: 150px;
-					gap: 0px;
-					border-radius: 75px 75px 75px 75px;
-					opacity: 0px;
-					border: 5px solid rgba(255, 255, 255, 1);
-					position: relative;
-					bottom: 75px;
-					left: 10px;
-				}
-			}
-			.every_class {
-				display: flex;
-				gap: 400px;
-				
-				.useb_Line_Sma {
+.content_type {
+	// height: 100vh;
+	// background: #fff;
+	.bag_word {
+		.head1 {
+			.heading {
+				.bag_frame {
 					display: flex;
-					flex-direction: column;
-					gap: 7px;
-					.usub_Icon {
-						display: flex;
-						gap: 10px;
-						text-align: center;
-						.h3 {
-							font-family: GFS Neohellenic;
-							font-size: 21px;
-							font-weight: 700;
-							line-height: 26px;
-						text-align: left;
-					}
-					.line {
-						width: 20px;
-						height: 0px;
-						top: 16px;
-						left: 115px;
-						gap: 0px;
-						border: 0.5px 0px 0px 0px;
+					// width: 980px;
+
+					svg {
+						width: Hug (6px) px;
+						height: Hug (26px) px;
+						position: relative;
+						right: 15px;
+						bottom: 50px;
+						gap: 4px;
 						opacity: 0px;
-						angle: -90 deg;
-						border: 0.5px solid rgba(0, 0, 0, 1);
-						transform: rotate(90deg);
-						margin-top: 12px;
 					}
-					p {
-						font-family: GFS Neohellenic;
-						font-size: 21px;
-						font-weight: 700;
-						line-height: 24.3px;
-						letter-spacing: 0.03em;
-						text-align: center;
-						color: rgba(0, 0, 0, 0.2);
-					}
-					.Samaia {
-						p {
-							width: 980px;
-							height: 260px;
-							top: 49px;
-							left: 400px;
-							gap: 0px;
-							opacity: 0px;
-							
-							background: rgba(255, 255, 255, 1);
+				}
+				@media (max-width: 778px) {
+					.content_type {
+						.bag_word {
+							width: 100%;
+							.head1 {
+								.heading {
+									.teg_is {
+										width: 100%;
+									}
+								}
+							}
 						}
 					}
 				}
-				.basket_doctor {
+				.teg_is {
 					display: flex;
-					align-items: center;
-				
-					gap: 5px;
-					p {
-						color: rgba(98, 109, 122, 1);
+					gap: 40px;
+					background: #fff;
+					height: 100px;
+					width: 980px;
+
+					.user_R {
+						display: flex;
+						.user {
+							width: 150px;
+							height: 150px;
+							gap: 0px;
+							border-radius: 75px 75px 75px 75px;
+							opacity: 0px;
+							border: 5px solid rgba(255, 255, 255, 1);
+							position: relative;
+							bottom: 75px;
+							left: 10px;
+						}
+					}
+
+					@media (max-width: 430px) {
+						.every_class {
+							.useb_line_Sma {
+								.usub_icon {
+									svg {
+										opacity: 0;
+									}
+									img {
+										opacity: 0;
+									}
+									p {
+										opacity: 0;
+									}
+								}
+							}
+						}
+					}
+
+					.every_class {
+						display: flex;
+						gap: 400px;
+
+						.useb_line_Sma {
+							display: flex;
+							flex-direction: column;
+							gap: 7px;
+							.usub_icon {
+								display: flex;
+								gap: 10px;
+								text-align: center;
+								.h3 {
+									font-family: GFS Neohellenic;
+									font-size: 21px;
+									font-weight: 700;
+									line-height: 26px;
+									text-align: left;
+								}
+								.line {
+									width: 20px;
+									height: 0px;
+									top: 16px;
+									left: 115px;
+									gap: 0px;
+									border: 0.5px 0px 0px 0px;
+									opacity: 0px;
+									angle: -90 deg;
+									border: 0.5px solid rgba(0, 0, 0, 1);
+									transform: rotate(90deg);
+									margin-top: 12px;
+								}
+
+								p {
+									font-family: GFS Neohellenic;
+									font-size: 21px;
+									font-weight: 700;
+									line-height: 24.3px;
+									letter-spacing: 0.03em;
+									text-align: center;
+									color: rgba(0, 0, 0, 0.2);
+								}
+								.samaia {
+									p {
+										width: 980px;
+										height: 260px;
+										top: 49px;
+										left: 400px;
+										gap: 0px;
+										opacity: 0px;
+
+										background: rgba(255, 255, 255, 1);
+									}
+								}
+							}
+							.basket_doctor {
+								display: flex;
+								align-items: center;
+
+								gap: 5px;
+								p {
+									color: rgba(98, 109, 122, 1);
+								}
+							}
+						}
+
+						.friends {
+							display: flex;
+							gap: 10px;
+							flex-direction: column;
+							text-align: center;
+							.tens {
+								display: flex;
+								gap: 20px;
+							}
+						}
 					}
 				}
 			}
-			.friends {
+		.pub_scss {
 				display: flex;
-				gap: 20px;
 				flex-direction: column;
-				text-align: center;
-				.tens {
+				gap: 10px;
+				.public_my {
 					display: flex;
-					gap: 20px;
+
+					.my_public {
+						display: flex;
+						justify-content: center;
+						gap: 260px;
+						background: #fff;
+						width: 980px;
+						margin-top: 10px;
+						height: 40px;
+
+						.icon_photo {
+							display: flex;
+							align-items: center;
+
+							svg {
+								width: 18px;
+								height: 18px;
+								top: 3px;
+								gap: 0px;
+								opacity: 0px;
+							}
+						}
+						.icon_pinned {
+							display: flex;
+							align-items: center;
+
+							svg {
+								width: 18px;
+								height: 18px;
+								top: 3px;
+								gap: 0px;
+								opacity: 0px;
+							}
+						}
+					}
 				}
 			}
 		}
 	}
-	.pub_scss{
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-	.public_my {
-		display: flex;
-		.my_public {
-			display: flex;
-			justify-content: center;
-			gap: 260px;
-			background: #fff;
-			width: 980px;
-			margin-top: 10px;
-			height: 40px;
 
-			.icon_photo {
-				display: flex;
-				align-items: center;
-			}
-			.icon_pinned {
-				display: flex;
-				align-items: center;
-			}
-		}
-	}
-}
-// !!!usersPhoto
-.content1 {
-	display: flex;
-	width: 1000px;
-	flex-wrap: wrap;
-	gap: 20px;
-	margin-top: 10px;
-	.image {
+	// !!!usersPhoto
+
+	.content1 {
 		display: flex;
-		justify-content: space-around;
-		img {
-			width: 313px;
-			height: 320px;
+		width: 1000px;
+		flex-wrap: wrap;
+		gap: 20px;
+		margin-top: 10px;
+		.image {
+			display: flex;
+			justify-content: start;
+			img {
+				width: 313px;
+				height: 320px;
+			}
 		}
 	}
 }
-	}
-		

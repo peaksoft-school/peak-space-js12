@@ -16,66 +16,71 @@ import UsersPhoto from './UsersPhoto';
 
 const UsersProfile = () => {
 	return (
-		<div className={scss.content_Type}>
-				<div className={scss.bag_Frame}>
-					<img className={scss.bagk} src={baground} alt="" />
-					<div>
-						<Frame />
-					</div>
-				</div>
-				<div className={scss.teg_is}>
-					<div className={scss.user_R}>
-						<img className={scss.user} src={user} alt="" />
-					</div>
-					<div className={scss.every_class}>
-						<div className={scss.useb_Line_Sma}>
-							<div className={scss.usub_Icon}>
-								<h3>Usubalieva</h3>
-								<IconEdit />
-								<img className={scss.line} src={line} alt="" />
-								<p>Myfood</p>
-							</div>
-							<div className={scss.Samaia}>
-								<p>Самая самая </p>
-							</div>
-							<div className={scss.basket_doctor}>
-								<IconBasket color="green" />
-								<p>Врач-ортопед </p>
-							</div>
-						</div>
-						<div className={scss.friends}>
-							<div className={scss.tens}>
-								<div>
-									<h4>110</h4>
-									<p>друзей </p>
-								</div>
-								<div>
-									<h4>110</h4>
-									<p>друзей </p>
-								</div>
-							</div>
+		<div className={scss.content_type}>
+			<div className={scss.bag_word}>
+				<div className={scss.head1}>
+					<div className={scss.heading}>
+						<div className={scss.bag_frame}>
+							<img className={scss.bagk} src={baground} alt="" />
 							<div>
-								<CustomButton onClick={() => 'hello'}>{'friend'}</CustomButton>
+								<Frame />
 							</div>
-
-							{/* <IconPhoto color="black" /> */}
+						</div>
+						<div className={scss.teg_is}>
+							<div className={scss.user_R}>
+								<img className={scss.user} src={user} alt="" />
+							</div>
+							<div className={scss.every_class}>
+								<div className={scss.useb_line_Sma}>
+									<div className={scss.usub_icon}>
+										<h3>Usubalieva</h3>
+										<IconEdit />
+										<img className={scss.line} src={line} alt="" />
+										<p>Myfood</p>
+									</div>
+									<div className={scss.samaia}>
+										<p>Самая самая </p>
+									</div>
+									<div className={scss.basket_doctor}>
+										<IconBasket color="green" />
+										<p>Врач-ортопед </p>
+									</div>
+								</div>
+								<div className={scss.friends}>
+									<div className={scss.tens}>
+										<div>
+											<h4>110</h4>
+											<p>друзей </p>
+										</div>
+										<div>
+											<h4>110</h4>
+											<p>друзей </p>
+										</div>
+									</div>
+									<div>
+										<CustomButton onClick={() => 'hello'}>
+											{'friend'}
+										</CustomButton>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div className={scss.pub_scss}> 
-					<div className={scss.public_my}>
-						<div className={scss.my_public}>
-							<div className={scss.icon_photo}>
-								<IconPhoto color="black" />
-								<Link to={'usersProfile/userPhoto'}>
-									<p>Мои публикации</p>
-								</Link>
-							</div>
-							<div className={scss.icon_pinned}>
-								<IconPinned color="black" />
-								<Link to={'usersProfile/PhotoWith	'}>
-									<p>Фото с вами</p>
-								</Link>
+					<div className={scss.pub_scss}>
+						<div className={scss.public_my}>
+							<div className={scss.my_public}>
+								<div className={scss.icon_photo}>
+									<IconPhoto color="black" />
+									<Link to={'usersProfile/userPhoto'}>
+										<p>Мои публикации</p>
+									</Link>
+								</div>
+								<div className={scss.icon_pinned}>
+									<IconPinned color="black" />
+									<Link to={'usersProfile/PhotoWith	'}>
+										<p>Фото с вами</p>
+									</Link>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -84,6 +89,7 @@ const UsersProfile = () => {
 						<Route path="usersProfile/PhotoWith" element={<PhotoWith />} />
 					</Routes>
 				</div>
+			</div>
 		</div>
 	);
 };

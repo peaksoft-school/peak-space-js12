@@ -6,7 +6,7 @@ const PhotoWith = () => {
 		<div className={scss.photo}>
 			{isLoading ? (
 				<>
-					<h1>Loading . . .</h1>
+					<h1>loading . . .</h1>
 				</>
 			) : (
 				<>
