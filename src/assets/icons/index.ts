@@ -12,7 +12,18 @@ export { default as Mountain } from './Mountain';
 export { default as Heart } from './Heart';
 export { default as Strengthen } from './Strengthen';
 export { default as Fire } from './Fire';
-export { default as MicrophoneImg } from './MicrophoneImg';
-export { default as VidoeImg } from './VidoeImg';
-export { default as CallImg } from './CallImg';
-export { default as ArrowImg } from './ArrowImg';
+
+// export { default as MicrophoneImg } from './MicrophoneImg';
+// export { default as VidoeImg } from './VidoeImg';
+// export { default as CallImg } from './CallImg';
+// export { default as ArrowImg } from './ArrowImg';
+export { default as Point } from './Point';
+export { default as Like } from './Like';
+export { default as Comments } from './Comments';
+export { default as Safe } from './Safe';
+export { default as SendIcon } from './SendIcon';
+export { default as Smile } from './Smile';
+export { default as ArrowRight } from './ArrowRight';
+export { default as ArrowLeft } from './ArrowLeft';
+export { default as PlusIconSecond } from './PlusIconSecond';
+export { default as Frame } from './Frame'
