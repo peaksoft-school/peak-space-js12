@@ -16,6 +16,7 @@
 				padding-block: 8px;
 				padding-inline: 8px;
 				overflow: hidden;
+				cursor: grab;
 				background-color: #ffffff;
 				@media (max-width: 399px) {
 					width: 100%;
@@ -42,6 +43,7 @@
 					z-index: 100;
 					border-radius: 50%;
 					border: 4px solid #81d766;
+					cursor: default;
 					@media (max-width: 399px) {
 						left: -140px;
 						transform: translateY(50%);
