@@ -7,6 +7,7 @@ import { IconMessageCircle } from '@tabler/icons-react';
 import { IconHome } from '@tabler/icons-react';
 import { IconBell } from '@tabler/icons-react';
 import { IconSettings } from '@tabler/icons-react';
+
 const NavBar = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [test] = useState(false);
