@@ -2,7 +2,7 @@ import scss from './LayoutSide.module.scss';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Header from './header/Header';
 import ProfilPage from '../pages/profilPage/ProfilPage';
-import NavBar from '@/src/UI/navBar/NavBar';
+import NavBar from '@/src/ui/navBar/NavBar';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
@@ -10,6 +10,7 @@ import Notifications from '../pages/notifications/Notifications';
 import UsersProfile from '../pages/profilPage/UsersProfile';
 import ChatMessage from '../pages/chat/ChatMessage';
 import ChatPerson from '../pages/chat/ChatPerson';
+import Publics from '../pages/publicsUsers/Publics';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -35,6 +36,7 @@ const LayoutSide = () => {
 						<Route path="chatPerson" element={<ChatPerson />} />
 						<Route path="/notification" element={<Notifications />} />
 						<Route path="/usersProfile/*" element={<UsersProfile />} />
+						<Route path="/publics/*" element={<Publics />} />
 					</Routes>
 				</main>
 			</div>

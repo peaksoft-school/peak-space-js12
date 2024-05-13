@@ -22,8 +22,45 @@ const api = index.injectEndpoints({
 				body: newData
 			}),
 			invalidatesTags: ['post']
+		}),
+		getPublicsFood: builder.query<
+			PROFIL.GetProfilResponse,
+			PROFIL.GetProfilRequest
+		>({
+			query: () => ({
+				url: 'https://d41d375ab7647ab0.mokky.dev/food',
+				method: 'GET'
+			}),
+			providesTags: ['post']
+		}),
+		postPublicFood: builder.mutation<
+			PROFIL.PostProfilResponse,
+			PROFIL.PostProfilRequest
+		>({
+			query: (newItem) => ({
+				url: 'https://d41d375ab7647ab0.mokky.dev/food',
+				method: 'POST',
+				body: newItem
+			}),
+			invalidatesTags: ['post']
+		}),
+		getPublicsVideoFood: builder.query<
+			PROFIL.GetVideoResponse,
+			PROFIL.GetVideoRequest
+		>({
+			query: () => ({
+				url: 'https://d41d375ab7647ab0.mokky.dev/videoFoof',
+				method: 'GET'
+			}),
+			providesTags: ['post']
 		})
 	})
 });
 
-export const { useGetPublicationsQuery, usePostPublicationsMutation } = api;
+export const {
+	useGetPublicationsQuery,
+	usePostPublicationsMutation,
+	useGetPublicsFoodQuery,
+	usePostPublicFoodMutation,
+	useGetPublicsVideoFoodQuery
+} = api;

@@ -9,21 +9,17 @@ import { IconBasket } from '@tabler/icons-react';
 import { IconPhoto } from '@tabler/icons-react';
 import { IconHeart } from '@tabler/icons-react';
 import { IconPinned } from '@tabler/icons-react';
-import ModalTs from '@/src/UI/Modal/Modal';
-import MyFriends from '@/src/UI/myFriends/MyFriends';
-
+import ModalTs from '@/src/ui/Modal/Modal';
+import MyFriends from '@/src/ui/myFriends/MyFriends';
 const ProfilPage = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [isModalOpen, setIsModalOpen] = useState(false);
-
 	const showModal = () => {
 		setIsModalOpen(!isModalOpen);
 	};
-
 	const handleCancel = () => {
 		setIsModalOpen(false);
 	};
-
 	return (
 		<div className={scss.main_page}>
 			<div className={scss.aside}>
@@ -126,7 +122,6 @@ const ProfilPage = () => {
 						</Link>
 					</div>
 				</div>
-
 				<div>
 					<Routes>
 						<Route path="side/public" element={<Publications />} />
@@ -138,5 +133,4 @@ const ProfilPage = () => {
 		</div>
 	);
 };
-
 export default ProfilPage;

@@ -6,6 +6,12 @@ namespace PROFIL {
 	}[];
 	type GetProfilRequest = void;
 
+	type GetVideoResponse = {
+		id: number;
+		link: string;
+	}[];
+	type GetVideoRequest = void;
+
 	type PostProfilResponse = {
 		id: number;
 		img: string;

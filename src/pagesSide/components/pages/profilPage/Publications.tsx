@@ -9,8 +9,8 @@ import { PlusIconSecond } from '@/src/assets/icons';
 const Publications = () => {
 	const [, setHidePhoto] = useState(false);
 	const [image, setImage] = useState<string>('');
-	const { data, isLoading } = useGetPublicationsQuery();
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const { data, isLoading } = useGetPublicationsQuery();
 	const [postRequest] = usePostPublicationsMutation();
 
 	const handleButtonClick = () => {
@@ -86,7 +86,7 @@ const Publications = () => {
 			)}
 
 			<input
-			placeholder='text'
+				placeholder="text"
 				type="file"
 				ref={fileInputRef}
 				style={{ display: 'none' }}

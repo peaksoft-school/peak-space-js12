@@ -1,251 +1,3 @@
-// .header_container {
-// 	width: 100%;
-// 	border-bottom: 1.5px solid rgb(231, 232, 236);
-
-// 	.logo_container {
-// 		width: 28%;
-// 	}
-// 	.content {
-// 		display: flex;
-// 		align-items: center;
-// 		width: 100%;
-// 	}
-// 	.aside {
-// 		max-width: 914px;
-// 		display: flex;
-// 		align-items: center;
-// 		gap: 8px;
-// 		border: 0.5px solid rgba(0, 0, 0, 0.4);
-// 		width: 100%;
-// 		height: 100%;
-// 		max-height: 23px;
-// 		padding-block: 14px;
-// 		padding-inline: 12px;
-// 		input {
-// 			max-width: 914px;
-// 			width: 100%;
-// 			border: none;
-// 			outline: none;
-// 		}
-// 		.magnifyingGlass {
-// 			width: 17px;
-// 			color: gray;
-// 		}
-// 		svg {
-// 			color: gray;
-// 			&:hover {
-// 				color: red;
-// 			}
-// 		}
-// 	}
-
-// 	.profile_picture_and_icon_down {
-// 		display: flex;
-// 		align-items: center;
-// 		width: 80px;
-// 		.profile_picture {
-// 			max-width: 35px;
-// 			max-height: 35px;
-// 			object-fit: cover;
-// 			width: 100%;
-// 			height: 100%;
-// 			border-radius: 50%;
-// 		}
-// 		.iconDown {
-// 			width: 40px;
-// 			height: 26px;
-// 			cursor: pointer;
-// 			transition: 0.2s;
-// 		}
-// 		.iconDownActive {
-// 			rotate: (180deg);
-// 		}
-// 	}
-// 	.menu_list {
-// 		ul {
-// 			display: none;
-// 			width: 277px;
-// 			height: 189px;
-// 			margin-left: -300px;
-// 			background-color: white;
-// 			position: absolute;
-// 			border-radius: 8px;
-// 			box-shadow: 0px 4px 10px 0px #00000080;
-// 			flex-direction: column;
-// 			align-items: center;
-// 			padding: 13px 0px;
-// 			gap: 9px;
-// 			margin-top: 25px;
-// 			z-index: 99;
-// 			li {
-// 				display: flex;
-// 				align-items: center;
-// 				width: 250px;
-// 				// height: 120px;
-// 				padding-block: 2px;
-// 				gap: 9px;
-// 				border-radius: 8px;
-// 				cursor: pointer;
-// 				background: #ebeff3;
-// 				color: white;
-// 				.account_avatar {
-// 					width: 35px;
-// 					height: 35px;
-// 					border-radius: 100px;
-// 				}
-// 				.account_name {
-// 					color: #000000b2;
-// 				}
-// 			}
-// 			.addNewAccountContainer {
-// 				display: flex;
-// 				flex-direction: column;
-// 				align-items: center;
-// 				margin-top: 13px;
-// 				gap: 10px;
-// 				.addNewAccountButton {
-// 					cursor: pointer;
-// 					width: 20px;
-// 					height: 20px;
-// 				}
-// 			}
-// 		}
-// 	}
-// 	.menu_list.active {
-// 		ul {
-// 			display: flex;
-// 		}
-// 	}
-// }
-
-// @media (min-width: 320px) and (max-width: 762px) {
-// 	.header_container {
-// 		width: 100%;
-// 		justify-content: space-between;
-// 		outline: solid;
-// 		padding: 20px;
-// 		.content {
-// 			width: 100%;
-// 			display: flex;
-// 			align-items: center;
-
-// 			.logo_container {
-// 				margin-top: -10px;
-// 				width: 28%;
-// 				img {
-// 					width: 120px;
-// 					margin-top: 10px;
-// 				}
-// 				@media (max-width: 513px) {
-// 					width: 45%;
-// 					img {
-// 						width: 100px;
-// 					}
-// 				}
-// 			}
-// 			.aside {
-// 				width: 100%;
-// 				input {
-// 					width: 100%;
-// 				}
-// 			}
-
-// 			.profile_picture_and_icon_down {
-// 				display: none;
-// 				.profilePicture,
-// 				.iconDown {
-// 					display: none;
-// 				}
-// 			}
-// 			.burger_menu {
-// 				margin-left: 10px;
-// 				display: flex;
-// 				flex-direction: column;
-// 				gap: 5px;
-// 				div {
-// 					transition: 0.2s;
-// 					width: 40px;
-// 					height: 5px;
-// 					background-color: black;
-// 				}
-// 			}
-// 			.burger_menu_active {
-// 				margin-left: 10px;
-// 				align-items: center;
-// 				justify-content: space-between;
-// 				flex-direction: column;
-// 				gap: 5px;
-// 				z-index: 111;
-// 				div {
-// 					width: 40px;
-// 					height: 5px;
-// 					background-color: white;
-// 				}
-// 				:nth-child(1) {
-// 					transform: rotate(45deg);
-// 					transition: 0.2s;
-// 					position: absolute;
-// 					margin-top: -1px;
-// 				}
-// 				:nth-child(3) {
-// 					display: none;
-// 				}
-
-// 				:nth-child(2) {
-// 					transform: rotate(-45deg);
-// 					transition: 0.2s;
-// 				}
-// 			}
-// 			.menu_list {
-// 				display: none;
-// 				justify-content: end;
-// 				background-color: gray;
-// 				width: 50vw;
-// 				height: 100vh;
-// 				margin-top: 435px;
-// 				transition: 0.2s;
-// 				ul {
-// 					display: flex;
-// 					flex-direction: column;
-// 					justify-content: center;
-// 					width: 80%;
-// 					height: 100px;
-// 					margin-top: 60px;
-// 					margin-left: 1px;
-// 					li {
-// 						text-align: end;
-// 						font-size: 1.5rem;
-// 					}
-// 					.add_new_account_container {
-// 						flex-direction: row;
-// 						background-color: #00000080;
-// 						padding: 10px;
-// 						border-radius: 8px;
-// 						cursor: pointer;
-// 						.add_new_account_text {
-// 							color: black;
-// 						}
-// 					}
-// 				}
-// 			}
-// 			.menu_list.active {
-// 				display: flex;
-// 				position: fixed;
-// 				width: 100vw;
-// 				background-color: black;
-// 				opacity: 70%;
-// 				left: 0;
-// 				transition: 0.2s;
-// 				ul {
-// 					width: 300px;
-// 					height: 200px;
-// 					color: white;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
-
 .headerContainer {
 	width: 100%;
 	border-bottom: 1.5px solid rgb(231, 232, 236);
@@ -256,8 +8,7 @@
 	.content {
 		display: flex;
 		align-items: center;
-		gap: 10px;
-
+		width: 100%;
 		.aside_avatar {
 			margin-left: 890px;
 
@@ -270,15 +21,19 @@
 		}
 	}
 	.aside {
-		max-width: 914px;
+		max-width: 909px;
 		display: flex;
 		align-items: center;
-		border: 1px solid;
+		gap: 5px;
+		border: 0.5px solid rgba(0, 0, 0, 0.4);
 		width: 100%;
 		height: 100%;
 		max-height: 23px;
 		padding-block: 14px;
 		padding-inline: 12px;
+		svg {
+			color: gray;
+		}
 		input {
 			max-width: 914px;
 			width: 100%;
@@ -292,9 +47,8 @@
 	.profilePictureAndIconDown {
 		display: flex;
 		width: 100%;
-		max-width: 90px;
+		max-width: 79px;
 		align-items: center;
-		column-gap: 10px;
 		.profilePicture {
 			max-width: 40px;
 			max-height: 50px;
@@ -316,7 +70,7 @@
 		ul {
 			display: none;
 			width: 277px;
-			height: 149px;
+			height: 169px;
 			margin-left: -300px;
 			background-color: white;
 			position: absolute;
@@ -327,34 +81,40 @@
 			padding: 13px 0px;
 			gap: 9px;
 			margin-top: 25px;
+			z-index: 443;
 			li {
 				display: flex;
 				align-items: center;
 				width: 250px;
 				gap: 6px;
 				padding: 0px 5px;
-				height: 30px;
 				border-radius: 8px;
+				padding-block: 2px;
 				cursor: pointer;
 				background-color: #ebeff3;
 				color: white;
 				.accountAvatar {
-					width: 20px;
-					height: 20px;
-					border-radius: 100px;
+					width: 30px;
+					height: 30px;
+					border-radius: 50%;
 				}
 				.accountName {
 					color: #000000b2;
 				}
 			}
+
 			.addNewAccountContainer {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				margin-top: 13px;
-				gap: 10px;
-				.addNewAccountButton {
-					cursor: pointer;
+				gap: 6px;
+				button {
+					background: none;
+					border: none;
+					outline: none;
+					.addNewAccountButton {
+						cursor: pointer;
+					}
 				}
 			}
 		}
@@ -481,7 +241,7 @@
 			justify-content: space-between;
 			flex-direction: column;
 			gap: 5px;
-			z-index: 1;
+			z-index: 111;
 			div {
 				width: 40px;
 				height: 5px;

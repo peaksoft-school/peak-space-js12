@@ -6,11 +6,11 @@ const ModalTs: React.FC<{
 	onCancel: () => void;
 	children: ReactNode;
 }> = ({ open, onCancel, children }) => {
-	if (!open) return null;
+	// if (!open) return null;
 	return (
 		<>
 			<Modal
-				visible={open}
+				open={open}
 				onCancel={onCancel}
 				footer={null}
 				className={scss.modal}
