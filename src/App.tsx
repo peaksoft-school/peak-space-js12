@@ -12,6 +12,7 @@ const App = () => {
 			console.log('hello 06.05.24');
 		}, 1500);
 	}, []);
+
 	return (
 		<>
 			{isLoading ? (
@@ -19,12 +20,13 @@ const App = () => {
 					<Preloader />
 				</>
 			) : (
-				<></>
+				<>
+					<Routes>
+						<Route path="/*" element={<LayoutSide />} />
+						<Route path="/auth/*" element={<LayoutAuth />} />
+					</Routes>
+				</>
 			)}
-			<Routes>
-				<Route path="/*" element={<LayoutSide />} />
-				<Route path="/auth/*" element={<LayoutAuth />} />
-			</Routes>
 		</>
 	);
 };
