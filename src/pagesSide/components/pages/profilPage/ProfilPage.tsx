@@ -1,4 +1,3 @@
-
 import { Link, Route, Routes } from 'react-router-dom';
 import Publications from './Publications';
 import Favourites from './Favourites';
@@ -8,92 +7,39 @@ import scss from './Style.module.scss';
 import { IconEdit } from '@tabler/icons-react';
 import { IconBasket } from '@tabler/icons-react';
 import { IconPhoto } from '@tabler/icons-react';
+import { IconHeart } from '@tabler/icons-react';
 import { IconPinned } from '@tabler/icons-react';
 import ModalTs from '@/src/UI/Modal/Modal';
 import MyFriends from '@/src/UI/myFriends/MyFriends';
-import line33 from '../../../../assets/line33.svg';
-import baground from '../../../../assets/album.svg';
-import avatar from '../../../../assets/userProfile.png';
-import { Frame } from '@/src/assets/icons';
-import vector from '../../../../assets/Close_round.svg';
-
 const ProfilPage = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [isOpen, setisOpen] = useState(false);
-
-	const handleOpen = () => {
-		setisOpen(!isOpen);
-	};
-	const handleCloseModal = () => {
-		setisOpen(false);
-	};
-
 	const showModal = () => {
 		setIsModalOpen(!isModalOpen);
 	};
-
 	const handleCancel = () => {
 		setIsModalOpen(false);
 	};
-
-
 	return (
 		<div className={scss.main_page}>
 			<div className={scss.aside}>
 				<div className={scss.head}>
-					<div className={scss.bag_icon}>
-						<img src={baground} alt="" />
-						<div className={scss.frame} onClick={handleOpen}>
-							<Frame />
-						</div>
-
-
-						<ModalTs open={isOpen} onCancel={handleCloseModal}>
-							<div className={scss.modal_ts}>
-								<div className={scss.closeModal}>
-									<h1>Пожаловаться</h1>
-									<div className={scss.cloose}>
-										<img onClick={handleCloseModal} src={vector} alt="" />
-									</div>
-								</div>
-								<div className={scss.hring}>
-									<span className={scss.hr}></span>
-								</div>
-								<div className={scss.h1_teg}>
-									<h1 className={scss.h1}>
-										Почему вы хотите пожаловаться на этого пользователя?{' '}
-									</h1>
-									<p>
-										Ваша жалоба является анониной, за исключением случаев, когда
-										вы сообщаете о нарушениях прав на интеллектуальную
-										собственность
-									</p>
-								</div>
-								<div className={scss.spaner}>
-									<span className={scss.span1}> </span>
-								</div>
-								<div className={scss.let1}>
-									<p>Ребенок младше 13 лет</p>
-								</div>
-								<div className={scss.spaner}>
-									<span className={scss.span1}> </span>
-								</div>
-								<div className={scss.let1}>
-									<p>Этот человек выдает себя за другого </p>
-								</div>
-								<div className={scss.spaner}>
-									<span className={scss.span1}> </span>
-								</div>
-								<div className={scss.let1}>
-									<p>Другие</p>
-								</div>
-							</div>
-						</ModalTs>
+					<div>
+						<img
+							src={
+								'https://s3-alpha-sig.figma.com/img/38ce/fde2/8d4d4905f82d6125c313a1f3a2867b1c?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b79MQyDX4XuJp5s-RhxyIXO7zQxTaeOYHkh1WVunHFcR4KF5CcA7MVPKQH8Ud1PMGOziDvy380C5KkEjvNFxwr6f~AMRIN9g0iMlvUc37kv40QcByB5zpuP7ZGbG2kKRoGW7IjJeql-vyUon1dHCRo~w-NDyrWH6S~NKkyT6654cC7DB5sVhbh~citbUWv8luDoqiEaVNYndoV2au32DSOWQttG7dgVTdj6hE-fQ4I5sGVAMjFK00l9mSA8-iT8YrSIltcY7Ujt6bLgX62or7HuDOtvkEWdlnFT1dbe~cqIg~Hb9h4z~If--MOuayPPoKEHwLBYNHXcvnjDEspHZgg__'
+							}
+							alt=""
+						/>
 					</div>
 					<div className={scss.bar}>
 						<div className={scss.user_img}>
-							<img src={avatar} alt="" />
+							<img
+								src={
+									'https://i.pinimg.com/564x/ff/6d/a9/ff6da93f4a2a50401fe74ccee7ec23a0.jpg'
+								}
+								alt=""
+							/>
 						</div>
 						<div className={scss.sidebar}>
 							<div className={scss.col}>
@@ -102,11 +48,9 @@ const ProfilPage = () => {
 								>
 									<h4>Ivanov ivan</h4>
 									<IconEdit />
-									<img className={scss.lines} src={line33} alt="" />
-									<p className={scss.myfood}>Myfood</p>
 								</div>
 								<div>
-									<p>Самая самая</p>
+									<p>Что-то что-то</p>
 								</div>
 								<div className={scss.mobile}>
 									<div
@@ -124,31 +68,23 @@ const ProfilPage = () => {
 								</div>
 							</div>
 							<div className={scss.far}>
+								<div>
+									<h4>110</h4>
+									<p>друзей </p>
+								</div>
 								<div
-									style={{
-										display: 'flex',
-										gap: '20px'
-									}}
+									className={isModalOpen ? scss.active_modal : ''}
+									onClick={showModal}
 								>
-									<div>
-										<h4>110</h4>
-										<p>друзей </p>
-									</div>
-									<div
-										className={isModalOpen ? scss.active_modal : ''}
-										onClick={showModal}
-									>
-										<h4>365</h4>
-										<p>паблики</p>
-
-										<ModalTs open={isModalOpen} onCancel={handleCancel}>
-											<div className={scss.aside_modal}>
-												<div>
-													<MyFriends />
-												</div>
+									<h4>365</h4>
+									<p>паблики</p>
+									<ModalTs open={isModalOpen} onCancel={handleCancel}>
+										<div className={scss.aside_modal}>
+											<div>
+												<MyFriends />
 											</div>
-										</ModalTs>
-									</div>
+										</div>
+									</ModalTs>
 								</div>
 							</div>
 						</div>
@@ -167,6 +103,16 @@ const ProfilPage = () => {
 					</div>
 					<div>
 						<Link
+							className={`${location.pathname === 'side/favorite' ? scss.active_page : scss.link}`}
+							to="side/favorite"
+							onClick={() => setActiveItem('side/favorite')}
+						>
+							<IconHeart color="black" />
+							<p>Избранное</p>
+						</Link>
+					</div>
+					<div>
+						<Link
 							className={`${location.pathname === 'side/photo' ? scss.active_page : scss.link}`}
 							to="side/photo"
 							onClick={() => setActiveItem('side/photo')}
@@ -176,7 +122,6 @@ const ProfilPage = () => {
 						</Link>
 					</div>
 				</div>
-
 				<div>
 					<Routes>
 						<Route path="side/public" element={<Publications />} />
@@ -188,5 +133,4 @@ const ProfilPage = () => {
 		</div>
 	);
 };
-
 export default ProfilPage;
