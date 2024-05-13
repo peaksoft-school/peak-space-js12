@@ -34,8 +34,8 @@ const NavBar = () => {
 		setActiveItem('/Side');
 	};
 	const navigateMoiPublic = () => {
-		navigate('/Moi public');
-		setActiveItem('/Moi public');
+		navigate('/publics');
+		setActiveItem('/publics');
 	};
 
 	const { pathname } = useLocation();
@@ -102,12 +102,12 @@ const NavBar = () => {
 						</li>
 						<li onClick={navigateMoiPublic}>
 							<Link
-								className={`${pathname === '/Moi public' ? scss.active_page : scss.active_default} `}
-								onClick={() => setActiveItem('/Moi public')}
-								to={'/Moi public'}
+								className={`${pathname === '/publics' ? scss.active_page : scss.active_default} `}
+								onClick={() => setActiveItem('/publics')}
+								to={'/publics'}
 							>
 								<img
-									className={`${pathname === '/Moi public' && scss.img}`}
+									className={`${pathname === '/publics' && scss.img}`}
 									src={userPublicImg}
 									alt="foto"
 								/>

@@ -10,7 +10,13 @@ import {
 } from '@tabler/icons-react';
 import line from '../../../../assets/line.svg';
 import CustomButton from '@/src/UI/customButton/CustomButton';
-import { Link, Route, Routes, useLocation } from 'react-router-dom';
+import {
+	Link,
+	Route,
+	Routes,
+	useLocation,
+	useNavigate
+} from 'react-router-dom';
 import PhotoWith from './PhotoWith';
 import UsersPhoto from './UsersPhoto';
 import { useState } from 'react';
@@ -28,6 +34,11 @@ const UsersProfile = () => {
 			name: 'Фото с вами'
 		}
 	];
+
+	const navigate = useNavigate();
+	const navigateToPublic = () => {
+		navigate('/publics');
+	};
 	return (
 		<div className={scss.content_type}>
 			<div className={scss.bag_word}>
@@ -49,7 +60,9 @@ const UsersProfile = () => {
 										<h3>Usubalieva</h3>
 										<IconEdit />
 										<img className={scss.line} src={line} alt="" />
-										<p>Myfood</p>
+										<p style={{ cursor: 'pointer' }} onClick={navigateToPublic}>
+											Myfood
+										</p>
 									</div>
 									<div className={scss.samaia}>
 										<p>Самая самая </p>

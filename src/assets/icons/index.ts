@@ -31,3 +31,4 @@ export { default as Frame } from './Frame';
 export { default as ArrowImg } from './ArrowImg';
 export { default as CallImg } from './CallImg';
 export { default as VidoeImg } from './VidoeImg';
+export { default as IconFileVideo } from './IconFileVideo';

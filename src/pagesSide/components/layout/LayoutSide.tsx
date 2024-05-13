@@ -10,6 +10,7 @@ import Notifications from '../pages/notifications/Notifications';
 import UsersProfile from '../pages/profilPage/UsersProfile';
 import ChatMessage from '../pages/chat/ChatMessage';
 import ChatPerson from '../pages/chat/ChatPerson';
+import Publics from '../pages/publicsUsers/Publics';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -35,6 +36,7 @@ const LayoutSide = () => {
 						<Route path="chatPerson" element={<ChatPerson />} />
 						<Route path="/notification" element={<Notifications />} />
 						<Route path="/usersProfile/*" element={<UsersProfile />} />
+						<Route path="/publics/*" element={<Publics />} />
 					</Routes>
 				</main>
 			</div>
