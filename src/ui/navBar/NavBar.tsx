@@ -11,8 +11,9 @@ import {
 } from '@tabler/icons-react';
 
 const NavBar = () => {
-	const [test] = useState(false);
+	const { pathname } = useLocation();
 	const navigate = useNavigate();
+	const [test] = useState(false);
 
 	const navigateTo = (path: string) => {
 		navigate(path);
@@ -35,7 +36,6 @@ const NavBar = () => {
 		}
 	];
 
-	const { pathname } = useLocation();
 
 	return (
 		<div className={scss.content}>
