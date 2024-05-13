@@ -3,121 +3,59 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import scss from './NavBar.module.scss';
 import userProfileImg from '../../assets/FirstMan2.png';
 import userPublicImg from '../../assets/Ellipse 60.svg';
-import { IconMessageCircle } from '@tabler/icons-react';
-import { IconHome } from '@tabler/icons-react';
-import { IconBell } from '@tabler/icons-react';
-import { IconSettings } from '@tabler/icons-react';
+import {
+	IconMessageCircle,
+	IconHome,
+	IconBell,
+	IconSettings
+} from '@tabler/icons-react';
+
 const NavBar = () => {
-	const [, setActiveItem] = useState<string>('/');
 	const [test] = useState(false);
 	const navigate = useNavigate();
 
-	const navigateMainPage = () => {
-		navigate('/main');
-		setActiveItem('/main');
+	const navigateTo = (path: string) => {
+		navigate(path);
 	};
 
-	const navigateChat = () => {
-		navigate('/Chat');
-		setActiveItem('/Chat');
-	};
-	const navigateNotice = () => {
-		navigate('/notification');
-		setActiveItem('/notification');
-	};
-	const navigateSettings = () => {
-		navigate('/Settings');
-		setActiveItem('/Settings');
-	};
-	const navigateSide = () => {
-		navigate('/Side');
-		setActiveItem('/Side');
-	};
-	const navigateMoiPublic = () => {
-		navigate('/publics');
-		setActiveItem('/publics');
-	};
+	const navigationItems = [
+		{ path: '/', icon: <IconHome />, label: 'Главная' },
+		{ path: '/Chat', icon: <IconMessageCircle />, label: 'Чаты' },
+		{ path: '/notification', icon: <IconBell />, label: 'Уведомления' },
+		{ path: '/Settings', icon: <IconSettings />, label: 'Настройки' },
+		{
+			path: '/Side',
+			icon: <img src={userProfileImg} alt="foto" />,
+			label: 'Мой профиль'
+		},
+		{
+			path: '/publics',
+			icon: <img src={userPublicImg} alt="foto" />,
+			label: 'Мои паблики'
+		}
+	];
 
 	const { pathname } = useLocation();
 
 	return (
-		<>
-			<div className={scss.content}>
-				<nav>
-					<ul className={!test ? scss.isNone : scss.none}>
-						<li onClick={navigateMainPage}>
+		<div className={scss.content}>
+			<nav>
+				<ul className={!test ? scss.isNone : scss.none}>
+					{navigationItems.map((item, index) => (
+						<li key={index} onClick={() => navigateTo(item.path)}>
 							<Link
-								className={`${pathname === '/main' ? scss.active_page : scss.active_default} `}
-								onClick={() => setActiveItem('/main')}
-								to={'/main'}
+								className={`${pathname === item.path ? scss.active_page : scss.active_default}`}
+								to={item.path}
 							>
-								<IconHome />
-								<span>Главная</span>
+								{item.icon}
+								<span>{item.label}</span>
 							</Link>
 						</li>
-						<li onClick={navigateChat}>
-							<Link
-								className={`${pathname === '/Chat' ? scss.active_page : scss.active_default} `}
-								onClick={() => setActiveItem('/Chat')}
-								to={'/Chat'}
-							>
-								<IconMessageCircle />
-								<span>Чаты</span>
-							</Link>
-						</li>
-
-						<li onClick={navigateNotice}>
-							<Link
-								className={`${pathname === '/notification' ? scss.active_page : scss.active_default} `}
-								onClick={() => setActiveItem('/notification')}
-								to={'/notification'}
-							>
-								<IconBell />
-								<span>Уведомления</span>
-							</Link>
-						</li>
-						<li onClick={navigateSettings}>
-							<Link
-								className={`${pathname === '/Settings' ? scss.active_page : scss.active_default} `}
-								onClick={() => setActiveItem('/Settings')}
-								to={'/Settings'}
-							>
-								<IconSettings />
-								<span>Настройки</span>
-							</Link>
-						</li>
-						<li onClick={navigateSide}>
-							<Link
-								className={`${pathname === '/Side' ? scss.active_page : scss.active_default} `}
-								onClick={() => setActiveItem('/Side')}
-								to={'/Side'}
-							>
-								<img
-									className={`${pathname === '/Side' && scss.img}`}
-									src={userProfileImg}
-									alt="foto"
-								/>
-								<span>Мой профиль</span>
-							</Link>
-						</li>
-						<li onClick={navigateMoiPublic}>
-							<Link
-								className={`${pathname === '/publics' ? scss.active_page : scss.active_default} `}
-								onClick={() => setActiveItem('/publics')}
-								to={'/publics'}
-							>
-								<img
-									className={`${pathname === '/publics' && scss.img}`}
-									src={userPublicImg}
-									alt="foto"
-								/>
-								<span>Мои паблики</span>
-							</Link>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</>
+					))}
+				</ul>
+			</nav>
+		</div>
 	);
 };
+
 export default NavBar;
