@@ -1,4 +1,3 @@
-import ModalProject from '@/src/UI/modal/modal';
 import { useState } from 'react';
 import { Link, Route, Routes, useParams } from 'react-router-dom';
 import scss from './Style.module.scss';
@@ -7,6 +6,8 @@ import Hashtag from './ Hashtag';
 import CustomButton from '@/src/ui/customButton/CustomButton';
 import Friend from './Friend';
 import search from '../../../../../assets/image.svg';
+import ModalTs from '@/src/ui/modal/Modal';
+
 const Desctop = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [activeItem, setActiveItem] = useState('/');
@@ -21,11 +22,6 @@ const Desctop = () => {
 		setIsModalOpen(false);
 	};
 
-	const handleOk = () => {
-		console.log('Ok clicked');
-		handleCloseModal();
-	};
-
 	const handleCancel = () => {
 		console.log('Cancel clicked');
 		handleCloseModal();
@@ -34,13 +30,7 @@ const Desctop = () => {
 		<div>
 			<CustomButton onClick={handleOpenModal}>Open Modal</CustomButton>
 
-			<ModalProject
-				className={scss.custom_modal}
-				title=""
-				open={isModalOpen}
-				onOk={handleOk}
-				onCancel={handleCancel}
-			>
+			<ModalTs open={isModalOpen} onCancel={handleCancel}>
 				<div className={scss.contentype}>
 					<div className={scss.content}>
 						<img src={search} alt="" />
@@ -80,7 +70,7 @@ const Desctop = () => {
 					<Route path="/Group" element={<GroupPage />} />
 					<Route path="/Hashtag" element={<Hashtag />} />
 				</Routes>
-			</ModalProject>
+			</ModalTs>
 		</div>
 	);
 };

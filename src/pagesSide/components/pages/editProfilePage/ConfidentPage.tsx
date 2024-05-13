@@ -31,7 +31,9 @@ const ConfidentPage = () => {
 					</div>
 				</div>
 			</div>
-			<Routes></Routes>
+			<Routes>
+				<Route path="/ConfidentTwoPage" element={<ConfidentTwoPage />} />
+			</Routes>
 		</div>
 	);
 };

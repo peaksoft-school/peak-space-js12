@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import scss from './Style.module.scss';
 import CustomButton from '@/src/ui/customButton/CustomButton';
 import woman from '../../../../../assets/Ellipse 107.svg';

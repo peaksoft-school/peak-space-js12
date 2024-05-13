@@ -11,6 +11,7 @@ import { IconHeart } from '@tabler/icons-react';
 import { IconPinned } from '@tabler/icons-react';
 import ModalTs from '@/src/ui/modal/Modal';
 import MyFriends from '@/src/ui/myFriends/MyFriends';
+
 const ProfilPage = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [isModalOpen, setIsModalOpen] = useState(false);
