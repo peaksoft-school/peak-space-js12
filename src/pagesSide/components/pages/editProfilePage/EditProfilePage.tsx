@@ -1,6 +1,6 @@
 import scss from './EditProfilePage.module.scss';
-import CustomSelect from '@/src/ul/customSelect/CustomSelect';
-import UserEditProfile from '@/src/ul/userImages/UserEditProfile';
+import CustomSelect from '@/src/ui/customSelect/CustomSelect';
+import UserEditProfile from '@/src/ui/userImages/UserEditProfile';
 import { Select } from 'antd';
 import type { SelectProps } from 'antd';
 const EditProfilePage = () => {

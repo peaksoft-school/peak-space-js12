@@ -38,7 +38,7 @@ const Publics = () => {
 								alt=""
 							/>
 						</div>
-						<div className={scss.side_bar}>	
+						<div className={scss.side_bar}>
 							<div className={scss.start}>
 								<div className={scss.bar_aside}>
 									<h4>Myfood</h4>

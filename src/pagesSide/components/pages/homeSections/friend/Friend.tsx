@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import scss from './Style.module.scss';
-import CustomButton from '@/src/ul/customButton/CustomButton';
+import CustomButton from '@/src/ui/customButton/CustomButton';
 import woman from '../../../../../assets/Ellipse 107.svg';
 import woman1 from '../../../../../assets/Ellipse 108.svg';
 import woman2 from '../../../../../assets/Bolotova.svg';

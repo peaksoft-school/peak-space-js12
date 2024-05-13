@@ -3,7 +3,7 @@ import Circle from '@/src/assets/icons/Circle';
 import Zip from '@/src/assets/icons/Zip';
 import SubTract from '@/src/assets/icons/SubTract';
 import Info from '@/src/assets/icons/Info';
-import scss from './Style.module.scss'
+import scss from './Style.module.scss';
 import ConfidentTwoPage from './ConfidentTwoPage';
 const ConfidentPage = () => {
 	return (
@@ -25,15 +25,13 @@ const ConfidentPage = () => {
 						<SubTract />
 						<p>Заблокированные аккаунты</p>
 					</div>
-					<div className={scss.info}>		
+					<div className={scss.info}>
 						<Info />
 						<p>Метки и уведомления</p>
 					</div>
 				</div>
 			</div>
-			<Routes>
-				
-			</Routes>
+			<Routes></Routes>
 		</div>
 	);
 };

@@ -2,7 +2,7 @@ import scss from './LayoutSide.module.scss';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Header from './header/Header';
 import ProfilPage from '../pages/profilPage/ProfilPage';
-import NavBar from '@/src/ul/navBar/NavBar';
+import NavBar from '@/src/ui/navBar/NavBar';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import MainPage from '../pages/mainPage/MainPage';
 import Footer from './footer/Footer';
@@ -38,7 +38,7 @@ const LayoutSide = () => {
 						<Route path="/notification" element={<Notifications />} />
 						<Route path="/usersProfile/*" element={<UsersProfile />} />
 						<Route path="/publics/*" element={<Publics />} />
-						<Route path='/ConfidentTwoPage' element={<ConfidentTwoPage/>}/>
+						<Route path="/ConfidentTwoPage" element={<ConfidentTwoPage />} />
 					</Routes>
 				</main>
 			</div>

@@ -1,8 +1,5 @@
-
 const Hashtag = () => {
-  return (
-    <div> Hashtag</div>
-  )
-}
+	return <div> Hashtag</div>;
+};
 
-export default  Hashtag
+export default Hashtag;

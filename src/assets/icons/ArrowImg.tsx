@@ -1,7 +1,4 @@
-
-
-
-const ArrowImg= () => {
+const ArrowImg = () => {
 	return (
 		<>
 			<svg

@@ -1,4 +1,4 @@
-import CustomButton from '@/src/ul/customButton/CustomButton';
+import CustomButton from '@/src/ui/customButton/CustomButton';
 import scss from './Style.module.scss';
 import group from '../../../../../assets/друзья.svg';
 import kollegi from '../../../../../assets/Коллеги.svg';

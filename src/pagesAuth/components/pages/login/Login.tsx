@@ -6,7 +6,7 @@ import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { GoogleImg } from '@/src/assets/icons';
 import { Link } from 'react-router-dom';
 import line from '../../../../assets/line.svg';
-import CustomButtonBold from '@/src/ul/customButton/CustomButtonBold';
+import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { Controller, useForm } from 'react-hook-form';
 
 interface ErrorObject {

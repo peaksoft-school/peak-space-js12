@@ -10,7 +10,7 @@ const VideoEnd = () => {
 				<img src="https://a.d-cd.net/LkAAAgIZUeA-1920.jpg" alt="" />
 			</div>
 
-				<ArrowImg  />
+			<ArrowImg />
 			<div className={scss.box}>
 				<div className={scss.img_user}>
 					<img className={scss.img1} src={foto} alt="foto" />

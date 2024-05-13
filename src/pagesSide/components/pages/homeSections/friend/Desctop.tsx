@@ -4,7 +4,7 @@ import { Link, Route, Routes, useParams } from 'react-router-dom';
 import scss from './Style.module.scss';
 import GroupPage from './Group';
 import Hashtag from './ Hashtag';
-import CustomButton from '@/src/ul/customButton/CustomButton';
+import CustomButton from '@/src/ui/customButton/CustomButton';
 import Friend from './Friend';
 import search from '../../../../../assets/image.svg';
 const Desctop = () => {

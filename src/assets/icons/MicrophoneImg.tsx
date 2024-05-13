@@ -1,7 +1,3 @@
-
-
-
-
 const MicrophoneImg = () => {
 	return (
 		<>

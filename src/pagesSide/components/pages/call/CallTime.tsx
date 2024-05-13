@@ -6,7 +6,7 @@ import foto from '../../../../assets/userStory.png';
 const CallTime = () => {
 	return (
 		<div className={scss.call_Time}>
-			<ArrowImg  />
+			<ArrowImg />
 			<div className={scss.box}>
 				<div className={scss.image}>
 					<img src={foto} alt="foto" />

@@ -9,7 +9,7 @@ import {
 import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
 import { useState } from 'react';
 import scss from './Style.module.scss';
-import ModalTs from '@/src/ul/modal/Modal';
+import ModalTs from '@/src/ui/modal/Modal';
 import SliderMain from './SliderMain';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';

@@ -1,6 +1,5 @@
-
 import scss from './Footer.module.scss';
-import {IconFlame} from '@tabler/icons-react'
+import { IconFlame } from '@tabler/icons-react';
 const Footer = () => {
 	return (
 		<footer style={{ background: 'rgb(63, 61, 100)' }}>
@@ -8,7 +7,7 @@ const Footer = () => {
 				<div className={scss.footer}>
 					<p>Copyright © 2024. All rights are reserved</p>
 					<p>AGA</p>
-					<IconFlame  color='white'/>
+					<IconFlame color="white" />
 				</div>
 			</div>
 		</footer>
