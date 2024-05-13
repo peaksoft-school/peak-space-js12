@@ -1,10 +1,10 @@
-import ModalProject from '@/src/UI/modal/Modal';
+import ModalProject from '@/src/UI/modal/modal';
 import { useState } from 'react';
 import { Link, Route, Routes, useParams } from 'react-router-dom';
 import scss from './Style.module.scss';
 import GroupPage from './Group';
 import Hashtag from './ Hashtag';
-import CustomButton from '@/src/UI/customButton/CustomButton';
+import CustomButton from '@/src/ul/customButton/CustomButton';
 import Friend from './Friend';
 import search from '../../../../../assets/image.svg';
 const Desctop = () => {

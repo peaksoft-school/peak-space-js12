@@ -3,6 +3,13 @@
 	flex-direction: column;
 	justify-content: space-between;
 	min-height: 100vh;
+
+	main {
+		display: flex;
+		gap: 5px;
+		padding-inline: 10px;
+		overflow-y: auto;
+	}
 	footer {
 		margin-top: auto;
 	}
