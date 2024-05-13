@@ -10,35 +10,10 @@ import {
 } from '@tabler/icons-react';
 import line from '../../../../assets/line.svg';
 import CustomButton from '@/src/UI/customButton/CustomButton';
-import {
-	Link,
-	Route,
-	Routes,
-	useLocation,
-	useNavigate
-} from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import PhotoWith from './PhotoWith';
 import UsersPhoto from './UsersPhoto';
-import { useState } from 'react';
-
 const UsersProfile = () => {
-	const [, setActive] = useState('/');
-	const { pathname } = useLocation();
-	const links = [
-		{
-			link: 'usersProfile/userPhoto',
-			name: 'Мои публикации'
-		},
-		{
-			link: 'usersProfile/PhotoWith',
-			name: 'Фото с вами'
-		}
-	];
-
-	const navigate = useNavigate();
-	const navigateToPublic = () => {
-		navigate('/publics');
-	};
 	return (
 		<div className={scss.content_type}>
 			<div className={scss.bag_word}>
@@ -60,9 +35,7 @@ const UsersProfile = () => {
 										<h3>Usubalieva</h3>
 										<IconEdit />
 										<img className={scss.line} src={line} alt="" />
-										<p style={{ cursor: 'pointer' }} onClick={navigateToPublic}>
-											Myfood
-										</p>
+										<p>Myfood</p>
 									</div>
 									<div className={scss.samaia}>
 										<p>Самая самая </p>
@@ -85,7 +58,7 @@ const UsersProfile = () => {
 									</div>
 									<div>
 										<CustomButton onClick={() => 'hello'}>
-											{'дружить'}
+											{'friend'}
 										</CustomButton>
 									</div>
 								</div>
@@ -95,32 +68,28 @@ const UsersProfile = () => {
 					<div className={scss.pub_scss}>
 						<div className={scss.public_my}>
 							<div className={scss.my_public}>
-								{links.map((linkItem, index) => (
-									<Link
-										key={index}
-										className={`${pathname === linkItem.link ? scss.active : scss.default_style}`}
-										to={linkItem.link}
-										onClick={() => setActive(linkItem.link)}
-									>
-										{index === 0 ? (
-											<IconPhoto color="black" />
-										) : (
-											<IconPinned color="black" />
-										)}
-										<p>{linkItem.name}</p>
+								<div className={scss.icon_photo}>
+									<IconPhoto color="black" />
+									<Link to={'usersProfile/userPhoto'}>
+										<p>Мои публикации</p>
 									</Link>
-								))}
+								</div>
+								<div className={scss.icon_pinned}>
+									<IconPinned color="black" />
+									<Link to={'usersProfile/PhotoWith '}>
+										<p>Фото с вами</p>
+									</Link>
+								</div>
 							</div>
 						</div>
 					</div>
 					<Routes>
-						<Route path="/usersProfile/userPhoto" element={<UsersPhoto />} />
-						<Route path="/usersProfile/PhotoWith" element={<PhotoWith />} />
+						<Route path="usersProfile/userPhoto" element={<UsersPhoto />} />
+						<Route path="usersProfile/PhotoWith" element={<PhotoWith />} />
 					</Routes>
 				</div>
 			</div>
 		</div>
 	);
 };
-
 export default UsersProfile;
