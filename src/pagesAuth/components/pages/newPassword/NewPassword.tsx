@@ -4,7 +4,7 @@ import peakSpace from '../../../../assets/peakSpace.png';
 import { Input } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
+import CustomButtonBold from '@/src/ul/customButton/CustomButtonBold';
 import { Controller, useForm } from 'react-hook-form';
 
 interface ErrorProps {

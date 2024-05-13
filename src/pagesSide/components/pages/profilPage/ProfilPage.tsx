@@ -9,8 +9,8 @@ import { IconBasket } from '@tabler/icons-react';
 import { IconPhoto } from '@tabler/icons-react';
 import { IconHeart } from '@tabler/icons-react';
 import { IconPinned } from '@tabler/icons-react';
-import ModalTs from '@/src/ui/Modal/Modal';
-import MyFriends from '@/src/ui/myFriends/MyFriends';
+import ModalTs from '@/src/ul/modal/Modal';
+import MyFriends from '@/src/ul/myFriends/MyFriends';
 const ProfilPage = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [isModalOpen, setIsModalOpen] = useState(false);

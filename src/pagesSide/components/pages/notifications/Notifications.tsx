@@ -1,4 +1,4 @@
-import ModalTs from '@/src/ui/Modal/Modal';
+import ModalTs from '@/src/ul/modal/Modal';
 import scss from './Notifications.module.scss';
 import { useState } from 'react';
 import { useGetMainPageQuery } from '@/src/redux/api/mainPage';

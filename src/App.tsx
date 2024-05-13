@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import LayoutAuth from './pagesAuth/components/layout/LayoutAuth';
 import LayoutSide from './pagesSide/components/layout/LayoutSide';
 import { useEffect, useState } from 'react';
-import Preloader from '@/src/ui/preloader/Preloader';
+import Preloader from '@/src/ul/preloader/Preloader';
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(true);
