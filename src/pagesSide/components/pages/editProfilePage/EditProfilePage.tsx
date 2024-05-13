@@ -1,4 +1,4 @@
-import scss from './EditProfilePage.module.scss';
+import scss from './Style.module.scss';
 import CustomSelect from '@/src/ui/customSelect/CustomSelect';
 import UserEditProfile from '@/src/ui/userImages/UserEditProfile';
 import { Select } from 'antd';
