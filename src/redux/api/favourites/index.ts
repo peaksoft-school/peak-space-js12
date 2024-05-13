@@ -6,7 +6,7 @@ const api = index.injectEndpoints({
 			PROFILFAVORITE.GetFavoriteRequest
 		>({
 			query: () => ({
-				url: 'https://api.elchocrud.pro/api/v1/84b67c333f9f1e7867480714cc195b58/Favourites',
+				url: 'https://bb0f8fe8d25ad084.mokky.dev/favorite',
 				method: 'GET'
 			}),
 			providesTags: ['api']

@@ -1,0 +1,101 @@
+// !! Desctop
+.container {
+	width: 800px;
+}
+.custom_modal {
+	width: 700px;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	gap: 40px;
+	.contentype {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+		.content {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			img {
+				width: 30px;
+				height: 30px;
+				border-radius: 5px 0px 0px 5px;
+				background: rgba(236, 236, 236, 1);
+			}
+			.inputText {
+				width: 650px;
+				height: 30px;
+				border-radius: 0px 5px 5px 0px;
+				opacity: 0px;
+				background: rgba(236, 236, 236, 1);
+				border: none;
+				outline: none;
+			}
+		}
+
+		.param {
+			display: flex;
+			gap: 70px;
+
+			.activeStyle {
+				color: #3e68dc;
+			}
+			.link {
+				color: black;
+			}
+		}
+	}
+}
+// !!!Friend
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	overflow: auto;
+	height: 400px;
+	.avatar {
+		display: flex;
+
+		align-items: center;
+		gap: 30px;
+
+		.image {
+			width: 55px;
+			height: 55px;
+		}
+		.third {
+			display: flex;
+			flex-direction: column;
+		}
+		button {
+			width: 300px;
+		}
+	}
+}
+// !!! Group
+
+.section {
+	overflow: auto;
+	height: 300px;
+	.avataring {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 40px;
+		margin-top: 30px;
+		padding: 10px;
+		.first {
+			display: flex;
+			flex-direction: column;
+		}
+		button {
+			width: 300px;
+		}
+		.groupImg {
+			width: 95px;
+			height: 95px;
+		}
+	}
+}

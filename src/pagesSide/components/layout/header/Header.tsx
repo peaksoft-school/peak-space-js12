@@ -1,11 +1,20 @@
-import { IconDown, PlusIcon, SearchIcon } from '@/src/assets/icons';
 import FirstMan from '@/src/assets/FirstMan2.png';
 import UserStory from '@/src/assets/userStory.png';
 import { useState } from 'react';
 import scss from './Header.module.scss';
 import Logo from '@/src/assets/peacSpaceLogo.png';
-
+import { IconSearch } from '@tabler/icons-react';
+import { IconCirclePlus } from '@tabler/icons-react';
+import { IconCaretDown } from '@tabler/icons-react';
+import { useNavigate, useParams } from 'react-router-dom';
 const Header = () => {
+	const navigate = useNavigate();
+	const navigateToCreateAcc = () => {
+		setTimeout(() => {
+			navigate('auth/registration');
+		}, 1000);
+	};
+
 	const users = [
 		{
 			id: 0,
@@ -18,13 +27,14 @@ const Header = () => {
 			name: 'Bogdan_'
 		}
 	];
-
 	const [isBurgerMenuActive, setIsBurgerMenuActive] = useState<boolean>(false);
-
 	const changeBurgerMenuStateHandler = () => {
 		setIsBurgerMenuActive((prevState) => !prevState);
 	};
-
+	const isChat = useParams();
+	const key = isChat['*'];
+	const isChatPerson = useParams();
+	const keys = isChatPerson['*'];
 	return (
 		<header className={scss.headerContainer}>
 			<div className="container">
@@ -32,17 +42,26 @@ const Header = () => {
 					<div className={scss.logoContainer}>
 						<img src={Logo} alt="logo" />
 					</div>
-					<div className={scss.aside}>
-						<SearchIcon className={scss.magnifyingGlass} onClick={() => {}} />
-						<input type="text" />
-					</div>
+					{key === 'Chat' || keys === 'chatPerson' ? (
+						<div className={scss.aside_avatar}></div>
+					) : (
+						<>
+							<div className={scss.aside}>
+								<IconSearch
+									className={scss.magnifyingGlass}
+									onClick={() => {}}
+								/>
+								{<input type="text" />}
+							</div>
+						</>
+					)}
 					<div className={scss.profilePictureAndIconDown}>
 						<img
 							className={scss.profilePicture}
 							src={FirstMan}
 							alt="profile-picture"
 						/>
-						<IconDown
+						<IconCaretDown
 							className={`${scss.iconDown} ${isBurgerMenuActive && `${scss.iconDownActive}`}`}
 							onClick={changeBurgerMenuStateHandler}
 						/>
@@ -68,10 +87,9 @@ const Header = () => {
 								</li>
 							))}
 							<div className={scss.addNewAccountContainer}>
-								<PlusIcon
-									className={scss.addNewAccountButton}
-									onClick={() => {}}
-								/>
+								<button onClick={navigateToCreateAcc}>
+									<IconCirclePlus className={scss.addNewAccountButton} />
+								</button>
 								<p className={scss.addNewAccountText}>Добавить новый аккаунт</p>
 							</div>
 						</ul>
@@ -81,5 +99,4 @@ const Header = () => {
 		</header>
 	);
 };
-
 export default Header;

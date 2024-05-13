@@ -1,5 +1,6 @@
 .headerContainer {
 	width: 100%;
+	border-bottom: 1.5px solid rgb(231, 232, 236);
 
 	.logoContainer {
 		width: 28%;
@@ -7,18 +8,32 @@
 	.content {
 		display: flex;
 		align-items: center;
-		gap: 10px;
+		width: 100%;
+		.aside_avatar {
+			margin-left: 890px;
+
+			@media (max-width: 1208px) {
+				margin-left: 699px;
+			}
+			@media (max-width: 976px) {
+				margin-left: 510px;
+			}
+		}
 	}
 	.aside {
-		max-width: 914px;
+		max-width: 909px;
 		display: flex;
 		align-items: center;
-		border: 1px solid;
+		gap: 5px;
+		border: 0.5px solid rgba(0, 0, 0, 0.4);
 		width: 100%;
 		height: 100%;
 		max-height: 23px;
 		padding-block: 14px;
 		padding-inline: 12px;
+		svg {
+			color: gray;
+		}
 		input {
 			max-width: 914px;
 			width: 100%;
@@ -29,12 +44,11 @@
 			width: 17px;
 		}
 	}
-
 	.profilePictureAndIconDown {
 		display: flex;
-		width: 90px;
+		width: 100%;
+		max-width: 79px;
 		align-items: center;
-		column-gap: 10px;
 		.profilePicture {
 			max-width: 40px;
 			max-height: 50px;
@@ -43,8 +57,8 @@
 			border-radius: 50%;
 		}
 		.iconDown {
-			width: 10px;
-			height: 6px;
+			width: 40px;
+			height: 26px;
 			cursor: pointer;
 			transition: 0.2s;
 		}
@@ -56,46 +70,51 @@
 		ul {
 			display: none;
 			width: 277px;
-			height: 149px;
+			height: 169px;
 			margin-left: -300px;
 			background-color: white;
 			position: absolute;
 			border-radius: 8px;
 			box-shadow: 0px 4px 10px 0px #00000080;
-
 			flex-direction: column;
 			align-items: center;
 			padding: 13px 0px;
 			gap: 9px;
 			margin-top: 25px;
+			z-index: 443;
 			li {
 				display: flex;
 				align-items: center;
 				width: 250px;
 				gap: 6px;
 				padding: 0px 5px;
-				height: 30px;
 				border-radius: 8px;
+				padding-block: 2px;
 				cursor: pointer;
 				background-color: #ebeff3;
 				color: white;
 				.accountAvatar {
-					width: 20px;
-					height: 20px;
-					border-radius: 100px;
+					width: 30px;
+					height: 30px;
+					border-radius: 50%;
 				}
 				.accountName {
 					color: #000000b2;
 				}
 			}
+
 			.addNewAccountContainer {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				margin-top: 13px;
-				gap: 10px;
-				.addNewAccountButton {
-					cursor: pointer;
+				gap: 6px;
+				button {
+					background: none;
+					border: none;
+					outline: none;
+					.addNewAccountButton {
+						cursor: pointer;
+					}
 				}
 			}
 		}
@@ -106,8 +125,7 @@
 		}
 	}
 }
-
-@media (min-width: 320px) and (max-width: 762px) {
+@media (min-width: 320px) and (max-width: 768px) {
 	.headerContainer {
 		width: 100%;
 		justify-content: space-between;
@@ -117,14 +135,14 @@
 			margin-top: -10px;
 			width: 28%;
 			img {
-				width: 70px;	
+				width: 70px;
 			}
 		}
 		.content {
 			width: 100%;
 			.aside {
 				width: 100%;
-				input {	
+				input {
 					width: 100%;
 				}
 			}
@@ -137,15 +155,84 @@
 			}
 		}
 		.burgerMenu {
-			margin-left: 10px;
 			display: flex;
 			flex-direction: column;
 			gap: 5px;
+			@media (max-width: 697px) {
+				padding-left: -30px;
+			}
+			@media (max-width: 685px) {
+				margin-left: -20px;
+			}
+			@media (max-width: 665px) {
+				margin-left: -53px;
+			}
+			@media (max-width: 633px) {
+				margin-left: -74px;
+			}
+			@media (max-width: 611px) {
+				margin-left: -95px;
+			}
+			@media (max-width: 587px) {
+				margin-left: -100px;
+			}
+			@media (max-width: 577px) {
+				margin-left: -110px;
+			}
+			@media (max-width: 550px) {
+				margin-left: -140px;
+			}
+			@media (max-width: 520px) {
+				margin-left: -175px;
+			}
+			@media (max-width: 500px) {
+				margin-left: -190px;
+			}
+			@media (max-width: 480px) {
+				margin-left: -210px;
+			}
+			@media (max-width: 460px) {
+				margin-left: -230px;
+			}
+			@media (max-width: 430px) {
+				margin-left: -270px;
+			}
+			@media (max-width: 410px) {
+				margin-left: -290px;
+			}
+			@media (max-width: 390px) {
+				margin-left: -310px;
+			}
+			@media (max-width: 360px) {
+				margin-left: -340px;
+			}
+			@media (max-width: 340px) {
+				margin-left: -360px;
+			}
+			@media (max-width: 320px) {
+				margin-left: -370px;
+			}
 			div {
 				transition: 0.2s;
 				width: 40px;
 				height: 5px;
 				background-color: black;
+				// @media (max-width: 707px) {
+				// 	margin-left: -50px;
+				// }
+				// @media (max-width: 641px) {
+				// 	margin-left: -70px;
+				// }
+				// @media (max-width: 630px) {
+				// 	margin-left: -80px;
+				// }
+				// @media (max-width: 638px) {
+				// 	margin-left: -70px;
+				// 	overflow: hidden;
+				// }
+				// @media (max-width: 630px) {
+				// 	margin-left: -80px;
+				// }
 			}
 		}
 		.burgerMenu_active {
@@ -154,7 +241,7 @@
 			justify-content: space-between;
 			flex-direction: column;
 			gap: 5px;
-			z-index: 1;
+			z-index: 111;
 			div {
 				width: 40px;
 				height: 5px;
@@ -169,7 +256,6 @@
 			:nth-child(3) {
 				display: none;
 			}
-
 			:nth-child(2) {
 				transform: rotate(-45deg);
 				transition: 0.2s;

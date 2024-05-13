@@ -1,0 +1,11 @@
+.modal {
+	:global {
+		.ant-modal-content {
+			background: none;
+			box-shadow: none;
+		}
+		.ant-modal-close-x {
+			display: none;
+		}
+	}
+}

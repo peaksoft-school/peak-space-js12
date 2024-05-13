@@ -8,7 +8,7 @@ const api = index.injectEndpoints({
 			MYFRIENDS.GetMyFriendsRequest
 		>({
 			query: () => ({
-				url: 'https://api.elchocrud.pro/api/v1/cff7fcd1011ad3bbe3e0e47484ce0051/myFriends',
+				url: 'https://a0f2d006459bb950.mokky.dev/friends',
 				method: 'GET'
 			}),
 			providesTags: ['api']
