@@ -8,7 +8,7 @@ import { useRef } from 'react';
 import { PlusIconSecond } from '@/src/assets/icons';
 import { IconDots, IconX } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
-import ModalTs from '@/src/UI/Modal/Modal';
+import ModalTs from '@/src/ui/Modal/Modal';
 import PublicsSlider from './PublicsSlider';
 const PublicsPhoto = () => {
 	const [, setHidePhoto] = useState(false);
@@ -140,7 +140,7 @@ const PublicsPhoto = () => {
 
 							<button
 								onClick={() => {
-									ShowMessageAgain(item.id); 
+									ShowMessageAgain(item.id);
 									handleImageClick(item.id);
 								}}
 							>

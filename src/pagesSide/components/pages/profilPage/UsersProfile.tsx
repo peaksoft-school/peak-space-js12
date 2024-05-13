@@ -8,13 +8,13 @@ import { IconEdit } from '@tabler/icons-react';
 import { IconBasket } from '@tabler/icons-react';
 import { IconPhoto } from '@tabler/icons-react';
 import { IconPinned } from '@tabler/icons-react';
-import ModalTs from '@/src/UI/Modal/Modal';
-import MyFriends from '@/src/UI/myFriends/MyFriends';
-import line33 from '../../../../assets/line33.svg';
-import baground from '../../../../assets/album.svg';
-import avatar from '../../../../assets/userProfile.png';
+import ModalTs from '@/src/ui/Modal/Modal';
+import MyFriends from '@/src/ui/myFriends/MyFriends';
+import line33 from '@/src/assets/line.svg';
+import baground from '@/src/assets/album.svg';
+import avatar from '@/src/assets/userProfile.png';
 import { Frame } from '@/src/assets/icons';
-import vector from '../../../../assets/Close_round.svg';
+import vector from '@/src/assets/Vector.svg';
 
 const ProfilPage = () => {
 	const [, setActiveItem] = useState<string>('/');
