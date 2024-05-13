@@ -1,5 +1,5 @@
-.backHeader {
-	background-image: url(../../../../assets//background.jpeg);
+.back_header {
+	background-image: url(../../../../assets/background.jpeg);
 	height: 100vh;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -16,9 +16,17 @@
 	border-radius: 8px;
 	border: 1px solid rgb(219, 219, 219);
 	background: rgb(255, 255, 255);
-	transition:
-		padding 0.5s,
-		background 0.5s;
+	transition: 1s;
+	@media (max-width: 427px) {
+		// background: red;
+		max-width: 370px;
+	}
+	@media (max-width: 382px) {
+		max-width: 335px;
+	}
+	@media (max-width: 342px) {
+		max-width: 316px;
+	}
 
 	.bar {
 		display: flex;
@@ -31,9 +39,16 @@
 		border-radius: 8px;
 		background: rgb(255, 255, 255);
 		width: 100%;
-		// max-width: 600px;
 
 		height: auto;
+		@media (max-width: 382px) {
+			// max-width: 300px;
+			// background: red;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
 
 		img {
 			width: 100%;
@@ -47,35 +62,35 @@
 			flex-direction: column;
 			gap: 25px;
 
-			.textError {
+			.text_error {
 				position: absolute;
 				top: 294px;
 				left: 810px;
 				color: rgba(255, 0, 0, 0.723);
 				font-size: 12.5px;
 			}
-			.errorName {
+			.error_name {
 				position: absolute;
 				top: 360px;
 				left: 810px;
 				color: rgba(255, 0, 0, 0.723);
 				font-size: 12.5px;
 			}
-			.errorUserName {
+			.error_user_name {
 				position: absolute;
 				top: 425px;
 				left: 810px;
 				color: rgba(255, 0, 0, 0.723);
 				font-size: 12.5px;
 			}
-			.errorEmail {
+			.error_email {
 				position: absolute;
 				top: 486px;
 				left: 810px;
 				color: rgba(255, 0, 0, 0.723);
 				font-size: 12.5px;
 			}
-			.errorPassword {
+			.error_password {
 				position: absolute;
 				top: 548px;
 				left: 810px;
@@ -83,7 +98,7 @@
 
 				font-size: 12.5px;
 			}
-			.errorConfirm {
+			.error_confirm {
 				position: absolute;
 				top: 635px;
 				left: 500px;
@@ -91,7 +106,7 @@
 
 				font-size: 12.5px;
 			}
-			.inputPassword {
+			.input_password {
 				border: none;
 				outline: none;
 				border: 2px solid rgb(219, 219, 219);

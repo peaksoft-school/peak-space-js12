@@ -1,0 +1,28 @@
+.footer {
+	width: 100%;
+	height: 100vh;
+	max-height: 49px;
+	max-width: 1440px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	p {
+		color: rgb(203, 202, 202);
+		font-size: 15px;
+		font-weight: 700;
+		line-height: 20px;
+	}
+}
+@media (max-width: 430px) {
+	.footer {
+		padding-inline: 10px;
+		transition: all 1s ease-in-out;
+
+		p {
+			color: rgb(203, 202, 202);
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 15px;
+		}
+	}
+}

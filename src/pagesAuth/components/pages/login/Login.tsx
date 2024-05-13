@@ -1,14 +1,12 @@
 import scss from './Login.module.scss';
 import peakSpace from '../../../../assets/peakSpace.png';
-// import CustomInput from '@/src/UI/customInput/CustomInput';
 import { useState } from 'react';
 import { Input, Checkbox } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { GoogleImg } from '@/src/assets/icons';
 import { Link } from 'react-router-dom';
 import line from '../../../../assets/line.svg';
-
-import CustomButtonBold from '@/src/UI/customButton/CustomButtonBold';
+import CustomButtonBold from '@/src/ul/customButton/CustomButtonBold';
 import { Controller, useForm } from 'react-hook-form';
 
 interface ErrorObject {
@@ -50,7 +48,7 @@ const Login = () => {
 								rules={{ required: 'Пожалуйста, введите ваш email.' }}
 								render={({ field }) => (
 									<Input
-										className={scss.inputPassword}
+										className={scss.input_password}
 										{...field}
 										placeholder="Номер телефона или email"
 										type="email"
@@ -69,7 +67,7 @@ const Login = () => {
 								)}
 							/>
 							{errors?.email && (
-								<span className={scss.errorEmail}>{errors.email.message}</span>
+								<span className={scss.error_email}>{errors.email.message}</span>
 							)}
 							<Controller
 								name="password"
@@ -83,7 +81,7 @@ const Login = () => {
 											visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
 										}
 										placeholder=" Пароль"
-										className={scss.inputPassword}
+										className={scss.input_password}
 										visibilityToggle
 										type={showPassword ? 'text' : 'password'}
 										style={{
@@ -101,7 +99,7 @@ const Login = () => {
 								)}
 							/>
 							{errors.password && (
-								<span className={scss.errorPassword}>
+								<span className={scss.error_password}>
 									{errors?.password?.message || 'error!'}
 								</span>
 							)}
