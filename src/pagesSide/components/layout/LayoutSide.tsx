@@ -30,11 +30,11 @@ const LayoutSide = () => {
 				<main className="container">
 					{!isChatPerson && <NavBar />}
 					<Routes>
+						<Route path="/" element={<MainPage />} />
 						<Route path="/side/*" element={<ProfilPage />} />
 						<Route path="/Settings" element={<EditProfilePage />} />
-						<Route path="/main" element={<MainPage />} />
 						<Route path="/Chat" element={<ChatMessage />} />
-						<Route path="chatPerson" element={<ChatPerson />} />
+						<Route path="/chatPerson" element={<ChatPerson />} />
 						<Route path="/notification" element={<Notifications />} />
 						<Route path="/usersProfile/*" element={<UsersProfile />} />
 						<Route path="/publics/*" element={<Publics />} />
