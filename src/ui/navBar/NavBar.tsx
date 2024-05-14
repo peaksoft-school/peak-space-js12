@@ -25,7 +25,7 @@ const NavBar = () => {
 		{ path: '/notification', icon: <IconBell />, label: 'Уведомления' },
 		{ path: '/settings', icon: <IconSettings />, label: 'Настройки' },
 		{
-			path: '/Side',
+			path: '/side',
 			icon: <img src={userProfileImg} alt="foto" />,
 			label: 'Мой профиль'
 		},
