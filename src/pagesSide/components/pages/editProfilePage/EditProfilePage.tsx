@@ -3,6 +3,7 @@ import CustomSelect from '@/src/ui/customSelect/CustomSelect';
 import UserEditProfile from '@/src/ui/userImages/UserEditProfile';
 import { Select } from 'antd';
 import type { SelectProps } from 'antd';
+import ConfidentPage from './ConfidentPage';
 const EditProfilePage = () => {
 	const options: SelectProps['options'] = [];
 
@@ -18,6 +19,7 @@ const EditProfilePage = () => {
 	};
 	return (
 		<div className={scss.section}>
+			<ConfidentPage/>
 			<div className={scss.content}>
 				<div className={scss.head}>
 					<div className={scss.edit_img}>

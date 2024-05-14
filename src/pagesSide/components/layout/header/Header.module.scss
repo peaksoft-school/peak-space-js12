@@ -31,6 +31,10 @@
 		max-height: 23px;
 		padding-block: 14px;
 		padding-inline: 12px;
+		@media (max-width: 768px) {
+			display: none;
+			opacity: 0;
+		}
 		svg {
 			color: gray;
 		}

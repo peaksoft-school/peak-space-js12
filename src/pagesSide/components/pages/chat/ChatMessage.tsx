@@ -6,7 +6,7 @@ const ChatMessage = () => {
 	const { data, isLoading } = useGetUsersQuery();
 	const navigate = useNavigate();
 	const chatPerson = () => {
-		navigate('/chatPerson');
+		navigate('/chatperson');
 	};
 	return (
 		<div className={scss.chat_meg}>

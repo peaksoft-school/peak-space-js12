@@ -9,7 +9,7 @@ const ConfidentTwoPage: FC = () => {
 		<div className={scss.confident_Content}>
 			<div className={scss.vector_Switch}>
 				<div className={scss.vector}>
-					<Link to="/Settings">
+					<Link to="/settings">
 						<img src={vector} alt="" />
 					</Link>
 					<h2>Конфиденциальность</h2>

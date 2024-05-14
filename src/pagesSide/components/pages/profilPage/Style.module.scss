@@ -50,6 +50,12 @@
 						flex-direction: column;
 						gap: 6px;
 						padding-block: 10px;
+						button {
+							background: none;
+							border: none;
+							outline: none;
+							cursor: pointer;
+						}
 					}
 					.far {
 						display: flex;

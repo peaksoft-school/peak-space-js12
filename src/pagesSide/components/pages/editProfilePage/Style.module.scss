@@ -2,7 +2,8 @@
 	width: 100%;
 	max-width: 735px;
 	height: 100%;
-	overflow: hidden;
+	// overflow: hidden;
+	display: flex;
 	.content {
 		display: flex;
 		flex-direction: column;
@@ -370,6 +371,7 @@
 }
 // !!confident TWO
 .confident_Content {
+	height: 100vh;
 	.vector_Switch {
 		display: flex;
 		justify-content: center;

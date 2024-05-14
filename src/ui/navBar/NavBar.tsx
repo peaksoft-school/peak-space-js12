@@ -21,9 +21,9 @@ const NavBar = () => {
 
 	const navigationItems = [
 		{ path: '/', icon: <IconHome />, label: 'Главная' },
-		{ path: '/Chat', icon: <IconMessageCircle />, label: 'Чаты' },
+		{ path: '/chat', icon: <IconMessageCircle />, label: 'Чаты' },
 		{ path: '/notification', icon: <IconBell />, label: 'Уведомления' },
-		{ path: '/Settings', icon: <IconSettings />, label: 'Настройки' },
+		{ path: '/settings', icon: <IconSettings />, label: 'Настройки' },
 		{
 			path: '/Side',
 			icon: <img src={userProfileImg} alt="foto" />,
@@ -35,7 +35,6 @@ const NavBar = () => {
 			label: 'Мои паблики'
 		}
 	];
-
 
 	return (
 		<div className={scss.content}>
