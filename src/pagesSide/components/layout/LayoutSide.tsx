@@ -16,10 +16,10 @@ import ConfidentTwoPage from '../pages/editProfilePage/ConfidentTwoPage';
 const LayoutSide = () => {
 	const location = useLocation();
 
-	const isSettingsPage = location.pathname === '/Settings';
-	const isChat = location.pathname === '/Chat';
-	const isChatPerson = location.pathname === '/chatPerson';
-	const isMainPage = location.pathname === '/main';
+	const isSettingsPage = location.pathname === '/settings';
+	const isChat = location.pathname === '/chat';
+	const isChatPerson = location.pathname === '/chatperson';
+	const isMainPage = location.pathname === '/';
 	const isNotification = location.pathname === '/notification';
 
 	return (
@@ -32,13 +32,13 @@ const LayoutSide = () => {
 					<Routes>
 						<Route path="/" element={<MainPage />} />
 						<Route path="/side/*" element={<ProfilPage />} />
-						<Route path="/Settings" element={<EditProfilePage />} />
-						<Route path="/Chat" element={<ChatMessage />} />
-						<Route path="/chatPerson" element={<ChatPerson />} />
+						<Route path="/settings" element={<EditProfilePage />} />
+						<Route path="/chat" element={<ChatMessage />} />
+						<Route path="/chatperson" element={<ChatPerson />} />
 						<Route path="/notification" element={<Notifications />} />
 						<Route path="/usersProfile/*" element={<UsersProfile />} />
 						<Route path="/publics/*" element={<Publics />} />
-						<Route path="/ConfidentTwoPage" element={<ConfidentTwoPage />} />
+						<Route path="/confidentTwoPage" element={<ConfidentTwoPage />} />
 					</Routes>
 				</main>
 			</div>

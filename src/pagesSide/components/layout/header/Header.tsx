@@ -42,7 +42,7 @@ const Header = () => {
 					<div className={scss.logoContainer}>
 						<img src={Logo} alt="logo" />
 					</div>
-					{key === 'Chat' || keys === 'chatPerson' ? (
+					{key === 'chat' || keys === 'chatperson' ? (
 						<div className={scss.aside_avatar}></div>
 					) : (
 						<>

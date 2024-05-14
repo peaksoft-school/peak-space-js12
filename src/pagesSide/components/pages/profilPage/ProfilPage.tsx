@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import Publications from './Publications';
 import Favourites from './Favourites';
 import PhotoWith from './PhotoWith';
@@ -15,12 +15,17 @@ import MyFriends from '@/src/ui/myFriends/MyFriends';
 const ProfilPage = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const navigate = useNavigate();
+	const navigateToSettings = () => {
+		navigate('/settings');
+	};
 	const showModal = () => {
 		setIsModalOpen(!isModalOpen);
 	};
 	const handleCancel = () => {
 		setIsModalOpen(false);
 	};
+
 	return (
 		<div className={scss.main_page}>
 			<div className={scss.aside}>
@@ -48,9 +53,9 @@ const ProfilPage = () => {
 									style={{ display: 'flex', gap: '5px', alignItems: 'center' }}
 								>
 									<h4>Ivanov ivan</h4>
-									<Link to="/Settings">
+									<button onClick={navigateToSettings}>
 										<IconEdit />
-									</Link>
+									</button>
 								</div>
 								<div>
 									<p>Что-то что-то</p>
