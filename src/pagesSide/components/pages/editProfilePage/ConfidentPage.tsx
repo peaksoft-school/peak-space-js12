@@ -16,7 +16,7 @@ const ConfidentPage = () => {
 					</div>
 					<div className={scss.zip}>
 						<Zip />
-						<Link to="/ConfidentTwoPage">
+						<Link to="/Confident">
 							<p>Конфиденциальность</p>
 						</Link>
 					</div>
@@ -32,7 +32,7 @@ const ConfidentPage = () => {
 				</div>
 			</div>
 			<Routes>
-				<Route path="/ConfidentTwoPage" element={<ConfidentTwoPage />} />
+				<Route path="/Confident" element={<ConfidentTwoPage />} />
 			</Routes>
 		</div>
 	);

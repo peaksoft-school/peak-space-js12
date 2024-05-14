@@ -38,7 +38,7 @@ const LayoutSide = () => {
 						<Route path="/notification" element={<Notifications />} />
 						<Route path="/usersprofile/*" element={<UsersProfile />} />
 						<Route path="/publics/*" element={<Publics />} />
-						<Route path="/confidentTwoPage" element={<ConfidentTwoPage />} />
+						<Route path="/confident" element={<ConfidentTwoPage />} />
 					</Routes>
 				</main>
 			</div>
