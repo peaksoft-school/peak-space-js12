@@ -4,7 +4,7 @@ import peakSpace from '../../../../assets/peakSpace.png';
 import { Input } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import CustomButtonBold from '@/src/UI/customButton/CustomButtonBold';
+import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { Controller, useForm } from 'react-hook-form';
 
 interface ErrorProps {
@@ -28,7 +28,7 @@ const NewPassword = () => {
 	};
 
 	return (
-		<div className={scss.NewPassword}>
+		<div className={scss.New_password}>
 			<div className={scss.bar}>
 				<div className="container">
 					<form onSubmit={handleSubmit(onSubmit)} className={scss.content}>
@@ -51,7 +51,7 @@ const NewPassword = () => {
 											visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
 										}
 										placeholder=" Пароль"
-										className={scss.inputPassword}
+										className={scss.input_password}
 										visibilityToggle
 										type={showPassword ? 'text' : 'password'}
 										style={{
@@ -69,7 +69,7 @@ const NewPassword = () => {
 								)}
 							/>
 							{errors.password && (
-								<p className={scss.errorPassword}>{errors.password.message}</p>
+								<p className={scss.error_password}>{errors.password.message}</p>
 							)}
 						</div>
 						<CustomButtonBold children="Войти" type="submit" />

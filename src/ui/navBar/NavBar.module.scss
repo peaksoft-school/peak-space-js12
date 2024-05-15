@@ -1,0 +1,149 @@
+.content {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 335px;
+	background: #ffffff;
+	@media (max-width: 768px) {
+		max-width: 101px !important;
+		width: 100%;
+		background: #ffffff;
+		z-index: 888 !important;
+	}
+
+	nav {
+		padding-inline: 10px;
+		padding-block: 20px;
+
+		position: fixed;
+
+		.isNone {
+			@media (max-width: 768px) {
+				li {
+				}
+			}
+		}
+
+		.none {
+			@media (max-width: 768px) {
+				li {
+					svg {
+					}
+				}
+				// position: absolute;
+				// top: 100px;
+				// left: -200px;
+				// transition: 1s;
+			}
+		}
+		ul {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+			position: relative;
+
+			@media (max-width: 768px) {
+				position: fixed;
+				top: 120px;
+				left: 49px;
+				transition: 1s;
+				z-index: 100;
+				display: grid;
+				grid-template-rows: 1fr;
+				gap: 25px;
+				z-index: 888;
+				transition: width 1s;
+
+				span {
+					opacity: 0;
+					transition: all 1s ease-in-out;
+				}
+			}
+
+			li {
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+				gap: 15px;
+				@media (max-width: 768px) {
+					transition: all 1s ease-in;
+					svg {
+						width: 27px !important;
+						height: 27px !important;
+						&:hover {
+							height: 100%;
+							width: 100%;
+						}
+					}
+					img {
+						width: 27px !important;
+						height: 27px !important;
+					}
+				}
+
+				span {
+					text-align: center;
+					color: rgba(0, 0, 0, 0.8);
+					font-size: 16x;
+					font-weight: 400;
+					line-height: 17px;
+				}
+				svg {
+					width: 20px;
+					height: 22px;
+				}
+				img {
+					height: 20px;
+					width: 20px;
+					border-radius: 50%;
+				}
+				.img {
+					border: 2px solid #4c3f9b;
+				}
+				&.activePage {
+					color: #4c3f9b;
+				}
+			}
+			.active_page {
+				color: #4c3f9b;
+				display: flex;
+				align-items: center;
+				gap: 5px;
+				span {
+					color: #4c3f9b;
+				}
+				@media (max-width: 768px) {
+					&:hover {
+						span {
+							opacity: 1;
+							background: white;
+							color: #4c3f9b;
+							padding-inline-start: 10px;
+						}
+					}
+				}
+			}
+			.active_default {
+				color: black;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 8px;
+				max-width: 150px;
+				@media (max-width: 768px) {
+					&:hover {
+						display: flex;
+						align-items: center;
+						span {
+							opacity: 1;
+							background: white;
+
+							// padding: 6px 16px;
+							// padding-inline-start: 10px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

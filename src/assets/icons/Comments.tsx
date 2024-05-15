@@ -1,7 +1,13 @@
-const Comments = () => {
+import { FC } from 'react';
+
+interface CommentsProps {
+	onClick: () => void;
+}
+const Comments: FC<CommentsProps> = ({ onClick }) => {
 	return (
 		<div>
 			<svg
+				onClick={onClick}
 				width="24.000000"
 				height="24.000000"
 				viewBox="0 0 24 24"

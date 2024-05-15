@@ -3,7 +3,7 @@ const api = index.injectEndpoints({
 	endpoints: (build) => ({
 		getStoty: build.query<STORY.GetStoryResponse, STORY.GetStoryRequest>({
 			query: () => ({
-				url: 'https://api.elchocrud.pro/api/v1/59d075c7dd3bf976bf84ab5fb0796ba4/storys',
+				url: 'https://22638b4a9a5784ed.mokky.dev/story',
 				method: 'GET'
 			}),
 			providesTags: ['story']

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 interface HomeImgProps {
-	className: string
+	className: string;
 }
 
 const HomeImg: FC<HomeImgProps> = ({ className }) => {

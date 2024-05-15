@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import UserEditProfile from '@/src/UI/userImages/UserEditProfile';
+import UserEditProfile from '@/src/ui/userImages/UserEditProfile';
 import scss from './NewPublic.module.scss';
-import CustomSelect from '@/src/UI/customSelect/CustomSelect';
+import CustomSelect from '@/src/ui/customSelect/CustomSelect';
 import { PencilIcon } from '@/src/assets/icons';
 
 const NewPublic: React.FC = () => {
@@ -47,7 +47,7 @@ const NewPublic: React.FC = () => {
 					/>
 					<div className={scss.cover_choose_btn} onClick={handleChooseCover}>
 						<PencilIcon className={scss.pencil_icon} />
-						<p>{coverImg ? "Изменить обложку" : "Добавить обложку"}</p>
+						<p>{coverImg ? 'Изменить обложку' : 'Добавить обложку'}</p>
 					</div>
 				</div>
 				<div className={scss.user_avatar}>

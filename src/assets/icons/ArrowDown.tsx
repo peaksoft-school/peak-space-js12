@@ -1,4 +1,4 @@
-import  { FC } from 'react';
+import { FC } from 'react';
 interface Select {
 	className?: string;
 	onClick: () => void;

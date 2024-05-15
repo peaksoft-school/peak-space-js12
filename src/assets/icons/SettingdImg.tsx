@@ -7,7 +7,7 @@ const SettingdImg: FC<SettingdImgProps> = ({ className }) => {
 	return (
 		<>
 			<svg
-      className={className}
+				className={className}
 				width="23"
 				height="23"
 				viewBox="0 0 23 23"

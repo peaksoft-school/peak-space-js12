@@ -2,7 +2,7 @@ import { Input, Checkbox } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Controller, useForm } from 'react-hook-form';
 
-import CustomButtonBold from '@/src/UI/customButton/CustomButtonBold';
+import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpaceImg from '../../../../assets/peakSpace.png';
 import scss from './Registration.module.scss';
 import { ChangeEvent, useState } from 'react';
@@ -51,7 +51,7 @@ const Registration = () => {
 	};
 
 	return (
-		<div className={scss.backHeader}>
+		<div className={scss.back_header}>
 			<div className={scss.Registration}>
 				<div className="container">
 					<form onSubmit={handleSubmit(onSubmit)} className={scss.bar}>
@@ -64,7 +64,7 @@ const Registration = () => {
 								rules={{ required: 'Это поле обязательно к заполнению' }}
 								render={({ field }) => (
 									<Input
-										className={scss.inputPassword}
+										className={scss.input_password}
 										{...field}
 										placeholder="Введите логин"
 										type="text"
@@ -82,7 +82,7 @@ const Registration = () => {
 								)}
 							/>
 							{errors?.Фамилия && (
-								<p className={scss.textError}>{errors.Фамилия.message}</p>
+								<p className={scss.text_error}>{errors.Фамилия.message}</p>
 							)}
 							<Controller
 								name="Имя"
@@ -91,7 +91,7 @@ const Registration = () => {
 								rules={{ required: 'Это поле обязательно к заполнению' }}
 								render={({ field }) => (
 									<Input
-										className={scss.inputPassword}
+										className={scss.input_password}
 										{...field}
 										placeholder="Имя"
 										type="text"
@@ -110,7 +110,7 @@ const Registration = () => {
 								)}
 							/>
 							{errors?.Имя && (
-								<p className={scss.errorName}>{errors.Имя.message}</p>
+								<p className={scss.error_name}>{errors.Имя.message}</p>
 							)}
 							<Controller
 								name="nameUser"
@@ -119,7 +119,7 @@ const Registration = () => {
 								rules={{ required: 'Это поле обязательно к заполнению' }}
 								render={({ field }) => (
 									<Input
-										className={scss.inputPassword}
+										className={scss.input_password}
 										{...field}
 										placeholder="Имя пользователя"
 										type="text"
@@ -138,7 +138,9 @@ const Registration = () => {
 								)}
 							/>
 							{errors?.nameUser && (
-								<p className={scss.errorUserName}>{errors.nameUser.message}</p>
+								<p className={scss.error_user_name}>
+									{errors.nameUser.message}
+								</p>
 							)}
 							<Controller
 								name="email"
@@ -147,7 +149,7 @@ const Registration = () => {
 								rules={{ required: 'Пожалуйста, введите ваш email.' }}
 								render={({ field }) => (
 									<Input
-										className={scss.inputPassword}
+										className={scss.input_password}
 										{...field}
 										placeholder="Номер телефона или email"
 										type="email"
@@ -166,7 +168,7 @@ const Registration = () => {
 								)}
 							/>
 							{errors?.email && (
-								<p className={scss.errorEmail}>{errors.email.message}</p>
+								<p className={scss.error_email}>{errors.email.message}</p>
 							)}
 							<Controller
 								name="password"
@@ -180,7 +182,7 @@ const Registration = () => {
 											visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
 										}
 										placeholder=" Пароль"
-										className={scss.inputPassword}
+										className={scss.input_password}
 										visibilityToggle
 										type={showPassword ? 'text' : 'password'}
 										style={{
@@ -202,7 +204,7 @@ const Registration = () => {
 								)}
 							/>
 							{errors.password && (
-								<p className={scss.errorPassword}>{errors.password.message}</p>
+								<p className={scss.error_password}>{errors.password.message}</p>
 							)}
 
 							<Input.Password
@@ -212,7 +214,7 @@ const Registration = () => {
 									visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
 								}
 								placeholder="Повторите пароль"
-								className={scss.inputPassword}
+								className={scss.input_password}
 								visibilityToggle
 								type={showPassword ? 'text' : 'password'}
 							/>

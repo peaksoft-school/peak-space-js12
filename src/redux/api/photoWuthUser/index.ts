@@ -6,7 +6,7 @@ const api = index.injectEndpoints({
 			PROFILPHOTO.GetPhotoRequest
 		>({
 			query: () => ({
-				url: 'https://api.elchocrud.pro/api/v1/af9cc58a80b6b4e2ea02e23625f30255/userPhoto',
+				url: 'https://bb0f8fe8d25ad084.mokky.dev/photoWithyou',
 				method: 'GET'
 			}),
 			providesTags: ['api']

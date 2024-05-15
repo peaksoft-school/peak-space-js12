@@ -13,6 +13,23 @@
 		max-height: 625px;
 		border-radius: 8px;
 		background: rgb(255, 255, 255);
+		@media (max-width: 425px) {
+			transition: 0.5s;
+			max-width: 390px;
+			width: 100%;
+		}
+		@media (max-width: 396px) {
+			max-width: 365px;
+		}
+		@media (max-width: 370px) {
+			max-width: 345px;
+		}
+		@media (max-width: 352px) {
+			max-width: 329px;
+		}
+		@media (max-width: 336px) {
+			max-width: 320px;
+		}
 
 		.aside {
 			display: flex;
@@ -26,21 +43,21 @@
 				display: flex;
 				flex-direction: column;
 				gap: 20px;
-				.errorEmail {
+				.error_email {
 					position: absolute;
 					top: 354px;
 					left: 810px;
 					color: rgba(255, 0, 0, 0.723);
 					font-size: 13.5px;
 				}
-				.errorPassword {
+				.error_password {
 					position: absolute;
 					top: 413.5px;
 					left: 810px;
 					color: rgba(255, 0, 0, 0.723);
 					font-size: 13.5px;
 				}
-				.inputPassword {
+				.input_password {
 					border: none;
 					outline: none;
 					border: 2px solid rgb(219, 219, 219);
