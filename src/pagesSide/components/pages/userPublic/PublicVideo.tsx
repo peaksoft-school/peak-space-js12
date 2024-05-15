@@ -19,7 +19,6 @@ const PublicVideo = () => {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [postRequest] = usePostUserPublicMutation();
 
-	// !modal
 	const [isModal, setIsModal] = useState(false);
 
 	const openModal = () => {
@@ -29,7 +28,6 @@ const PublicVideo = () => {
 		setIsModal(false);
 	};
 
-	// !
 
 	const [showMessage, setShowMessage] = useState<any>({});
 	const ShowMessageAgain = (id: any) => {
@@ -125,7 +123,7 @@ const PublicVideo = () => {
 								<span></span>
 								<p>удалить фото</p>
 							</div>
-							{/* !//!Modal//////////////////////////////////////////////////////////////////! */}
+					
 							<ModalTs open={isModal} onCancel={closeModal}>
 								<div className={scss.widget}>
 									{data.map((item) => (

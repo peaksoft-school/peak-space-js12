@@ -96,8 +96,8 @@ const userPublic = () => {
 
 				<div>
 					<Routes>
-          <Route path="/PublicFotos*" element={<PublicFotos />} />
-          <Route path="/PublicVideo*" element={<PublicVideo />} />
+          <Route path="/publicFotos*" element={<PublicFotos />} />
+          <Route path="/publicVideo*" element={<PublicVideo />} />
 					</Routes>
 				</div>
 			</div>
