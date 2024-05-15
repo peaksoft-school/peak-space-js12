@@ -35,7 +35,7 @@ const NewPublic: React.FC = () => {
 				<div className={scss.user_cover}>
 					<img
 						className={scss.cover_img}
-						style={{ display: coverImg ? 'flex' : 'none' }}
+						style={{ display: coverImg ? 'block' : 'none' }}
 						src={coverImg ? coverImg : ''}
 						alt={coverName}
 					/>
