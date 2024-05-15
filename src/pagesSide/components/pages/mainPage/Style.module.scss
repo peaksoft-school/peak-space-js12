@@ -376,3 +376,139 @@
 		}
 	}
 }
+
+// !!!!!!!!!!!!!!!!!!!!!!!!modalStory
+@media (max-width: 1155px) {
+	.modal_story {
+		width: 100%;
+		max-width: 1155px;
+
+		.ant-progress-inner {
+			max-width: 1155px;
+		}
+	}
+}
+@media (max-width: 700px) {
+	.modal_story {
+		width: 100%;
+		max-width: 700px;
+		max-height: 700px;
+		.ant-progress-inner {
+			max-width: 750px;
+		}
+	}
+}
+@media (max-width: 500px) {
+	.modal_story {
+		width: 100%;
+		max-width: 500px;
+		max-height: 500px;
+
+		.ant-progress-inner {
+			max-width: 450px;
+		}
+	}
+}
+@media (max-width: 400px) {
+	.modal_story {
+		width: 100%;
+		max-width: 400px;
+		max-height: 400px;
+	}
+}
+@media (max-width: 320px) {
+	.modal_story {
+		width: 100%;
+		max-width: 200px;
+		max-height: 300px;
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+	}
+}
+.modal_story {
+	background: rgba(31, 31, 31, 1);
+
+	width: 460px;
+	height: 600px;
+	border-radius: 20px;
+	box-shadow: 20px 20px 80px 2px rgba(255, 255, 255, 0.3);
+
+	:global {
+		.ant-progress-inner {
+			position: relative;
+			display: inline-block;
+			width: 100%;
+			max-width: 453px;
+			overflow: hidden;
+			vertical-align: middle;
+			background-color: rgba(0, 0, 0, 0.06);
+			border-radius: 100px;
+		}
+	}
+
+	@media (max-width: 750px) {
+		.avatring {
+			width: 100%;
+			max-width: 750px;
+		}
+	}
+
+	@media (max-width: 500px) {
+		.avatring {
+			width: 100%;
+			max-width: 500px;
+		}
+	}
+
+	@media (max-width: 320px) {
+		.avatring {
+			display: flex;
+			width: 100%;
+			max-width: 300px;
+			gap: 20px;
+
+			.avatar {
+				width: 35	px;
+				height: 35px;
+			}
+			.h1_p {
+				.h4 {
+					font-size: 13px;
+				}
+			}
+		}
+	}
+	.avatring {
+		position: relative;
+		left: 10px;
+		display: flex;
+		gap: 15px;
+
+		img {
+			width: 50px;
+			height: 50px;
+		}
+		.h1_p {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+			h4 {
+				font-family: Inter;
+				font-size: 15px;
+				font-weight: 500;
+				line-height: 18.15px;
+				letter-spacing: 0.03em;
+				color: rgba(255, 255, 255, 1);
+			}
+			p {
+				font-family: Inter;
+				font-size: 7px;
+				font-weight: 300;
+				line-height: 8.47px;
+				letter-spacing: 0.03em;
+				color: rgba(255, 255, 255, 1);
+			}
+		}
+	}
+}
