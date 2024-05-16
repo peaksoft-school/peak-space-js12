@@ -5,6 +5,7 @@ interface ButtonWhiteProps {
 	children: ReactNode;
 	onClick: () => void;
 }
+
 const CustomButtonWhite: FC<ButtonWhiteProps> = ({ children, onClick }) => {
 	return (
 		<>

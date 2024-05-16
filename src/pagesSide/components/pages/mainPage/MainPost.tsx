@@ -78,6 +78,7 @@ const MainPost = () => {
 							</div>
 						</div>
 						<p className={scss.comment}>Добавить комментарий...</p>
+
 						<ModalTs open={isModal} onCancel={closeModal}>
 							<div className={scss.modal_aside}>
 								<div className={scss.widget}>

@@ -19,7 +19,7 @@ const EditProfilePage = () => {
 	};
 	return (
 		<div className={scss.section}>
-			<ConfidentPage/>
+			<ConfidentPage />
 			<div className={scss.content}>
 				<div className={scss.head}>
 					<div className={scss.edit_img}>
