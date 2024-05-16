@@ -35,6 +35,7 @@
 		flex-direction: column;
 		gap: 25px;
 		padding-block: 30px;
+		position: relative;
 
 		border-radius: 8px;
 		background: rgb(255, 255, 255);
@@ -64,36 +65,36 @@
 
 			.text_error {
 				position: absolute;
-				top: 294px;
-				left: 810px;
+				top: 145.5px;
+				left: 40px;
 				color: rgba(255, 0, 0, 0.723);
 				font-size: 12.5px;
 			}
 			.error_name {
 				position: absolute;
-				top: 360px;
-				left: 810px;
+				top: 210px;
+				left: 40px;
 				color: rgba(255, 0, 0, 0.723);
 				font-size: 12.5px;
 			}
 			.error_user_name {
 				position: absolute;
-				top: 425px;
-				left: 810px;
+				top: 272px;
+				left: 40px;
 				color: rgba(255, 0, 0, 0.723);
 				font-size: 12.5px;
 			}
 			.error_email {
 				position: absolute;
-				top: 486px;
-				left: 810px;
+				top: 336px;
+				left: 40px;
 				color: rgba(255, 0, 0, 0.723);
 				font-size: 12.5px;
 			}
 			.error_password {
 				position: absolute;
-				top: 548px;
-				left: 810px;
+				top: 399px;
+				left: 40px;
 				color: rgba(255, 0, 0, 0.723);
 
 				font-size: 12.5px;

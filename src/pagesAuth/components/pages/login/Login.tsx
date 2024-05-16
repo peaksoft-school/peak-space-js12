@@ -8,20 +8,22 @@ import { Link } from 'react-router-dom';
 import line from '../../../../assets/line.svg';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { Controller, useForm } from 'react-hook-form';
+import { usePostLoginMutation } from '@/src/redux/api/login';
 
 interface ErrorObject {
-	message: string;
 	password: string;
 	email: string;
 }
 
 const Login = () => {
 	const [showPassword, setShowPassword] = useState<boolean>(false);
+	const [postRequest] = usePostLoginMutation();
 
 	const togglePasswordVisibility = () => {
 		setShowPassword(!showPassword);
 	};
 	const {
+		register,
 		control,
 		formState: { errors },
 		handleSubmit,
@@ -29,9 +31,16 @@ const Login = () => {
 	} = useForm<ErrorObject>({ mode: 'onBlur' });
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const onSubmit = (data: any) => {
-		console.log(data);
-		reset();
+	const onSubmit = async (data: any) => {
+		console.log(data, 'data');
+
+		try {
+			const result = await postRequest(data);
+			console.log('Регистрация успешна:', result);
+			reset();
+		} catch (error) {
+			console.error('Ошибка регистрации:', error);
+		}
 	};
 
 	return (
@@ -42,7 +51,7 @@ const Login = () => {
 						<img src={peakSpace} alt="" />
 						<form onSubmit={handleSubmit(onSubmit)} className={scss.form}>
 							<Controller
-								name="email"
+								{...register('email')}
 								control={control}
 								defaultValue=""
 								rules={{ required: 'Пожалуйста, введите ваш email.' }}
@@ -70,7 +79,7 @@ const Login = () => {
 								<span className={scss.error_email}>{errors.email.message}</span>
 							)}
 							<Controller
-								name="password"
+								{...register('password')}
 								control={control}
 								defaultValue=""
 								rules={{ required: 'Пароль обязателен к заполнению' }}

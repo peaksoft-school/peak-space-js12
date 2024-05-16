@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useGetUsersQuery } from '@/src/redux/api/chat';
 import scss from './Style.module.scss';
 import { IconArrowNarrowLeft } from '@tabler/icons-react';

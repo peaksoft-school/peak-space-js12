@@ -43,17 +43,18 @@
 				display: flex;
 				flex-direction: column;
 				gap: 20px;
+				position: relative;
 				.error_email {
 					position: absolute;
-					top: 354px;
-					left: 810px;
+					top: 40px;
+					left:2px;
 					color: rgba(255, 0, 0, 0.723);
 					font-size: 13.5px;
 				}
 				.error_password {
 					position: absolute;
-					top: 413.5px;
-					left: 810px;
+					top: 100px;
+					left: 2px;
 					color: rgba(255, 0, 0, 0.723);
 					font-size: 13.5px;
 				}
