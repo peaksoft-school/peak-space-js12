@@ -91,6 +91,7 @@ const ProfilPage = () => {
 											<div>
 												<MyFriends />
 											</div>
+											``
 										</div>
 									</ModalTs>
 								</div>
