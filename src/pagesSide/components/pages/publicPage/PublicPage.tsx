@@ -12,11 +12,11 @@ const PublicPage = () => {
 					<div className={scss.publics}>
 						<p>У вас нет пабликов</p>
 						<Link
-							className={`${activeItem === 'new-publication' ? scss.activePage : scss.newPublic}`}
-							to="new-publication"
+							className={`${activeItem === 'new-public' ? scss.activePage : scss.newPublic}`}
+							to="new-public"
 						>
 							<button
-								onClick={() => setActiveItem('new-publication')}
+								onClick={() => setActiveItem('new-public')}
 								className={scss.add_new_public_button}
 							>
 								Создать паблик

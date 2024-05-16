@@ -12,6 +12,8 @@ import ChatMessage from '../pages/chat/ChatMessage';
 import ChatPerson from '../pages/chat/ChatPerson';
 import Publics from '../pages/publicsUsers/Publics';
 import ConfidentTwoPage from '../pages/editProfilePage/ConfidentTwoPage';
+import PublicPage from '../pages/publicPage/PublicPage';
+import NewPublic from '../pages/publicPage/NewPublic';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -38,6 +40,8 @@ const LayoutSide = () => {
 						<Route path="/usersprofile/*" element={<UsersProfile />} />
 						<Route path="/publics/*" element={<Publics />} />
 						<Route path="confindent" element={<ConfidentTwoPage />} />
+						<Route path="/public" element={<PublicPage />} />
+						<Route path="/public/new-public" element={<NewPublic />} />
 					</Routes>
 				</main>
 			</div>
