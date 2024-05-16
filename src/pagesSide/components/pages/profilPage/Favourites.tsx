@@ -12,7 +12,7 @@ const Favourites = () => {
 			) : (
 				<>
 					{data?.map((item) => (
-						<div className={scss.widget} key={item._id}>
+						<div className={scss.widget} key={item.id}>
 							<img src={item.img} alt="" />
 						</div>
 					))}

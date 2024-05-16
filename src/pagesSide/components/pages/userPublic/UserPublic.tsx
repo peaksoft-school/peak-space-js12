@@ -9,7 +9,7 @@ import { useState } from 'react';
 import PublicFotos from './PublicFotos';
 import PublicVideo from './PublicVideo';
 
-const userPublic = () => {
+const UserPublic = () => {
 	const [, setActiveItem] = useState<string>('/');
 
 	return (
@@ -102,4 +102,4 @@ const userPublic = () => {
 	);
 };
 
-export default userPublic;
+export default UserPublic;

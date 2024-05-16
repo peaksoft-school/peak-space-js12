@@ -2,24 +2,24 @@ import { useGetStotyQuery } from '@/src/redux/api/story';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import scss from './Style.module.scss';
-import { useState } from 'react';
-import ModalTs from '@/src/UI/Modal/Modal';
-import avatar from '../../../../assets/Ellipse 60.svg';
-import { Progress } from 'antd';
+// import { SetStateAction } from 'react';
+// import ModalTs from '@/src/ui/modal/Modal';
+// import avatar from '../../../../assets/Ellipse 60.svg';
+// import { Progress } from 'antd';
 
 const MainStory = () => {
 	const { data, isLoading } = useGetStotyQuery();
-	const [isOpenModalStory, setIsOpenModalStiory] = useState(false);
-	const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
+	// const [isOpenModalStory, setIsOpenModalStiory] = useState(false);
+	// const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
 
-	const handOpenStory = (index) => {
-		setIsOpenModalStiory(true);
-		setCurrentStoryIndex(index);
-	};
+	// const handOpenStory = (index: SetStateAction<number>) => {
+	// 	setIsOpenModalStiory(true);
+	// 	setCurrentStoryIndex(index);
+	// };
 
-	const handCancelStory = () => {
-		setIsOpenModalStiory(false);
-	};
+	// const handCancelStory = () => {
+	// 	setIsOpenModalStiory(false);
+	// };
 
 	const [ref] = useKeenSlider<HTMLDivElement>({
 		breakpoints: {
@@ -40,12 +40,11 @@ const MainStory = () => {
 					<p>Loading...</p>
 				) : (
 					<div ref={ref} className={`keen-slider ${scss.keen}`}>
-						{data?.map((item, index) => (
+						{data?.map((item) => (
 							<div key={item._id} className="keen-slider__slide">
 								<div>
 									<img className={scss.story_pic} src={item.backImg} alt="" />
 									<img
-										onClick={() => handOpenStory(index)}
 										className={scss.slide_avatar}
 										src={item.storyImg}
 										alt=""
@@ -57,7 +56,7 @@ const MainStory = () => {
 				)}
 			</div>
 
-			<ModalTs open={isOpenModalStory} onCancel={handCancelStory}>
+			{/* <ModalTs open={isOpenModalStory} onCancel={handCancelStory}>
 				<div className={scss.modal_story}>
 					<div className={scss.span}>
 						{data && Array.isArray(data) && (
@@ -76,9 +75,20 @@ const MainStory = () => {
 						</div>
 					</div>
 				</div>
-			</ModalTs>
+			</ModalTs> */}
 		</>
 	);
 };
 
 export default MainStory;
+
+// function setIsOpenModalStiory(arg0: boolean) {
+// 	throw new Error('Function not implemented.');
+// }
+// function setIsOpenModalStiory(arg0: boolean) {
+// 	throw new Error('Function not implemented.');
+// }
+
+// function setCurrentStoryIndex(index: SetStateAction<number>) {
+// 	throw new Error('Function not implemented.');
+// }
