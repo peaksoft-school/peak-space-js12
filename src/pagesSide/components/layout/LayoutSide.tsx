@@ -32,7 +32,7 @@ const LayoutSide = () => {
 					<Routes>
 						<Route path="/" element={<MainPage />} />
 						<Route path="/side/*" element={<ProfilPage />} />
-						<Route path="/settings" element={<EditProfilePage />} />   
+						<Route path="/settings" element={<EditProfilePage />} />
 						<Route path="/chat" element={<ChatMessage />} />
 						<Route path="/chatperson" element={<ChatPerson />} />
 						<Route path="/notification" element={<Notifications />} />

@@ -1,16 +1,27 @@
 import scss from './Style.module.scss';
 import foto from '../../../../assets/userStory.png';
 import foto2 from '../../../../assets/FirstMan2.png';
-import { ArrowImg } from '@/src/assets/icons';
+import { IconArrowNarrowLeft } from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
 
 const VideoEnd = () => {
+	const navigate = useNavigate();
+	const navigateToBack = () => {
+		navigate('/videocall');
+	};
+
 	return (
 		<div className={scss.video_end}>
 			<div className={scss.image}>
-				<img src="https://a.d-cd.net/LkAAAgIZUeA-1920.jpg" alt="" />
+				<img
+					src="https://s3-alpha-sig.figma.com/img/5241/cf3d/263063a8a026b6f7a7d151f2e4bdc330?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qvlYohdbkTfPMsVUebosO2UPRfIVyKHuRff44LNJQGWTJQsdzMMY81ba65-f0Tx9ZNrHctpU7QScx4-XTgcJCGKuFRm-7doiDcRQasL8bAxZDDoUrcty9IqKrUkaZNbDlVYvAsdAuPKAYO5xedYnxfdfdy1qYJ97~Vekh1-VHiUeFOJW1m69MVvSyLg27yLXOcQykUG2NmAGSktrB9wKQWVgY~YB~KwDJQcmc~AOwEtbhVgKnr404SjFYbYaELLo3rRm5tDtzrgwqZWqc8k-PGQglJUO9JYqAidq7TIDAT0jlaUaS~kUP14~TlQSk9Ib0XH6VyLg5Ee9LeGNjy~-TA__"
+					alt="foto"
+				/>
 			</div>
+			<button onClick={navigateToBack}>
+				<IconArrowNarrowLeft />
+			</button>
 
-			<ArrowImg />
 			<div className={scss.box}>
 				<div className={scss.img_user}>
 					<img className={scss.img1} src={foto} alt="foto" />

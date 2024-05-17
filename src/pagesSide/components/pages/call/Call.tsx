@@ -1,23 +1,33 @@
 import scss from './Style.module.scss';
-import MicrophoneImg from '@/src/assets/icons/MicrophoneImg';
-import { CallImg, VidoeImg } from '@/src/assets/icons';
+import { IconMicrophone, IconVideo, IconPhoneCall } from '@tabler/icons-react';
 import foto from '../../../../assets/userStory.png';
+import { useNavigate } from 'react-router-dom';
 
 const Call = () => {
+	const navigate = useNavigate();
+	const navigateToCall = () => {
+		setTimeout(() => {
+			navigate('/calltime');
+		}, 1000);
+	};
 	return (
 		<div className={scss.call}>
 			<div className={scss.box}>
-				<div className={scss.image}>
-					<img src={foto} alt="foto" />
-				</div>
+				<img src={foto} alt="foto" />
 				<div className={scss.text}>
-					<h1>_Bogomdan</h1>
+					<h4>_Bogomdan</h4>
 					<p>Соединение...</p>
 				</div>
 				<div className={scss.icons}>
-					<MicrophoneImg />
-					<VidoeImg />
-					<CallImg className={scss.call_icon} />
+					<button>
+						<IconMicrophone />
+					</button>
+					<button>
+						<IconVideo />
+					</button>
+					<button onClick={navigateToCall}>
+						<IconPhoneCall />
+					</button>
 				</div>
 			</div>
 		</div>
