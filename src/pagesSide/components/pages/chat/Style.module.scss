@@ -254,10 +254,15 @@
 			.icons {
 				display: flex;
 				gap: 20px;
-				.icon {
-					width: 30px;
-					height: 30px;
+				button {
+					background: none;
+					border: none;
+					outline: none;
 					cursor: pointer;
+					svg {
+						width: 35px;
+						height: 35px;
+					}
 				}
 			}
 		}

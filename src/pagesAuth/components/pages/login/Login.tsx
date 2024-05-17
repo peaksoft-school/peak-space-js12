@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import scss from './Login.module.scss';
 import peakSpace from '../../../../assets/peakSpace.png';
 import { useState } from 'react';
@@ -35,17 +36,14 @@ const Login = () => {
 		console.log(data, 'data');
 		try {
 			const result = await postRequest(data);
-			console.log('Регистрация успешна:', result);
 			if ('data' in result) {
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				const { token }: any = result.data;
 				localStorage.setItem('auth_token', token);
 				localStorage.setItem('isAuth', 'true');
 				reset();
 			}
-			reset();
 		} catch (error) {
-			console.error('Ошибка регистрации:', error);
+			console.error('Ошибка входа:', error);
 		}
 	};
 
