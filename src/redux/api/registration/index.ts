@@ -8,7 +8,7 @@ const api = index.injectEndpoints({
 			query: (data) => (
 				console.log(data),
 				{
-					url: '/api/signUp',
+					url: '/auth/signUp',
 					method: 'POST',
 					body: data
 				}
