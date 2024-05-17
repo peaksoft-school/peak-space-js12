@@ -33,10 +33,16 @@ const Login = () => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onSubmit = async (data: any) => {
 		console.log(data, 'data');
-
 		try {
 			const result = await postRequest(data);
 			console.log('Регистрация успешна:', result);
+			if ('data' in result) {
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				const { token }: any = result.data;
+				localStorage.setItem('auth_token', token);
+				localStorage.setItem('isAuth', 'true');
+				reset();
+			}
 			reset();
 		} catch (error) {
 			console.error('Ошибка регистрации:', error);
