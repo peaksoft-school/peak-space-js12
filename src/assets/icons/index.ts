@@ -8,6 +8,7 @@ export { default as ArrowDown } from './ArrowDown';
 export { default as HomeImg } from './HomeImg';
 export { default as ChatImg } from './ChatImg';
 export { default as NotificationsIgm } from './NotificationsIgm';
+export { default as PencilIcon } from './PencilIcon';
 export { default as SettingdImg } from './SettingdImg';
 export { default as SearchIcon } from './SearchIcon';
 export { default as IconDown } from './IconDown';
