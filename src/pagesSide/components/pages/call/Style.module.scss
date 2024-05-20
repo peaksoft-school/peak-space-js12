@@ -1,10 +1,7 @@
 //////////////////////////////////////////////////// ! Call Time
 .call {
 	width: 100%;
-	max-width: 1440px;
 	height: 100vh;
-	top: 137px;
-	left: 3584px;
 	background: linear-gradient(
 		90deg,
 		#2079cc 0%,
@@ -15,72 +12,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
-
-	@media (max-width: 750px) {
-		.box {
-			img {
-				width: 200px;
-				height: 200px;
-			}
-			.text {
-				h1 {
-					font-size: 30px;
-				}
-				p {
-					font-size: 15px;
-				}
-			}
-		}
-	}
-	@media (max-width: 650px) {
-		.box {
-			img {
-				width: 180px;
-				height: 180px;
-			}
-			.text {
-				h1 {
-					font-size: 25px;
-				}
-				p {
-					font-size: 13px;
-				}
-			}
-		}
-	}
-	@media (max-width: 550px) {
-		.box {
-			img {
-				width: 160px;
-				height: 160px;
-			}
-			.text {
-				h1 {
-					font-size: 21px;
-				}
-				p {
-					font-size: 10px;
-				}
-			}
-		}
-	}
-	@media (max-width: 450px) {
-		.box {
-			img {
-				width: 140px;
-				height: 140px;
-			}
-			.text {
-				h1 {
-					font-size: 18px;
-				}
-				p {
-					font-size: 10px;
-				}
-			}
-		}
-	}
 
 	.box {
 		display: flex;
@@ -90,109 +21,68 @@
 		text-align: center;
 		gap: 25px;
 
-		.image {
-			img {
-				border-radius: 50%;
-			}
+		img {
+			border-radius: 50%;
+			width: 300px;
+			height: 300px;
 		}
 
 		.text {
-			h1 {
-				color: wheat;
+			h4 {
+				color: rgb(255, 255, 255);
+				font-size: 50px;
+				font-weight: 800;
+				line-height: 68px;
+				letter-spacing: 3%;
+				text-align: center;
 			}
 			p {
-				color: white;
+				color: rgba(255, 255, 255, 0.8);
+				font-size: 30px;
+				font-weight: 600;
+				line-height: 41px;
+				letter-spacing: 3%;
+				text-align: center;
 			}
 		}
 		.icons {
 			display: flex;
-			gap: 15px;
-			svg {
-				cursor: pointer;
-				width: 30px;
-				height: 30px;
-				background: white;
-				border-radius: 50%;
-				padding: 5px;
+			align-items: center;
+			gap: 45px;
 
-				@media (max-width: 750px) {
-					width: 25px;
-					height: 25px;
-					background: white;
-					border-radius: 50%;
-					padding: 5px;
+			button {
+				background: none;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				width: 60px;
+				height: 60px;
+				background: #d9d9d9;
+				border-radius: 50%;
+				svg {
+					color: rgb(1, 14, 73);
 				}
-				@media (max-width: 650px) {
-					width: 23px;
-					height: 23px;
-					background: white;
+
+				&:nth-child(3) {
+					background: red;
 					border-radius: 50%;
-					padding: 3px;
-				}
-				@media (max-width: 550px) {
-					width: 20px;
-					height: 20px;
-					background: white;
-					border-radius: 50%;
-				}
-				@media (max-width: 450px) {
-					width: 18px;
-					height: 18px;
-					background: white;
-					border-radius: 50%;
+					svg {
+						color: white;
+					}
 				}
 			}
-
-			.call_icon {
-				cursor: pointer;
-				width: 30px;
-				height: 30px;
-				background: red;
-				border-radius: 50%;
-				padding: 5px;
-
-				@media (max-width: 750px) {
-					cursor: pointer;
-					width: 25px;
-					height: 25px;
-					background: red;
-					border-radius: 50%;
-					padding: 5px;
-				}
-				@media (max-width: 650px) {
-					cursor: pointer;
-					width: 23px;
-					height: 23px;
-					background: red;
-					border-radius: 50%;
-					padding: 3px;
-				}
-				@media (max-width: 550px) {
-					cursor: pointer;
-					width: 20px;
-					height: 20px;
-					background: red;
-					border-radius: 50%;
-					padding: 3px;
-				}
-				@media (max-width: 450px) {
-					cursor: pointer;
-					width: 18px;
-					height: 18px;
-					background: red;
-					border-radius: 50%;
-				}
+			svg {
+				width: 40px;
+				height: 40px;
 			}
 		}
 	}
 }
 //////////////////////////////////////////////////// ! Call Time
-.call_Time {
+
+.callTIme {
 	width: 100%;
-	max-width: 1440px;
 	height: 100vh;
-	top: 137px;
-	left: 3584px;
 
 	background: linear-gradient(
 		90deg,
@@ -201,223 +91,91 @@
 		#011f66 72.91%,
 		#010c46 100%
 	);
+	button {
+		background: none;
+		outline: none;
+		border: none;
+		cursor: pointer;
 
-	svg {
-		margin-left: 30px;
-		@media (max-width: 750px) {
-			margin-left: 27px;
-		}
-		@media (max-width: 650px) {
-			margin-left: 25px;
-			width: 65px;
-			height: 65px;
-		}
-		@media (max-width: 550px) {
-			margin-left: 25px;
-			width: 55px;
-			height: 55px;
-		}
-		@media (max-width: 450px) {
-			margin-left: 23px;
-			width: 45px;
-			height: 45px;
+		svg {
+			color: white;
+			width: 70px;
+			height: 60px;
 		}
 	}
-
-	@media (max-width: 750px) {
-		.box {
-			img {
-				width: 190px;
-				height: 190px;
-			}
-			.text {
-				h1 {
-					font-size: 30px;
-				}
-				p {
-					font-size: 15px;
-				}
-			}
-		}
-	}
-	@media (max-width: 650px) {
-		.box {
-			img {
-				width: 170px;
-				height: 170px;
-			}
-			.text {
-				h1 {
-					font-size: 25px;
-				}
-				p {
-					font-size: 13px;
-				}
-			}
-		}
-	}
-	@media (max-width: 550px) {
-		.box {
-			img {
-				width: 150px;
-				height: 150px;
-			}
-			.text {
-				h1 {
-					font-size: 21px;
-				}
-				p {
-					font-size: 10px;
-				}
-			}
-		}
-	}
-	@media (max-width: 450px) {
-		.box {
-			img {
-				width: 130px;
-				height: 130px;
-			}
-			.text {
-				h1 {
-					font-size: 18px;
-				}
-				p {
-					font-size: 10px;
-				}
-			}
-		}
-	}
-
-	.box {
+	.content_call {
 		display: flex;
-		justify-content: center;
 		align-items: center;
-		flex-direction: column;
-		text-align: center;
-		gap: 30px;
-		padding-top: 55px;
+		justify-content: center;
+		margin-top: 155px;
+		.col {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+			.icons {
+				display: flex;
+				align-items: center;
+				gap: 45px;
 
-		.image {
-			img {
-				border-radius: 50%;
+				button {
+					background: none;
+					border: none;
+					outline: none;
+					cursor: pointer;
+					width: 60px;
+					height: 60px;
+					background: #d9d9d9;
+					border-radius: 50%;
+					svg {
+						color: rgb(1, 14, 73);
+					}
+
+					&:nth-child(3) {
+						background: red;
+						border-radius: 50%;
+						svg {
+							color: white;
+						}
+					}
+				}
+				svg {
+					width: 40px;
+					height: 40px;
+				}
 			}
-		}
+			img {
+				width: 300px;
+				height: 300px;
+				border-radius: 50%;
+				object-fit: cover;
+			}
 
-		.text {
-			h1 {
-				color: wheat;
+			h4 {
+				color: rgb(255, 255, 255);
+				font-size: 50px;
+				font-weight: 800;
+				line-height: 68px;
+				letter-spacing: 3%;
+				text-align: center;
 			}
 			p {
-				color: white;
-			}
-		}
-
-		.icons_time {
-			max-width: 180px;
-			width: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-
-			@media (max-width: 750px) {
-				margin-right: 5px;
-			}
-			@media (max-width: 650px) {
-				padding-right: 15px;
-			}
-			@media (max-width: 550px) {
-				padding-right: 28px;
-			}
-			@media (max-width: 450px) {
-				padding-right: 35px;
-			}
-
-			svg {
-				cursor: pointer;
-				width: 28px;
-				height: 28px;
-				background: white;
-				border-radius: 50%;
-				padding: 5px;
-
-				@media (max-width: 750px) {
-					width: 25px;
-					height: 25px;
-					background: white;
-					border-radius: 50%;
-					padding: 5px;
-				}
-				@media (max-width: 650px) {
-					width: 23px;
-					height: 23px;
-					background: white;
-					border-radius: 50%;
-					padding: 3px;
-				}
-				@media (max-width: 550px) {
-					width: 18px;
-					height: 18px;
-					background: white;
-					border-radius: 50%;
-				}
-				@media (max-width: 450px) {
-					width: 15px;
-					height: 15px;
-					background: white;
-					border-radius: 50%;
-				}
-			}
-			.call_icon {
-				cursor: pointer;
-				width: 30px;
-				height: 30px;
-				background: red;
-				border-radius: 50%;
-				padding: 5px;
-
-				@media (max-width: 750px) {
-					cursor: pointer;
-					width: 25px;
-					height: 25px;
-					background: red;
-					border-radius: 50%;
-					padding: 5px;
-				}
-				@media (max-width: 650px) {
-					cursor: pointer;
-					width: 23px;
-					height: 23px;
-					background: red;
-					border-radius: 50%;
-					padding: 3px;
-				}
-				@media (max-width: 550px) {
-					cursor: pointer;
-					width: 18px;
-					height: 18px;
-					background: red;
-					border-radius: 50%;
-					padding: 3px;
-				}
-				@media (max-width: 450px) {
-					cursor: pointer;
-					width: 18px;
-					height: 18px;
-					background: red;
-					border-radius: 50%;
-				}
+				color: rgba(255, 255, 255, 0.8);
+				font-size: 30px;
+				font-weight: 600;
+				line-height: 41px;
+				letter-spacing: 3%;
+				text-align: center;
 			}
 		}
 	}
 }
-
-//////////////////////////////////////////////////// ! Video call
 .video_call {
 	width: 100%;
 	height: 100vh;
 	position: relative;
 	margin: 0 auto;
+	overflow: hidden;
 
 	.video_img {
 		img {
@@ -437,8 +195,13 @@
 		padding-top: 10px;
 		h1 {
 			color: white;
-			font-size: 20px;
 			padding-left: 25px;
+
+			font-size: 20px;
+			font-weight: 600;
+			line-height: 27px;
+			letter-spacing: 3%;
+			text-align: center;
 			@media (max-width: 400px) {
 				font-size: 15px;
 			}
@@ -470,78 +233,39 @@
 			text-align: center;
 			gap: 10px;
 			margin-bottom: 120px;
-
-			@media (max-width: 1010px) {
-				position: absolute;
-				// top: 425px;
-				// right: 10px;
-			}
-			@media (max-width: 970px) {
-				position: absolute;
-				// top: 435px;
-				// right: 15px;
-			}
-			@media (max-width: 925px) {
-				position: absolute;
-				// top: 445px;
-				// right: 20px;
-			}
-			@media (max-width: 875px) {
-				position: absolute;
-				// top: 460px;
-				// right: 30px;
-			}
-			@media (max-width: 830px) {
-				position: absolute;
-				// top: 470px;
-				// right: 35px;
-			}
-			@media (max-width: 760px) {
-				position: absolute;
-				// top: 480px;
-				// right: 40px;
-			}
-			@media (max-width: 700px) {
-				position: absolute;
-				// top: 495px;
-				// right: 55px;
-			}
-			@media (max-width: 500px) {
-				position: absolute;
-				// right: 40px;
-			}
-			@media (max-width: 400px) {
-				position: absolute;
-				// right: 30px;
-			}
-
-			svg {
-				cursor: pointer;
-				width: 30px;
-				height: 30px;
-				background: white;
-				border-radius: 50%;
-				padding: 5px;
-				@media (max-width: 480px) {
-					width: 25px;
-					height: 25px;
+			.row {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				p {
+					color: rgb(255, 255, 255);
+					font-size: 14px;
+					font-weight: 400;
+					line-height: 18px;
+					letter-spacing: 3%;
+					text-align: center;
 				}
-			}
-			.call_icon {
-				cursor: pointer;
-				width: 30px;
-				height: 30px;
-				background: red;
-				border-radius: 50%;
-				padding: 5px;
-				@media (max-width: 480px) {
-					width: 25px;
-					height: 25px;
+				button {
+					background: none;
+					border: none;
+					outline: none;
+					cursor: pointer;
+					width: 60px;
+					height: 60px;
+					background: #d9d9d9;
+					border-radius: 50%;
+					svg {
+						color: rgb(1, 14, 73);
+					}
+
+					&:nth-child(3) {
+						background: red;
+						border-radius: 50%;
+						svg {
+							color: white;
+						}
+					}
 				}
-			}
-			p {
-				font-size: 10px;
-				color: white;
 			}
 		}
 		.image {
@@ -550,56 +274,12 @@
 			img {
 				width: 395px;
 				height: 260px;
-
-				@media (max-width: 1010px) {
-					width: 375px;
-					height: 250px;
-					// margin-bottom: 10px;
-				}
-				@media (max-width: 970px) {
-					width: 365px;
-					height: 245px;
-					// margin-bottom: 20px;
-				}
-				@media (max-width: 925px) {
-					width: 350px;
-					height: 235px;
-					// margin-bottom: 25px;
-				}
-				@media (max-width: 875px) {
-					width: 340px;
-					height: 230px;
-					// margin-bottom: 35px;
-				}
-				@media (max-width: 830px) {
-					width: 320px;
-					height: 220px;
-					// margin-bottom: 45px;
-				}
-				@media (max-width: 760px) {
-					width: 310px;
-					height: 210px;
-					// margin-bottom: 55px;
-				}
-				@media (max-width: 700px) {
-					width: 290px;
-					height: 195px;
-					// margin-bottom: 65px;
-				}
-				@media (max-width: 500px) {
-					width: 270px;
-					height: 175px;
-					// margin-bottom: 75px;
-				}
-				@media (max-width: 400px) {
-					width: 260px;
-					height: 165px;
-					// margin-bottom: 80px;
-				}
+				object-fit: cover;
 			}
 		}
 	}
 }
+
 //////////////////////////////////////////////////// ! Video End
 .video_end {
 	position: relative;
@@ -711,9 +391,18 @@
 			}
 		}
 	}
-
-	svg {
+	button {
 		position: absolute;
+		background: none;
+		outline: none;
+		border: none;
+		cursor: pointer;
+		svg {
+			color: white;
+			height: 50px;
+			width: 70px;
+			cursor: pointer;
+		}
 	}
 
 	.image {
@@ -723,6 +412,7 @@
 			height: 100vh;
 			object-fit: cover;
 			object-position: center;
+			filter: brightness(0.4);
 		}
 	}
 
@@ -746,11 +436,15 @@
 				position: relative;
 				border-radius: 50%;
 				left: 50px;
+				width: 300px;
+				height: 300px;
 			}
 			.img2 {
 				position: relative;
 				border-radius: 50%;
 				right: 50px;
+				width: 300px;
+				height: 300px;
 			}
 		}
 

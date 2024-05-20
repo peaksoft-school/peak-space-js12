@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useGetUsersQuery } from '@/src/redux/api/chat';
 import scss from './Style.module.scss';
 import { IconArrowNarrowLeft } from '@tabler/icons-react';
@@ -32,6 +31,18 @@ const ChatPerson = () => {
 	const navigate = useNavigate();
 	const arrowNavigate = () => {
 		navigate('/Chat');
+	};
+
+	const navigateToCall = () => {
+		setTimeout(() => {
+			navigate('/call');
+		}, 1000);
+	};
+
+	const navigateTVideoCall = () => {
+		setTimeout(() => {
+			navigate('/videocall');
+		}, 1000);
 	};
 
 	const ursers = [
@@ -88,8 +99,12 @@ const ChatPerson = () => {
 								</div>
 							))}
 							<div className={scss.icons}>
-								<IconPhone stroke={1} className={scss.icon} />
-								<IconVideo stroke={1} className={scss.icon} />
+								<button onClick={navigateToCall}>
+									<IconPhone stroke={2} />
+								</button>
+								<button onClick={navigateTVideoCall}>
+									<IconVideo stroke={2} />
+								</button>
 							</div>
 						</div>
 

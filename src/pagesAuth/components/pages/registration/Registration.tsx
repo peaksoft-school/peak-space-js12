@@ -1,26 +1,26 @@
 import { Input, Checkbox } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Controller, useForm } from 'react-hook-form';
-
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpaceImg from '../../../../assets/peakSpace.png';
 import scss from './Registration.module.scss';
 import { ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { usePostRegistrationMutation } from '@/src/redux/api/registration';
 
 interface ErrorObject {
-	message: string;
 	password: string;
 	email: string;
-	Фамилия: string;
-	Имя: string;
-	nameUser: string;
+	lastName: string;
+	firstName: string;
+	userName: string;
 }
 
 const Registration = () => {
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState('');
+	const [postRequest] = usePostRegistrationMutation();
 
 	const handleConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setConfirmPassword(e.target.value);
@@ -31,6 +31,7 @@ const Registration = () => {
 	};
 
 	const {
+		register,
 		control,
 		formState: { errors },
 		handleSubmit,
@@ -38,16 +39,20 @@ const Registration = () => {
 	} = useForm<ErrorObject>({ mode: 'onBlur' });
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const onSubmit = (data: any) => {
+	const onSubmit = async (data: any) => {
+		try {
+			const result = await postRequest(data);
+			console.log('Регистрация успешна:', result);
+			reset();
+			setConfirmPassword('');
+		} catch (error) {
+			console.error('Ошибка регистрации:', error);
+		}
 		if (password !== confirmPassword) {
 			alert('Пароли не совпадают');
 			return null;
 		}
-
 		console.log(data);
-
-		setConfirmPassword('');
-		reset();
 	};
 
 	return (
@@ -58,7 +63,7 @@ const Registration = () => {
 						<img src={peakSpaceImg} alt="Peak Space" />
 						<div className={scss.inputs}>
 							<Controller
-								name="Фамилия"
+								{...register('lastName')}
 								control={control}
 								defaultValue=""
 								rules={{ required: 'Это поле обязательно к заполнению' }}
@@ -66,11 +71,11 @@ const Registration = () => {
 									<Input
 										className={scss.input_password}
 										{...field}
-										placeholder="Введите логин"
+										placeholder="Фамилия"
 										type="text"
 										style={{
-											borderColor: errors.Фамилия ? 'red' : '',
-											backgroundColor: errors.Фамилия
+											borderColor: errors.lastName ? 'red' : '',
+											backgroundColor: errors.lastName
 												? 'rgba(255, 0, 0, 0.122)'
 												: ''
 										}}
@@ -81,11 +86,11 @@ const Registration = () => {
 									/>
 								)}
 							/>
-							{errors?.Фамилия && (
-								<p className={scss.text_error}>{errors.Фамилия.message}</p>
+							{errors?.lastName && (
+								<p className={scss.text_error}>{errors.lastName.message}</p>
 							)}
 							<Controller
-								name="Имя"
+								{...register('firstName')}
 								control={control}
 								defaultValue=""
 								rules={{ required: 'Это поле обязательно к заполнению' }}
@@ -96,8 +101,8 @@ const Registration = () => {
 										placeholder="Имя"
 										type="text"
 										style={{
-											borderColor: errors.Имя ? 'red' : '',
-											backgroundColor: errors.Имя
+											borderColor: errors.firstName ? 'red' : '',
+											backgroundColor: errors.firstName
 												? 'rgba(255, 0, 0, 0.122)'
 												: '',
 											outline: 'none'
@@ -109,11 +114,11 @@ const Registration = () => {
 									/>
 								)}
 							/>
-							{errors?.Имя && (
-								<p className={scss.error_name}>{errors.Имя.message}</p>
+							{errors?.firstName && (
+								<p className={scss.error_name}>{errors.firstName.message}</p>
 							)}
 							<Controller
-								name="nameUser"
+								{...register('userName')}
 								control={control}
 								defaultValue=""
 								rules={{ required: 'Это поле обязательно к заполнению' }}
@@ -124,8 +129,8 @@ const Registration = () => {
 										placeholder="Имя пользователя"
 										type="text"
 										style={{
-											borderColor: errors.nameUser ? 'red' : '',
-											backgroundColor: errors.nameUser
+											borderColor: errors.userName ? 'red' : '',
+											backgroundColor: errors.userName
 												? 'rgba(255, 0, 0, 0.122)'
 												: '',
 											outline: 'none'
@@ -137,13 +142,13 @@ const Registration = () => {
 									/>
 								)}
 							/>
-							{errors?.nameUser && (
+							{errors?.userName && (
 								<p className={scss.error_user_name}>
-									{errors.nameUser.message}
+									{errors.userName.message}
 								</p>
 							)}
 							<Controller
-								name="email"
+								{...register('email')}
 								control={control}
 								defaultValue=""
 								rules={{ required: 'Пожалуйста, введите ваш email.' }}
@@ -171,7 +176,7 @@ const Registration = () => {
 								<p className={scss.error_email}>{errors.email.message}</p>
 							)}
 							<Controller
-								name="password"
+								{...register('password')}
 								control={control}
 								defaultValue=""
 								rules={{ required: 'Пароль обязателен к заполнению' }}
@@ -236,3 +241,109 @@ const Registration = () => {
 };
 
 export default Registration;
+
+// ! 2
+
+// import { Input, Checkbox } from 'antd';
+// import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+// import { useForm } from 'react-hook-form';
+// import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
+// import peakSpaceImg from '../../../../assets/peakSpace.png';
+// import scss from './Registration.module.scss';
+// import { ChangeEvent, useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import { usePostRegistrationMutation } from '@/src/redux/api/registration';
+
+// interface FormData {
+// 	password: string;
+// 	email: string;
+// 	lastName: string;
+// 	firstName: string;
+// 	userName: string;
+// }
+
+// const Registration = () => {
+// 	const [confirmPassword, setConfirmPassword] = useState('');
+// 	const [showPassword, setShowPassword] = useState(false);
+// 	const [postRequest] = usePostRegistrationMutation();
+
+// 	const handleConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+// 		setConfirmPassword(e.target.value);
+// 	};
+
+// 	const togglePasswordVisibility = () => {
+// 		setShowPassword(!showPassword);
+// 	};
+
+// 	const { register, handleSubmit, reset } = useForm<FormData>({
+// 		mode: 'onBlur'
+// 	});
+
+// 	const onSubmit = async (data: FormData) => {
+// 		console.log(data, 'data');
+
+// 		// if (data.password !== confirmPassword) {
+// 		// 	alert('Пароли не совпадают');
+// 		// 	return;
+// 		// }
+// 		try {
+// 			const result = await postRequest(data).unwrap();
+// 			console.log('Регистрация успешна:', result);
+// 			reset();
+// 			setConfirmPassword('');
+// 		} catch (error) {
+// 			console.error('Ошибка регистрации:', error);
+// 		}
+// 	};
+
+// 	return (
+// 		<div className={scss.back_header}>
+// 			<div className={scss.Registration}>
+// 				<div className="container">
+// 					<form onSubmit={handleSubmit(onSubmit)} className={scss.bar}>
+// 						<img src={peakSpaceImg} alt="Peak Space" />
+// 						<div className={scss.inputs}>
+// 							<Input {...register('lastName')} placeholder="Фамилия" />
+// 							<Input {...register('firstName')} placeholder="Имя" />
+// 							<Input {...register('userName')} placeholder="Имя пользователя" />
+// 							<Input
+// 								{...register('email')}
+// 								placeholder="Номер телефона или email"
+// 							/>
+// 							<Input.Password
+// 								{...register('password')}
+// 								placeholder="Пароль"
+// 								iconRender={(visible) =>
+// 									visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
+// 								}
+// 							/>
+// 							<Input.Password
+// 								value={confirmPassword}
+// 								onChange={handleConfirmPasswordChange}
+// 								placeholder="Повторите пароль"
+// 								iconRender={(visible) =>
+// 									visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
+// 								}
+// 								className={scss.input_password}
+// 								visibilityToggle
+// 								type={showPassword ? 'text' : 'password'}
+// 							/>
+// 							<Checkbox
+// 								checked={showPassword}
+// 								onChange={togglePasswordVisibility}
+// 							>
+// 								<p className={scss.text}>Сохранить вход</p>
+// 							</Checkbox>
+// 						</div>
+// 						<CustomButtonBold type="submit">
+// 							Зарегистрироваться
+// 						</CustomButtonBold>
+// 						<Link to="/auth/login">Уже есть аккаунт? Войти</Link>
+// 					</form>
+// 				</div>
+// 			</div>
+// 		</div>
+// 	);
+// };
+
+// export default Registration;

@@ -9,7 +9,7 @@ const api = index.injectEndpoints({
 				url: 'https://bb0f8fe8d25ad084.mokky.dev/photoWithyou',
 				method: 'GET'
 			}),
-			providesTags: ['api']
+			providesTags: ['post']
 		})
 	})
 });

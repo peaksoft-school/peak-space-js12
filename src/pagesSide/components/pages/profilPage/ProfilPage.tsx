@@ -1,31 +1,64 @@
-import { Link, Route, Routes, useNavigate } from 'react-router-dom';
+import {
+	Link,
+	Route,
+	Routes,
+	useLocation,
+	useNavigate
+} from 'react-router-dom';
 import Publications from './Publications';
 import Favourites from './Favourites';
 import PhotoWith from './PhotoWith';
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import scss from './Style.module.scss';
-import { IconEdit } from '@tabler/icons-react';
-import { IconBasket } from '@tabler/icons-react';
-import { IconPhoto } from '@tabler/icons-react';
-import { IconHeart } from '@tabler/icons-react';
-import { IconPinned } from '@tabler/icons-react';
+import {
+	IconEdit,
+	IconBasket,
+	IconPhoto,
+	IconHeart,
+	IconPinned
+} from '@tabler/icons-react';
 import ModalTs from '@/src/ui/modal/Modal';
 import MyFriends from '@/src/ui/myFriends/MyFriends';
 
 const ProfilPage = () => {
-	const [, setActiveItem] = useState<string>('/');
+	const { pathname } = useLocation();
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [page, setPage] = useState(true);
 	const navigate = useNavigate();
-	const navigateToSettings = () => {
-		navigate('/settings');
-	};
+
 	const showModal = () => {
 		setIsModalOpen(!isModalOpen);
 	};
-	const handleCancel = () => {
-		setIsModalOpen(false);
-	};
+	useEffect(() => {
+		if (page) {
+			navigate('/side/public');
+		} else if (pathname === '/side/favorite') {
+			navigate('/side/favorite');
+		} else {
+			navigate('/side/photo');
+		}
+	}, [page, pathname, navigate]);
+
+	const links = [
+		{
+			path: '/side/public',
+			icon: <IconPhoto color="black" />,
+			label: 'Мои публикации',
+			isPage: true
+		},
+		{
+			path: '/side/favorite',
+			icon: <IconHeart color="black" />,
+			label: 'Избранное',
+			isPage: false
+		},
+		{
+			path: '/side/photo',
+			icon: <IconPinned color="black" />,
+			label: 'Фото с вами',
+			isPage: false
+		}
+	];
 
 	return (
 		<div className={scss.main_page}>
@@ -54,7 +87,7 @@ const ProfilPage = () => {
 									style={{ display: 'flex', gap: '5px', alignItems: 'center' }}
 								>
 									<h4>Ivanov ivan</h4>
-									<button onClick={navigateToSettings}>
+									<button onClick={() => {}}>
 										<IconEdit />
 									</button>
 								</div>
@@ -87,11 +120,12 @@ const ProfilPage = () => {
 								>
 									<h4>365</h4>
 									<p>паблики</p>
-									<ModalTs open={isModalOpen} onCancel={handleCancel}>
+									<ModalTs open={isModalOpen} onCancel={() => {}}>
 										<div className={scss.aside_modal}>
 											<div>
 												<MyFriends />
 											</div>
+											``
 										</div>
 									</ModalTs>
 								</div>
@@ -100,46 +134,29 @@ const ProfilPage = () => {
 					</div>
 				</div>
 				<div className={scss.links}>
-					<div>
-						<Link
-							className={`${location.pathname === 'side/public' ? scss.active_page : scss.link}`}
-							to="side/public"
-							onClick={() => setActiveItem('side/public')}
-						>
-							<IconPhoto color="black" />
-							<p>Мои публикации</p>
-						</Link>
-					</div>
-					<div>
-						<Link
-							className={`${location.pathname === 'side/favorite' ? scss.active_page : scss.link}`}
-							to="side/favorite"
-							onClick={() => setActiveItem('side/favorite')}
-						>
-							<IconHeart color="black" />
-							<p>Избранное</p>
-						</Link>
-					</div>
-					<div>
-						<Link
-							className={`${location.pathname === 'side/photo' ? scss.active_page : scss.link}`}
-							to="side/photo"
-							onClick={() => setActiveItem('side/photo')}
-						>
-							<IconPinned color="black" />
-							<p>Фото с вами</p>
-						</Link>
-					</div>
+					{links.map((link, index) => (
+						<div key={index}>
+							<Link
+								className={`${pathname === link.path ? scss.active_page : scss.link}`}
+								to={link.path}
+								onClick={() => setPage(link.isPage)}
+							>
+								{link.icon}
+								<p>{link.label}</p>
+							</Link>
+						</div>
+					))}
 				</div>
 				<div>
 					<Routes>
-						<Route path="side/public" element={<Publications />} />
-						<Route path="side/favorite" element={<Favourites />} />
-						<Route path="side/photo" element={<PhotoWith />} />
+						<Route path="/public" element={<Publications />} />
+						<Route path="/favorite" element={<Favourites />} />
+						<Route path="/photo" element={<PhotoWith />} />
 					</Routes>
 				</div>
 			</div>
 		</div>
 	);
 };
+
 export default ProfilPage;

@@ -1,24 +1,34 @@
-import scss from './Style.module.scss';
-import MicrophoneImg from '@/src/assets/icons/MicrophoneImg';
-import { ArrowImg, CallImg, VidoeImg } from '@/src/assets/icons';
+import * as iconsReact from '@tabler/icons-react';
 import foto from '../../../../assets/userStory.png';
+import scss from './Style.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 const CallTime = () => {
+	const navigate = useNavigate();
+	const navigateToBack = () => {
+		navigate('/call');
+	};
 	return (
-		<div className={scss.call_Time}>
-			<ArrowImg />
-			<div className={scss.box}>
-				<div className={scss.image}>
-					<img src={foto} alt="foto" />
-				</div>
-				<div className={scss.text}>
-					<h1>_Bogomdan</h1>
+		<div className={scss.callTIme}>
+			<button onClick={navigateToBack}>
+				<iconsReact.IconArrowNarrowLeft />
+			</button>
+			<div className={scss.content_call}>
+				<div className={scss.col}>
+					<img src={foto} alt="" />
+					<h4>_Bogomdan</h4>
 					<p>13:30</p>
-				</div>
-				<div className={scss.icons_time}>
-					<MicrophoneImg />
-					<VidoeImg />
-					<CallImg className={scss.call_icon} />
+					<div className={scss.icons}>
+						<button>
+							<iconsReact.IconMicrophone />
+						</button>
+						<button>
+							<iconsReact.IconVideo />
+						</button>
+						<button>
+							<iconsReact.IconPhoneCall />
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>

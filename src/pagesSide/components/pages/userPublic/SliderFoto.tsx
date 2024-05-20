@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useGetUserPublicQuery } from '@/src/redux/api/userPublic';
 import { useState } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
-import { useGetSliderPhotoQuery } from '@/src/redux/api/slider';
 import scss from './Style.module.scss';
 
-const SliderMain = () => {
-	const { data, isLoading } = useGetSliderPhotoQuery();
+const SliderFoto = () => {
 	const [currentSlide, setCurrentSlide] = useState(0);
+
+	const { data } = useGetUserPublicQuery();
 	const [loaded, setLoaded] = useState(false);
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
 		initial: 0,
@@ -20,7 +22,7 @@ const SliderMain = () => {
 	function Arrow(props: {
 		disabled: boolean;
 		left?: boolean;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 		onClick: (e: any) => void;
 	}) {
 		const disabled = props.disabled ? ' arrow--disabled' : '';
@@ -42,36 +44,29 @@ const SliderMain = () => {
 
 	return (
 		<div>
-			<div>
-				{isLoading ? (
-					<p>Loading . .</p>
-				) : (
-					<>
-						<div ref={sliderRef} className={`keen-slider ${scss.bar_slider}`}>
-							{data?.map((item, index) => (
-								<div
-									key={index}
-									className={`keen-slider__slide ${scss.aside_slider}`}
-								>
-									<img src={item.img} alt="" />
-								</div>
-							))}
+			<div className={scss.slider_foto}>
+				<div ref={sliderRef} className={`keen-slider ${scss.bar_slider}`}>
+					{data?.map((item, index) => (
+						<div
+							key={index}
+							className={`keen-slider__slide ${scss.aside_slider}`}
+						>
+							<img src={item.img} alt="" />
 						</div>
-					</>
-				)}
+					))}
+				</div>
 			</div>
+
 			{loaded && instanceRef.current && (
 				<>
 					<Arrow
 						left
-						// eslint-disable-next-line @typescript-eslint/no-explicit-any
 						onClick={(e: any) =>
 							e.stopPropagation() || instanceRef.current?.prev()
 						}
 						disabled={currentSlide === 0}
 					/>
 					<Arrow
-						// eslint-disable-next-line @typescript-eslint/no-explicit-any
 						onClick={(e: any) =>
 							e.stopPropagation() || instanceRef.current?.next()
 						}
@@ -86,4 +81,4 @@ const SliderMain = () => {
 	);
 };
 
-export default SliderMain;
+export default SliderFoto;
