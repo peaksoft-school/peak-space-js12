@@ -110,3 +110,58 @@
 		}
 	}
 }
+
+// adaptive
+
+@media (min-width: 350px) and (max-width: 720px) {
+	.container {
+		width: 100%;
+		padding: 20px 10px;
+		.user_avatar_and_cover {
+			width: 100%;
+			height: 253px;
+			.user_cover {
+				width: 100%;
+				top: -140px;
+				.cover_img {
+					width: 100%;
+				}
+			}
+			.cover_choose_btn {
+				left: 50px;
+			}
+		}
+		.public_content {
+			padding: 20px;
+			.save_public_button_container {
+				padding: 0;
+				display: flex;
+				.save_public_button {
+					width: 200px;
+					position: relative;
+					left: 20%;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 350px) and (max-width: 525px) {
+	.container {
+		.user_avatar_and_cover {
+			.user_cover {
+				top: -140px;
+			}
+		}
+	}
+}
+
+@media (min-width: 595px) and (max-width: 720px) {
+	.container {
+		.user_avatar_and_cover {
+			.user_cover {
+				top: -170px;
+			}
+		}
+	}
+}

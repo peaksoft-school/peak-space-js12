@@ -68,7 +68,9 @@ const NewPublic: React.FC = () => {
 					<CustomSelect />
 				</div>
 				<div className={scss.save_public_button_container}>
-					<button onClick={() => {}} className={scss.save_public_button}>Сохранить</button>
+					<button onClick={() => {}} className={scss.save_public_button}>
+						Сохранить
+					</button>
 				</div>
 			</div>
 		</div>
