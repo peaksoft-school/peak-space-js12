@@ -5,7 +5,7 @@ import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpaceImg from '../../../../assets/peakSpace.png';
 import scss from './Registration.module.scss';
 import { ChangeEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { usePostRegistrationMutation } from '@/src/redux/api/registration';
 
 interface ErrorObject {
@@ -21,6 +21,7 @@ const Registration = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState('');
 	const [postRequest] = usePostRegistrationMutation();
+	const navigate = useNavigate();
 
 	const handleConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setConfirmPassword(e.target.value);
@@ -38,13 +39,20 @@ const Registration = () => {
 		reset
 	} = useForm<ErrorObject>({ mode: 'onBlur' });
 
+	const navigateToLogin = () => {
+		navigate('/auth/login');
+	};
+
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onSubmit = async (data: any) => {
 		try {
-			const result = await postRequest(data);
-			console.log('Регистрация успешна:', result);
-			reset();
+			const response = await postRequest(data);
+
+			console.log('Регистрация успешна:', response);
+
 			setConfirmPassword('');
+			navigateToLogin();
+			reset();
 		} catch (error) {
 			console.error('Ошибка регистрации:', error);
 		}
@@ -239,111 +247,4 @@ const Registration = () => {
 		</div>
 	);
 };
-
 export default Registration;
-
-// ! 2
-
-// import { Input, Checkbox } from 'antd';
-// import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-// import { useForm } from 'react-hook-form';
-// import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
-// import peakSpaceImg from '../../../../assets/peakSpace.png';
-// import scss from './Registration.module.scss';
-// import { ChangeEvent, useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { usePostRegistrationMutation } from '@/src/redux/api/registration';
-
-// interface FormData {
-// 	password: string;
-// 	email: string;
-// 	lastName: string;
-// 	firstName: string;
-// 	userName: string;
-// }
-
-// const Registration = () => {
-// 	const [confirmPassword, setConfirmPassword] = useState('');
-// 	const [showPassword, setShowPassword] = useState(false);
-// 	const [postRequest] = usePostRegistrationMutation();
-
-// 	const handleConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-// 		setConfirmPassword(e.target.value);
-// 	};
-
-// 	const togglePasswordVisibility = () => {
-// 		setShowPassword(!showPassword);
-// 	};
-
-// 	const { register, handleSubmit, reset } = useForm<FormData>({
-// 		mode: 'onBlur'
-// 	});
-
-// 	const onSubmit = async (data: FormData) => {
-// 		console.log(data, 'data');
-
-// 		// if (data.password !== confirmPassword) {
-// 		// 	alert('Пароли не совпадают');
-// 		// 	return;
-// 		// }
-// 		try {
-// 			const result = await postRequest(data).unwrap();
-// 			console.log('Регистрация успешна:', result);
-// 			reset();
-// 			setConfirmPassword('');
-// 		} catch (error) {
-// 			console.error('Ошибка регистрации:', error);
-// 		}
-// 	};
-
-// 	return (
-// 		<div className={scss.back_header}>
-// 			<div className={scss.Registration}>
-// 				<div className="container">
-// 					<form onSubmit={handleSubmit(onSubmit)} className={scss.bar}>
-// 						<img src={peakSpaceImg} alt="Peak Space" />
-// 						<div className={scss.inputs}>
-// 							<Input {...register('lastName')} placeholder="Фамилия" />
-// 							<Input {...register('firstName')} placeholder="Имя" />
-// 							<Input {...register('userName')} placeholder="Имя пользователя" />
-// 							<Input
-// 								{...register('email')}
-// 								placeholder="Номер телефона или email"
-// 							/>
-// 							<Input.Password
-// 								{...register('password')}
-// 								placeholder="Пароль"
-// 								iconRender={(visible) =>
-// 									visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
-// 								}
-// 							/>
-// 							<Input.Password
-// 								value={confirmPassword}
-// 								onChange={handleConfirmPasswordChange}
-// 								placeholder="Повторите пароль"
-// 								iconRender={(visible) =>
-// 									visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
-// 								}
-// 								className={scss.input_password}
-// 								visibilityToggle
-// 								type={showPassword ? 'text' : 'password'}
-// 							/>
-// 							<Checkbox
-// 								checked={showPassword}
-// 								onChange={togglePasswordVisibility}
-// 							>
-// 								<p className={scss.text}>Сохранить вход</p>
-// 							</Checkbox>
-// 						</div>
-// 						<CustomButtonBold type="submit">
-// 							Зарегистрироваться
-// 						</CustomButtonBold>
-// 						<Link to="/auth/login">Уже есть аккаунт? Войти</Link>
-// 					</form>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// };
-
-// export default Registration;

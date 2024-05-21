@@ -6,6 +6,7 @@ import {
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: import.meta.env.VITE_BACKEND_URL
+
 	// prepareHeaders: (headers) => {
 	// 	const token = localStorage.getItem('auth_token');
 	// 	if (token) {
