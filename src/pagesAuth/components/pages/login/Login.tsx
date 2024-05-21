@@ -10,6 +10,8 @@ import line from '../../../../assets/line.svg';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { Controller, useForm } from 'react-hook-form';
 import { usePostLoginMutation } from '@/src/redux/api/login';
+import { auth, provider } from './config';
+import { signInWithPopup } from 'firebase/auth';
 
 interface ErrorObject {
 	password: string;
@@ -51,6 +53,18 @@ const Login = () => {
 		} catch (error) {
 			console.error('Ошибка входа:', error);
 		}
+	};
+	const handleWithGoogle = () => {
+		signInWithPopup(auth, provider)
+			.then(async (result) => {
+				const token = result.user.getIdToken();
+				localStorage.setItem('auth_token', await token);
+				localStorage.setItem('isAuth', 'true');
+				navigateToPages();
+			})
+			.catch((error) => {
+				console.error('Ошибка входа через Google:', error);
+			});
 	};
 
 	return (
@@ -130,14 +144,12 @@ const Login = () => {
 								<p className={scss.text}>Сохранить вход</p>
 							</Checkbox>
 							<CustomButtonBold children="Войти" type="submit" />
-							<div className={scss.googleOut}>
+							<div onClick={handleWithGoogle} className={scss.googleOut}>
 								<GoogleImg
 									className={scss.GoogleImg}
 									onClick={() => togglePasswordVisibility}
 								/>
-								<Link to="https://www.google.com/account/about/">
-									Войти через Google
-								</Link>
+								<p> Войти через Google</p>
 							</div>
 							<Link className={scss.link} to="/auth/forgetPassword">
 								Забыли пароль
