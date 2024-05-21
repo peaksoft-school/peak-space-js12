@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Input, Checkbox } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { GoogleImg } from '@/src/assets/icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import line from '../../../../assets/line.svg';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { Controller, useForm } from 'react-hook-form';
@@ -19,6 +19,7 @@ interface ErrorObject {
 const Login = () => {
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const [postRequest] = usePostLoginMutation();
+	const navigate = useNavigate();
 
 	const togglePasswordVisibility = () => {
 		setShowPassword(!showPassword);
@@ -31,6 +32,10 @@ const Login = () => {
 		reset
 	} = useForm<ErrorObject>({ mode: 'onBlur' });
 
+	const navigateToPages = () => {
+		navigate('/');
+	};
+
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onSubmit = async (data: any) => {
 		console.log(data, 'data');
@@ -40,6 +45,7 @@ const Login = () => {
 				const { token }: any = result.data;
 				localStorage.setItem('auth_token', token);
 				localStorage.setItem('isAuth', 'true');
+				navigateToPages();
 				reset();
 			}
 		} catch (error) {
