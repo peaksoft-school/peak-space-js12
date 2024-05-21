@@ -107,6 +107,15 @@
 					justify-content: center;
 					align-items: center;
 					gap: 3px;
+					cursor: pointer;
+					p {
+						color: rgb(56, 81, 133);
+						font-size: 18px;
+						font-weight: 500;
+						line-height: 18px;
+						letter-spacing: 0%;
+						text-align: center;
+					}
 				}
 				.link {
 					color: rgb(0, 55, 107);
