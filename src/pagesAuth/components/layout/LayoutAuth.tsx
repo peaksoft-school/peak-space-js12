@@ -2,6 +2,7 @@ import Registration from '../pages/registration/Registration';
 import NewPassword from '../pages/newPassword/NewPassword';
 import { Route, Routes } from 'react-router-dom';
 import Login from '../pages/login/Login';
+import PasswordNew from '../pages/newPassword/PasswordNew';
 
 const LayoutAuth = () => {
 	return (
@@ -10,6 +11,7 @@ const LayoutAuth = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/registration" element={<Registration />} />
 				<Route path="/forgetPassword" element={<NewPassword />} />
+				<Route path="/password/:uuid" element={<PasswordNew />} />
 			</Routes>
 		</>
 	);

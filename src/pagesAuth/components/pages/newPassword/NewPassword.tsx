@@ -1,29 +1,40 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import scss from './NewPassword.module.scss';
-import peakSpace from '../../../../assets/peakSpace.png';
-import { Input } from 'antd';
-import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { usePutPasswordMutation } from '@/src/redux/api/forgetPassword';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
+import peakSpace from '../../../../assets/peakSpace.png';
+import { ToastContainer, toast } from 'react-toastify';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import scss from './NewPassword.module.scss';
+import { Input } from 'antd';
 
 interface ErrorProps {
-	password: string;
+	email: string;
 }
 
 const NewPassword = () => {
-	const [showPassword] = useState<boolean>(false);
-
+	const [putRequest] = usePutPasswordMutation();
 	const {
+		register,
 		control,
 		formState: { errors },
 		handleSubmit,
 		reset
 	} = useForm<ErrorProps>({ mode: 'onBlur' });
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const onSubmit = (data: any) => {
+	const notify = () => toast.success('Your account was send message!');
+	const navigate = useNavigate();
+
+	const onSubmit = async (data: ErrorProps) => {
 		console.log(data);
+		const newData = {
+			email: data.email,
+			link: 'http://localhost:5173/auth/password'
+		};
+		await putRequest(newData);
+		notify();
+		navigate('/auth/login');
 		reset();
 	};
 
@@ -40,23 +51,19 @@ const NewPassword = () => {
 								телефона
 							</p>
 							<Controller
-								name="password"
+								{...register('email')}
 								control={control}
 								defaultValue=""
-								rules={{ required: 'Пароль обязателен к заполнению' }}
+								rules={{ required: 'Пожалуйста, введите ваш email.' }}
 								render={({ field }) => (
-									<Input.Password
-										{...field}
-										iconRender={(visible) =>
-											visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
-										}
-										placeholder=" Пароль"
+									<Input
 										className={scss.input_password}
-										visibilityToggle
-										type={showPassword ? 'text' : 'password'}
+										{...field}
+										placeholder="Номер телефона или email"
+										type="email"
 										style={{
-											borderColor: errors.password ? 'red' : '',
-											backgroundColor: errors.password
+											borderColor: errors.email ? 'red' : '',
+											backgroundColor: errors.email
 												? 'rgba(255, 0, 0, 0.122)'
 												: '',
 											outline: 'none'
@@ -68,11 +75,12 @@ const NewPassword = () => {
 									/>
 								)}
 							/>
-							{errors.password && (
-								<p className={scss.error_password}>{errors.password.message}</p>
+							{errors?.email && (
+								<span className={scss.error_email}>{errors.email.message}</span>
 							)}
 						</div>
 						<CustomButtonBold children="Войти" type="submit" />
+						<ToastContainer />
 					</form>
 				</div>
 			</div>
