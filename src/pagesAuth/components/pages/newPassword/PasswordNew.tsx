@@ -5,7 +5,7 @@ import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import scss from './NewPassword.module.scss';
 import { useState } from 'react';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface ErrorProps {
 	password: string;
@@ -17,6 +17,7 @@ const PasswordNew = () => {
 	const [postRequest] = useCreatePasswordMutation();
 	const [showPassword] = useState(false);
 	const navigate = useNavigate();
+	const { uuid } = useParams();
 
 	const {
 		register,
@@ -30,7 +31,7 @@ const PasswordNew = () => {
 		const newData = {
 			password: data.password,
 			confirm: data.confirm,
-			uuid: data.uuid
+			uuid
 		};
 		if (data.password !== data.confirm) {
 			alert('Пароли не совпадают');
@@ -120,35 +121,11 @@ const PasswordNew = () => {
 						<span className={scss.error_confirm}>{errors.confirm.message}</span>
 					)}
 
-					<Controller
-						{...register('uuid')}
-						control={control}
-						defaultValue=""
-						rules={{ required: 'Пожалуйста, введите ваш uuid.' }}
-						render={({ field }) => (
-							<Input
-								className={scss.input_password}
-								{...field}
-								placeholder="введите ваш email uuid"
-								type="text"
-								style={{
-									borderColor: errors.uuid ? 'red' : '',
-									backgroundColor: errors.uuid ? 'rgba(255, 0, 0, 0.122)' : '',
-									outline: 'none'
-								}}
-								onFocus={(e) => {
-									e.target.style.borderColor = '';
-									e.target.style.backgroundColor = '';
-								}}
-							/>
-						)}
-					/>
-					{errors?.uuid && (
-						<p className={scss.error_email}>{errors.uuid.message}</p>
-					)}
 					<CustomButtonBold children={'сохранить'} type={'submit'} />
 				</form>
-				<button onClick={navigateToBack} className={scss.button}>отмена</button>
+				<button onClick={navigateToBack} className={scss.button}>
+					отмена
+				</button>
 			</div>
 		</div>
 	);
