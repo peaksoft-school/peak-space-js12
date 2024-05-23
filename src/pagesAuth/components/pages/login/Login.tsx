@@ -70,6 +70,7 @@ const Login = () => {
 				tokenFromGoogle: idToken
 			};
 			await postGoogleToken(data);
+			navigateToPages();
 		} catch (error) {
 			console.error('Error during sign-in:', error);
 			return null;

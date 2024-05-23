@@ -67,7 +67,7 @@ const ProfilPage = () => {
 					<div>
 						<img
 							src={
-								'https://s3-alpha-sig.figma.com/img/38ce/fde2/8d4d4905f82d6125c313a1f3a2867b1c?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b79MQyDX4XuJp5s-RhxyIXO7zQxTaeOYHkh1WVunHFcR4KF5CcA7MVPKQH8Ud1PMGOziDvy380C5KkEjvNFxwr6f~AMRIN9g0iMlvUc37kv40QcByB5zpuP7ZGbG2kKRoGW7IjJeql-vyUon1dHCRo~w-NDyrWH6S~NKkyT6654cC7DB5sVhbh~citbUWv8luDoqiEaVNYndoV2au32DSOWQttG7dgVTdj6hE-fQ4I5sGVAMjFK00l9mSA8-iT8YrSIltcY7Ujt6bLgX62or7HuDOtvkEWdlnFT1dbe~cqIg~Hb9h4z~If--MOuayPPoKEHwLBYNHXcvnjDEspHZgg__'
+								'https://i.pinimg.com/564x/f6/da/51/f6da518578e44dde5d26460543c06e54.jpg'
 							}
 							alt=""
 						/>
