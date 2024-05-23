@@ -54,19 +54,7 @@ const EditProfilePage = () => {
 						</div>
 					</div>
 				</div>
-				{/* <div className={scss.Secondary}>
-					<div className={scss.widget}>
-						<p className={scss.text}>Higher Education</p>
-						<div className={scss.inner}>
-							<p>City</p>	
-							<CustomSelect />
-						</div>
-						<div className={scss.inner}>
-							<p>University</p>
-							<CustomSelect />
-						</div>
-					</div>
-				</div> */}
+				
 				<div className={scss.grid}>
 					<div className={scss.col}>
 						<p className={scss.lead}>Position</p>
@@ -80,10 +68,10 @@ const EditProfilePage = () => {
 						<div className={scss.row}>
 							<p style={{ fontWeight: 'bold', fontSize: '20px' }}>Status</p>
 							<div className={scss.radio}>
-								<input type="radio" /> <p>Employed</p>
+								<input placeholder='/' type="radio" /> <p>Employed</p>
 							</div>
 							<div className={scss.radio}>
-								<input type="radio" /> <p>Unemployed</p>
+								<input type="radio" placeholder='/' /> <p>Unemployed</p>
 							</div>
 						</div>
 					</div>

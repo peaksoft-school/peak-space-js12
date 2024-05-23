@@ -1,13 +1,12 @@
 import { FC } from 'react';
 import scss from './Style.module.scss';
 import vector from '../../../../assets/Vector (2).svg';
-// import { Siwtchback } from '../../../../assets/icons/Siwtchback';
 import { Link } from 'react-router-dom';
 import Siwtchback from '@/src/assets/icons/Switchback';
 const ConfidentTwoPage: FC = () => {
 	return (
-		<div className={scss.confident_Content}>
-			<div className={scss.vector_Switch}>
+		<div className={scss.confident_content}>
+			<div className={scss.vector_switch}>
 				<div className={scss.vector}>
 					<Link to="/settings">
 						<img src={vector} alt="" />
@@ -18,7 +17,7 @@ const ConfidentTwoPage: FC = () => {
 					<p>Закрытый аккаунт </p>
 					<Siwtchback />
 				</div>
-				<div className={scss.Lorem_Confident}>
+				<div className={scss.lorem_confident}>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 						eiusmod tempor incididunt ut labore et dolore magna <br /> aliqua.
