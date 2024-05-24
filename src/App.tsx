@@ -13,7 +13,7 @@ const App = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false);
-			console.log('hello 06.05.24');
+			console.log('hello kadyrdin mamatov developer');
 		}, 1500);
 	}, []);
 
