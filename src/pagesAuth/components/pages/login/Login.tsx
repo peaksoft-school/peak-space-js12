@@ -9,9 +9,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import line from '../../../../assets/line.svg';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { Controller, useForm } from 'react-hook-form';
-import { usePostLoginMutation } from '@/src/redux/api/login';
-import { auth, provider } from './config';
+import {
+	usePostLoginMutation,
+	usePostWithGoogleMutation
+} from '@/src/redux/api/login';
 import { signInWithPopup } from 'firebase/auth';
+import { auth, provider } from './firebase';
 
 interface ErrorObject {
 	password: string;
@@ -20,6 +23,7 @@ interface ErrorObject {
 
 const Login = () => {
 	const [showPassword, setShowPassword] = useState<boolean>(false);
+	const [postGoogleToken] = usePostWithGoogleMutation();
 	const [postRequest] = usePostLoginMutation();
 	const navigate = useNavigate();
 
@@ -54,17 +58,23 @@ const Login = () => {
 			console.error('Ошибка входа:', error);
 		}
 	};
-	const handleWithGoogle = () => {
-		signInWithPopup(auth, provider)
-			.then(async (result) => {
-				const token = result.user.getIdToken();
-				localStorage.setItem('auth_token', await token);
-				localStorage.setItem('isAuth', 'true');
-				navigateToPages();
-			})
-			.catch((error) => {
-				console.error('Ошибка входа через Google:', error);
-			});
+
+	const handleWithGoogle = async () => {
+		try {
+			const result = await signInWithPopup(auth, provider);
+			const user = result.user;
+			const idToken = await user.getIdToken();
+			console.log(idToken);
+
+			const data = {
+				tokenFromGoogle: idToken
+			};
+			await postGoogleToken(data);
+			navigateToPages();
+		} catch (error) {
+			console.error('Error during sign-in:', error);
+			return null;
+		}
 	};
 
 	return (
@@ -72,7 +82,7 @@ const Login = () => {
 			<div className={scss.section}>
 				<div className="container">
 					<div className={scss.aside}>
-						<img src={peakSpace} alt="" />
+						<img src={peakSpace} alt="#" />
 						<form onSubmit={handleSubmit(onSubmit)} className={scss.form}>
 							<Controller
 								{...register('email')}

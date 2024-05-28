@@ -1,7 +1,7 @@
 namespace NOTIFICATIONS {
 	type GetNotificationResponse = {
 		message: string;
-		senderUserName: stirng;
+		senderUserName: string;
 		createdAt: number;
 		publicationOrStoryImageUrl: string;
 		senderProfileImageUrl: string;

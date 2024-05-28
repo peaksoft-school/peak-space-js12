@@ -10,7 +10,6 @@ import { useGetNotificationQuery } from '@/src/redux/api/notification';
 const Notifications = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const { data: datas } = useGetNotificationQuery();
-
 	const [inputStr, setInputStr] = useState('');
 	const [showPicker, setShowPicker] = useState(false);
 
@@ -80,6 +79,25 @@ const Notifications = () => {
 								<p>{item.publicationId}</p>
 								<p>{item.commentId}</p>
 								<p>{item.storyId}</p>
+										<img
+											className={scss.user_img}
+											src={item.senderUserName}
+											alt=""
+										/>
+										<div>
+											<h4>{item.message}</h4>
+											<p className={scss.text}>{item.commentId}</p>
+										</div>
+									</div>
+									<p style={{ color: 'gray', fontSize: '10px' }}>
+										{item.commentId}
+									</p>
+								</div>
+								<img
+									onClick={showModal}
+									src={item.publicationOrStoryImageUrl}
+									alt=""
+								/>
 								<>
 									<ModalTs open={isModalOpen} onCancel={handleCancel}>
 										<div className={scss.tool_tip}>
@@ -112,6 +130,14 @@ const Notifications = () => {
 																			/>
 																			<p>{item.senderUserId}</p>
 																			<p>{item.publicationId}</p>
+																		<img
+																			src={item.senderProfileImageUrl}
+																			alt=""
+																		/>
+
+																		<div>
+																			<h4>{item.publicationId}</h4>
+																			<p>{item.storyId}</p>
 																		</div>
 																	</div>
 
