@@ -1,7 +1,7 @@
 import ModalTs from '@/src/ui/modal/Modal';
 import scss from './Notifications.module.scss';
 import { useState } from 'react';
-import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
+// import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
 import { Point, Smile } from '@/src/assets/icons';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
@@ -65,6 +65,20 @@ const Notifications = () => {
 							<div className={scss.box}>
 								<div className={scss.comment}>
 									<div className={scss.start}>
+										<img className={scss.user_img} src={item.message} alt="" />
+										<div>
+											<h4>{item.senderUserName}</h4>
+											<p className={scss.text}>{item.createdAt}</p>
+										</div>
+									</div>
+									{/* <p style={{ color: 'gray', fontSize: '10px' }}>{item.}</p> */}
+									<img src={item.publicationOrStoryImageUrl} alt="" />
+								</div>
+								<img onClick={showModal} src={item.senderProfileImageUrl} alt="" />
+								<p>{item.senderUserId}</p>
+								<p>{item.publicationId}</p>
+								<p>{item.commentId}</p>
+								<p>{item.storyId}</p>
 										<img
 											className={scss.user_img}
 											src={item.senderUserName}
@@ -97,10 +111,25 @@ const Notifications = () => {
 												</div>
 												<div className={scss.aside_bar}>
 													<div>
-														{datas?.map((item) => (
+														{/* {datas?.map((item) => (
 															<div>
 																<div className={scss.user_data}>
 																	<div className={scss.row}>
+																		<img src={item.message} alt="" />
+
+																		<div>
+																			<h4>{item.senderUserName}</h4>
+																			<p>{item.createdAt}</p>
+																			<img
+																				src={item.publicationOrStoryImageUrl}
+																				alt=""
+																			/>
+																			<img
+																				src={item.senderProfileImageUrl}
+																				alt=""
+																			/>
+																			<p>{item.senderUserId}</p>
+																			<p>{item.publicationId}</p>
 																		<img
 																			src={item.senderProfileImageUrl}
 																			alt=""
@@ -115,7 +144,7 @@ const Notifications = () => {
 																	<Point onClick={() => console.log('hello')} />
 																</div>
 															</div>
-														))}
+														))} */}
 													</div>
 													<div className={scss.input_smile}>
 														<Smile

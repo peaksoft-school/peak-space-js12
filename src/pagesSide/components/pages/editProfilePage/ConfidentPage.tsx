@@ -9,19 +9,19 @@ const ConfidentPage = () => {
 	return (
 		<div className={scss.section1}>
 			<div className={scss.content1}>
-				<div className={scss.img_Texting}>
-					<div className={scss.Circle}>
+				<div className={scss.img_texting}>
+					<div className={scss.circle}>
 						<Circle />
 						<p>Редактировать профиль</p>
 					</div>
 					<div className={scss.zip}>
 						<Zip />
-						<Link to="/Confident">
+						<Link to="/confindent">
 							<p>Конфиденциальность</p>
 						</Link>
 					</div>
 
-					<div className={scss.sub_Tract}>
+					<div className={scss.sub_tract}>
 						<SubTract />
 						<p>Заблокированные аккаунты</p>
 					</div>
@@ -32,7 +32,7 @@ const ConfidentPage = () => {
 				</div>
 			</div>
 			<Routes>
-				<Route path="/Confident" element={<ConfidentTwoPage />} />
+				<Route path="/confindent" element={<ConfidentTwoPage />} />
 			</Routes>
 		</div>
 	);
