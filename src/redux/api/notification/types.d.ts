@@ -1,5 +1,6 @@
 namespace NOTIFICATIONS {
 	type GetNotificationResponse = {
+		id: Key | null | undefined;
 		message: string;
 		senderUserName: string;
 		createdAt: number;
