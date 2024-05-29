@@ -92,7 +92,7 @@ const PublicsPhoto = () => {
 	const navigate = useNavigate();
 
 	const navigateToProfile = () => {
-		navigate('/usersProfile');
+		navigate('/users-profile');
 	};
 	const handleCancelModal = () => {
 		setIsModal(false);

@@ -71,9 +71,9 @@ const UserPublic = () => {
 				<div className={scss.links}>
 					<div>
 						<Link
-							className={`${location.pathname === 'PublicFotos' ? scss.active_page : scss.link}`}
-							to="PublicFotos"
-							onClick={() => setActiveItem('PublicFotos')}
+							className={`${location.pathname === 'public-photos' ? scss.active_page : scss.link}`}
+							to="public-photos"
+							onClick={() => setActiveItem('public-photos')}
 						>
 							<IconPhoto color="black" />
 							<p>фотографии</p>
@@ -81,9 +81,9 @@ const UserPublic = () => {
 					</div>
 					<div>
 						<Link
-							className={`${location.pathname === 'PublicVideo' ? scss.active_page : scss.link}`}
-							to="PublicVideo"
-							onClick={() => setActiveItem('PublicVideo')}
+							className={`${location.pathname === 'public-video' ? scss.active_page : scss.link}`}
+							to="public-video"
+							onClick={() => setActiveItem('public-video')}
 						>
 							<IconPhotoVideo color="black" />
 							<p>видео</p>
@@ -93,8 +93,8 @@ const UserPublic = () => {
 
 				<div>
 					<Routes>
-						<Route path="/publicFotos*" element={<PublicFotos />} />
-						<Route path="/publicVideo*" element={<PublicVideo />} />
+						<Route path="/public-photos*" element={<PublicFotos />} />
+						<Route path="/public-video*" element={<PublicVideo />} />
 					</Routes>
 				</div>
 			</div>
