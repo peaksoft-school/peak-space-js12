@@ -30,7 +30,7 @@ const ChatPerson = () => {
 
 	const navigate = useNavigate();
 	const arrowNavigate = () => {
-		navigate('/Chat');
+		navigate('/chat');
 	};
 
 	const navigateToCall = () => {

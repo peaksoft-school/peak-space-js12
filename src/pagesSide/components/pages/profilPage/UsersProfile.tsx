@@ -1,6 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import Publications from './Publications';
-import Favourites from './Favourites';
+// import Favourites from './Favourites';
 import PhotoWith from './PhotoWith';
 import { useState } from 'react';
 import scss from './Style.module.scss';
@@ -175,7 +175,7 @@ const ProfilPage = () => {
 				<div>
 					<Routes>
 						<Route path="side/public" element={<Publications />} />
-						<Route path="side/favorite" element={<Favourites />} />
+						{/* <Route path="side/favorite" element={<Favourites />} /> */}
 						<Route path="side/photo" element={<PhotoWith />} />
 					</Routes>
 				</div>

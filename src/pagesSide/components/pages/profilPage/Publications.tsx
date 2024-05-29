@@ -33,7 +33,6 @@ const Publications = () => {
 			const uploadPromises = Array.from(files).map(async (file) => {
 				const formData = new FormData();
 				formData.append('file', file);
-				
 
 				try {
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -89,6 +88,7 @@ const Publications = () => {
 					</p>
 				</label>
 				<input
+					placeholder="file"
 					type="file"
 					ref={fileInputRef}
 					style={{ display: 'none' }}
