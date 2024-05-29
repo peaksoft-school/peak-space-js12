@@ -1,7 +1,12 @@
 .modal {
+	position: fixed;
+	position: relative;
+	margin-top: -55px;
+	width: 658px;
 	:global {
 		.ant-modal-content {
-			background: none;
+			background-color: none;
+			border-radius: 30px;
 			box-shadow: none;
 		}
 		.ant-modal-close-x {

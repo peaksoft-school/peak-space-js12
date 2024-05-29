@@ -162,16 +162,17 @@ const PublicsPhoto = () => {
 							<ModalTs open={isModal} onCancel={handleCancelModal}>
 								<div className={scss.modal}>
 									<div className={scss.modal_first}>
-										<div className={scss.title}>
-											<h2>Пожаловаться</h2>
-											<button onClick={handleCancelModal}>
-												<IconX />
-											</button>
+										<div className={scss.title_and_close_icon}>
+											<h2 className={scss.title}>Пожаловаться</h2>
+											<IconX
+												onClick={handleCancelModal}
+												className={scss.close_modal_icon}
+											/>
 										</div>
 										<span></span>
-										<h2>Почему вы хотите пожаловаться на эту публикацию? </h2>
+										<h2>Почему вы хотите пожаловаться на эту публикацию?</h2>
 										<span></span>
-										<p>Это спам </p>
+										<p>Это спам</p>
 										<span></span>
 										<p>Враждебные высказывания или символы</p>
 										<span></span>
@@ -190,7 +191,7 @@ const PublicsPhoto = () => {
 										<span></span>
 										<p>Мошенничество или обман</p>
 										<span></span>
-										<p>Наркотические средства </p>
+										<p>Наркотические средства</p>
 										<span></span>
 										<p>Ложная информация</p>
 										<span></span>
