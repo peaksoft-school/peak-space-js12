@@ -17,7 +17,7 @@ const api = index.injectEndpoints({
 		}),
 		postWithGoogle: build.mutation({
 			query: (data) => ({
-				url: `/auth-with-google/sign-up-with-token-test?tokenFromGoogle=${encodeURIComponent(data.tokenFromGoogle)}`,
+				url: `/auth-with-google/verify-token?tokenFromGoogle=${encodeURIComponent(data.tokenFromGoogle)}`,
 				method: 'POST'
 			}),
 			invalidatesTags: ['login']
