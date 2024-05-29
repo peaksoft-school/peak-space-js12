@@ -55,7 +55,7 @@ const Publics = () => {
 						<div className={scss.user_img}>
 							<img
 								src={
-									'https://s3-alpha-sig.figma.com/img/e476/d620/e74b72d5e3d21c3f2aaccbe6ab54ff3f?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=I2nz1ArZw33avlGO7RkB7nJJQ8nb9Ja3kz9SmYYpq7PquuL31ruoEcbQpIzgypVOWBDPpm2j6yzUuLCpZmqGaBwgTHbrdWUEenjZNfLKyZ61Lnp-mgG~kAzqsssn45jDGXIqEKDZggzkWJxehdwBVkAgf9q3s0EXxeTjNsvoTtjMcnTaivCYJzVyAvmAcnJ6eUAA4ot7P5SAadLiebqmYKaAJxOYc~T-1ZhAhuIpCSOVV5fkzSyQRLRcL2VIw1HzPxwl2EzYa7t~GbDiSVTI1nDDLlV8m7IC9h4d7b8xaUt4uz2CupzM8vi5D8gKVLDWhQKmYeH2cNkDWLubfcptdA__'
+									'https://s3-alpha-sig.figma.com/img/e476/d620/e74b72d5e3d21c3f2aaccbe6ab54ff3f?Expires=1717977600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cCLwLNOcFbyCB0wIYQmfM91IQeWUewjWvLAdxRlogeg7m8zX4tgxaIE5tilAOctjgI5yrZRevcRcbtcl7Ka37FdQZZgeK4ZVE~yUoMDQJrea4h8yfSGigMAQiBZ-uA2mrcI3nLw~dlkbvNHUbm9IGRQT0-XOTQMRjGilYbhx-25WLOI9fWIGu2qF98I0fjCBq3jpCqpWISIj~LD0iPq9M7UQpFKbKxSgNjzpq7dSHWR8aaACtegTCMMydcB5EFTUjxwQfqtr5~Cgj9Xt~pQ-EAW0G8AEN8V7zpIndP8syQlFj6yf3QN9A9DZO3DUJzC~qNcbp5nSt1X2~ctwS~4IuQ__'
 								}
 								alt="User"
 							/>
