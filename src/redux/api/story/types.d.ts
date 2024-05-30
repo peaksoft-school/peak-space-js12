@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 namespace STORY {
 	type GetStoryResponse = {
-		[x: string]: Key | null | undefined;
-		backImg: string;
-		storyImg: string;
-	}[];
+		_id:number
+		userPhoto: string;
+		userName: string;
+		photosOrVideosLink: [string];
+		text: string;
+		createdAt: number;
+	}[]
 	type GetStoryRequest = void;
 }

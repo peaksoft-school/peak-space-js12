@@ -1,13 +1,13 @@
 import { api as index } from '..';
 const api = index.injectEndpoints({
 	endpoints: (build) => ({
-		getStoty: build.query<STORY.GetStoryResponse, STORY.GetStoryRequest>({
+		getStory: build.query<STORY.GetStoryResponse, STORY.GetStoryRequest>({
 			query: () => ({
-				url: 'https://22638b4a9a5784ed.mokky.dev/story',
+				url: 'https://9db48a88f5769e2c.mokky.dev/storis',
 				method: 'GET'
 			}),
 			providesTags: ['story']
 		})
 	})
 });
-export const { useGetStotyQuery } = api;
+export const { useGetStoryQuery } = api;

@@ -1,25 +1,62 @@
-import { useGetStotyQuery } from '@/src/redux/api/story';
+import { useGetStoryQuery } from '@/src/redux/api/story';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import scss from './Style.module.scss';
-// import { SetStateAction } from 'react';
-// import ModalTs from '@/src/ui/modal/Modal';
-// import avatar from '../../../../assets/Ellipse 60.svg';
-// import { Progress } from 'antd';
+import { SetStateAction, useState } from 'react';
+import ModalTs from '@/src/ui/modal/Modal';
+import { Modal, Progress } from 'antd';
+import elipse from '../../../../assets/Rectangle 76.svg';
+import plusIcon from '../../../../assets/Plusicon.svg';
+import Webcam from 'react-webcam';
+
+import {
+	IconCamera,
+	IconMusic,
+	IconLetterCase,
+	IconStars,
+	IconCarambola,
+	// IconArrowRight,
+	IconPlus,
+	IconPhotoSensor2
+} from '@tabler/icons-react';
+
+const videoConstraints = {
+	width: 480,
+	height: 420,
+	facingMode: 'user'
+};
 
 const MainStory = () => {
-	const { data, isLoading } = useGetStotyQuery();
-	// const [isOpenModalStory, setIsOpenModalStiory] = useState(false);
-	// const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
+	const { data, isLoading } = useGetStoryQuery();
+	const [isOpenModalStory, setIsOpenModalStory] = useState(false);
+	const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
+	const [isOpen, setIsOpen] = useState(false);
+	const [image, setImage] = useState('');
+	const [complain, setComplain] = useState(false);
+	const [modalIsOpener, setModalIsOpener] = useState(false);
 
-	// const handOpenStory = (index: SetStateAction<number>) => {
-	// 	setIsOpenModalStiory(true);
-	// 	setCurrentStoryIndex(index);
-	// };
+	const handIsOpenEr = () => {
+		setModalIsOpener(true);
+	};
+	const handICancelEr = () => {
+		setModalIsOpener(false);
+	};
 
-	// const handCancelStory = () => {
-	// 	setIsOpenModalStiory(false);
-	// };
+	const handleOpen = () => {
+		setIsOpen(true);
+	};
+	const handleCancel = () => {
+		setIsOpen(false);
+	};
+
+	const handOpenStory = (index: SetStateAction<number>) => {
+		setIsOpenModalStory(true);
+		setCurrentStoryIndex(index);
+	};
+
+	const handCancelStory = () => {
+		setIsOpenModalStory(false);
+	};
 
 	const [ref] = useKeenSlider<HTMLDivElement>({
 		breakpoints: {
@@ -33,6 +70,12 @@ const MainStory = () => {
 		slides: { perView: 1 }
 	});
 
+	const scrrenShot = (getScreenshot: any) => {
+		const ali = getScreenshot();
+		setImage(ali);
+	};
+	const backCamera = () => setImage('');
+
 	return (
 		<>
 			<div>
@@ -40,13 +83,68 @@ const MainStory = () => {
 					<p>Loading...</p>
 				) : (
 					<div ref={ref} className={`keen-slider ${scss.keen}`}>
-						{data?.map((item) => (
+						<div onClick={handleOpen} className={scss.plus_icon}>
+							<img className={scss.elipse} src={elipse} alt="" />
+							<img className={scss.plus} src={plusIcon} alt="" />
+
+							<h1>Добовить Историю</h1>
+						</div>
+						<ModalTs open={isOpen} onCancel={handleCancel}>
+							<div className={scss.modal_modal}>
+								<div className={scss.icon_edit}>
+									<IconCamera className={scss.camera} />
+									<IconMusic className={scss.music} />
+									<IconLetterCase className={scss.letter_case} />
+									<IconStars className={scss.stars} />
+								</div>
+								<div className={scss.video_camera}>
+									{image === '' ? (
+										<Webcam
+											style={{ borderRadius: '20px' }}
+											className={scss.video_camera}
+											audio={false}
+											height={400}
+											screenshotFormat="image/jpeg"
+											width={500}
+											mirrored
+											videoConstraints={videoConstraints}
+										>
+											{({ getScreenshot }) => (
+												<button onClick={() => scrrenShot(getScreenshot)}>
+													<IconPhotoSensor2 className={scss.iconred} />
+												</button>
+											)}
+										</Webcam>
+									) : (
+										<img src={image} alt="image" onClick={backCamera} />
+									)}
+								</div>
+								<div className={scss.icon_green}>
+									<button onClick={handIsOpenEr} className={scss.button}>
+										<IconCarambola onClick={handIsOpenEr} color="green" />
+										Близких Друзия
+									</button>
+
+									<button className={scss.button3}>
+										<IconPlus color="white" />
+									</button>
+								</div>
+								<ModalTs open={modalIsOpener} onCancel={handICancelEr}>
+									<div className={scss.modal_left}>
+										<h1>gfsdgdfg</h1>
+									</div>
+								</ModalTs>
+							</div>
+						</ModalTs>
+						{data?.map((item, index) => (
 							<div key={item._id} className="keen-slider__slide">
-								<div>
-									<img className={scss.story_pic} src={item.backImg} alt="" />
+								<div className={scss.testDiv}>
 									<img
-										className={scss.slide_avatar}
-										src={item.storyImg}
+										onClick={() => {
+											handOpenStory(index);
+										}}
+										className={scss.story_pic}
+										src={item.userPhoto}
 										alt=""
 									/>
 								</div>
@@ -56,39 +154,45 @@ const MainStory = () => {
 				)}
 			</div>
 
-			{/* <ModalTs open={isOpenModalStory} onCancel={handCancelStory}>
-				<div className={scss.modal_story}>
-					<div className={scss.span}>
-						{data && Array.isArray(data) && (
+			<ModalTs open={isOpenModalStory} onCancel={handCancelStory}>
+				{data && (
+					<div className={scss.modal_story}>
+						<div className={scss.span}>
 							<Progress
 								strokeColor="white"
 								percent={(currentStoryIndex + 1) * (100 / data.length)}
 								showInfo={false}
 							/>
-						)}
-					</div>
-					<div className={scss.avatring}>
-						<img className={scss.avatar} src={avatar} alt="" />
-						<div className={scss.h1_p}>
-							<h4 className={scss.h4}>_mdeefsx</h4>
-							<p>22 часа назад</p>
+						</div>
+						<div className={scss.id_key}>
+							<div className={scss.avatring}>
+								<img
+									className={scss.avatar}
+									src={data[currentStoryIndex].userPhoto}
+									alt=""
+								/>
+								<div className={scss.h1_p}>
+									<h4 className={scss.h4}>
+										{data[currentStoryIndex].userName}
+									</h4>
+									<p>{data[currentStoryIndex].createdAt}</p>
+								</div>
+							</div>
+							{/* <iframe
+								className={scss.iframe}
+								width="640"
+								height="480"
+								src={data[currentStoryIndex].photosOrVideosLink}
+								frameBorder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowFullScreen
+							></iframe> */}
 						</div>
 					</div>
-				</div>
-			</ModalTs> */}
+				)}
+			</ModalTs>
 		</>
 	);
 };
 
 export default MainStory;
-
-// function setIsOpenModalStiory(arg0: boolean) {
-// 	throw new Error('Function not implemented.');
-// }
-// function setIsOpenModalStiory(arg0: boolean) {
-// 	throw new Error('Function not implemented.');
-// }
-
-// function setCurrentStoryIndex(index: SetStateAction<number>) {
-// 	throw new Error('Function not implemented.');
-// }
