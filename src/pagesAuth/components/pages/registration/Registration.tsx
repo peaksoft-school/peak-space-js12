@@ -39,22 +39,18 @@ const Registration = () => {
 		reset
 	} = useForm<ErrorObject>({ mode: 'onBlur' });
 
-	const navigateToLogin = () => {
-		navigate('/auth/login');
-	};
-
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const onSubmit = async (data: any) => {
+	const onSubmit = async (data: string | any) => {
 		try {
 			const response = await postRequest(data);
 
 			console.log('Регистрация успешна:', response);
 
 			setConfirmPassword('');
-			navigateToLogin();
+			navigate(`/auth/confirm-by-email/${response.data.userId}` as string );
 			reset();
 		} catch (error) {
-			console.error('Ошибка регистрации:', error);
+			console.error('Ошибка регистрации:', error); 
 		}
 		if (password !== confirmPassword) {
 			alert('Пароли не совпадают');

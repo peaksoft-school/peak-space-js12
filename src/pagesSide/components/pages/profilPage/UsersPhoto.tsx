@@ -22,16 +22,4 @@ const UsersPhoto = () => {
 };
 
 export default UsersPhoto;
-// {isLoading ? (
-// 	<>
-// 		<h1>loading . . .</h1>
-// 	</>
-// ) : (
-// 	<>
-// 		{data?.map((item) => (
-// 			<div className={scss.photo_user} key={item._id}>
-// 				<img src={item.img} alt="" />
-// 			</div>
-// 		))}
-// 	</>
-// )}
+
