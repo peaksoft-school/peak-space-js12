@@ -8,7 +8,7 @@ const api = index.injectEndpoints({
 			PROFIL.PostProfilRequest
 		>({
 			query: (newData) => ({
-				url: '/files/upload',
+				url: '/api/s3',
 				method: 'POST',
 				body: newData,
 				responseHandler: 'text'

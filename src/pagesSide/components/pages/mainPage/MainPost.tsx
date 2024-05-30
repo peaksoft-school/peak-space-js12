@@ -40,14 +40,14 @@ const MainPost = () => {
 	return (
 		<div>
 			{items?.map((item) => (
-				<div className={scss.section} key={item._id}>
+				<div className={scss.section} key={item.id}>
 					<div className={scss.holder}>
 						<div className={scss.wrapper}>
 							<div className={scss.wrap}>
-								<img src={item.avatar} alt="" />
+								<img src={item.avatar} alt="avatar" />
 								<div>
-									<h5>{item.nicname}</h5>
-									<p>{item.localtion}</p>
+									<h5>{item.username}</h5>
+									<p>{item.location}</p>
 								</div>
 							</div>
 							<button onClick={changeState}>
@@ -62,10 +62,12 @@ const MainPost = () => {
 							<p>Пожаловаться</p>
 							<p>Отписаться</p>
 						</div>
-						<p className={scss.text}>{item.text}</p>
+						<p className={scss.text}>{item.description}</p>
 						<div className={scss.posts}>
-							<img src={item.postImg} alt="" />
-							<img src={item.secondPost} alt="" />
+							<img src={item.linkPublicationResponseList} alt="photos" />
+
+							{/* <img src={item.linkPublicationResponseList} alt="photos" /> */}
+							{/* <img src={item.secondPost} alt="" /> */}
 							<div className={scss.icons}>
 								<div className={scss.inner}>
 									<Like />
@@ -90,8 +92,8 @@ const MainPost = () => {
 											<div className={scss.bullet}>
 												<img src={item.avatar} alt="" />
 												<div>
-													<h5>{item.nicname}</h5>
-													<p>{item.localtion}</p>
+													<h5>{item.username}</h5>
+													<p>{item.location}</p>
 												</div>
 											</div>
 											<Point onClick={closeModal} />
