@@ -148,7 +148,7 @@
 
 // 2
 
-import { useEffect, useRef, useState } from 'react';
+import { createContext, useEffect, useRef, useState } from 'react';
 import {
 	useCreatePostMutation,
 	usePostCreateFileMutation,
@@ -160,6 +160,8 @@ import { PlusIconSecond } from '@/src/assets/icons';
 import { Box, Container, Grid } from '@mui/material';
 import ImageField from './ImageField';
 import CustomFilter from './CustomFilter';
+import FilterTabs from './FilterTabs';
+import InstaFilter from './InstaFilter';
 
 export const FilterContext = createContext();
 const Publications = () => {
@@ -325,7 +327,7 @@ const Publications = () => {
 								<Grid item xs={12} md={5}>
 									<FilterTabs />
 									{tabFilter === 'instaFilter' ? (
-										<InstaFitler />
+										<InstaFilter />
 									) : (
 										<CustomFilter />
 									)}
