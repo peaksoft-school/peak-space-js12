@@ -21,8 +21,20 @@ const api = index.injectEndpoints({
 				method: 'POST'
 			}),
 			invalidatesTags: ['login']
+		}),
+		confirmByEmail: build.mutation({
+			query: (newData) => ({
+				url: `/auth/confirmCodeByEmail?codeInEmail=${encodeURIComponent(newData.codeInEmail)}&id=${encodeURIComponent(newData.id)}`,
+				method: 'POST',
+				body: newData
+			}),
+			invalidatesTags: ['login']
 		})
 	})
 });
 
-export const { usePostLoginMutation, usePostWithGoogleMutation } = api;
+export const {
+	usePostLoginMutation,
+	usePostWithGoogleMutation,
+	useConfirmByEmailMutation
+} = api;

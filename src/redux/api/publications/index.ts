@@ -1,4 +1,5 @@
-import { api as index } from './../index';
+import { api as index } from '..';
+const OPEN_CAGE_API_KEY = import.meta.env.VITE_LOCATION_URL;
 
 const api = index.injectEndpoints({
 	endpoints: (builder) => ({
@@ -9,11 +10,11 @@ const api = index.injectEndpoints({
 			query: (newData) => ({
 				url: '/files/upload',
 				method: 'POST',
-				body: newData
+				body: newData,
+				responseHandler: 'text'
 			}),
 			invalidatesTags: ['post']
 		}),
-
 		createPost: builder.mutation({
 			query: (data) => ({
 				url: '/posts',
@@ -55,14 +56,38 @@ const api = index.injectEndpoints({
 				method: 'GET'
 			}),
 			providesTags: ['post']
+		}),
+		getGeocode: builder.query<string, { latitude: string; longitude: string }>({
+			query: ({ latitude, longitude }) => ({
+				url: `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPEN_CAGE_API_KEY}`,
+				method: 'GET'
+			}),
+			transformResponse: (response: {
+				results: {
+					components: {
+						city?: string;
+						town?: string;
+						village?: string;
+						country: string;
+					};
+				}[];
+			}) => {
+				const { results } = response;
+				if (results && results.length > 0) {
+					const { components } = results[0];
+					return `${components.city || components.town || components.village}, ${components.country}`;
+				} else {
+					return 'Unknown location';
+				}
+			}
 		})
 	})
 });
-
 export const {
 	usePostCreateFileMutation,
 	useCreatePostMutation,
 	useGetPublicsFoodQuery,
 	usePostPublicFoodMutation,
-	useGetPublicsVideoFoodQuery
+	useGetPublicsVideoFoodQuery,
+	useGetGeocodeQuery
 } = api;
