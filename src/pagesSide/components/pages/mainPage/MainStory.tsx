@@ -70,6 +70,7 @@ const MainStory = () => {
 		slides: { perView: 1 }
 	});
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const scrrenShot = (getScreenshot: any) => {
 		const ali = getScreenshot();
 		setImage(ali);
