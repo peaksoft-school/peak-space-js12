@@ -1,0 +1,10 @@
+.modal :global .ant-modal-content {
+  background-color: none;
+  border-radius: none;
+  box-shadow: none;
+  background: none;
+  height: 0;
+}
+.modal :global .ant-modal-close-x {
+  display: none;
+}

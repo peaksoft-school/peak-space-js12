@@ -1,13 +1,11 @@
 .modal {
-	position: fixed;
-	position: relative;
-	margin-top: -55px;
-	width: 658px;
 	:global {
 		.ant-modal-content {
 			background-color: none;
-			border-radius: 30px;
+			border-radius: none;
 			box-shadow: none;
+			background: none;
+			height: 0;
 		}
 		.ant-modal-close-x {
 			display: none;
