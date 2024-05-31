@@ -4,7 +4,7 @@ import 'keen-slider/keen-slider.min.css';
 import scss from './Style.module.scss';
 import { SetStateAction, useState } from 'react';
 import ModalTs from '@/src/ui/modal/Modal';
-import { Modal, Progress } from 'antd';
+import { Progress } from 'antd';
 import elipse from '../../../../assets/Rectangle 76.svg';
 import plusIcon from '../../../../assets/Plusicon.svg';
 import Webcam from 'react-webcam';
