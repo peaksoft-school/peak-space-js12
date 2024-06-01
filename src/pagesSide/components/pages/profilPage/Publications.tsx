@@ -7,6 +7,52 @@ import {
 import scss from './Style.module.scss';
 import ModalTs from '@/src/ui/modal/Modal';
 import { PlusIconSecond } from '@/src/assets/icons';
+
+const filterValues = [
+	{ name: 'None', class: '' },
+	{ name: '1977', class: 'filter-1977' },
+	{ name: 'Aden', class: 'filter-aden' },
+	{ name: 'Amaro', class: 'filter-amaro' },
+	{ name: 'Ashby', class: 'filter-ashby' },
+	{ name: 'Brannan', class: 'filter-brannan' },
+	{ name: 'Brooklyn', class: 'filter-brooklyn' },
+	{ name: 'Charmes', class: 'filter-charmes' },
+	{ name: 'Clarendon', class: 'filter-clarendon' },
+	{ name: 'Crema', class: 'filter-crema' },
+	{ name: 'Dogpatch', class: 'filter-dogpatch' },
+	{ name: 'Earlybird', class: 'filter-earlybird' },
+	{ name: 'Gingham', class: 'filter-gingham' },
+	{ name: 'Ginza', class: 'filter-ginza' },
+	{ name: 'Hefe', class: 'filter-hefe' },
+	{ name: 'Helena', class: 'filter-helena' },
+	{ name: 'Hudson', class: 'filter-hudson' },
+	{ name: 'Inkwell', class: 'filter-inkwell' },
+	{ name: 'Kelvin', class: 'filter-kelvin' },
+	{ name: 'Kuno', class: 'filter-juno' },
+	{ name: 'Lark', class: 'filter-lark' },
+	{ name: 'Lo-Fi', class: 'filter-lofi' },
+	{ name: 'Ludwig', class: 'filter-ludwig' },
+	{ name: 'Maven', class: 'filter-maven' },
+	{ name: 'Mayfair', class: 'filter-mayfair' },
+	{ name: 'Moon', class: 'filter-moon' },
+	{ name: 'Nashville', class: 'filter-nashville' },
+	{ name: 'Perpetua', class: 'filter-perpetua' },
+	{ name: 'Poprocket', class: 'filter-poprocket' },
+	{ name: 'Reyes', class: 'filter-reyes' },
+	{ name: 'Rise', class: 'filter-rise' },
+	{ name: 'Sierra', class: 'filter-sierra' },
+	{ name: 'Skyline', class: 'filter-skyline' },
+	{ name: 'Slumber', class: 'filter-slumber' },
+	{ name: 'Stinson', class: 'filter-stinson' },
+	{ name: 'Sutro', class: 'filter-sutro' },
+	{ name: 'Toaster', class: 'filter-toaster' },
+	{ name: 'Valencia', class: 'filter-valencia' },
+	{ name: 'Vesper', class: 'filter-vesper' },
+	{ name: 'Walden', class: 'filter-walden' },
+	{ name: 'Willow', class: 'filter-willow' },
+	{ name: 'X-Pro II', class: 'filter-xpro-ii' }
+];
+
 const Publications = () => {
 	const [isModal, setIsModal] = useState(false);
 	const [modalFile, setModalFile] = useState(false);
@@ -19,6 +65,11 @@ const Publications = () => {
 		latitude: number;
 		longitude: number;
 	} | null>(null);
+	const [selectedFilter, setSelectedFilter] = useState<string>(
+		filterValues[0].class
+	);
+	const [previewImage, setPreviewImage] = useState<string | null>(null);
+
 	useEffect(() => {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
@@ -34,69 +85,116 @@ const Publications = () => {
 			console.error('Geolocation is not supported by this browser.');
 		}
 	}, []);
+
 	const { data: locationString } = useGetGeocodeQuery(location, {
 		skip: !location
 	});
+
 	const handleButtonClick = () => {
 		if (fileInputRef.current) {
 			fileInputRef.current.click();
 		}
 	};
+
 	const handleFileChange = async (
 		event: React.ChangeEvent<HTMLInputElement>
 	) => {
 		const files = event.target.files;
-		if (files) {
+		if (files && files[0]) {
+			const file = files[0];
 			const newFileUrls: string[] = [];
-			const uploadPromises = Array.from(files).map(async (file) => {
-				const formData = new FormData();
-				formData.append('file', file);
+			const formData = new FormData();
+			formData.append('file', file);
+
+			try {
+				const response: any = await createFile(formData as any).unwrap();
+				newFileUrls.push(response);
+				setFileUrls(newFileUrls);
+				setPreviewImage(URL.createObjectURL(file));
+				openModal();
+			} catch (error) {
+				console.error('Error uploading file:', error);
+			}
+		}
+	};
+
+	const applyFilter = (filterClass: string, image: HTMLImageElement) => {
+		const canvas = document.createElement('canvas');
+		const ctx = canvas.getContext('2d');
+		if (ctx) {
+			canvas.width = image.width;
+			canvas.height = image.height;
+			ctx.filter = getComputedStyle(document.documentElement).getPropertyValue(
+				`--${filterClass}`
+			);
+			ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+			return canvas.toDataURL('image/png');
+		}
+		return null;
+	};
+
+	const handleAddPost = async () => {
+		const imageElement = document.createElement('img');
+		imageElement.src = previewImage || '';
+		imageElement.onload = async () => {
+			const filteredImage = applyFilter(selectedFilter, imageElement);
+			if (filteredImage) {
+				const response: any = await createFile(
+					dataURLToBlob(filteredImage) as any
+				).unwrap();
+				setFileUrls([response]);
+
+				const newItem = {
+					links: fileUrls,
+					description: description,
+					location: locationString || 'Unknown location',
+					blockComment: true
+				};
 
 				try {
-					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					const response: any = await createFile(formData as any).unwrap();
-					newFileUrls.push(response);
-					return response;
+					await postRequest(newItem).unwrap();
+					setDescription('');
+					setLocation(null);
+					setFileUrls([]);
+					setPreviewImage(null);
+					closeModal();
+					console.log('Post added successfully');
 				} catch (error) {
-					console.error('Error uploading file:', error);
+					console.error('Error adding post:', error);
 				}
-			});
-			await Promise.all(uploadPromises);
-			setFileUrls((prevFileUrls) => [...prevFileUrls, ...newFileUrls]);
-			openModal();
-		}
-	};
-	const handleAddPost = async () => {
-		const newItem = {
-			links: fileUrls,
-			description: description,
-			location: locationString || 'Unknown location',
-			blockComment: true
+			}
 		};
-		try {
-			await postRequest(newItem).unwrap();
-			setDescription('');
-			setLocation(null);
-			setFileUrls([]);
-			closeModal();
-			console.log('Post added successfully');
-		} catch (error) {
-			console.error('Error adding post:', error);
-		}
 	};
+
 	const openModal = () => {
 		setIsModal(true);
 	};
+
 	const closeModal = () => {
 		setIsModal(false);
 	};
 
 	const handleOpenModal = () => {
+		setIsModal(false);
 		setModalFile(true);
 	};
+
 	const handleCloseModal = () => {
 		setModalFile(false);
 	};
+
+	const dataURLToBlob = (dataurl: string) => {
+		const arr = dataurl.split(',');
+		const mime = arr[0].match(/:(.*?);/)[1];
+		const bstr = atob(arr[1]);
+		let n = bstr.length;
+		const u8arr = new Uint8Array(n);
+		while (n--) {
+			u8arr[n] = bstr.charCodeAt(n);
+		}
+		return new Blob([u8arr], { type: mime });
+	};
+
 	return (
 		<div className={scss.content}>
 			<div className={scss.bar} onClick={handleButtonClick}>
@@ -112,19 +210,27 @@ const Publications = () => {
 					ref={fileInputRef}
 					style={{ display: 'none' }}
 					onChange={handleFileChange}
-					multiple
 				/>
 			</div>
 
 			<ModalTs open={modalFile} onCancel={handleCloseModal}>
 				<div>
-					<p>ddfsafas</p>
-				</div>
-			</ModalTs>
-
-			<ModalTs open={isModal} onCancel={closeModal}>
-				<div className={scss.bar_modal}>
-					<div className={scss.is_modal}>
+					<div className={scss.buttons}>
+						{previewImage && (
+							<img
+								style={{
+									maxWidth: '640px',
+									height: '581.6px',
+									objectFit: 'cover',
+									borderRadius: '5px'
+								}}
+								src={previewImage}
+								alt="Preview"
+								className={`${scss[selectedFilter]} ${scss.filterPreview}`}
+							/>
+						)}
+						<button onClick={closeModal}>Отмена</button>
+						<button onClick={handleAddPost}>Отправить</button>
 						<div className={scss.inputs}>
 							<h3>Добавьте пост</h3>
 							<input
@@ -133,10 +239,48 @@ const Publications = () => {
 								type="text"
 								placeholder="Описание"
 							/>
+						</div> 
+					</div>
+				</div>
+			</ModalTs>
+
+			<ModalTs open={isModal} onCancel={closeModal}>
+				<div className={scss.bar_modal}>
+					<div className={scss.is_modal}>
+						<div className={scss.header_modal}>
+							<p>Редактировать</p>
+							<h4 onClick={handleOpenModal}>Далее</h4>
 						</div>
-						<div className={scss.buttons}>
-							<button onClick={closeModal}>Отмена</button>
-							<button onClick={handleAddPost}>Отправить</button>
+						<div className={scss.second_}>
+							<div className={scss.imagePreview}>
+								{previewImage && (
+									<img
+										style={{
+											maxWidth: '640px',
+											height: '581.6px',
+											objectFit: 'cover',
+											borderRadius: '5px'
+										}}
+										src={previewImage}
+										alt="Preview"
+										className={`${scss[selectedFilter]} ${scss.filterPreview}`}
+									/>
+								)}
+							</div>
+							<div className={scss.filterSelection}>
+								{filterValues.map((filter) => (
+									<div className={scss.filter}>
+										<img
+											key={filter.class}
+											src={previewImage || ''}
+											alt={filter.name}
+											className={`${scss.filterPreview} ${scss[filter.class]}`}
+											onClick={() => setSelectedFilter(filter.class)}
+										/>
+										<p>{filter.name}</p>
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -144,11 +288,12 @@ const Publications = () => {
 		</div>
 	);
 };
+
 export default Publications;
 
 // 2
 
-// import { createContext, useEffect, useRef, useState } from 'react';
+// import { useEffect, useRef, useState } from 'react';
 // import {
 // 	useCreatePostMutation,
 // 	usePostCreateFileMutation,
@@ -157,13 +302,52 @@ export default Publications;
 // import scss from './Style.module.scss';
 // import ModalTs from '@/src/ui/modal/Modal';
 // import { PlusIconSecond } from '@/src/assets/icons';
-// import { Box, Container, Grid } from '@mui/material';
-// import ImageField from './ImageField';
-// import CustomFilter from './CustomFilter';
-// import FilterTabs from './FilterTabs';
-// import InstaFilter from './InstaFilter';
 
-// export const FilterContext = createContext();
+// const filterValues = [
+// 	{ name: 'None', class: '' },
+// 	{ name: '1977', class: 'filter-1977' },
+// 	{ name: 'Aden', class: 'filter-aden' },
+// 	{ name: 'Amaro', class: 'filter-amaro' },
+// 	{ name: 'Ashby', class: 'filter-ashby' },
+// 	{ name: 'Brannan', class: 'filter-brannan' },
+// 	{ name: 'Brooklyn', class: 'filter-brooklyn' },
+// 	{ name: 'Charmes', class: 'filter-charmes' },
+// 	{ name: 'Clarendon', class: 'filter-clarendon' },
+// 	{ name: 'Crema', class: 'filter-crema' },
+// 	{ name: 'Dogpatch', class: 'filter-dogpatch' },
+// 	{ name: 'Earlybird', class: 'filter-earlybird' },
+// 	{ name: 'Gingham', class: 'filter-gingham' },
+// 	{ name: 'Ginza', class: 'filter-ginza' },
+// 	{ name: 'Hefe', class: 'filter-hefe' },
+// 	{ name: 'Helena', class: 'filter-helena' },
+// 	{ name: 'Hudson', class: 'filter-hudson' },
+// 	{ name: 'Inkwell', class: 'filter-inkwell' },
+// 	{ name: 'Kelvin', class: 'filter-kelvin' },
+// 	{ name: 'Kuno', class: 'filter-juno' },
+// 	{ name: 'Lark', class: 'filter-lark' },
+// 	{ name: 'Lo-Fi', class: 'filter-lofi' },
+// 	{ name: 'Ludwig', class: 'filter-ludwig' },
+// 	{ name: 'Maven', class: 'filter-maven' },
+// 	{ name: 'Mayfair', class: 'filter-mayfair' },
+// 	{ name: 'Moon', class: 'filter-moon' },
+// 	{ name: 'Nashville', class: 'filter-nashville' },
+// 	{ name: 'Perpetua', class: 'filter-perpetua' },
+// 	{ name: 'Poprocket', class: 'filter-poprocket' },
+// 	{ name: 'Reyes', class: 'filter-reyes' },
+// 	{ name: 'Rise', class: 'filter-rise' },
+// 	{ name: 'Sierra', class: 'filter-sierra' },
+// 	{ name: 'Skyline', class: 'filter-skyline' },
+// 	{ name: 'Slumber', class: 'filter-slumber' },
+// 	{ name: 'Stinson', class: 'filter-stinson' },
+// 	{ name: 'Sutro', class: 'filter-sutro' },
+// 	{ name: 'Toaster', class: 'filter-toaster' },
+// 	{ name: 'Valencia', class: 'filter-valencia' },
+// 	{ name: 'Vesper', class: 'filter-vesper' },
+// 	{ name: 'Walden', class: 'filter-walden' },
+// 	{ name: 'Willow', class: 'filter-willow' },
+// 	{ name: 'X-Pro II', class: 'filter-xpro-ii' }
+// ];
+
 // const Publications = () => {
 // 	const [isModal, setIsModal] = useState(false);
 // 	const [modalFile, setModalFile] = useState(false);
@@ -171,31 +355,15 @@ export default Publications;
 // 	const [createFile] = usePostCreateFileMutation();
 // 	const [postRequest] = useCreatePostMutation();
 // 	const [fileUrls, setFileUrls] = useState<string[]>([]);
-// 	const [tabFilter, setTabFilter] = useState('instaFilter');
-// 	const [filterClass, setFilterClass] = useState('');
-// 	const [customFilter, setCustomFilter] = useState({
-// 		contrast: 100,
-// 		brightness: 100,
-// 		saturate: 100,
-// 		sepia: 0,
-// 		gray: 0
-// 	});
-
-// 	const value = {
-// 		tabFilter,
-// 		setTabFilter,
-// 		filterClass,
-// 		setFilterClass,
-// 		customFilter,
-// 		setCustomFilter
-// 	};
-
-// 	const [previewUrls, setPreviewUrls] = useState<string[]>([]);
 // 	const [description, setDescription] = useState('');
 // 	const [location, setLocation] = useState<{
 // 		latitude: number;
 // 		longitude: number;
 // 	} | null>(null);
+// 	const [selectedFilter, setSelectedFilter] = useState<string>(
+// 		filterValues[0].class
+// 	);
+// 	const [previewImage, setPreviewImage] = useState<string | null>(null);
 
 // 	useEffect(() => {
 // 		if (navigator.geolocation) {
@@ -227,57 +395,70 @@ export default Publications;
 // 		event: React.ChangeEvent<HTMLInputElement>
 // 	) => {
 // 		const files = event.target.files;
-// 		if (files) {
-// 			const previewUrls = Array.from(files).map((file) =>
-// 				URL.createObjectURL(file)
-// 			);
-// 			setPreviewUrls(previewUrls);
-// 			handleOpenModal(); // Открываем модальное окно при выборе файлов
-
-// 			// Задержка для открытия модального окна перед началом загрузки
-// 			setTimeout(async () => {
-// 				await uploadFiles(files);
-// 			}, 0);
-// 		}
-// 	};
-
-// 	const uploadFiles = async (files: FileList) => {
-// 		const newFileUrls: string[] = [];
-// 		const uploadPromises = Array.from(files).map(async (file) => {
+// 		if (files && files[0]) {
+// 			const file = files[0];
+// 			const newFileUrls: string[] = [];
 // 			const formData = new FormData();
 // 			formData.append('file', file);
 
 // 			try {
-// 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 // 				const response: any = await createFile(formData as any).unwrap();
 // 				newFileUrls.push(response);
-// 				return response;
+// 				setFileUrls(newFileUrls);
+// 				setPreviewImage(URL.createObjectURL(file));
+// 				openModal();
 // 			} catch (error) {
 // 				console.error('Error uploading file:', error);
 // 			}
-// 		});
-// 		await Promise.all(uploadPromises);
-// 		setFileUrls((prevFileUrls) => [...prevFileUrls, ...newFileUrls]);
+// 		}
+// 	};
+
+// 	const applyFilter = (filterClass: string, image: HTMLImageElement) => {
+// 		const canvas = document.createElement('canvas');
+// 		const ctx = canvas.getContext('2d');
+// 		if (ctx) {
+// 			canvas.width = image.width;
+// 			canvas.height = image.height;
+// 			ctx.filter = getComputedStyle(document.documentElement).getPropertyValue(
+// 				`--${filterClass}`
+// 			);
+// 			ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+// 			return canvas.toDataURL('image/png');
+// 		}
+// 		return null;
 // 	};
 
 // 	const handleAddPost = async () => {
-// 		const newItem = {
-// 			links: fileUrls,
-// 			description: description,
-// 			location: locationString || 'Unknown location',
-// 			blockComment: true
+// 		const imageElement = document.createElement('img');
+// 		imageElement.src = previewImage || '';
+// 		imageElement.onload = async () => {
+// 			const filteredImage = applyFilter(selectedFilter, imageElement);
+// 			if (filteredImage) {
+// 				const response: any = await createFile(
+// 					dataURLToBlob(filteredImage) as any
+// 				).unwrap();
+// 				setFileUrls([response]);
+
+// 				const newItem = {
+// 					links: fileUrls,
+// 					description: description,
+// 					location: locationString || 'Unknown location',
+// 					blockComment: true
+// 				};
+
+// 				try {
+// 					await postRequest(newItem).unwrap();
+// 					setDescription('');
+// 					setLocation(null);
+// 					setFileUrls([]);
+// 					setPreviewImage(null);
+// 					handleCloseModalFile();
+// 					console.log('Post added successfully');
+// 				} catch (error) {
+// 					console.error('Error adding post:', error);
+// 				}
+// 			}
 // 		};
-// 		try {
-// 			await postRequest(newItem).unwrap();
-// 			setDescription('');
-// 			setLocation(null);
-// 			setFileUrls([]);
-// 			setPreviewUrls([]);
-// 			closeModal();
-// 			console.log('Post added successfully');
-// 		} catch (error) {
-// 			console.error('Error adding post:', error);
-// 		}
 // 	};
 
 // 	const openModal = () => {
@@ -288,12 +469,25 @@ export default Publications;
 // 		setIsModal(false);
 // 	};
 
-// 	const handleOpenModal = () => {
+// 	const handleOpenModalFile = () => {
+// 		closeModal(); // Закрываем первый модальный диалог
 // 		setModalFile(true);
 // 	};
 
-// 	const handleCloseModal = () => {
+// 	const handleCloseModalFile = () => {
 // 		setModalFile(false);
+// 	};
+
+// 	const dataURLToBlob = (dataurl: string) => {
+// 		const arr = dataurl.split(',');
+// 		const mime = arr[0].match(/:(.*?);/)[1];
+// 		const bstr = atob(arr[1]);
+// 		let n = bstr.length;
+// 		const u8arr = new Uint8Array(n);
+// 		while (n--) {
+// 			u8arr[n] = bstr.charCodeAt(n);
+// 		}
+// 		return new Blob([u8arr], { type: mime });
 // 	};
 
 // 	return (
@@ -311,36 +505,27 @@ export default Publications;
 // 					ref={fileInputRef}
 // 					style={{ display: 'none' }}
 // 					onChange={handleFileChange}
-// 					multiple
 // 				/>
 // 			</div>
 
-// 			<ModalTs open={modalFile} onCancel={handleCloseModal}>
+// 			<ModalTs open={modalFile} onCancel={handleCloseModalFile}>
 // 				<div>
-// 					<FilterContext.Provider value={value}>
-// 						<Container sx={{ marginTop: '4rem', marginBottom: '4rem' }}>
-// 							<Box sx={{ textAlign: 'center', marginBottom: '3rem' }}>
-// 								<h1>Image Filter</h1>
-// 							</Box>
-// 							<Grid container spacing={10}>
-// 								<ImageField />
-// 								<Grid item xs={12} md={5}>
-// 									<FilterTabs />
-// 									{tabFilter === 'instaFilter' ? (
-// 										<InstaFilter />
-// 									) : (
-// 										<CustomFilter />
-// 									)}
-// 								</Grid>
-// 							</Grid>
-// 						</Container>
-// 					</FilterContext.Provider>
-// 				</div>
-// 			</ModalTs>
-
-// 			<ModalTs open={isModal} onCancel={closeModal}>
-// 				<div className={scss.bar_modal}>
-// 					<div className={scss.is_modal}>
+// 					<div className={scss.buttons}>
+// 						{previewImage && (
+// 							<img
+// 								style={{
+// 									maxWidth: '640px',
+// 									height: '581.6px',
+// 									objectFit: 'cover',
+// 									borderRadius: '5px'
+// 								}}
+// 								src={previewImage}
+// 								alt="Preview"
+// 								className={scss[selectedFilter]}
+// 							/>
+// 						)}
+// 						<button onClick={handleCloseModalFile}>Отмена</button>
+// 						<button onClick={handleAddPost}>Отправить</button>
 // 						<div className={scss.inputs}>
 // 							<h3>Добавьте пост</h3>
 // 							<input
@@ -350,9 +535,46 @@ export default Publications;
 // 								placeholder="Описание"
 // 							/>
 // 						</div>
-// 						<div className={scss.buttons}>
-// 							<button onClick={closeModal}>Отмена</button>
-// 							<button onClick={handleAddPost}>Отправить</button>
+// 					</div>
+// 				</div>
+// 			</ModalTs>
+
+// 			<ModalTs open={isModal} onCancel={closeModal}>
+// 				<div className={scss.bar_modal}>
+// 					<div className={scss.is_modal}>
+// 						<div className={scss.header_modal}>
+// 							<p>Редактировать</p>
+// 							<h4 onClick={handleOpenModalFile}>Далее</h4>
+// 						</div>
+// 						<div className={scss.second_}>
+// 							<div className={scss.imagePreview}>
+// 								{previewImage && (
+// 									<img
+// 										style={{
+// 											maxWidth: '640px',
+// 											height: '581.6px',
+// 											objectFit: 'cover',
+// 											borderRadius: '5px'
+// 										}}
+// 										src={previewImage}
+// 										alt="Preview"
+// 										className={scss[selectedFilter]}
+// 									/>
+// 								)}
+// 							</div>
+// 							<div className={scss.filterSelection}>
+// 								{filterValues.map((filter) => (
+// 									<div key={filter.class} className={scss.filter}>
+// 										<img
+// 											src={previewImage || ''}
+// 											alt={filter.name}
+// 											className={`${scss.filterPreview} ${scss[filter.class]}`}
+// 											onClick={() => setSelectedFilter(filter.class)}
+// 										/>
+// 										<p>{filter.name}</p>
+// 									</div>
+// 								))}
+// 							</div>
 // 						</div>
 // 					</div>
 // 				</div>
