@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { Controller, useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import { usePutPasswordMutation } from '@/src/redux/api/forgetPassword';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpace from '../../../../assets/peakSpace.png';
-import { ToastContainer, toast } from 'react-toastify';
-import { Controller, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import scss from './NewPassword.module.scss';
 import { Input } from 'antd';
