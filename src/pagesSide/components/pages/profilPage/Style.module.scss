@@ -332,6 +332,272 @@
 	}
 }
 
+.second {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.back {
+		background: white;
+		border-radius: 25px;
+		height: 638px;
+		display: flex;
+		flex-direction: column;
+
+		.second_header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-inline: 20px;
+			padding-block: 12px;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+			position: relative;
+
+			.arrow_button {
+				background: none;
+				outline: none;
+				border: none;
+				svg {
+				}
+			}
+
+			p {
+				color: rgb(0, 0, 0);
+				font-size: 20px;
+				font-weight: 700;
+				line-height: 23px;
+				letter-spacing: 3%;
+				text-align: center;
+				position: absolute;
+				right: 450px;
+				top: 14px;
+			}
+
+			button {
+				color: rgb(76, 63, 155);
+				font-size: 20px;
+				font-weight: 700;
+				line-height: 23px;
+				letter-spacing: 3%;
+				text-align: center;
+				cursor: pointer;
+				background: none;
+				outline: none;
+				border: none;
+			}
+		}
+
+		.center {
+			display: flex;
+
+			.about {
+				img {
+					width: 640px;
+					height: 582px;
+					object-fit: cover;
+					border-radius: 5px;
+				}
+			}
+
+			.lines {
+				width: 400px;
+				display: flex;
+				flex-direction: column;
+				gap: 25px;
+				padding-inline: 10px;
+				padding-top: 50px;
+
+				:global {
+					.ant-slider-rail {
+						width: 100%;
+						height: 4px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.finish_modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.modal_des {
+		display: flex;
+		flex-direction: column;
+		width: 1060px;
+		height: 626px;
+		background: white;
+		border-radius: 25px;
+
+		.finish_header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-inline: 20px;
+			padding-block: 12px;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+			position: relative;
+
+			.arrow_button {
+				background: none;
+				outline: none;
+				border: none;
+				svg {
+				}
+			}
+
+			p {
+				color: rgb(0, 0, 0);
+				font-size: 20px;
+				font-weight: 700;
+				line-height: 23px;
+				letter-spacing: 3%;
+				text-align: center;
+				position: absolute;
+				right: 420px;
+				top: 14px;
+			}
+
+			button {
+				color: rgb(76, 63, 155);
+				font-size: 20px;
+				font-weight: 700;
+				line-height: 23px;
+				letter-spacing: 3%;
+				text-align: center;
+				cursor: pointer;
+				background: none;
+				outline: none;
+				border: none;
+			}
+
+			h4 {
+			}
+		}
+
+		input {
+			border: none;
+			outline: none;
+			border-radius: 3px;
+			border: 2px solid rgb(233, 232, 232);
+			background: rgb(250, 250, 250);
+			color: rgb(115, 115, 115);
+			padding: 6.5px;
+			width: 350px;
+			height: 34px;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 36px;
+			&:focus::placeholder {
+				opacity: 0;
+			}
+			&:hover {
+				background: transparent;
+			}
+		}
+		.buttons {
+			width: 1060px;
+			height: 583px;
+			border-radius: 2px;
+			background: white;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			.uis {
+				height: 100%;
+				max-height: 350px;
+				textarea {
+					resize: none;
+					border: none;
+					outline: none;
+					width: 100%;
+					height: 350px;
+
+					&:focus::placeholder {
+						opacity: 0;
+					}
+
+					&:focus {
+						// border: 1px solid gray;
+					}
+				}
+
+				.line {
+					border: 1px solid rgba(0, 0, 0, 0.3);
+					width: 100%;
+					max-width: 480px;
+				}
+				.boolean {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					padding-block: 10px;
+					padding-inline: 5px;
+
+					p {
+						color: rgb(0, 0, 0);
+						font-size: 16px;
+						font-weight: 600;
+						line-height: 18px;
+						letter-spacing: 0%;
+						text-align: center;
+					}
+
+					:global {
+						button {
+							color: #090909;
+							padding: 0.7em 0.6em;
+							font-size: 15px;
+							cursor: pointer;
+							background: #e8e8e8;
+							border: 1px solid #e8e8e8;
+							font-weight: bold;
+							transition: all 0.3s;
+						}
+
+						:where(
+								.css-dev-only-do-not-override-j9bb5n
+							).ant-switch.ant-switch-checked {
+							background: #4096ff;
+						}
+					}
+				}
+			}
+			button {
+				color: #090909;
+				padding: 0.7em 1.6em;
+				font-size: 15px;
+				cursor: pointer;
+				background: #e8e8e8;
+				border: 1px solid #e8e8e8;
+				font-weight: bold;
+				transition: all 0.3s;
+			}
+
+			button:active {
+				color: #666;
+				box-shadow:
+					inset 4px 4px 12px #c5c5c5,
+					inset -4px -4px 12px #ffffff;
+			}
+		}
+	}
+	.inputs {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: center;
+		h3 {
+			color: rgb(0, 0, 0);
+			font-size: 26px;
+			font-weight: 600;
+			text-align: center;
+		}
+	}
+}
+
 .bar_modal {
 	display: flex;
 	align-items: center;
@@ -397,64 +663,6 @@
 					object-fit: cover;
 					cursor: pointer;
 				}
-			}
-		}
-
-		.inputs {
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-			align-items: center;
-			h3 {
-				color: rgb(0, 0, 0);
-				font-size: 26px;
-				font-weight: 600;
-				text-align: center;
-			}
-
-			input {
-				border: none;
-				outline: none;
-				border-radius: 3px;
-				border: 2px solid rgb(233, 232, 232);
-				background: rgb(250, 250, 250);
-				color: rgb(115, 115, 115);
-				padding: 6.5px;
-				width: 350px;
-				height: 34px;
-				font-size: 14px;
-				font-weight: 400;
-				line-height: 36px;
-				&:focus::placeholder {
-					opacity: 0;
-				}
-				&:hover {
-					background: transparent;
-				}
-			}
-		}
-
-		.buttons {
-			display: flex;
-			align-items: center;
-			justify-content: end;
-			gap: 10px;
-			button {
-				color: #090909;
-				padding: 0.7em 1.6em;
-				font-size: 15px;
-				cursor: pointer;
-				background: #e8e8e8;
-				border: 1px solid #e8e8e8;
-				font-weight: bold;
-				transition: all 0.3s;
-			}
-
-			button:active {
-				color: #666;
-				box-shadow:
-					inset 4px 4px 12px #c5c5c5,
-					inset -4px -4px 12px #ffffff;
 			}
 		}
 
@@ -1286,7 +1494,6 @@
 	}
 	.let1 {
 		p {
-			font-family: Inter;
 			font-size: 20px;
 			font-weight: 300;
 			line-height: 24.2px;
