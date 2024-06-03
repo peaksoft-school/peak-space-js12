@@ -1,12 +1,12 @@
-import { Input, Checkbox } from 'antd';
-import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Controller, useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import { usePostRegistrationMutation } from '@/src/redux/api/registration';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpaceImg from '../../../../assets/peakSpace.png';
 import scss from './Registration.module.scss';
 import { ChangeEvent, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { usePostRegistrationMutation } from '@/src/redux/api/registration';
+import { Input, Checkbox } from 'antd';
 
 interface ErrorObject {
 	password: string;
@@ -42,15 +42,16 @@ const Registration = () => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onSubmit = async (data: string | any) => {
 		try {
-			const response = await postRequest(data);
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const response: any = await postRequest(data);
 
 			console.log('Регистрация успешна:', response);
 
 			setConfirmPassword('');
-			navigate(`/auth/confirm-by-email/${response.data.userId}` as string );
+			navigate(`/auth/confirm-by-email/${response.data.userId}` as string);
 			reset();
 		} catch (error) {
-			console.error('Ошибка регистрации:', error); 
+			console.error('Ошибка регистрации:', error);
 		}
 		if (password !== confirmPassword) {
 			alert('Пароли не совпадают');

@@ -168,6 +168,16 @@ const Publications = () => {
 		setModalFile(false);
 	};
 
+	const backToOne = () => {
+		setIsModal(true);
+		setModalSecond(false);
+	};
+
+	const backToTwo = () => {
+		setModalSecond(true);
+		setModalFile(false);
+	};
+
 	const dataURLToBlob = (dataurl: string) => {
 		const arr = dataurl.split(',');
 		const mime = arr[0].match(/:(.*?);/)[1];
@@ -222,13 +232,12 @@ const Publications = () => {
 				<div className={scss.finish_modal}>
 					<div className={scss.modal_des}>
 						<div className={scss.finish_header}>
-							<button className={scss.arrow_button}>
+							<button onClick={backToTwo} className={scss.arrow_button}>
 								<IconArrowLeft />
 							</button>
 							<div>
 								<p>Редактировать</p>
 							</div>
-							<button>Далее</button>
 						</div>
 
 						<div style={{ display: 'flex' }}>
@@ -284,7 +293,7 @@ const Publications = () => {
 				<div className={scss.second}>
 					<div className={scss.back}>
 						<div className={scss.second_header}>
-							<button className={scss.arrow_button}>
+							<button onClick={backToOne} className={scss.arrow_button}>
 								<IconArrowLeft />
 							</button>
 							<div>
