@@ -549,8 +549,8 @@
 }
 .modal_modal {
 	width: 500px;
-	height: 550px;
-	background-color: #fff;
+	height: 680px;
+	background-color: black;
 	border-radius: 8px;
 	padding: 20px;
 	display: flex;
@@ -559,30 +559,71 @@
 	.icon_edit {
 		display: flex;
 		justify-content: end;
+		align-items: center;
 		gap: 15px;
 		.camera {
 			width: 40px;
 			height: 40px;
-			background: white;
+			color: white;
 			border-radius: 30px;
 		}
 		.music {
 			width: 40px;
 			height: 40px;
-			background: white;
+			color: white;
 			border-radius: 30px;
 		}
 		.letter_case {
 			width: 40px;
 			height: 40px;
-			background: white;
+			color: white;
 			border-radius: 30px;
 		}
 		.stars {
 			width: 40px;
 			height: 40px;
-			background: white;
+			color: white;
 			border-radius: 30px;
+		}
+		.change_state {
+			button {
+				cursor: pointer;
+				outline: none;
+				border: none;
+				background: none;
+				opacity: 1;
+				background-color: #fff;
+				border-radius: 20px;
+				// &:active {
+				// 	opacity: 0.9;
+				// }
+			}
+		}
+
+		.there {
+			position: absolute;
+			bottom: 590px;
+			left: 671px;
+			z-index: 50;
+			width: 250px;
+			height: 170px;
+			background: #fff;
+			border: 2px solid rgba(0, 0, 0, 0.3);
+			border-radius: 8px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 25px;
+
+			.down_load {
+				background-color: red;
+			}
+		}
+
+		.this {
+			position: absolute;
+			top: 100px;
 		}
 	}
 	.video_camera {
@@ -592,24 +633,30 @@
 		align-items: center;
 		border-radius: 20px;
 
-		button {
-			background: white;
-			outline: none;
-			border: none;
-		}
 		.iconred {
 			width: 50px;
 			height: 50px;
+			color: white;
+		}
+		.icon_video_off {
+			width: 40px;
+			height: 40px;
+		}
+
+		img {
+			width: 500px;
+			height: 480px;
+			object-fit: cover;
 		}
 	}
 	.icon_green {
 		display: flex;
-		justify-content: end;
+		justify-content: space-between;
 		gap: 10px;
 
-		input {
-			width: 200px;
-			height: 30px;
+		.handle_icon {
+			display: flex;
+			gap: 10px;
 		}
 
 		.button {
@@ -633,11 +680,51 @@
 			border: none;
 			border-radius: 30px;
 		}
+
+		.icon_plus_photo {
+			color: white;
+		}
+	}
+}
+.modal_left {
+	background: #fff;
+	width: 100%;
+	height: 500px;
+	border-radius: 30px;
+	h1 {
+		color: white;
 	}
 
-	.modal_left {
-		background: #fff;
-		width: 500px;
-		height: 500px2;
+	.group {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-inline: 20px;
+		margin: 30px;
+
+		img {
+			width: 70px;
+			height: 70px;
+			border-radius: 40px;
+			box-shadow: 5px 5px 5px 5px black;
+		}
+		input {
+			width: 40px;
+			height: 40px;
+			border-radius: 60px;
+		}
+	}
+
+	.div_button {
+		display: flex;
+		justify-content: center;
+
+		button {
+			width: 200px;
+			height: 40px;
+			background: rgb(10, 132, 239);
+			outline: none;
+			border-radius: 25px;
+		}
 	}
 }
