@@ -57,7 +57,7 @@ const api = index.injectEndpoints({
 			}),
 			providesTags: ['post']
 		}),
-		getGeocode: builder.query<string, { latitude: string; longitude: string }>({
+		getGeocode: builder.query<string, { latitude: number; longitude: number }>({
 			query: ({ latitude, longitude }) => ({
 				url: `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPEN_CAGE_API_KEY}`,
 				method: 'GET'
