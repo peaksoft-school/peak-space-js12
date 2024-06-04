@@ -7,13 +7,14 @@ namespace MAIN {
 		location: string;
 		postId: number;
 		description: string;
-		linkPublicationResponseList: LinkPublicationResponseList;
+		linkPublicationResponseList: LinkPublicationResponseList[]
 		countLikes: number;
 		countComments: number;
+		link: string;
 	}[];
 	export interface LinkPublicationResponseList {
 		id: number;
 		link: string;
-	}
+	}[]
 	type GetMainRequest = void;
 }

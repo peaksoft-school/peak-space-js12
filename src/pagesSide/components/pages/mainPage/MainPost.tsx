@@ -1,7 +1,9 @@
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
+
 import SliderMain from './SliderMain';
 import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
 import { useGetBlockedUsersQuery } from '@/src/redux/api/blocked';
@@ -20,7 +22,9 @@ import {
 import scss from './Style.module.scss';
 
 const MainPost = () => {
-	const { data: items } = useGetMainPageQuery();
+	const { data: items, refetch } = useGetMainPageQuery();
+	const [isFavorite] = useAddFavoriteMutation();
+
 	const [isState, setIsState] = useState(false);
 	const [isModal, setIsModal] = useState(false);
 	const [inputStr, setInputStr] = useState('');
@@ -34,6 +38,16 @@ const MainPost = () => {
 	const handleGetEmoji = (event: any) => {
 		setInputStr((prevInput) => prevInput + event.native);
 		setShowPicker(false);
+	};
+
+	const handleAddFavorite = (postId: number) => {
+		try {
+			isFavorite({ id: postId });
+			refetch();
+			console.log('added favorite', postId);
+		} catch (error) {
+			console.error('Failed to add post to favorites', error);
+		}
 	};
 
 	const changeState = () => {
@@ -93,10 +107,12 @@ const MainPost = () => {
 						>
 							<p className={scss.red}>заблокировать пользователя</p>
 							<p>Пожаловаться</p>
+							<p>удалить фото</p>
 							<p>Отписаться</p>
 						</div>
 						<p className={scss.text}>{item.description}</p>
 						<div className={scss.posts}>
+
 
 							<img src={item.linkPublicationResponseList} alt="photos" />
 
@@ -110,6 +126,7 @@ const MainPost = () => {
 									<IconCornerUpRight onClick={openModal2} />
 								</div>
 								<div>
+
 									<IconBookmarks />
 								</div>
 							</div>
@@ -260,5 +277,4 @@ const MainPost = () => {
 		</div>
 	);
 };
-
 export default MainPost;
