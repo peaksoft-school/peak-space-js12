@@ -23,15 +23,35 @@ const NavBar = () => {
 		{ path: '/', icon: <IconHome />, label: 'Главная' },
 		{ path: '/chat', icon: <IconMessageCircle />, label: 'Чаты' },
 		{ path: '/notification', icon: <IconBell />, label: 'Уведомления' },
-		{ path: "/settings"   , icon: <IconSettings />, label: 'Настройки' },
+		{ path: '/settings', icon: <IconSettings />, label: 'Настройки' },
 		{
 			path: '/side/public',
-			icon: <img className={pathname === '/side/public' ? `${scss.img} ${scss.active_img}` : `${scss.img}`} src={userProfileImg} alt="foto" />,
+			icon: (
+				<img
+					className={
+						pathname === '/side/public'
+							? `${scss.img} ${scss.active_img}`
+							: `${scss.img}`
+					}
+					src={userProfileImg}
+					alt="foto"
+				/>
+			),
 			label: 'Мой профиль'
 		},
 		{
 			path: '/publics/photo',
-			icon: <img className={pathname === '/publics/photo' ? `${scss.img} ${scss.active_img}` : `${scss.img}`} src={userPublicImg} alt="foto" />,
+			icon: (
+				<img
+					className={
+						pathname === '/publics/photo'
+							? `${scss.img} ${scss.active_img}`
+							: `${scss.img}`
+					}
+					src={userPublicImg}
+					alt="foto"
+				/>
+			),
 			label: 'Мои паблики'
 		}
 	];
@@ -40,13 +60,13 @@ const NavBar = () => {
 		<div className={scss.content}>
 			<nav>
 				<ul className={!test ? scss.isNone : scss.none}>
-					{navigationItems.map((item, index) => (
-						<li key={index} onClick={() => navigateTo(item.path)}>
+					{navigationItems.map((item) => (
+						<li onClick={() => navigateTo(item.path)}>
 							<Link
 								className={`${pathname === item.path ? scss.active_page : scss.active_default}`}
 								to={item.path}
 							>
-								{item.icon }
+								{item.icon}
 								<span>{item.label}</span>
 							</Link>
 						</li>

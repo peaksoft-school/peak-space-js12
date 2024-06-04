@@ -59,7 +59,6 @@ const MainStory = () => {
 		setIsOpenModalStory(false);
 	};
 
-
 	const [ref] = useKeenSlider<HTMLDivElement>({
 		breakpoints: {
 			'(min-width: 400px)': {
@@ -141,7 +140,6 @@ const MainStory = () => {
 						</ModalTs>
 						{data?.map((item, index) => (
 							<div key={item._id} className="keen-slider__slide">
-
 								<div className={scss.testDiv}>
 									<img
 										onClick={() => {
@@ -150,7 +148,6 @@ const MainStory = () => {
 										className={scss.story_pic}
 										src={item.userPhoto}
 										alt=""
-
 									/>
 								</div>
 							</div>
@@ -158,7 +155,6 @@ const MainStory = () => {
 					</div>
 				)}
 			</div>
-
 
 			<ModalTs open={isOpenModalStory} onCancel={handCancelStory}>
 				{data && (
@@ -197,7 +193,6 @@ const MainStory = () => {
 					</div>
 				)}
 			</ModalTs>
-
 		</>
 	);
 };

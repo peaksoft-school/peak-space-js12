@@ -150,12 +150,10 @@ const ProfilPage = () => {
 						</ModalTs>
 
 						<ModalTs open={isOpen} onCancel={handleCloseModal}>
-
 							<div className={scss.closeModal}>
 								<h1>Пожаловаться</h1>
 								<div className={scss.cloose}>
-									<img onClick={handleCloseModal} src={vector} alt="" />
-
+									<img onClick={handleCloseModal} src={IconX} alt="" />
 								</div>
 							</div>
 							<div className={scss.hring}>

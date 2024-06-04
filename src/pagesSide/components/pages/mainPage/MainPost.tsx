@@ -19,6 +19,7 @@ import {
 	IconSearch
 } from '@tabler/icons-react';
 import scss from './Style.module.scss';
+import { useAddFavoriteMutation } from '@/src/redux/api/favourites';
 
 const MainPost = () => {
 	const { data: items, refetch } = useGetMainPageQuery();
@@ -111,10 +112,9 @@ const MainPost = () => {
 						</div>
 						<p className={scss.text}>{item.description}</p>
 						<div className={scss.posts}>
-							<img src={item.linkPublicationResponseList} alt="photos" />
-
-							{/* <img src={item.linkPublicationResponseList} alt="photos" /> */}
-							{/* <img src={item.secondPost} alt="" /> */}
+							{item.linkPublicationResponseList?.map((test) => (
+								<img src={test.link} alt="photos" />
+							))}
 
 							<div className={scss.icons}>
 								<div className={scss.inner}>
@@ -123,7 +123,7 @@ const MainPost = () => {
 									<IconCornerUpRight onClick={openModal2} />
 								</div>
 								<div>
-									<IconBookmarks />
+									<IconBookmarks onClick={() => handleAddFavorite(item.id)} />
 								</div>
 							</div>
 						</div>
