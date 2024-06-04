@@ -1,17 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useGetUsersQuery } from '@/src/redux/api/chat';
-import scss from './Style.module.scss';
-import { IconArrowNarrowLeft } from '@tabler/icons-react';
-import { IconPhone } from '@tabler/icons-react';
-import { IconVideo } from '@tabler/icons-react';
-import { IconMoodPlus } from '@tabler/icons-react';
-import { IconMicrophone } from '@tabler/icons-react';
-import { IconPhoto } from '@tabler/icons-react';
-import { IconSend2 } from '@tabler/icons-react';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Picker from '@emoji-mart/react';
 import data from '@emoji-mart/data';
+import { useGetUsersQuery } from '@/src/redux/api/chat';
+import {
+	IconArrowNarrowLeft,
+	IconSend2,
+	IconPhoto,
+	IconMicrophone,
+	IconMoodPlus,
+	IconVideo,
+	IconPhone
+} from '@tabler/icons-react';
+import scss from './Style.module.scss';
 
 const ChatPerson = () => {
 	const { data: user, isLoading } = useGetUsersQuery();
@@ -30,7 +32,7 @@ const ChatPerson = () => {
 
 	const navigate = useNavigate();
 	const arrowNavigate = () => {
-		navigate('/Chat');
+		navigate('/chat');
 	};
 
 	const navigateToCall = () => {

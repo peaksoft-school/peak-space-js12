@@ -1,5 +1,6 @@
 import { useGetUsersprofileQuery } from '@/src/redux/api/usersProfile';
 import scss from './Style.module.scss';
+
 const UsersPhoto = () => {
 	const { data, isLoading } = useGetUsersprofileQuery();
 	return (
@@ -22,16 +23,4 @@ const UsersPhoto = () => {
 };
 
 export default UsersPhoto;
-// {isLoading ? (
-// 	<>
-// 		<h1>loading . . .</h1>
-// 	</>
-// ) : (
-// 	<>
-// 		{data?.map((item) => (
-// 			<div className={scss.photo_user} key={item._id}>
-// 				<img src={item.img} alt="" />
-// 			</div>
-// 		))}
-// 	</>
-// )}
+

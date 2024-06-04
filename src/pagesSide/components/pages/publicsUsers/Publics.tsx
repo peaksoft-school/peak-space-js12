@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
 	Link,
 	Route,
@@ -5,17 +6,20 @@ import {
 	useLocation,
 	useNavigate
 } from 'react-router-dom';
-import scss from './Style.module.scss';
-import { IconPhoto, IconPhotoVideo } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
 import PublicsPhoto from './PublicsPhoto';
 import PublicsVideo from './PublicsVideo';
+import { IconPhoto, IconPhotoVideo } from '@tabler/icons-react';
+import scss from './Style.module.scss';
 
 const Publics = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 	const [page, setPage] = useState(true);
 
+	const handleProfile = () => {
+		navigate('/UsersProfile/side/public');
+	};
+	
 	useEffect(() => {
 		if (page) {
 			navigate('/publics/photo');
@@ -65,7 +69,7 @@ const Publics = () => {
 								<div className={scss.bar_aside}>
 									<h4>Myfood</h4>
 									<span></span>
-									<p>Usubalieva</p>
+									<p onClick={handleProfile}>Usubalieva</p>
 								</div>
 								<h4>Еду ем</h4>
 								<p>еда</p>

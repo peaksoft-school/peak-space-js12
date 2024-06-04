@@ -1,6 +1,6 @@
-import scss from './Style.module.scss';
-import { IconMicrophone, IconVideo, IconPhoneCall } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
+import { IconMicrophone, IconVideo, IconPhoneCall } from '@tabler/icons-react';
+import scss from './Style.module.scss';
 
 const VideoCall = () => {
 	const navigate = useNavigate();
@@ -53,7 +53,7 @@ const VideoCall = () => {
 				<div className={scss.image}>
 					<img
 						src="https://s3-alpha-sig.figma.com/img/7cc8/bdc8/6e702c9838b3c26c54b2bd49481ec1e2?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=n24e1NrJjqiUk0jrvo~E~c5XAOfsr6~gNTNO3-wdYjBLhee-jxFtZSwwI741K3a-p65ICD3wpRCzda3B2GOLV44KBgJyBT4jSWjBb3Mb61GirWset~JoRk4Z9LFk6b-FZ1xQ1rofhdmgl~RhISfhhm~ZykHY96DQZcRIoRgYkwiOr2iVufDicvXM1xkIV1dhxwaj-WbrO0SgyMXx8rvPx85-EZCpoFaC8qdFym-rRcYCeoX-IcspHzs5jz1PyGhsqqGkXwMpAhF4JKzTygk9zpRARPcAhpIwPOdZbPRgr2BJdL9iYp6SBZLy4V1hQtyjOib6xWl2HubExVk~~iRhVg__"
-						alt=""
+						alt="foto"
 					/>
 				</div>
 			</div>

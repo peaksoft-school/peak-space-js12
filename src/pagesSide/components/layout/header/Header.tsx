@@ -1,12 +1,11 @@
+import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 import FirstMan from '@/src/assets/FirstMan2.png';
 import UserStory from '@/src/assets/userStory.png';
-import { useState } from 'react';
-import scss from './Header.module.scss';
 import Logo from '@/src/assets/peacSpaceLogo.png';
-import { IconSearch } from '@tabler/icons-react';
-import { IconCirclePlus } from '@tabler/icons-react';
-import { IconCaretDown } from '@tabler/icons-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { IconSearch,IconCaretDown ,IconCirclePlus  } from '@tabler/icons-react';
+import scss from './Header.module.scss';
+
 const Header = () => {
 	const navigate = useNavigate();
 	const navigateToCreateAcc = () => {
@@ -82,7 +81,7 @@ const Header = () => {
 						<ul>
 							{users.map((user) => (
 								<li key={user.id}>
-									<img className={scss.accountAvatar} src={user.avatar} />
+									<img className={scss.accountAvatar} src={user.avatar}  alt='avatar'/>
 									<p className={scss.accountName}>{user.name}</p>
 								</li>
 							))}

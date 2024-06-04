@@ -1,5 +1,5 @@
-import scss from './Footer.module.scss';
 import { IconFlame } from '@tabler/icons-react';
+import scss from './Footer.module.scss';
 const Footer = () => {
 	return (
 		<footer style={{ background: 'rgb(63, 61, 100)' }}>

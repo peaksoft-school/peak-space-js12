@@ -1,8 +1,8 @@
-import scss from './Style.module.scss';
+import { useNavigate } from 'react-router-dom';
 import foto from '../../../../assets/userStory.png';
 import foto2 from '../../../../assets/FirstMan2.png';
 import { IconArrowNarrowLeft } from '@tabler/icons-react';
-import { useNavigate } from 'react-router-dom';
+import scss from './Style.module.scss';
 
 const VideoEnd = () => {
 	const navigate = useNavigate();
@@ -24,8 +24,8 @@ const VideoEnd = () => {
 
 			<div className={scss.box}>
 				<div className={scss.img_user}>
-					<img className={scss.img1} src={foto} alt="foto" />
-					<img className={scss.img2} src={foto2} alt="foto" />
+					<img className={scss.img1} src={foto} alt="avatar" />
+					<img className={scss.img2} src={foto2} alt="avatar" />
 				</div>
 				<div className={scss.text}>
 					<h1>_Bogomdan</h1>

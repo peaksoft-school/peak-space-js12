@@ -1,8 +1,8 @@
-import { useGetMyFriendsQuery } from '@/src/redux/api/myFriends';
-import scss from './MyFriends.module.scss';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { PlusIcon, SearchIcon } from '@/src/assets/icons/index';
+import { Link } from 'react-router-dom';
+import { useGetMyFriendsQuery } from '@/src/redux/api/myFriends';
+import { IconSearch, IconCirclePlus } from '@tabler/icons-react';
+import scss from './MyFriends.module.scss';
 
 const navigationBar = [
 	{
@@ -47,11 +47,11 @@ const MyFriends = () => {
 						</div>
 					))}
 				</ul>
-				<PlusIcon className={scss.plus_icon} onClick={() => {}} />
+				<IconCirclePlus stroke={1} className={scss.plus_icon} onClick={() => {}} />
 			</nav>
 
 			<div className={scss.search_container}>
-				<SearchIcon className={scss.search_img} onClick={() => {}} />
+				<IconSearch className={scss.search_img} onClick={() => {}} />
 				<input placeholder="Поиск" />
 			</div>
 			<ul className={scss.users_list}>
@@ -64,9 +64,10 @@ const MyFriends = () => {
 								<img
 									className={scss.user_profile_img}
 									src={user.ProfilePicture}
+									alt='photo'
 								/>
 								<div className={scss.user_name_description}>
-									<Link to="/UsersProfile">
+									<Link to="/UsersProfile/side/public">
 										<h3>{user.name}</h3>
 									</Link>
 									<p>{user.description}</p>

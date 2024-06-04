@@ -1,12 +1,12 @@
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LayoutAuth from './pagesAuth/components/layout/LayoutAuth';
 import LayoutSide from './pagesSide/components/layout/LayoutSide';
-import { useEffect, useState } from 'react';
-import Preloader from '@/src/ui/preloader/Preloader';
 import Call from './pagesSide/components/pages/call/Call';
 import CallTime from './pagesSide/components/pages/call/CallTime';
 import VideoCall from './pagesSide/components/pages/call/VideoCall';
 import VideoEnd from './pagesSide/components/pages/call/VideoEnd';
+import Preloader from '@/src/ui/preloader/Preloader';
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(true);

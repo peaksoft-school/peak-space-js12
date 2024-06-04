@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import { useGetPublicsFoodQuery } from '@/src/redux/api/publications';
 import scss from './Style.module.scss';
+
 const PublicsSlider = () => {
 	const { data, isLoading } = useGetPublicsFoodQuery();
 	const [currentSlide, setCurrentSlide] = useState(0);
@@ -51,7 +52,7 @@ const PublicsSlider = () => {
 									key={index}
 									className={`keen-slider__slide ${scss.aside_slider}`}
 								>
-									<img src={item.img} alt="" />
+									<img src={item.img} alt="photo" />
 								</div>
 							))}
 						</div>

@@ -53,7 +53,7 @@ const SliderMain = () => {
 									key={index}
 									className={`keen-slider__slide ${scss.aside_slider}`}
 								>
-									<img src={item.img} alt="" />
+									<img src={item.img} alt="photo" />
 								</div>
 							))}
 						</div>

@@ -1,5 +1,3 @@
-import React from 'react';
-import scss from './Style.module.scss';
 import CustomButton from '@/src/ui/customButton/CustomButton';
 import woman from '../../../../../assets/Ellipse 107.svg';
 import woman1 from '../../../../../assets/Ellipse 108.svg';
@@ -8,6 +6,7 @@ import woman3 from '../../../../../assets/Kamila.svg';
 import woman4 from '../../../../../assets/Migara.svg';
 import woman5 from '../../../../../assets/homyakova.svg';
 import woman6 from '../../../../../assets/Omor.svg';
+import scss from './Style.module.scss';
 
 const Friend: React.FC = () => {
 	const data = [

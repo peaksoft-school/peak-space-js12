@@ -1,12 +1,12 @@
-import { Input, Checkbox } from 'antd';
-import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import { Controller, useForm } from 'react-hook-form';
-import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
-import peakSpaceImg from '../../../../assets/peakSpace.png';
-import scss from './Registration.module.scss';
 import { ChangeEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Controller, useForm } from 'react-hook-form';
+import { Input, Checkbox } from 'antd';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { usePostRegistrationMutation } from '@/src/redux/api/registration';
+import peakSpaceImg from '../../../../assets/peakSpace.png';
+import scss from './Registration.module.scss';
 
 interface ErrorObject {
 	password: string;

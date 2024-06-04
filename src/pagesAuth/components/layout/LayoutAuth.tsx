@@ -1,6 +1,6 @@
+import { Route, Routes } from 'react-router-dom';
 import Registration from '../pages/registration/Registration';
 import NewPassword from '../pages/newPassword/NewPassword';
-import { Route, Routes } from 'react-router-dom';
 import Login from '../pages/login/Login';
 import PasswordNew from '../pages/newPassword/PasswordNew';
 

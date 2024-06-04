@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useRef, useState } from 'react';
 import {
 	useGetPublicVideoQuery,
 	usePostUserPublicMutation
 } from '@/src/redux/api/userPublic';
+import ModalTs from '@/src/ui/modal/Modal';
+
+import { IconCirclePlus ,IconDots,IconHeartFilled} from '@tabler/icons-react';
 import scss from './Style.module.scss';
 
-import { IconCirclePlus } from '@tabler/icons-react';
-import { IconDots } from '@tabler/icons-react';
-import { IconHeartFilled } from '@tabler/icons-react';
-import { useRef, useState } from 'react';
-import ModalTs from '@/src/ui/modal/Modal';
 
 const PublicVideo = () => {
 	const { data, isLoading } = useGetPublicVideoQuery();
@@ -103,7 +102,7 @@ const PublicVideo = () => {
 							<img
 								onClick={openModal}
 								src={item.img}
-								alt=""
+								alt="photo"
 								className={scss.image}
 							/>
 							<button onClick={() => ShowMessageAgain(item.id)}>
@@ -126,7 +125,7 @@ const PublicVideo = () => {
 								<div className={scss.widget}>
 									{data.map((item) => (
 										<div key={item.id}>
-											<img src={item.img} alt="" />
+											<img src={item.img} alt="photo" />
 										</div>
 									))}
 								</div>

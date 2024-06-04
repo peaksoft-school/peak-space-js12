@@ -1,11 +1,11 @@
-import { useCreatePasswordMutation } from '@/src/redux/api/forgetPassword';
-import { Input } from 'antd';
-import { Controller, useForm } from 'react-hook-form';
-import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import scss from './NewPassword.module.scss';
-import { useState } from 'react';
-import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Input } from 'antd';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+import { useCreatePasswordMutation } from '@/src/redux/api/forgetPassword';
+import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
+import scss from './NewPassword.module.scss';
 
 interface ErrorProps {
 	password: string;

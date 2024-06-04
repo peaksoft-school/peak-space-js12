@@ -1,15 +1,15 @@
+import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PublicsSlider from './PublicsSlider';
 import {
 	useGetPublicsFoodQuery,
 	usePostPublicFoodMutation
 } from '@/src/redux/api/publications';
-import { useState } from 'react';
-import scss from './Style.module.scss';
-import { useRef } from 'react';
+import ModalTs from '@/src/ui/modal/Modal';
 import { PlusIconSecond } from '@/src/assets/icons';
 import { IconDots, IconX } from '@tabler/icons-react';
-import { useNavigate } from 'react-router-dom';
-import ModalTs from '@/src/ui/modal/Modal';
-import PublicsSlider from './PublicsSlider';
+import scss from './Style.module.scss';
+
 const PublicsPhoto = () => {
 	const [, setHidePhoto] = useState(false);
 	const [image, setImage] = useState<string>('');
@@ -127,7 +127,7 @@ const PublicsPhoto = () => {
 						<div className={scss.section} key={item.id}>
 							<img
 								src={item.img}
-								alt=""
+								alt="photo"
 								className={filteredImages[item.id] ? scss.filter_img : ''}
 								onClick={SeconModalOpen}
 							/>

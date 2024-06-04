@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import { Controller, useForm } from 'react-hook-form';
+import 'react-toastify/dist/ReactToastify.css';
+import { Input } from 'antd';
 import { usePutPasswordMutation } from '@/src/redux/api/forgetPassword';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpace from '../../../../assets/peakSpace.png';
-import { ToastContainer, toast } from 'react-toastify';
-import { Controller, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
 import scss from './NewPassword.module.scss';
-import { Input } from 'antd';
 
 interface ErrorProps {
 	email: string;
@@ -43,7 +43,7 @@ const NewPassword = () => {
 			<div className={scss.bar}>
 				<div className="container">
 					<form onSubmit={handleSubmit(onSubmit)} className={scss.content}>
-						<img src={peakSpace} alt="" />
+						<img src={peakSpace} alt="peakSpace" />
 						<div className={scss.section}>
 							<p className={scss.title}>Не удается войти?</p>
 							<p className={scss.desc}>
