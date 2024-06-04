@@ -8,18 +8,14 @@ import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import peakSpace from '../../../../assets/peakSpace.png';
 import { GoogleImg } from '@/src/assets/icons';
 import line from '../../../../assets/line.svg';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, provider } from './firebase';
 import scss from './Login.module.scss';
 import { Input, Checkbox } from 'antd';
-
 import {
 	usePostLoginMutation,
 	usePostWithGoogleMutation
 } from '@/src/redux/api/login';
-import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
-import peakSpace from '../../../../assets/peakSpace.png';
-import { GoogleImg } from '@/src/assets/icons';
-import line from '../../../../assets/line.svg';
-import scss from './Login.module.scss';
 
 interface ErrorObject {
 	password: string;
@@ -170,7 +166,8 @@ const Login = () => {
 								Забыли пароль
 							</Link>
 							<div className={scss.lines}>
-								<img src={line} alt="line" /> <p style={{ color: 'gray' }}>или</p>
+								<img src={line} alt="line" />{' '}
+								<p style={{ color: 'gray' }}>или</p>
 								<img src={line} alt="line" />
 							</div>
 						</form>

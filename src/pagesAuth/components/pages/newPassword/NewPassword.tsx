@@ -6,6 +6,10 @@ import { usePutPasswordMutation } from '@/src/redux/api/forgetPassword';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpace from '../../../../assets/peakSpace.png';
 import scss from './NewPassword.module.scss';
+import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ErrorProps {
 	email: string;

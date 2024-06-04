@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import data from '@emoji-mart/data';
@@ -112,8 +111,6 @@ const MainPost = () => {
 						</div>
 						<p className={scss.text}>{item.description}</p>
 						<div className={scss.posts}>
-
-
 							<img src={item.linkPublicationResponseList} alt="photos" />
 
 							{/* <img src={item.linkPublicationResponseList} alt="photos" /> */}
@@ -126,7 +123,6 @@ const MainPost = () => {
 									<IconCornerUpRight onClick={openModal2} />
 								</div>
 								<div>
-
 									<IconBookmarks />
 								</div>
 							</div>
