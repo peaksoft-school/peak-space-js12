@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import {
 	useCreatePostMutation,
 	usePostCreateFileMutation,
-	useGetGeocodeQuery
+	useGetGeocodeQuery,
+	useGetMyPublicationQuery,
+	usePatchPostMutation
 } from '@/src/redux/api/publications';
 import scss from './Style.module.scss';
 import ModalTs from '@/src/ui/modal/Modal';
@@ -10,17 +12,23 @@ import { PlusIconSecond } from '@/src/assets/icons';
 import { filterValues } from './utils';
 import { Switch, Slider } from 'antd';
 import { IconArrowLeft } from '@tabler/icons-react';
+import { useDeletePostMutation } from '@/src/redux/api/publications';
 
 const Publications = () => {
+	const { data, refetch } = useGetMyPublicationQuery();
+	const [createFile] = usePostCreateFileMutation();
+	const [postRequest] = useCreatePostMutation();
+	const [isDeleteFavorite] = useDeletePostMutation();
+	const [isPatch] = usePatchPostMutation();
 	const [isModal, setIsModal] = useState(false);
 	const [modalFile, setModalFile] = useState(false);
 	const [modalSecond, setModalSecond] = useState(false);
+	const [isEdit, setIsEdit] = useState(null);
+	const [editDes, setEditDes] = useState('');
 	const [ellipsis, setEllipsis] = useState(true);
 	const fileInputRef = useRef<HTMLInputElement>(null);
-	const [createFile] = usePostCreateFileMutation();
-	const [postRequest] = useCreatePostMutation();
 	const [fileUrls, setFileUrls] = useState<string[]>([]);
-	const [description, setDescription] = useState('');
+	const [descriptionOne, setDescription] = useState('');
 	const [brightness, setBrightness] = useState(1);
 	const [contrast, setContrast] = useState(1);
 	const [fade, setFade] = useState(0);
@@ -31,12 +39,25 @@ const Publications = () => {
 		latitude: number;
 		longitude: number;
 	} | null>(null);
+	const [filteretData, setFilteredData] = useState([]);
 	const [selectedFilter, setSelectedFilter] = useState<string>(
 		localStorage.getItem('selectedFilter') || filterValues[0].class
 	);
 	const [previewImage, setPreviewImage] = useState<string | null>(
 		localStorage.getItem('previewImage')
 	);
+
+	useEffect(() => {
+		if (data?.publications) {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const transformedPublications = data.publications.map((item: any) => {
+				const id = Object.keys(item)[0];
+				const link = item[id];
+				return { id: Number(id), link: link };
+			});
+			setFilteredData(transformedPublications);
+		}
+	}, [data]);
 
 	useEffect(() => {
 		if (navigator.geolocation) {
@@ -64,6 +85,12 @@ const Publications = () => {
 		}
 	};
 
+	const removePost = (postId: number) => {
+		isDeleteFavorite(postId);
+		console.log('delete is work', postId);
+		refetch();
+	};
+
 	const handleFileChange = async (
 		event: React.ChangeEvent<HTMLInputElement>
 	) => {
@@ -72,12 +99,14 @@ const Publications = () => {
 			const file = files[0];
 			const newFileUrls: string[] = [];
 			const formData = new FormData();
+
 			formData.append('file', file);
 
 			try {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				const response: any = await createFile(formData as any).unwrap();
-				newFileUrls.push(response);
+				const response: any = await createFile(formData as any);
+				const test = JSON.parse(response.data);
+				newFileUrls.push(test.object);
 				setFileUrls(newFileUrls);
 				const imageUrl = URL.createObjectURL(file);
 				setPreviewImage(imageUrl);
@@ -110,7 +139,7 @@ const Publications = () => {
 
 		const newItem = {
 			links: fileUrls,
-			description: description,
+			description: descriptionOne,
 			location: locationString || 'Unknown location',
 			blockComment: ellipsis
 		};
@@ -119,7 +148,6 @@ const Publications = () => {
 			await postRequest(newItem).unwrap();
 			setDescription('');
 			setLocation(null);
-			setFileUrls([]);
 			setPreviewImage(null);
 			localStorage.removeItem('previewImage');
 			localStorage.removeItem('selectedFilter');
@@ -210,6 +238,24 @@ const Publications = () => {
 		};
 	};
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const editPost = (item: any) => {
+		setEditDes(item.descriptionOne);
+		setIsEdit(item.id);
+		refetch();
+	};
+
+	const savePost = (id: number) => {
+		const newData = {
+			description: editDes,
+			location: locationString || 'Unknown location',
+			blockComment: ellipsis
+		};
+		isPatch({ id, newData });
+		refetch();
+		setIsEdit(null);
+	};
+
 	return (
 		<div className={scss.content}>
 			<div className={scss.bar} onClick={handleButtonClick}>
@@ -226,6 +272,38 @@ const Publications = () => {
 					style={{ display: 'none' }}
 					onChange={handleFileChange}
 				/>
+			</div>
+			<div>
+				{filteretData?.map((item) => (
+					<div key={item.id}>
+						{isEdit === item.id ? (
+							<>
+								<div>
+									<input
+										value={editDes}
+										onChange={(e) => setEditDes(e.target.value)}
+										type="text"
+									/>
+									<button onClick={() => savePost(item.id)}>save</button>
+									<button onClick={() => setIsEdit(null)}>cancel</button>
+								</div>
+							</>
+						) : (
+							<>
+								<div>
+									<img
+										onClick={() => removePost(item.id)}
+										src={item.link}
+										style={{ width: '130px' }}
+										alt="photos"
+									/>
+								</div>
+							</>
+						)}
+
+						<p onClick={() => editPost(item)}>edit</p>
+					</div>
+				))}
 			</div>
 
 			<ModalTs open={modalFile} onCancel={handleCloseModal}>
@@ -259,7 +337,7 @@ const Publications = () => {
 							<div className={scss.buttons}>
 								<div className={scss.uis}>
 									<textarea
-										value={description}
+										value={descriptionOne}
 										onChange={(e) => setDescription(e.target.value)}
 										placeholder="Добавить подпись..."
 									></textarea>
@@ -267,7 +345,7 @@ const Publications = () => {
 									<div className={scss.boolean}>
 										<p>
 											{ellipsis
-												? '	Выключить комментарии'
+												? 'Выключить комментарии'
 												: 'Включить комментарии'}
 										</p>
 										<Switch

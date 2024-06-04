@@ -12,8 +12,21 @@ namespace PROFIL {
 	}[];
 	type GetVideoRequest = void;
 
+	type GetMyPublicationResponse = {
+		cover: string;
+		avatar: string;
+		userName: string;
+		aboutMe: string;
+		major: string;
+		countFriends: number;
+		countPablics: number;
+		publications: Publications;
+	};
+
+	type GetMyPublicationRequest = void;
+
 	type PostProfilResponse = {
-		data: any;
+		data: never;
 		url(url: PostProfilResponse): unknown;
 		url: PostProfilResponse;
 		status: number;

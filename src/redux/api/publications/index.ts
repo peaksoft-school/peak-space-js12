@@ -15,6 +15,43 @@ const api = index.injectEndpoints({
 			}),
 			invalidatesTags: ['post']
 		}),
+
+		deletePost: builder.mutation({
+			query: (id) => ({
+				url: `/posts/${id}`,
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+		patchPost: builder.mutation({
+			query: ({ id, newData }) => ({
+				url: `/posts/${id}`,
+				method: 'PATCH',
+				body: newData,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+
+		getMyPublication: builder.query<
+			PROFIL.GetMyPublicationResponse,
+			PROFIL.GetMyPublicationRequest
+		>({
+			query: () => ({
+				url: '/publics/my',
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
+		}),
+
 		createPost: builder.mutation({
 			query: (data) => ({
 				url: '/posts',
@@ -89,5 +126,8 @@ export const {
 	useGetPublicsFoodQuery,
 	usePostPublicFoodMutation,
 	useGetPublicsVideoFoodQuery,
-	useGetGeocodeQuery
+	useGetGeocodeQuery,
+	useDeletePostMutation,
+	useGetMyPublicationQuery,
+	usePatchPostMutation
 } = api;

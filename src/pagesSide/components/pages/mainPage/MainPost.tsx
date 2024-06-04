@@ -1,11 +1,4 @@
-import {
-	Comments,
-	Like,
-	Point,
-	Safe,
-	SendIcon,
-	Smile
-} from '@/src/assets/icons';
+import { Comments, Like, Point, SendIcon, Smile } from '@/src/assets/icons';
 import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
 import { useState } from 'react';
 import scss from './Style.module.scss';
@@ -13,9 +6,13 @@ import ModalTs from '@/src/ui/modal/Modal';
 import SliderMain from './SliderMain';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
+import { useAddFavoriteMutation } from '@/src/redux/api/favourites';
+import { IconBookmarks } from '@tabler/icons-react';
 
 const MainPost = () => {
-	const { data: items } = useGetMainPageQuery();
+	const { data: items, refetch } = useGetMainPageQuery();
+	const [isFavorite] = useAddFavoriteMutation();
+
 	const [isState, setIsState] = useState(false);
 	const [isModal, setIsModal] = useState(false);
 	const [inputStr, setInputStr] = useState('');
@@ -25,6 +22,16 @@ const MainPost = () => {
 	const handleGetEmoji = (event: any) => {
 		setInputStr((prevInput) => prevInput + event.native);
 		setShowPicker(false);
+	};
+
+	const handleAddFavorite = (postId: number) => {
+		try {
+			isFavorite({ id: postId });
+			refetch();
+			console.log('added favorite', postId);
+		} catch (error) {
+			console.error('Failed to add post to favorites', error);
+		}
 	};
 
 	const changeState = () => {
@@ -60,14 +67,14 @@ const MainPost = () => {
 						>
 							<p className={scss.red}>заблокировать пользователя</p>
 							<p>Пожаловаться</p>
+							<p>удалить фото</p>
 							<p>Отписаться</p>
 						</div>
 						<p className={scss.text}>{item.description}</p>
 						<div className={scss.posts}>
-							<img src={item.linkPublicationResponseList} alt="photos" />
-
-							{/* <img src={item.linkPublicationResponseList} alt="photos" /> */}
-							{/* <img src={item.secondPost} alt="" /> */}
+							{item.linkPublicationResponseList?.map((test) => (
+								<img src={test.link} alt="photos" />
+							))}
 							<div className={scss.icons}>
 								<div className={scss.inner}>
 									<Like />
@@ -75,7 +82,7 @@ const MainPost = () => {
 									<SendIcon />
 								</div>
 								<div>
-									<Safe />
+									<IconBookmarks onClick={() => handleAddFavorite(item.id)} />
 								</div>
 							</div>
 						</div>
@@ -150,5 +157,4 @@ const MainPost = () => {
 		</div>
 	);
 };
-
 export default MainPost;
