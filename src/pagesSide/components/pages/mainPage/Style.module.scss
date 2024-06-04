@@ -135,6 +135,7 @@
 						}
 						button {
 							cursor: pointer;
+							rotate: 90deg;
 							outline: none;
 							border: none;
 							background: none;
@@ -639,5 +640,181 @@
 		background: #fff;
 		width: 500px;
 		height: 500px2;
+	}
+}
+
+// !
+
+.modalst {
+	display: flex;
+	flex-direction: column;
+	max-width: 500px;
+	height: 450px;
+	width: 100%;
+	background: white;
+	border: 4px solid #535188;
+	border-radius: 15px;
+	margin-left: 15px;
+	margin-top: -15px;
+
+	.text {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 40px;
+		width: 100%;
+		.p {
+			text-align: center;
+			font-weight: 500;
+			font-size: 18px;
+		}
+		.icons {
+			position: relative;
+			cursor: pointer;
+			left: 167px;
+			color: #535188;
+		}
+	}
+
+	.inputs {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 5px;
+		border: none;
+		max-width: 480px;
+		width: 100%;
+		padding-block: 5px;
+		padding-inline: 12px;
+		background: white;
+
+		@media (max-width: 768px) {
+			display: none;
+			opacity: 0;
+		}
+		.div_users_names {
+			display: flex;
+			gap: 4px;
+			p {
+				color: black;
+				font-size: clamp(8px, 6vw, 16px);
+				font-weight: 600;
+			}
+		}
+		svg {
+			color: gray;
+		}
+		input {
+			width: 90%;
+			background: transparent;
+			border: none;
+			outline: none;
+		}
+	}
+	span {
+		border: 1px solid #535188;
+	}
+
+	.box {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		justify-content: space-between;
+		padding-inline: 15px;
+		overflow: auto;
+		height: 320px;
+		padding: 10px;
+
+		.cards {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 5px;
+
+			.start {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 10px;
+				img {
+					width: 50px;
+					height: 50px;
+					border-radius: 50%;
+				}
+				.text {
+					display: flex;
+					flex-direction: column;
+				}
+			}
+
+			input[type='checkbox'] {
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				border: 2px solid #535188;
+				appearance: none;
+				-webkit-appearance: none;
+				outline: none;
+				cursor: pointer;
+				background-color: #fff;
+				position: relative;
+			}
+
+			input[type='checkbox']:checked {
+				background: #535188;
+			}
+
+			input[type='checkbox']:checked::after {
+				content: '';
+				position: absolute;
+				top: 1px;
+				left: 5px;
+				width: 6px;
+				height: 11px;
+				border: solid white;
+				border-width: 0 2px 2px 0;
+				transform: rotate(45deg);
+			}
+		}
+		.cards:hover {
+			transition: 0.5s;
+			background: #b8b8bd;
+			cursor: pointer;
+			border-radius: 10px;
+		}
+	}
+
+	.noo_active {
+		width: 430px;
+		background: #5351888e;
+		border: none;
+		outline: none;
+		color: rgb(237, 224, 224);
+		border-radius: 10px;
+		height: 40px;
+		margin-bottom: 20px;
+		margin-left: 15px;
+		margin-top: 10px;
+
+		&.active_button {
+			width: 430px;
+			background: #535188;
+			border: none;
+			outline: none;
+			color: white;
+			border-radius: 10px;
+			height: 40px;
+			margin-bottom: 20px;
+			margin-left: 15px;
+			margin-top: 10px;
+			cursor: pointer;
+		}
+	}
+
+	.input_users {
+		height: 40px;
+		border: none;
+		outline: none;
+		padding: 15px;
 	}
 }

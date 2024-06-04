@@ -1,39 +1,39 @@
-import { Link, Route, Routes } from 'react-router-dom';
-import Circle from '@/src/assets/icons/Circle';
-import Zip from '@/src/assets/icons/Zip';
-import SubTract from '@/src/assets/icons/SubTract';
-import Info from '@/src/assets/icons/Info';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { IconUserCircle, IconLock, IconCircleHalf } from '@tabler/icons-react';
 import scss from './Style.module.scss';
-import ConfidentTwoPage from './ConfidentTwoPage';
+
 const ConfidentPage = () => {
+	const navigationItems = [
+		{ path: '/settings', icon: <IconUserCircle />, label: 'Редактировать профиль' },
+		{ path: '/confindent', icon: <IconLock />, label: 'Конфиденциальность' },
+		{ path: '/blocked', icon: <IconCircleHalf />, label: 'Заблокированные аккаунты' }
+	];
+
+
+	const { pathname } = useLocation();
+	const navigate = useNavigate();
+	
+	const navigateTo = (path: string) => {
+		navigate(path);
+	};
+
 	return (
 		<div className={scss.section1}>
 			<div className={scss.content1}>
 				<div className={scss.img_texting}>
-					<div className={scss.circle}>
-						<Circle />
-						<p>Редактировать профиль</p>
-					</div>
-					<div className={scss.zip}>
-						<Zip />
-						<Link to="/confindent">
-							<p>Конфиденциальность</p>
-						</Link>
-					</div>
-
-					<div className={scss.sub_tract}>
-						<SubTract />
-						<p>Заблокированные аккаунты</p>
-					</div>
-					<div className={scss.info}>
-						<Info />
-						<p>Метки и уведомления</p>
-					</div>
+						{navigationItems.map((item, index) => (
+						<li key={index} onClick={() => navigateTo(item.path)}>
+							<Link
+								className={`${pathname === item.path ? scss.active_page : scss.active_default}`}
+								to={item.path}
+							>
+								{item.icon }
+								<p>{item.label}</p>
+							</Link>
+						</li>
+					))}
 				</div>
 			</div>
-			<Routes>
-				<Route path="/confindent" element={<ConfidentTwoPage />} />
-			</Routes>
 		</div>
 	);
 };

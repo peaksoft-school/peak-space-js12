@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import scss from './Style.module.scss';
+
 import { useGetFavouritesQuery } from '@/src/redux/api/favourites';
+import scss from './Style.module.scss';
 
 const Favourites = () => {
 	const { data, isLoading, isError } = useGetFavouritesQuery();
@@ -33,9 +33,10 @@ const Favourites = () => {
 				<h1>Loading...</h1>
 			) : (
 				<>
-					{filteretData?.map((item) => (
-						<div key={item.id}>
-							<img src={item.link} style={{ width: '130px' }} alt="photos" />
+
+					{data?.map((item) => (
+						<div className={scss.widget} key={item.id}>
+							<img src={item.img} alt="photo" />
 						</div>
 					))}
 				</>

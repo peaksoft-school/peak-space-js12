@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
 	Link,
 	Route,
@@ -8,8 +9,8 @@ import {
 import Publications from './Publications';
 import Favourites from './Favourites';
 import PhotoWith from './PhotoWith';
-import { useEffect, useState } from 'react';
-import scss from './Style.module.scss';
+import ModalTs from '@/src/ui/modal/Modal';
+import MyFriends from '@/src/ui/myFriends/MyFriends';
 import {
 	IconEdit,
 	IconBasket,
@@ -17,8 +18,7 @@ import {
 	IconHeart,
 	IconPinned
 } from '@tabler/icons-react';
-import ModalTs from '@/src/ui/modal/Modal';
-import MyFriends from '@/src/ui/myFriends/MyFriends';
+import scss from './Style.module.scss';
 
 const ProfilPage = () => {
 	const { pathname } = useLocation();
@@ -69,16 +69,16 @@ const ProfilPage = () => {
 							src={
 								'https://i.pinimg.com/564x/f6/da/51/f6da518578e44dde5d26460543c06e54.jpg'
 							}
-							alt=""
+							alt="photo"
 						/>
 					</div>
-					<div className={scss.bar}>
+					<div className={scss.bars}>
 						<div className={scss.user_img}>
 							<img
 								src={
 									'https://i.pinimg.com/564x/ff/6d/a9/ff6da93f4a2a50401fe74ccee7ec23a0.jpg'
 								}
-								alt=""
+								alt="photo"
 							/>
 						</div>
 						<div className={scss.sidebar}>
@@ -109,8 +109,10 @@ const ProfilPage = () => {
 									</div>
 								</div>
 							</div>
+
 							<div className={scss.far}>
 								<div className={scss.friends_count}>
+
 									<h4>110</h4>
 									<p>друзей </p>
 								</div>
@@ -127,7 +129,6 @@ const ProfilPage = () => {
 											<div>
 												<MyFriends />
 											</div>
-											``
 										</div>
 									</ModalTs>
 								</div>

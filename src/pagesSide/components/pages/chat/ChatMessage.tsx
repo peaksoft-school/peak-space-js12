@@ -1,7 +1,8 @@
-import { useGetUsersQuery } from '@/src/redux/api/chat';
-import scss from './Style.module.scss';
-import { IconSearch } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
+import { useGetUsersQuery } from '@/src/redux/api/chat';
+import { IconSearch } from '@tabler/icons-react';
+import scss from './Style.module.scss';
+
 const ChatMessage = () => {
 	const { data, isLoading } = useGetUsersQuery();
 	const navigate = useNavigate();

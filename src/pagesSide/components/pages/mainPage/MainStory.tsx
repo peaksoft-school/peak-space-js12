@@ -2,6 +2,7 @@ import { useGetStoryQuery } from '@/src/redux/api/story';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import scss from './Style.module.scss';
+
 import { SetStateAction, useState } from 'react';
 import ModalTs from '@/src/ui/modal/Modal';
 import { Progress } from 'antd';
@@ -57,6 +58,7 @@ const MainStory = () => {
 	const handCancelStory = () => {
 		setIsOpenModalStory(false);
 	};
+
 
 	const [ref] = useKeenSlider<HTMLDivElement>({
 		breakpoints: {
@@ -139,6 +141,7 @@ const MainStory = () => {
 						</ModalTs>
 						{data?.map((item, index) => (
 							<div key={item._id} className="keen-slider__slide">
+
 								<div className={scss.testDiv}>
 									<img
 										onClick={() => {
@@ -147,6 +150,7 @@ const MainStory = () => {
 										className={scss.story_pic}
 										src={item.userPhoto}
 										alt=""
+
 									/>
 								</div>
 							</div>
@@ -154,6 +158,7 @@ const MainStory = () => {
 					</div>
 				)}
 			</div>
+
 
 			<ModalTs open={isOpenModalStory} onCancel={handCancelStory}>
 				{data && (
@@ -192,6 +197,7 @@ const MainStory = () => {
 					</div>
 				)}
 			</ModalTs>
+
 		</>
 	);
 };

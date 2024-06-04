@@ -1,5 +1,6 @@
 import { useGetUsersprofileQuery } from '@/src/redux/api/usersProfile';
 import scss from './Style.module.scss';
+
 const UsersPhoto = () => {
 	const { data, isLoading } = useGetUsersprofileQuery();
 	return (

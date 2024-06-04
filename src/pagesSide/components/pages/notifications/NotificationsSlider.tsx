@@ -1,7 +1,8 @@
-import { useGetSliderNotifiQuery } from '@/src/redux/api/slider';
 import { useState } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
+import { useGetSliderNotifiQuery } from '@/src/redux/api/slider';
 import scss from './Notifications.module.scss';
+
 const NotificationsSlider = () => {
 	const { data, isLoading } = useGetSliderNotifiQuery();
 	const [currentSlide, setCurrentSlide] = useState(0);
@@ -51,7 +52,7 @@ const NotificationsSlider = () => {
 									key={index}
 									className={`keen-slider__slide ${scss.aside_slider}`}
 								>
-									<img src={item.img} alt="" />
+									<img src={item.img} alt="photo" />
 								</div>
 							))}
 						</div>

@@ -4,6 +4,7 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+
 importers:
   .:
     dependencies:
@@ -99,6 +100,7 @@ importers:
         specifier: ^5.2.0
         version: 5.2.12(@types/node@20.12.12)(sass@1.77.2)
 
+
 packages:
   '@ant-design/colors@7.0.2':
     resolution:
@@ -114,6 +116,7 @@ packages:
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
+
 
   '@ant-design/icons-svg@4.4.2':
     resolution:
@@ -131,6 +134,7 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
+
   '@ant-design/react-slick@1.1.2':
     resolution:
       {
@@ -139,12 +143,12 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
 
+
   '@babel/runtime@7.24.6':
-    resolution:
-      {
-        integrity: sha512-Ja18XcETdEl5mzzACGd+DKgaGJzPTCow7EglgwTmHdwokzDFYh/MHua6lU6DV/hjF2IaOJ4oX2nqnjG7RElKOw==
-      }
-    engines: { node: '>=6.9.0' }
+
+
+    resolution: {integrity: sha512-Ja18XcETdEl5mzzACGd+DKgaGJzPTCow7EglgwTmHdwokzDFYh/MHua6lU6DV/hjF2IaOJ4oX2nqnjG7RElKOw==}
+    engines: {node: '>=6.9.0'}
 
   '@ctrl/tinycolor@3.6.1':
     resolution:
@@ -424,6 +428,7 @@ packages:
       }
     engines: { node: '>=14' }
 
+
   '@firebase/analytics-compat@0.2.10':
     resolution:
       {
@@ -432,11 +437,13 @@ packages:
     peerDependencies:
       '@firebase/app-compat': 0.x
 
+
   '@firebase/analytics-types@0.8.2':
     resolution:
       {
         integrity: sha512-EnzNNLh+9/sJsimsA/FGqzakmrAUKLeJvjRHlg8df1f97NLUlFidk9600y0ZgWOp3CAxn6Hjtk+08tixlUOWyw==
       }
+
 
   '@firebase/analytics@0.10.4':
     resolution:
@@ -453,6 +460,7 @@ packages:
       }
     peerDependencies:
       '@firebase/app-compat': 0.x
+
 
   '@firebase/app-check-interop-types@0.3.2':
     resolution:
@@ -480,6 +488,7 @@ packages:
         integrity: sha512-vgay/WRjeH0r97/Q6L6df2CMx7oyNFDsE5yPQ9oR1G+zx2eT0s8vNNh0WlKqQxUEWaOLRnXhQ8gy7uu0cBgTRg==
       }
 
+
   '@firebase/app-types@0.9.2':
     resolution:
       {
@@ -500,6 +509,7 @@ packages:
     peerDependencies:
       '@firebase/app-compat': 0.x
 
+
   '@firebase/auth-interop-types@0.2.3':
     resolution:
       {
@@ -516,16 +526,16 @@ packages:
       '@firebase/util': 1.x
 
   '@firebase/auth@1.7.4':
-    resolution:
-      {
-        integrity: sha512-d2Fw17s5QesojwebrA903el20Li9/YGgkoOGJjagM4I1qAT36APa/FcZ+OX86KxbYKCtQKTMqraU8pxG7C2JWA==
-      }
+
+
+    resolution: {integrity: sha512-d2Fw17s5QesojwebrA903el20Li9/YGgkoOGJjagM4I1qAT36APa/FcZ+OX86KxbYKCtQKTMqraU8pxG7C2JWA==}
     peerDependencies:
       '@firebase/app': 0.x
       '@react-native-async-storage/async-storage': ^1.18.1
     peerDependenciesMeta:
       '@react-native-async-storage/async-storage':
         optional: true
+
 
   '@firebase/component@0.6.7':
     resolution:
@@ -551,6 +561,7 @@ packages:
         integrity: sha512-cAfwBqMQuW6HbhwI3Cb/gDqZg7aR0OmaJ85WUxlnoYW2Tm4eR0hFl5FEijI3/gYPUiUcUPQvTkGV222VkT7KPw==
       }
 
+
   '@firebase/firestore-compat@0.3.32':
     resolution:
       {
@@ -558,6 +569,7 @@ packages:
       }
     peerDependencies:
       '@firebase/app-compat': 0.x
+
 
   '@firebase/firestore-types@3.0.2':
     resolution:
@@ -568,14 +580,15 @@ packages:
       '@firebase/app-types': 0.x
       '@firebase/util': 1.x
 
+
   '@firebase/firestore@4.6.3':
-    resolution:
-      {
-        integrity: sha512-d/+N2iUsiJ/Dc7fApdpdmmTXzwuTCromsdA1lKwYfZtMIOd1fI881NSLwK2wV4I38wkLnvfKJUV6WpU1f3/ONg==
-      }
-    engines: { node: '>=10.10.0' }
+
+
+    resolution: {integrity: sha512-d/+N2iUsiJ/Dc7fApdpdmmTXzwuTCromsdA1lKwYfZtMIOd1fI881NSLwK2wV4I38wkLnvfKJUV6WpU1f3/ONg==}
+    engines: {node: '>=10.10.0'}
     peerDependencies:
       '@firebase/app': 0.x
+
 
   '@firebase/functions-compat@0.3.11':
     resolution:
@@ -584,6 +597,7 @@ packages:
       }
     peerDependencies:
       '@firebase/app-compat': 0.x
+
 
   '@firebase/functions-types@0.6.2':
     resolution:
@@ -623,6 +637,7 @@ packages:
     peerDependencies:
       '@firebase/app': 0.x
 
+
   '@firebase/logger@0.4.2':
     resolution:
       {
@@ -636,6 +651,7 @@ packages:
       }
     peerDependencies:
       '@firebase/app-compat': 0.x
+
 
   '@firebase/messaging-interop-types@0.2.2':
     resolution:
@@ -659,6 +675,7 @@ packages:
     peerDependencies:
       '@firebase/app-compat': 0.x
 
+
   '@firebase/performance-types@0.2.2':
     resolution:
       {
@@ -680,6 +697,7 @@ packages:
       }
     peerDependencies:
       '@firebase/app-compat': 0.x
+
 
   '@firebase/remote-config-types@0.3.2':
     resolution:
@@ -703,6 +721,7 @@ packages:
     peerDependencies:
       '@firebase/app-compat': 0.x
 
+
   '@firebase/storage-types@0.8.2':
     resolution:
       {
@@ -720,21 +739,23 @@ packages:
     peerDependencies:
       '@firebase/app': 0.x
 
+
   '@firebase/util@1.9.6':
     resolution:
       {
         integrity: sha512-IBr1MZbp4d5MjBCXL3TW1dK/PDXX4yOGbiwRNh1oAbE/+ci5Uuvy9KIrsFYY80as1I0iOaD5oOMA9Q8j4TJWcw==
       }
 
+
   '@firebase/vertexai-preview@0.0.2':
-    resolution:
-      {
-        integrity: sha512-NOOL63kFQRq45ioi5P+hlqj/4LNmvn1URhGjQdvyV54c1Irvoq26aW861PRRLjrSMIeNeiLtCLD5pe+ediepAg==
-      }
-    engines: { node: '>=18.0.0' }
+
+
+    resolution: {integrity: sha512-NOOL63kFQRq45ioi5P+hlqj/4LNmvn1URhGjQdvyV54c1Irvoq26aW861PRRLjrSMIeNeiLtCLD5pe+ediepAg==}
+    engines: {node: '>=18.0.0'}
     peerDependencies:
       '@firebase/app': 0.x
       '@firebase/app-types': 0.x
+
 
   '@firebase/webchannel-wrapper@1.0.0':
     resolution:
@@ -865,6 +886,7 @@ packages:
       }
     engines: { node: '>=14.x' }
 
+
   '@rc-component/color-picker@1.5.3':
     resolution:
       {
@@ -873,6 +895,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   '@rc-component/context@1.4.0':
     resolution:
@@ -883,12 +906,14 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   '@rc-component/mini-decimal@1.1.0':
     resolution:
       {
         integrity: sha512-jS4E7T9Li2GuYwI6PyiVXmxTiM6b07rlD9Ge8uGZSCz3WlzcG5ZK7g5bbuKNeZ9pgUuPK/5guV781ujdVpm4HQ==
       }
     engines: { node: '>=8.x' }
+
 
   '@rc-component/mutate-observer@1.1.0':
     resolution:
@@ -900,6 +925,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   '@rc-component/portal@1.1.2':
     resolution:
       {
@@ -909,6 +935,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   '@rc-component/tour@1.15.0':
     resolution:
@@ -920,15 +947,16 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   '@rc-component/trigger@2.2.0':
-    resolution:
-      {
-        integrity: sha512-QarBCji02YE9aRFhZgRZmOpXBj0IZutRippsVBv85sxvG4FGk/vRxwAlkn3MS9zK5mwbETd86mAVg2tKqTkdJA==
-      }
-    engines: { node: '>=8.x' }
+
+
+    resolution: {integrity: sha512-QarBCji02YE9aRFhZgRZmOpXBj0IZutRippsVBv85sxvG4FGk/vRxwAlkn3MS9zK5mwbETd86mAVg2tKqTkdJA==}
+    engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   '@reduxjs/toolkit@2.2.5':
     resolution:
@@ -943,6 +971,7 @@ packages:
         optional: true
       react-redux:
         optional: true
+
 
   '@remix-run/router@1.16.1':
     resolution:
@@ -1231,24 +1260,23 @@ packages:
         integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==
       }
 
-  '@types/react@18.3.3':
-    resolution:
-      {
-        integrity: sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==
-      }
 
+  '@types/react@18.3.3':
+
+
+    resolution: {integrity: sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==}
   '@types/use-sync-external-store@0.0.3':
     resolution:
       {
         integrity: sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==
       }
 
+
   '@typescript-eslint/eslint-plugin@7.11.0':
-    resolution:
-      {
-        integrity: sha512-P+qEahbgeHW4JQ/87FuItjBj8O3MYv5gELDzr8QaQ7fsll1gSMTYb6j87MYyxwf3DtD7uGFB9ShwgmCJB5KmaQ==
-      }
-    engines: { node: ^18.18.0 || >=20.0.0 }
+
+
+    resolution: {integrity: sha512-P+qEahbgeHW4JQ/87FuItjBj8O3MYv5gELDzr8QaQ7fsll1gSMTYb6j87MYyxwf3DtD7uGFB9ShwgmCJB5KmaQ==}
+    engines: {node: ^18.18.0 || >=20.0.0}
     peerDependencies:
       '@typescript-eslint/parser': ^7.0.0
       eslint: ^8.56.0
@@ -1257,18 +1285,19 @@ packages:
       typescript:
         optional: true
 
+
   '@typescript-eslint/parser@7.11.0':
-    resolution:
-      {
-        integrity: sha512-yimw99teuaXVWsBcPO1Ais02kwJ1jmNA1KxE7ng0aT7ndr1pT1wqj0OJnsYVGKKlc4QJai86l/025L6z8CljOg==
-      }
-    engines: { node: ^18.18.0 || >=20.0.0 }
+
+
+    resolution: {integrity: sha512-yimw99teuaXVWsBcPO1Ais02kwJ1jmNA1KxE7ng0aT7ndr1pT1wqj0OJnsYVGKKlc4QJai86l/025L6z8CljOg==}
+    engines: {node: ^18.18.0 || >=20.0.0}
     peerDependencies:
       eslint: ^8.56.0
       typescript: '*'
     peerDependenciesMeta:
       typescript:
         optional: true
+
 
   '@typescript-eslint/scope-manager@7.11.0':
     resolution:
@@ -1278,45 +1307,43 @@ packages:
     engines: { node: ^18.18.0 || >=20.0.0 }
 
   '@typescript-eslint/type-utils@7.11.0':
-    resolution:
-      {
-        integrity: sha512-WmppUEgYy+y1NTseNMJ6mCFxt03/7jTOy08bcg7bxJJdsM4nuhnchyBbE8vryveaJUf62noH7LodPSo5Z0WUCg==
-      }
-    engines: { node: ^18.18.0 || >=20.0.0 }
+
+
+    resolution: {integrity: sha512-WmppUEgYy+y1NTseNMJ6mCFxt03/7jTOy08bcg7bxJJdsM4nuhnchyBbE8vryveaJUf62noH7LodPSo5Z0WUCg==}
+    engines: {node: ^18.18.0 || >=20.0.0}
     peerDependencies:
       eslint: ^8.56.0
       typescript: '*'
     peerDependenciesMeta:
       typescript:
         optional: true
+
 
   '@typescript-eslint/types@7.11.0':
-    resolution:
-      {
-        integrity: sha512-MPEsDRZTyCiXkD4vd3zywDCifi7tatc4K37KqTprCvaXptP7Xlpdw0NR2hRJTetG5TxbWDB79Ys4kLmHliEo/w==
-      }
-    engines: { node: ^18.18.0 || >=20.0.0 }
+
+
+    resolution: {integrity: sha512-MPEsDRZTyCiXkD4vd3zywDCifi7tatc4K37KqTprCvaXptP7Xlpdw0NR2hRJTetG5TxbWDB79Ys4kLmHliEo/w==}
+    engines: {node: ^18.18.0 || >=20.0.0}
 
   '@typescript-eslint/typescript-estree@7.11.0':
-    resolution:
-      {
-        integrity: sha512-cxkhZ2C/iyi3/6U9EPc5y+a6csqHItndvN/CzbNXTNrsC3/ASoYQZEt9uMaEp+xFNjasqQyszp5TumAVKKvJeQ==
-      }
-    engines: { node: ^18.18.0 || >=20.0.0 }
+
+    resolution: {integrity: sha512-cxkhZ2C/iyi3/6U9EPc5y+a6csqHItndvN/CzbNXTNrsC3/ASoYQZEt9uMaEp+xFNjasqQyszp5TumAVKKvJeQ==}
+    engines: {node: ^18.18.0 || >=20.0.0}
     peerDependencies:
       typescript: '*'
     peerDependenciesMeta:
       typescript:
         optional: true
 
+
   '@typescript-eslint/utils@7.11.0':
-    resolution:
-      {
-        integrity: sha512-xlAWwPleNRHwF37AhrZurOxA1wyXowW4PqVXZVUNCLjB48CqdPJoJWkrpH2nij9Q3Lb7rtWindtoXwxjxlKKCA==
-      }
-    engines: { node: ^18.18.0 || >=20.0.0 }
+
+
+    resolution: {integrity: sha512-xlAWwPleNRHwF37AhrZurOxA1wyXowW4PqVXZVUNCLjB48CqdPJoJWkrpH2nij9Q3Lb7rtWindtoXwxjxlKKCA==}
+    engines: {node: ^18.18.0 || >=20.0.0}
     peerDependencies:
       eslint: ^8.56.0
+
 
   '@typescript-eslint/visitor-keys@7.11.0':
     resolution:
@@ -1325,11 +1352,13 @@ packages:
       }
     engines: { node: ^18.18.0 || >=20.0.0 }
 
+
   '@ungap/structured-clone@1.2.0':
     resolution:
       {
         integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
       }
+
 
   '@vitejs/plugin-react-swc@3.7.0':
     resolution:
@@ -1338,6 +1367,7 @@ packages:
       }
     peerDependencies:
       vite: ^4 || ^5
+
 
   acorn-jsx@5.3.2:
     resolution:
@@ -1375,14 +1405,15 @@ packages:
       }
     engines: { node: '>=8' }
 
+
   antd@5.17.4:
-    resolution:
-      {
-        integrity: sha512-oDWrcibe1s72223vpvA3/dNBEotGkggyWQVX1+GVrhuVXt/QYE3oU3Tsg3PeMurohvO8kjxambqG/zbmsMG34g==
-      }
+
+
+    resolution: {integrity: sha512-oDWrcibe1s72223vpvA3/dNBEotGkggyWQVX1+GVrhuVXt/QYE3oU3Tsg3PeMurohvO8kjxambqG/zbmsMG34g==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   anymatch@3.1.3:
     resolution:
@@ -1732,11 +1763,13 @@ packages:
       }
     engines: { node: '>=10' }
 
+
   firebase@10.12.2:
     resolution:
       {
         integrity: sha512-ZxEdtSvP1I9su1yf32D8TIdgxtPgxwr6z3jYAR1TXS/t+fVfpoPc/N1/N2bxOco9mNjUoc+od34v5Fn4GeKs6Q==
       }
+
 
   flat-cache@3.2.0:
     resolution:
@@ -1792,6 +1825,7 @@ packages:
         integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==
       }
     deprecated: Glob versions prior to v9 are no longer supported
+
 
   globals@13.24.0:
     resolution:
@@ -2209,6 +2243,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-checkbox@3.3.0:
     resolution:
       {
@@ -2217,6 +2252,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   rc-collapse@3.7.3:
     resolution:
@@ -2227,6 +2263,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-dialog@9.4.0:
     resolution:
       {
@@ -2235,6 +2272,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   rc-drawer@7.1.0:
     resolution:
@@ -2245,6 +2283,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-dropdown@4.2.0:
     resolution:
       {
@@ -2253,6 +2292,7 @@ packages:
     peerDependencies:
       react: '>=16.11.0'
       react-dom: '>=16.11.0'
+
 
   rc-field-form@2.0.1:
     resolution:
@@ -2263,6 +2303,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   rc-image@7.6.0:
     resolution:
@@ -2282,6 +2323,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-input@1.5.1:
     resolution:
       {
@@ -2290,6 +2332,7 @@ packages:
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
+
 
   rc-mentions@2.13.1:
     resolution:
@@ -2300,6 +2343,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-menu@9.14.0:
     resolution:
       {
@@ -2309,6 +2353,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-motion@2.9.1:
     resolution:
       {
@@ -2317,6 +2362,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   rc-notification@5.4.0:
     resolution:
@@ -2328,6 +2374,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-overflow@1.3.2:
     resolution:
       {
@@ -2337,6 +2384,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-pagination@4.0.4:
     resolution:
       {
@@ -2345,6 +2393,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   rc-picker@4.5.0:
     resolution:
@@ -2369,6 +2418,7 @@ packages:
       moment:
         optional: true
 
+
   rc-progress@4.0.0:
     resolution:
       {
@@ -2377,6 +2427,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   rc-rate@2.12.0:
     resolution:
@@ -2388,6 +2439,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-resize-observer@1.4.0:
     resolution:
       {
@@ -2397,6 +2449,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-segmented@2.3.0:
     resolution:
       {
@@ -2405,6 +2458,7 @@ packages:
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
+
 
   rc-select@14.14.0:
     resolution:
@@ -2416,6 +2470,7 @@ packages:
       react: '*'
       react-dom: '*'
 
+
   rc-slider@10.6.2:
     resolution:
       {
@@ -2425,6 +2480,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   rc-steps@6.0.1:
     resolution:
@@ -2436,6 +2492,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-switch@4.1.0:
     resolution:
       {
@@ -2445,15 +2502,16 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-table@7.45.7:
-    resolution:
-      {
-        integrity: sha512-wi9LetBL1t1csxyGkMB2p3mCiMt+NDexMlPbXHvQFmBBAsMxrgNSAPwUci2zDLUq9m8QdWc1Nh8suvrpy9mXrg==
-      }
-    engines: { node: '>=8.x' }
+
+
+    resolution: {integrity: sha512-wi9LetBL1t1csxyGkMB2p3mCiMt+NDexMlPbXHvQFmBBAsMxrgNSAPwUci2zDLUq9m8QdWc1Nh8suvrpy9mXrg==}
+    engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   rc-tabs@15.1.0:
     resolution:
@@ -2465,6 +2523,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-textarea@1.7.0:
     resolution:
       {
@@ -2473,6 +2532,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   rc-tooltip@6.2.0:
     resolution:
@@ -2483,6 +2543,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-tree-select@5.21.0:
     resolution:
       {
@@ -2491,6 +2552,7 @@ packages:
     peerDependencies:
       react: '*'
       react-dom: '*'
+
 
   rc-tree@5.8.7:
     resolution:
@@ -2502,6 +2564,7 @@ packages:
       react: '*'
       react-dom: '*'
 
+
   rc-upload@4.5.2:
     resolution:
       {
@@ -2511,6 +2574,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+
   rc-util@5.41.0:
     resolution:
       {
@@ -2519,6 +2583,7 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
 
   rc-virtual-list@3.14.2:
     resolution:
@@ -2553,11 +2618,11 @@ packages:
         integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
       }
 
+
   react-redux@9.1.2:
-    resolution:
-      {
-        integrity: sha512-0OA4dhM1W48l3uzmv6B7TXPCGmokUU4p1M44DGN2/D9a1FjVPukVjER1PcPX97jIg6aUeLq1XJo1IpfbgULn0w==
-      }
+
+
+    resolution: {integrity: sha512-0OA4dhM1W48l3uzmv6B7TXPCGmokUU4p1M44DGN2/D9a1FjVPukVjER1PcPX97jIg6aUeLq1XJo1IpfbgULn0w==}
     peerDependencies:
       '@types/react': ^18.2.25
       react: ^18.0
@@ -2567,6 +2632,7 @@ packages:
         optional: true
       redux:
         optional: true
+
 
   react-router-dom@6.23.1:
     resolution:
@@ -2586,6 +2652,7 @@ packages:
     engines: { node: '>=14.0.0' }
     peerDependencies:
       react: '>=16.8'
+
 
   react-toastify@10.0.5:
     resolution:
@@ -2887,11 +2954,10 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   vite@5.2.12:
-    resolution:
-      {
-        integrity: sha512-/gC8GxzxMK5ntBwb48pR32GGhENnjtY30G4A0jemunsBkiEZFw60s8InGpN8gkhHEkjnRK1aSAxeQgwvFhUHAA==
-      }
-    engines: { node: ^18.0.0 || >=20.0.0 }
+
+
+    resolution: {integrity: sha512-/gC8GxzxMK5ntBwb48pR32GGhENnjtY30G4A0jemunsBkiEZFw60s8InGpN8gkhHEkjnRK1aSAxeQgwvFhUHAA==}
+    engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
       '@types/node': ^18.0.0 || >=20.0.0

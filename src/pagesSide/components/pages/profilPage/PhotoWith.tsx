@@ -1,5 +1,5 @@
-import scss from './Style.module.scss';
 import { useGetUserPhotoQuery } from '@/src/redux/api/photoWuthUser';
+import scss from './Style.module.scss';
 
 const PhotoWith = () => {
 	const { data, isLoading } = useGetUserPhotoQuery();
@@ -12,7 +12,7 @@ const PhotoWith = () => {
 				<>
 					{data?.map((item) => (
 						<div className={scss.photo_user} key={item.id}>
-							<img src={item.img} alt="" />
+							<img src={item.img} alt="photo" />
 						</div>
 					))}
 				</>

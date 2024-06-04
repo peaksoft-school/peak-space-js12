@@ -1,7 +1,7 @@
-import scss from './Style.module.scss';
-import { IconMicrophone, IconVideo, IconPhoneCall } from '@tabler/icons-react';
-import foto from '../../../../assets/userStory.png';
 import { useNavigate } from 'react-router-dom';
+import foto from '../../../../assets/userStory.png';
+import { IconMicrophone, IconVideo, IconPhoneCall } from '@tabler/icons-react';
+import scss from './Style.module.scss';
 
 const Call = () => {
 	const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Call = () => {
 	return (
 		<div className={scss.call}>
 			<div className={scss.box}>
-				<img src={foto} alt="foto" />
+				<img src={foto} alt="user" />
 				<div className={scss.text}>
 					<h4>_Bogomdan</h4>
 					<p>Соединение...</p>
