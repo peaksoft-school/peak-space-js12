@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import UserEditProfile from '@/src/ui/userImages/UserEditProfile';
-import scss from './NewPublic.module.scss';
 import CustomSelect from '@/src/ui/customSelect/CustomSelect';
 import { PencilIcon } from '@/src/assets/icons';
+import scss from './NewPublic.module.scss';
 
 const NewPublic: React.FC = () => {
 	const [coverName, setCoverName] = useState<string>('');

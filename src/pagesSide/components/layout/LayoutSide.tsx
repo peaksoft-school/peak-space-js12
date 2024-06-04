@@ -11,9 +11,10 @@ import Publics from '../pages/publicsUsers/Publics';
 import MainPage from '../pages/mainPage/MainPage';
 import ChatPerson from '../pages/chat/ChatPerson';
 import NavBar from '@/src/ui/navBar/NavBar';
-import scss from './LayoutSide.module.scss';
 import Header from './header/Header';
 import Footer from './footer/Footer';
+import scss from './LayoutSide.module.scss';
+import BlockedPages from '../pages/editProfilePage/BlockedPages';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -40,6 +41,7 @@ const LayoutSide = () => {
 						<Route path="/users-profile/*" element={<UsersProfile />} />
 						<Route path="/publics/*" element={<Publics />} />
 						<Route path="/confindent" element={<ConfidentTwoPage />} />
+						<Route path="/blocked" element={<BlockedPages />} />
 						<Route path="/public" element={<PublicPage />} />
 						<Route path="/public/new-public" element={<NewPublic />} />
 					</Routes>

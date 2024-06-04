@@ -1,9 +1,10 @@
-import scss from './Style.module.scss';
-import CustomSelect from '@/src/ui/customSelect/CustomSelect';
-import UserEditProfile from '@/src/ui/userImages/UserEditProfile';
 import { Select } from 'antd';
 import type { SelectProps } from 'antd';
 import ConfidentPage from './ConfidentPage';
+import CustomSelect from '@/src/ui/customSelect/CustomSelect';
+import UserEditProfile from '@/src/ui/userImages/UserEditProfile';
+import scss from './Style.module.scss';
+
 const EditProfilePage = () => {
 	const options: SelectProps['options'] = [];
 
@@ -28,36 +29,44 @@ const EditProfilePage = () => {
 
 					<div className={scss.body}>
 						<div className={scss.bar}>
-							<p>Username</p>
+							<p>Имя пользователя</p>
 							<input type="text" placeholder="Ivanov Ivan" />
 						</div>
 						<div className={scss.bar}>
-							<p>Full Name</p>
+							<p> Фамилия</p>
 							<input type="text" placeholder="Ivanov Ivan Ivanovich" />
 						</div>
 						<div className={scss.bar}>
-							<p>About Me</p>
+							<p>Имя</p>
+							<input type="text" placeholder="Ivanov Ivan Ivanovich" />
+						</div>
+						<div className={scss.bar}>
+							<p>Отчество</p>
+							<input type="text" placeholder="Ivanov Ivan Ivanovich" />
+						</div>
+						<div className={scss.bar}>
+							<p>Обо мне</p>
 							<textarea placeholder="Express yourself with your heart"></textarea>
 						</div>
 					</div>
 				</div>
 				<div className={scss.Secondary}>
 					<div className={scss.widget}>
-						<p className={scss.text}>Secondary Education</p>
+						<p className={scss.text}>Среднее образование</p>
 						<div className={scss.inner}>
-							<p>City</p>
+							<p>Город </p>
 							<CustomSelect />
 						</div>
 						<div className={scss.inner}>
-							<p>School</p>
+							<p>Школа</p>
 							<CustomSelect />
 						</div>
 					</div>
 				</div>
-				
+
 				<div className={scss.grid}>
 					<div className={scss.col}>
-						<p className={scss.lead}>Position</p>
+						<p className={scss.lead}>Позиция</p>
 						<Select
 							mode="tags"
 							style={{ width: '100%' }}
@@ -66,12 +75,14 @@ const EditProfilePage = () => {
 							options={options}
 						/>
 						<div className={scss.row}>
-							<p style={{ fontWeight: 'bold', fontSize: '20px' }}>Status</p>
+							<p style={{ fontWeight: 'bold', fontSize: '20px' }}>
+								Положение дел
+							</p>
 							<div className={scss.radio}>
-								<input placeholder='/' type="radio" /> <p>Employed</p>
+								<input placeholder="/" type="radio" /> <p>трудоустройство</p>
 							</div>
 							<div className={scss.radio}>
-								<input type="radio" placeholder='/' /> <p>Unemployed</p>
+								<input type="radio" placeholder="/" /> <p>Безработные</p>
 							</div>
 						</div>
 					</div>

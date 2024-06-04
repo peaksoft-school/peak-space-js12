@@ -1,5 +1,6 @@
-import scss from './Style.module.scss';
 import { useGetFavouritesQuery } from '@/src/redux/api/favourites';
+import scss from './Style.module.scss';
+
 const Favourites = () => {
 	const { data, isLoading } = useGetFavouritesQuery();
 
@@ -13,7 +14,7 @@ const Favourites = () => {
 				<>
 					{data?.map((item) => (
 						<div className={scss.widget} key={item.id}>
-							<img src={item.img} alt="" />
+							<img src={item.img} alt="photo" />
 						</div>
 					))}
 				</>

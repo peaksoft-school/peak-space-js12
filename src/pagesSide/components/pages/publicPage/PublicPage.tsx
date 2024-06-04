@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import scss from './PublicPage.module.scss';
 import { Link } from 'react-router-dom';
+import scss from './PublicPage.module.scss';
 
 const PublicPage = () => {
 	const [activeItem, setActiveItem] = useState<string>('/');

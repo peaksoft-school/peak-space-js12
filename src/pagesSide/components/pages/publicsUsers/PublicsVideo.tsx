@@ -1,5 +1,6 @@
 import { useGetPublicsVideoFoodQuery } from '@/src/redux/api/publications';
 import scss from './Style.module.scss';
+
 function PublicsVideo() {
 	const { data, isLoading } = useGetPublicsVideoFoodQuery();
 	return (

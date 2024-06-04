@@ -1,16 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useRef, useState } from 'react';
+import SliderFoto from './SliderFoto';
 import {
 	useGetUserPublicQuery,
 	usePostUserPublicMutation
 } from '@/src/redux/api/userPublic';
-import scss from './Style.module.scss';
-import { useRef, useState } from 'react';
-
-import { IconCirclePlus } from '@tabler/icons-react';
-import { IconDots } from '@tabler/icons-react';
-import { IconHeartFilled } from '@tabler/icons-react';
 import ModalTs from '@/src/ui/modal/Modal';
-import SliderFoto from './SliderFoto';
+import { IconCirclePlus,IconHeartFilled } from '@tabler/icons-react';
+import scss from './Style.module.scss';
 
 const PublicFotos = () => {
 	const { data, isLoading } = useGetUserPublicQuery();
@@ -105,11 +102,11 @@ const PublicFotos = () => {
 							<img
 								onClick={openModal}
 								src={item.img}
-								alt=""
+								alt="photo"
 								className={scss.image}
 							/>
 							<button onClick={() => ShowMessageAgain(item.id)}>
-								<IconDots />
+								{/* <IconDots /> */}
 							</button>
 							<div
 								className={

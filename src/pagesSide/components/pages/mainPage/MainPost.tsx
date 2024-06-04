@@ -1,18 +1,23 @@
-import {
-	Comments,
-	Like,
-	Point,
-	Safe,
-	SendIcon,
-	Smile
-} from '@/src/assets/icons';
-import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
 import { useState } from 'react';
-import scss from './Style.module.scss';
-import ModalTs from '@/src/ui/modal/Modal';
-import SliderMain from './SliderMain';
-import data from '@emoji-mart/data';
+import { useNavigate } from 'react-router-dom';
+// import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
+import SliderMain from './SliderMain';
+import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
+import { useGetBlockedUsersQuery } from '@/src/redux/api/blocked';
+import ModalTs from '@/src/ui/modal/Modal';
+
+import {
+	IconHeart,
+	IconMessage,
+	IconCornerUpRight,
+	IconDotsVertical,
+	IconMoodPlus,
+	IconBookmarks,
+	IconX,
+	IconSearch
+} from '@tabler/icons-react';
+import scss from './Style.module.scss';
 
 const MainPost = () => {
 	const { data: items } = useGetMainPageQuery();
@@ -20,6 +25,10 @@ const MainPost = () => {
 	const [isModal, setIsModal] = useState(false);
 	const [inputStr, setInputStr] = useState('');
 	const [showPicker, setShowPicker] = useState(false);
+	const [isModal2, setIsModal2] = useState(false);
+	const [usersArray, setUsersArray] = useState<string[]>([]);
+	const navigate = useNavigate();
+	const { data, isLoading } = useGetBlockedUsersQuery();
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleGetEmoji = (event: any) => {
@@ -36,6 +45,30 @@ const MainPost = () => {
 	const closeModal = () => {
 		setIsModal(false);
 	};
+	// !2
+	const openModal2 = () => {
+		setIsModal2(true);
+	};
+	const closeModal2 = () => {
+		setIsModal2(false);
+	};
+
+	const handleOpenUsers = (userName: string) => {
+		if (!usersArray.includes(userName)) {
+			setUsersArray((prevValue) => [...prevValue, userName]);
+		} else {
+			const filtred = usersArray.filter((el) => el !== userName);
+			setUsersArray(filtred);
+		}
+	};
+
+	const handleButtonStyleResult = () => {
+		if (usersArray.length !== 0) {
+			return `${scss.noo_active} ${scss.active_button}`;
+		} else {
+			return `${scss.noo_active}`;
+		}
+	};
 
 	return (
 		<div>
@@ -51,7 +84,7 @@ const MainPost = () => {
 								</div>
 							</div>
 							<button onClick={changeState}>
-								<Point onClick={changeState} />
+								<IconDotsVertical onClick={changeState} />
 							</button>
 						</div>
 						<div
@@ -64,22 +97,98 @@ const MainPost = () => {
 						</div>
 						<p className={scss.text}>{item.description}</p>
 						<div className={scss.posts}>
+
 							<img src={item.linkPublicationResponseList} alt="photos" />
 
 							{/* <img src={item.linkPublicationResponseList} alt="photos" /> */}
 							{/* <img src={item.secondPost} alt="" /> */}
+
 							<div className={scss.icons}>
 								<div className={scss.inner}>
-									<Like />
-									<Comments onClick={openModal} />
-									<SendIcon />
+									<IconHeart />
+									<IconMessage onClick={openModal} />
+									<IconCornerUpRight onClick={openModal2} />
 								</div>
 								<div>
-									<Safe />
+									<IconBookmarks />
 								</div>
 							</div>
 						</div>
 						<p className={scss.comment}>Добавить комментарий...</p>
+
+						<ModalTs open={isModal2} onCancel={closeModal2}>
+							<div className={scss.modalst}>
+								<div className={scss.text}>
+									<p className={scss.p}>Поделиться</p>
+									<IconX onClick={closeModal2} className={scss.icons} />
+								</div>
+								<span></span>
+								<div className={scss.inputs}>
+									<IconSearch />
+									{usersArray.map((el, index) => (
+										<div
+											className={scss.div_users_names}
+											key={index}
+											onClick={() => handleOpenUsers(el)}
+										>
+											<p>{el}</p>
+											<IconX style={{ cursor: 'pointer' }} />
+										</div>
+									))}
+									<input type="text" placeholder="Поиск" />
+								</div>
+								<span></span>
+
+								<div className={scss.box}>
+									<p>Рекомендуемые</p>
+									{isLoading ? (
+										<>
+											<h1>Loading.......</h1>
+										</>
+									) : (
+										<>
+											{data?.map((item) => (
+												<div
+													key={item.id}
+													className={scss.cards}
+													onClick={() => handleOpenUsers(item.name)}
+												>
+													<div className={scss.start}>
+														<img src={item.img} alt={item.name} />
+														<div className={scss.text}>
+															<h3>{item.name}</h3>
+															<h4>{item.title}</h4>
+														</div>
+													</div>
+													<input
+														type="checkbox"
+														checked={usersArray.includes(item.name)}
+													/>
+												</div>
+											))}
+										</>
+									)}
+								</div>
+								<span></span>
+								{usersArray.length !== 0 && (
+									<input
+										className={scss.input_users}
+										type="text"
+										placeholder="Напишите Сообщение..."
+									/>
+								)}
+								<button
+									onClick={() => {
+										usersArray.length !== 0 && navigate('/chatperson');
+									}}
+									className={handleButtonStyleResult()}
+								>
+									{usersArray.length === 0 || usersArray.length === 1
+										? 'Отправить'
+										: 'Отправить по отделбности'}
+								</button>
+							</div>
+						</ModalTs>
 
 						<ModalTs open={isModal} onCancel={closeModal}>
 							<div className={scss.modal_aside}>
@@ -90,19 +199,18 @@ const MainPost = () => {
 									<div className={scss.excerpt}>
 										<div className={scss.popup}>
 											<div className={scss.bullet}>
-												<img src={item.avatar} alt="" />
+												<img src={item.avatar} alt="avatar" />
 												<div>
 													<h5>{item.username}</h5>
 													<p>{item.location}</p>
 												</div>
 											</div>
-											<Point onClick={closeModal} />
+											<IconDotsVertical onClick={closeModal} />
 										</div>
-										{/* comments */}
 										<div className={scss.preview}>
 											<img
 												src="https://i.pinimg.com/564x/42/91/b4/4291b466ec6093fd98c40f213e17c8e6.jpg"
-												alt=""
+												alt="avatar"
 											/>
 											<div className={scss.tip}>
 												<p>_alina</p>
@@ -114,7 +222,7 @@ const MainPost = () => {
 														nostrud exercitation ullamco laboris nisi ut aliquip
 													</p>
 													<button>
-														<Like />
+														<IconHeart />
 													</button>
 												</div>
 												<div className={scss.end_message}>
@@ -124,9 +232,11 @@ const MainPost = () => {
 											</div>
 										</div>
 									</div>
-									{/* inputSmile */}
+
 									<div className={scss.input_smile}>
-										<Smile onClick={() => setShowPicker((val) => !val)} />
+										<IconMoodPlus
+											onClick={() => setShowPicker((val) => !val)}
+										/>
 										<input
 											type="text"
 											placeholder="Добавить комментарий..."

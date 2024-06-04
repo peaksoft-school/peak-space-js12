@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,12 +10,16 @@ import { GoogleImg } from '@/src/assets/icons';
 import line from '../../../../assets/line.svg';
 import scss from './Login.module.scss';
 import { Input, Checkbox } from 'antd';
+
 import {
 	usePostLoginMutation,
 	usePostWithGoogleMutation
 } from '@/src/redux/api/login';
-import { signInWithPopup } from 'firebase/auth';
-import { auth, provider } from './firebase';
+import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
+import peakSpace from '../../../../assets/peakSpace.png';
+import { GoogleImg } from '@/src/assets/icons';
+import line from '../../../../assets/line.svg';
+import scss from './Login.module.scss';
 
 interface ErrorObject {
 	password: string;
@@ -82,7 +87,7 @@ const Login = () => {
 			<div className={scss.section}>
 				<div className="container">
 					<div className={scss.aside}>
-						<img src={peakSpace} alt="#" />
+						<img src={peakSpace} alt="peakSpace" />
 						<form onSubmit={handleSubmit(onSubmit)} className={scss.form}>
 							<Controller
 								{...register('email')}
@@ -165,8 +170,8 @@ const Login = () => {
 								Забыли пароль
 							</Link>
 							<div className={scss.lines}>
-								<img src={line} alt="#" /> <p style={{ color: 'gray' }}>или</p>
-								<img src={line} alt="#" />
+								<img src={line} alt="line" /> <p style={{ color: 'gray' }}>или</p>
+								<img src={line} alt="line" />
 							</div>
 						</form>
 

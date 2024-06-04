@@ -4,8 +4,8 @@ import scss from './Style.module.scss';
 const AddStory = () => {
 	return (
 		<>
-			<img src={addImgStory} alt="" />
-			<img className={scss.plus_img} src={plusImg} alt="" />
+			<img src={addImgStory} alt="addImgStory" />
+			<img className={scss.plus_img} src={plusImg} alt="plus" />
 		</>
 	);
 };

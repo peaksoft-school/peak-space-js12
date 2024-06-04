@@ -3,7 +3,7 @@ import scss from './Style.module.scss';
 const UserProfile = () => {
 	return (
 		<>
-			<img className={scss.userProfile} src={imgProfil} alt="" />
+			<img className={scss.userProfile} src={imgProfil} alt="imgProfil" />
 		</>
 	);
 };

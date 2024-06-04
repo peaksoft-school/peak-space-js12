@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useGetUserPublicQuery } from '@/src/redux/api/userPublic';
 import { useState } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
+import { useGetUserPublicQuery } from '@/src/redux/api/userPublic';
 import scss from './Style.module.scss';
 
 const SliderFoto = () => {
@@ -51,7 +51,7 @@ const SliderFoto = () => {
 							key={index}
 							className={`keen-slider__slide ${scss.aside_slider}`}
 						>
-							<img src={item.img} alt="" />
+							<img src={item.img} alt="photo" />
 						</div>
 					))}
 				</div>

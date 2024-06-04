@@ -1,15 +1,20 @@
 import { FC } from 'react';
-import scss from './Style.module.scss';
-import vector from '../../../../assets/Vector (2).svg';
 import { Link } from 'react-router-dom';
 import Siwtchback from '@/src/assets/icons/Switchback';
+import vector from '../../../../assets/Vector (2).svg';
+import scss from './Style.module.scss';
+import ConfidentPage from './ConfidentPage';
+
 const ConfidentTwoPage: FC = () => {
 	return (
 		<div className={scss.confident_content}>
+			<div>
+				<ConfidentPage />
+			</div>
 			<div className={scss.vector_switch}>
 				<div className={scss.vector}>
 					<Link to="/settings">
-						<img src={vector} alt="" />
+						<img src={vector} alt="Arrow" />
 					</Link>
 					<h2>Конфиденциальность</h2>
 				</div>

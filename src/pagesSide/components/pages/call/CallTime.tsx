@@ -1,7 +1,7 @@
-import * as iconsReact from '@tabler/icons-react';
-import foto from '../../../../assets/userStory.png';
-import scss from './Style.module.scss';
 import { useNavigate } from 'react-router-dom';
+import foto from '../../../../assets/userStory.png';
+import * as iconsReact from '@tabler/icons-react';
+import scss from './Style.module.scss';
 
 const CallTime = () => {
 	const navigate = useNavigate();
@@ -15,7 +15,7 @@ const CallTime = () => {
 			</button>
 			<div className={scss.content_call}>
 				<div className={scss.col}>
-					<img src={foto} alt="" />
+					<img src={foto} alt="avatar" />
 					<h4>_Bogomdan</h4>
 					<p>13:30</p>
 					<div className={scss.icons}>

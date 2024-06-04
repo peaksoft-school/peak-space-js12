@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link, Route, Routes, useParams } from 'react-router-dom';
-import scss from './Style.module.scss';
 import GroupPage from './Group';
 import Hashtag from './ Hashtag';
-import CustomButton from '@/src/ui/customButton/CustomButton';
 import Friend from './Friend';
-import search from '../../../../../assets/image.svg';
+import CustomButton from '@/src/ui/customButton/CustomButton';
 import ModalTs from '@/src/ui/modal/Modal';
+import search from '../../../../../assets/image.svg';
+import scss from './Style.module.scss';
 
 const Desctop = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,7 +33,7 @@ const Desctop = () => {
 			<ModalTs open={isModalOpen} onCancel={handleCancel}>
 				<div className={scss.contentype}>
 					<div className={scss.content}>
-						<img src={search} alt="" />
+						<img src={search} alt="search" />
 						<input
 							type="text"
 							placeholder="Enter text"
