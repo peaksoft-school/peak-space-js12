@@ -9,6 +9,9 @@ import {
 } from 'react-router-dom';
 import { useGetFriendsQuery } from '@/src/redux/api/friends';
 import Publications from './Publications';
+
+// import Favourites from './Favourites';
+
 import PhotoWith from './PhotoWith';
 import ModalTs from '@/src/ui/modal/Modal';
 import MyFriends from '@/src/ui/myFriends/MyFriends';
@@ -147,44 +150,44 @@ const ProfilPage = () => {
 						</ModalTs>
 
 						<ModalTs open={isOpen} onCancel={handleCloseModal}>
-							<div className={scss.modal_ts}>
-								<div className={scss.closeModal}>
-									<h1>Пожаловаться</h1>
-									<div className={scss.cloose}>
-										<IconX onClick={handleCloseModal} />
-									</div>
+
+							<div className={scss.closeModal}>
+								<h1>Пожаловаться</h1>
+								<div className={scss.cloose}>
+									<img onClick={handleCloseModal} src={vector} alt="" />
+
 								</div>
-								<div className={scss.hring}>
-									<span className={scss.hr}></span>
-								</div>
-								<div className={scss.h1_teg}>
-									<h1 className={scss.h1}>
-										Почему вы хотите пожаловаться на этого пользователя?
-									</h1>
-									<p>
-										Ваша жалоба является анонимной, за исключением случаев,
-										когда вы сообщаете о нарушениях прав на интеллектуальную
-										собственность
-									</p>
-								</div>
-								<div className={scss.spaner}>
-									<span className={scss.span1}></span>
-								</div>
-								<div className={scss.let1}>
-									<p>Ребенок младше 13 лет</p>
-								</div>
-								<div className={scss.spaner}>
-									<span className={scss.span1}></span>
-								</div>
-								<div className={scss.let1}>
-									<p>Этот человек выдает себя за другого</p>
-								</div>
-								<div className={scss.spaner}>
-									<span className={scss.span1}></span>
-								</div>
-								<div className={scss.let1}>
-									<p>Другие</p>
-								</div>
+							</div>
+							<div className={scss.hring}>
+								<span className={scss.hr}></span>
+							</div>
+							<div className={scss.h1_teg}>
+								<h1 className={scss.h1}>
+									Почему вы хотите пожаловаться на этого пользователя?{' '}
+								</h1>
+								<p>
+									Ваша жалоба является анониной, за исключением случаев, когда
+									вы сообщаете о нарушениях прав на интеллектуальную
+									собственность
+								</p>
+							</div>
+							<div className={scss.spaner}>
+								<span className={scss.span1}> </span>
+							</div>
+							<div className={scss.let1}>
+								<p>Ребенок младше 13 лет</p>
+							</div>
+							<div className={scss.spaner}>
+								<span className={scss.span1}> </span>
+							</div>
+							<div className={scss.let1}>
+								<p>Этот человек выдает себя за другого </p>
+							</div>
+							<div className={scss.spaner}>
+								<span className={scss.span1}> </span>
+							</div>
+							<div className={scss.let1}>
+								<p>Другие</p>
 							</div>
 						</ModalTs>
 					</div>
@@ -354,6 +357,9 @@ const ProfilPage = () => {
 				<div>
 					<Routes>
 						<Route path="side/public" element={<Publications />} />
+
+						{/* <Route path="side/favorite" element={<Favourites />} /> */}
+
 						<Route path="side/photo" element={<PhotoWith />} />
 					</Routes>
 				</div>

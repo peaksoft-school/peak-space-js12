@@ -1,3 +1,4 @@
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 namespace REGISTRATION {
 	type PostRegistrationResponse = {
@@ -6,6 +7,8 @@ namespace REGISTRATION {
 		userName: string;
 		email: string;
 		password: string;
+		data: string;
+		userId:string
 	};
 
 	type PostRegistrationRequest = {

@@ -42,23 +42,23 @@ const Desctop = () => {
 					</div>
 					<div className={scss.param}>
 						<Link
-							className={`${activeItem === '/Friend' ? scss.activeStyle : scss.link}`}
-							onClick={() => setActiveItem('/Friend')}
-							to="/Friend"
+							className={`${activeItem === '/friend' ? scss.activeStyle : scss.link}`}
+							onClick={() => setActiveItem('/friend')}
+							to="/friend"
 						>
 							Пользователи
 						</Link>
 						<Link
-							className={`${activeItem === '/Group' ? scss.activeStyle : scss.link}`}
-							onClick={() => setActiveItem('/Group')}
-							to="/Group"
+							className={`${activeItem === '/group' ? scss.activeStyle : scss.link}`}
+							onClick={() => setActiveItem('/group')}
+							to="/group"
 						>
 							группа
 						</Link>
 						<Link
-							className={`${activeItem === '/Hashtag' ? scss.activeStyle : scss.link}`}
-							onClick={() => setActiveItem('/Hashtag')}
-							to="/Hashtag"
+							className={`${activeItem === '/hashtag' ? scss.activeStyle : scss.link}`}
+							onClick={() => setActiveItem('/hashtag')}
+							to="/hashtag"
 						>
 							хештег
 						</Link>
@@ -66,9 +66,9 @@ const Desctop = () => {
 					<div className={scss.param}></div>
 				</div>
 				<Routes>
-					<Route path="/Friend" element={<Friend />} />
-					<Route path="/Group" element={<GroupPage />} />
-					<Route path="/Hashtag" element={<Hashtag />} />
+					<Route path="/friend" element={<Friend />} />
+					<Route path="/group" element={<GroupPage />} />
+					<Route path="/hashtag" element={<Hashtag />} />
 				</Routes>
 			</ModalTs>
 		</div>

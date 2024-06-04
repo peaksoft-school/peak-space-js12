@@ -1,11 +1,12 @@
-import { useNavigate, useParams } from 'react-router-dom';
+
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
-import { Input } from 'antd';
-import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { useCreatePasswordMutation } from '@/src/redux/api/forgetPassword';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import scss from './NewPassword.module.scss';
+import { Input } from 'antd';
 
 interface ErrorProps {
 	password: string;
@@ -39,6 +40,7 @@ const PasswordNew = () => {
 		}
 		console.log(data);
 		await postRequest(newData);
+		navigate('/');
 		reset();
 	};
 

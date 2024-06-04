@@ -38,7 +38,7 @@ const LayoutSide = () => {
 						<Route path="/chat" element={<ChatMessage />} />
 						<Route path="/chatperson" element={<ChatPerson />} />
 						<Route path="/notification" element={<Notifications />} />
-						<Route path="/usersprofile/*" element={<UsersProfile />} />
+						<Route path="/users-profile/*" element={<UsersProfile />} />
 						<Route path="/publics/*" element={<Publics />} />
 						<Route path="/confindent" element={<ConfidentTwoPage />} />
 						<Route path="/blocked" element={<BlockedPages />} />

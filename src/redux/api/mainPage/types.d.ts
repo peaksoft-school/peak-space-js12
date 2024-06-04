@@ -1,13 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 namespace MAIN {
 	type GetMainResponse = {
-		_id: number;
+		id: number;
 		avatar: string;
-		nicname: string;
-		localtion: string;
-		text: string;
-		postImg: string;
-		secondPost: string;
+		username: string;
+		location: string;
+		postId: number;
+		description: string;
+		linkPublicationResponseList: LinkPublicationResponseList;
+		countLikes: number;
+		countComments: number;
 	}[];
+	export interface LinkPublicationResponseList {
+		id: number;
+		link: string;
+	}
 	type GetMainRequest = void;
 }

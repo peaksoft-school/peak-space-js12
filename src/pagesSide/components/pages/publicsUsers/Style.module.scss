@@ -314,64 +314,68 @@
 }
 .modal {
 	display: flex;
+	// outline: solid;
+	width: 490px;
+	border-radius: 30px;
 	justify-content: center;
 	align-items: center;
+	position: relative;
+	right: 10px;
 	.modal_first {
-		background: rgb(255, 255, 255);
 		border-radius: 30px;
-		width: 582px;
+		// outline: solid;
+		background: rgb(255, 255, 255);
+		width: 658px;
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
 		padding-block: 10px;
 
-		.title {
+		.title_and_close_icon {
 			display: flex;
 			align-items: center;
-			justify-content: center;
+			padding: 0px 10px 0px 100px;
+			justify-content: space-between;
 			position: relative;
+			margin-bottom: 10px;
 			h2 {
 				color: rgb(0, 0, 0);
 				font-size: 30px;
 				font-weight: 600;
 				line-height: 36px;
 				text-align: center;
+				font-weight: bold;
 			}
-			button {
-				position: absolute;
-				top: 7px;
-				left: 535px;
-				background: none;
-				border: none;
-				outline: none;
-				cursor: pointer;
-				svg {
-				}
+			.close_modal_icon {
+				width: 40px;
+				height: 40px;
+				position: relative;
+				top: 3px;
 			}
 		}
-		span {
-			border: 0.5px solid rgba(0, 0, 0, 0.2);
-			width: 1000px;
-		}
-		h2 {
-			// text-align: center;
-			color: rgba(0, 0, 0, 0.9);
-			font-size: 25px;
-			font-weight: 500;
-			line-height: 30px;
-			letter-spacing: 3%;
-			padding-inline: 20px;
-			cursor: pointer;
-		}
-		p {
-			color: rgb(0, 0, 0);
-			font-size: 20px;
-			font-weight: 200;
-			line-height: 24px;
-			padding-inline: 20px;
-			padding-block: 4px;
-			cursor: pointer;
-		}
+	}
+
+	span {
+		border: 0.5px solid rgba(0, 0, 0, 0.2);
+		width: 518px;
+	}
+	h2 {
+		color: rgba(0, 0, 0, 0.9);
+		font-size: 25px;
+		font-weight: 500;
+		line-height: 30px;
+		letter-spacing: 3%;
+		padding-inline: 20px;
+		cursor: pointer;
+	}
+	p {
+		color: rgb(0, 0, 0);
+		font-size: 20px;
+		font-weight: 200;
+		line-height: 24px;
+		padding-inline: 20px;
+		padding-block: 4px;
+		cursor: pointer;
 	}
 }
 

@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Link, useNavigate } from 'react-router-dom';
+
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Input, Checkbox } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import { signInWithPopup } from 'firebase/auth';
-import { auth, provider } from './firebase';
+import peakSpace from '../../../../assets/peakSpace.png';
+import { GoogleImg } from '@/src/assets/icons';
+import line from '../../../../assets/line.svg';
+import scss from './Login.module.scss';
+import { Input, Checkbox } from 'antd';
+
 import {
 	usePostLoginMutation,
 	usePostWithGoogleMutation

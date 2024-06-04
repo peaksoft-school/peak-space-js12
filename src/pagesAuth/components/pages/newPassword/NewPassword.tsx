@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import { Controller, useForm } from 'react-hook-form';
+
 import 'react-toastify/dist/ReactToastify.css';
 import { Input } from 'antd';
 import { usePutPasswordMutation } from '@/src/redux/api/forgetPassword';

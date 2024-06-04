@@ -109,13 +109,17 @@ const ProfilPage = () => {
 									</div>
 								</div>
 							</div>
-							<div className={scss.fars}>
-								<div>
+
+							<div className={scss.far}>
+								<div className={scss.friends_count}>
+
 									<h4>110</h4>
 									<p>друзей </p>
 								</div>
 								<div
-									className={isModalOpen ? scss.active_modal : ''}
+									className={
+										isModalOpen ? scss.active_modal : scss.publics_count
+									}
 									onClick={showModal}
 								>
 									<h4>365</h4>
