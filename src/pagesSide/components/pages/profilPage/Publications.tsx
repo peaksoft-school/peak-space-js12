@@ -11,7 +11,7 @@ import ModalTs from '@/src/ui/modal/Modal';
 import { PlusIconSecond } from '@/src/assets/icons';
 import { filterValues } from './utils';
 import { Switch, Slider } from 'antd';
-import { IconArrowLeft } from '@tabler/icons-react';
+import { IconArrowLeft, IconDots } from '@tabler/icons-react';
 import { useDeletePostMutation } from '@/src/redux/api/publications';
 
 const Publications = () => {
@@ -24,11 +24,12 @@ const Publications = () => {
 	const [modalFile, setModalFile] = useState(false);
 	const [modalSecond, setModalSecond] = useState(false);
 	const [isEdit, setIsEdit] = useState(null);
-	const [editDes, setEditDes] = useState('');
+	const [isMessage, setIsMessage] = useState({});
 	const [ellipsis, setEllipsis] = useState(true);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [fileUrls, setFileUrls] = useState<string[]>([]);
 	const [descriptionOne, setDescription] = useState('');
+	const [editDes, setEditDes] = useState('');
 	const [brightness, setBrightness] = useState(1);
 	const [contrast, setContrast] = useState(1);
 	const [fade, setFade] = useState(0);
@@ -87,7 +88,6 @@ const Publications = () => {
 
 	const removePost = (postId: number) => {
 		isDeleteFavorite(postId);
-		console.log('delete is work', postId);
 		refetch();
 	};
 
@@ -240,6 +240,8 @@ const Publications = () => {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const editPost = (item: any) => {
+		console.log(item, 'ali');
+
 		setEditDes(item.descriptionOne);
 		setIsEdit(item.id);
 		refetch();
@@ -251,9 +253,16 @@ const Publications = () => {
 			location: locationString || 'Unknown location',
 			blockComment: ellipsis
 		};
-		isPatch({ id, newData });
+		isPatch({ id, newData }).unwrap();
 		refetch();
 		setIsEdit(null);
+	};
+
+	const ShowMessageAgain = (id: number) => {
+		setIsMessage((prevState: { [x: string]: string }) => ({
+			...prevState,
+			[id]: !prevState[id]
+		}));
 	};
 
 	return (
@@ -273,36 +282,44 @@ const Publications = () => {
 					onChange={handleFileChange}
 				/>
 			</div>
-			<div>
+			<div className={scss.section}>
 				{filteretData?.map((item) => (
-					<div key={item.id}>
+					<>
 						{isEdit === item.id ? (
 							<>
-								<div>
-									<input
+								<div className={scss.edit}>
+									<textarea
 										value={editDes}
 										onChange={(e) => setEditDes(e.target.value)}
-										type="text"
-									/>
+									></textarea>
 									<button onClick={() => savePost(item.id)}>save</button>
 									<button onClick={() => setIsEdit(null)}>cancel</button>
 								</div>
 							</>
 						) : (
 							<>
-								<div>
+								<div className={scss.photos} key={item.id}>
 									<img
-										onClick={() => removePost(item.id)}
 										src={item.link}
-										style={{ width: '130px' }}
+										// style={{ width: '130px' }}
 										alt="photos"
 									/>
+									<button onClick={() => ShowMessageAgain(item.id)}>
+										<IconDots />
+									</button>
+
+									<div
+										className={
+											isMessage[item.id] ? scss.isMessage_left : scss.none
+										}
+									>
+										<p onClick={() => editPost(item)}>редактировать</p>
+										<p onClick={() => removePost(item.id)}>удалить</p>
+									</div>
 								</div>
 							</>
 						)}
-
-						<p onClick={() => editPost(item)}>edit</p>
-					</div>
+					</>
 				))}
 			</div>
 
