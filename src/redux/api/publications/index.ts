@@ -38,6 +38,17 @@ const api = index.injectEndpoints({
 			invalidatesTags: ['post']
 		}),
 
+		editGet: builder.query<PROFIL.CommentResponse, PROFIL.CommentRequest>({
+			query: (id) => ({
+				url: `/publics/find/${id}`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
+		}),
+
 		getMyPublication: builder.query<
 			PROFIL.GetMyPublicationResponse,
 			PROFIL.GetMyPublicationRequest
@@ -129,5 +140,6 @@ export const {
 	useGetGeocodeQuery,
 	useDeletePostMutation,
 	useGetMyPublicationQuery,
-	usePatchPostMutation
+	usePatchPostMutation,
+	useEditGetQuery
 } = api;

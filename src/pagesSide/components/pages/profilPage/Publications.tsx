@@ -4,17 +4,21 @@ import {
 	usePostCreateFileMutation,
 	useGetGeocodeQuery,
 	useGetMyPublicationQuery,
-	usePatchPostMutation
+	usePatchPostMutation,
+	useEditGetQuery
 } from '@/src/redux/api/publications';
 import scss from './Style.module.scss';
 import ModalTs from '@/src/ui/modal/Modal';
 import { PlusIconSecond } from '@/src/assets/icons';
 import { filterValues } from './utils';
 import { Switch, Slider } from 'antd';
-import { IconArrowLeft, IconDots } from '@tabler/icons-react';
+import { IconArrowLeft } from '@tabler/icons-react';
 import { useDeletePostMutation } from '@/src/redux/api/publications';
 
 const Publications = () => {
+	const { data: forEdit } = useEditGetQuery();
+	console.log(forEdit);
+
 	const { data, refetch } = useGetMyPublicationQuery();
 	const [createFile] = usePostCreateFileMutation();
 	const [postRequest] = useCreatePostMutation();
@@ -24,12 +28,11 @@ const Publications = () => {
 	const [modalFile, setModalFile] = useState(false);
 	const [modalSecond, setModalSecond] = useState(false);
 	const [isEdit, setIsEdit] = useState(null);
-	const [isMessage, setIsMessage] = useState({});
+	const [editDes, setEditDes] = useState('');
 	const [ellipsis, setEllipsis] = useState(true);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [fileUrls, setFileUrls] = useState<string[]>([]);
 	const [descriptionOne, setDescription] = useState('');
-	const [editDes, setEditDes] = useState('');
 	const [brightness, setBrightness] = useState(1);
 	const [contrast, setContrast] = useState(1);
 	const [fade, setFade] = useState(0);
@@ -50,6 +53,18 @@ const Publications = () => {
 
 	useEffect(() => {
 		if (data?.publications) {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const transformedPublications = data.publications.map((item: any) => {
+				const id = Object.keys(item)[0];
+				const link = item[id];
+				return { id: Number(id), link: link };
+			});
+			setFilteredData(transformedPublications);
+		}
+	}, [data]);
+
+	useEffect(() => {
+		if (forEdit?.publications) {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			const transformedPublications = data.publications.map((item: any) => {
 				const id = Object.keys(item)[0];
@@ -88,6 +103,7 @@ const Publications = () => {
 
 	const removePost = (postId: number) => {
 		isDeleteFavorite(postId);
+		console.log('delete is work', postId);
 		refetch();
 	};
 
@@ -240,8 +256,6 @@ const Publications = () => {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const editPost = (item: any) => {
-		console.log(item, 'ali');
-
 		setEditDes(item.descriptionOne);
 		setIsEdit(item.id);
 		refetch();
@@ -253,16 +267,9 @@ const Publications = () => {
 			location: locationString || 'Unknown location',
 			blockComment: ellipsis
 		};
-		isPatch({ id, newData }).unwrap();
+		isPatch({ id, newData });
 		refetch();
 		setIsEdit(null);
-	};
-
-	const ShowMessageAgain = (id: number) => {
-		setIsMessage((prevState: { [x: string]: string }) => ({
-			...prevState,
-			[id]: !prevState[id]
-		}));
 	};
 
 	return (
@@ -282,44 +289,36 @@ const Publications = () => {
 					onChange={handleFileChange}
 				/>
 			</div>
-			<div className={scss.section}>
+			<div>
 				{filteretData?.map((item) => (
-					<>
+					<div key={item.id}>
 						{isEdit === item.id ? (
 							<>
-								<div className={scss.edit}>
-									<textarea
+								<div>
+									<input
 										value={editDes}
 										onChange={(e) => setEditDes(e.target.value)}
-									></textarea>
+										type="text"
+									/>
 									<button onClick={() => savePost(item.id)}>save</button>
 									<button onClick={() => setIsEdit(null)}>cancel</button>
 								</div>
 							</>
 						) : (
 							<>
-								<div className={scss.photos} key={item.id}>
+								<div>
 									<img
+										onClick={() => removePost(item.id)}
 										src={item.link}
-										// style={{ width: '130px' }}
+										style={{ width: '130px' }}
 										alt="photos"
 									/>
-									<button onClick={() => ShowMessageAgain(item.id)}>
-										<IconDots />
-									</button>
-
-									<div
-										className={
-											isMessage[item.id] ? scss.isMessage_left : scss.none
-										}
-									>
-										<p onClick={() => editPost(item)}>редактировать</p>
-										<p onClick={() => removePost(item.id)}>удалить</p>
-									</div>
 								</div>
 							</>
 						)}
-					</>
+
+						<p onClick={() => editPost(item)}>edit</p>
+					</div>
 				))}
 			</div>
 
