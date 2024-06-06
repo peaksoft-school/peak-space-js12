@@ -7,7 +7,7 @@ import {
 } from '@/src/redux/api/publications';
 import { useNavigate, useParams } from 'react-router-dom';
 import scss from './PostById.module.scss';
-import { IconDots } from '@tabler/icons-react';
+import { IconDots, IconEdit } from '@tabler/icons-react';
 
 interface Edit {
 	postId: number;
@@ -91,7 +91,10 @@ const PostById = () => {
 				</button>
 
 				<div className={isMessage ? scss.is_work : scss.is_none}>
-					<p onClick={() => editPost(post)}>редактировать</p>
+					<div className={scss.edit_pen} onClick={() => editPost(post)}>
+						<IconEdit />
+						<p>редактировать</p>
+					</div>
 				</div>
 			</div>
 			{!post ? (

@@ -37,11 +37,27 @@
 			background: #fff;
 			border: 2px solid rgba(0, 0, 0, 0.3);
 			border-radius: 8px;
-			// width: 150px;
-			// height: 100%;
+
 			text-align: center;
 			padding: 10px;
 			z-index: 444;
+
+			.edit_pen {
+				display: flex;
+				align-items: center;
+				gap: 3px;
+				cursor: pointer;
+				p {
+					color: gray;
+					font-family: 'Roboto', sans-serif;
+					font-size: 15px;
+					font-weight: 400;
+					text-align: center;
+				}
+				svg {
+					color: gray;
+				}
+			}
 		}
 
 		.is_none {
@@ -57,10 +73,10 @@
 
 		textarea {
 			resize: none;
-			// padding: 14px 135px 14px 21px;
 			width: 100%;
 			max-width: 900px;
 			height: 61px;
+			outline: none;
 		}
 
 		.buttons {
