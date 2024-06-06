@@ -112,7 +112,6 @@ const ProfilPage = () => {
 
 							<div className={scss.far}>
 								<div className={scss.friends_count}>
-
 									<h4>110</h4>
 									<p>друзей </p>
 								</div>

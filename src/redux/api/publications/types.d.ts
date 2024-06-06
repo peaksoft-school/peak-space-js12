@@ -26,14 +26,6 @@ namespace PROFIL {
 	interface Root {}
 
 	type CommentResponse = {
-		id: number;
-		userId: number;
-		avatar: string;
-		userName: string;
-		comment: string;
-		countLike: number;
-		createdAt: string;
-
 		postId: number;
 		userId: number;
 		avatar: string;
@@ -43,8 +35,7 @@ namespace PROFIL {
 		countLikes: number;
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		links: any[];
-		commentResponses: CommentResponse[];
-	};
+	}[];
 
 	type CommentRequest = void;
 
