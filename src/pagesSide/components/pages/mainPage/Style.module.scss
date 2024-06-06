@@ -65,6 +65,13 @@
 					width: 100%;
 					max-width: 912px;
 					position: relative;
+					.posts {
+						img {
+							width: 100%;
+							max-width: 100%;
+							object-fit: cover;
+						}
+					}
 					@media (max-width: 1118px) {
 						max-width: 860px;
 
