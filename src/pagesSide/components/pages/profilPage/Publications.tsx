@@ -297,27 +297,21 @@ const Publications = () => {
 								</div>
 							</>
 						) : (
-							<>
-								<div className={scss.photos} key={item.id}>
-									<img
-										src={item.link}
-										// style={{ width: '130px' }}
-										alt="photos"
-									/>
-									<button onClick={() => ShowMessageAgain(item.id)}>
-										<IconDots />
-									</button>
+							<div className={scss.photos} key={item.id}>
+								<img src={item.link} className={scss.image} alt="photos" />
+								<button onClick={() => ShowMessageAgain(item.id)}>
+									<IconDots />
+								</button>
 
-									<div
-										className={
-											isMessage[item.id] ? scss.isMessage_left : scss.none
-										}
-									>
-										<p onClick={() => editPost(item)}>редактировать</p>
-										<p onClick={() => removePost(item.id)}>удалить</p>
-									</div>
+								<div
+									className={
+										isMessage[item.id] ? scss.isMessage_left : scss.none
+									}
+								>
+									<p onClick={() => editPost(item)}>редактировать</p>
+									<p onClick={() => removePost(item.id)}>удалить</p>
 								</div>
-							</>
+							</div>
 						)}
 					</>
 				))}

@@ -299,8 +299,25 @@
 .content {
 	display: flex;
 	flex-wrap: wrap;
+	outline: solid;
 	gap: 10px;
-	width: 100%;
+	width: 980px;
+	.section {
+		outline: solid green;
+		
+		.general {
+			display: flex;
+		}
+		.photos {
+			outline: solid;
+			width: 320px;
+			height: 320px;
+		.image {
+			outline: solid;
+			object-fit: cover;
+		}
+		}
+	}
 
 	h1 {
 		text-align: center;
@@ -324,7 +341,6 @@
 	}
 	.section {
 		display: flex;
-		// flex-direction: column;
 		gap: 6px;
 		flex-wrap: wrap;
 
@@ -1367,11 +1383,6 @@
 
 //////////////////////////////////////////////////////////////////////////////////// !1
 .content {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	width: 100%;
-
 	h1 {
 		text-align: center;
 		font-family: 'Courier New';
@@ -1393,10 +1404,6 @@
 		}
 	}
 	.section {
-		display: flex;
-		flex-direction: column;
-		gap: 6px;
-		flex-wrap: wrap;
 		img {
 			width: 320px;
 			height: 320px;
