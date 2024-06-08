@@ -23,6 +23,22 @@ namespace PROFIL {
 		publications: Publications;
 	};
 
+	interface Root {}
+
+	type CommentResponse = {
+		postId: number;
+		userId: number;
+		avatar: string;
+		userName: string;
+		location: string;
+		description: string;
+		countLikes: number;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		links: any[];
+	}[];
+
+	type CommentRequest = void;
+
 	type GetMyPublicationRequest = void;
 
 	type PostProfilResponse = {
