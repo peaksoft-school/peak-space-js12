@@ -1,82 +1,48 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react';
-import { useKeenSlider } from 'keen-slider/react';
 import { useGetUserPublicQuery } from '@/src/redux/api/userPublic';
 import scss from './Style.module.scss';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 
-const SliderFoto = () => {
-	const [currentSlide, setCurrentSlide] = useState(0);
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { FC, useEffect, useState } from 'react';
+interface SliderFotoTypes {
+	idModal: number;
+}
+const SliderFoto: FC<SliderFotoTypes> = ({ idModal }) => {
+	const { data, isLoading, error } = useGetUserPublicQuery();
+	const [resultOpenModal1, setResultOpenModal1] = useState<number>(0);
+	const [resultOpenModal2, setResultOpenModal2] = useState<number>(1);
+	if (isLoading) {
+		return <h1>Loading...</h1>;
+	}
+	console.log(idModal, 'idModal');
 
-	const { data } = useGetUserPublicQuery();
-	const [loaded, setLoaded] = useState(false);
-	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-		initial: 0,
-		slideChanged(slider) {
-			setCurrentSlide(slider.track.details.rel);
-		},
-		created() {
-			setLoaded(true);
-		}
-	});
-
-	function Arrow(props: {
-		disabled: boolean;
-		left?: boolean;
-
-		onClick: (e: any) => void;
-	}) {
-		const disabled = props.disabled ? ' arrow--disabled' : '';
-		return (
-			<svg
-				onClick={props.onClick}
-				className={`arrow ${props.left ? 'arrow--left' : 'arrow--right'} ${disabled}`}
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 24 24"
-			>
-				{props.left ? (
-					<path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-				) : (
-					<path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-				)}
-			</svg>
-		);
+	if (error) {
+		return <h1>Error loading data</h1>;
 	}
 
-	return (
-		<div>
-			<div className={scss.slider_foto}>
-				<div ref={sliderRef} className={`keen-slider ${scss.bar_slider}`}>
-					{data?.map((item, index) => (
-						<div
-							key={index}
-							className={`keen-slider__slide ${scss.aside_slider}`}
-						>
-							<img src={item.img} alt="photo" />
-						</div>
-					))}
-				</div>
-			</div>
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	useEffect(() => {
+		setResultOpenModal1(idModal - 1)
+		setResultOpenModal2(idModal)
+	}, [idModal]);
 
-			{loaded && instanceRef.current && (
-				<>
-					<Arrow
-						left
-						onClick={(e: any) =>
-							e.stopPropagation() || instanceRef.current?.prev()
-						}
-						disabled={currentSlide === 0}
-					/>
-					<Arrow
-						onClick={(e: any) =>
-							e.stopPropagation() || instanceRef.current?.next()
-						}
-						disabled={
-							currentSlide ===
-							instanceRef.current.track.details.slides.length - 1
-						}
-					/>
-				</>
-			)}
+	return (
+		<div className={scss.slider_foto}>
+			<Swiper
+				style={{ width: '400px' }}
+				freeMode={true}
+				navigation={true}
+				modules={[Navigation]}
+			>
+				{data &&
+					data?.slice(resultOpenModal1, resultOpenModal2).map((item) => (
+						<SwiperSlide key={item._id} className={scss.images}>
+							<img src={item.img} alt="photo" />
+						</SwiperSlide>
+					))}
+			</Swiper>
 		</div>
 	);
 };

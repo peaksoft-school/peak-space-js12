@@ -7,7 +7,7 @@ const api = index.injectEndpoints({
 			USERPUBLIC.GetUserPublicRequest
 		>({
 			query: () => ({
-				url: 'https://63476dac7ee4143e.mokky.dev/public',
+				url: 'https://api-v2.elchocrud.pro/api/v1/4cef53d5dea17a51c65ab1510ec00c15/userPulic',
 				method: 'GET'
 			}),
 			providesTags: ['post']

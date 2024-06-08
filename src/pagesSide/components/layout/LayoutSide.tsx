@@ -15,6 +15,7 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import scss from './LayoutSide.module.scss';
 import BlockedPages from '../pages/editProfilePage/BlockedPages';
+import UserPublic from '../pages/userPublic/UserPublic';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -44,6 +45,7 @@ const LayoutSide = () => {
 						<Route path="/blocked" element={<BlockedPages />} />
 						<Route path="/public" element={<PublicPage />} />
 						<Route path="/public/new-public" element={<NewPublic />} />
+						<Route path="/userpublic/*" element={<UserPublic />} />
 					</Routes>
 				</main>
 			</div>
