@@ -17,7 +17,7 @@ const Publics = () => {
 	const [page, setPage] = useState(true);
 
 	const handleProfile = () => {
-		navigate('/UsersProfile/side/public');
+		navigate('/users-profile/side/public');
 	};
 	
 	useEffect(() => {

@@ -2,7 +2,7 @@
 // user-public.d.ts
 export namespace USERPUBLIC {
 	type GetUserPublicResponse = {
-		id: number;
+		_id: number;
 		img: string;
 	}[];
 
