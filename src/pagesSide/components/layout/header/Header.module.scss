@@ -9,6 +9,9 @@
 		display: flex;
 		align-items: center;
 		width: 100%;
+		position: relative;
+		left: 0;
+		top: 0;
 		.aside_avatar {
 			margin-left: 890px;
 
@@ -20,8 +23,13 @@
 			}
 		}
 	}
+	.test {
+		position: relative;
+		max-width: 910px;
+		width: 100%;
+	}
 	.aside {
-		max-width: 909px;
+		
 		display: flex;
 		align-items: center;
 		gap: 5px;
@@ -46,6 +54,73 @@
 		}
 		.magnifyingGlass {
 			width: 17px;
+		}
+		.icons {
+			position: absolute;
+			right: 5px;
+			cursor: pointer;
+		}
+	}
+	.hidden {
+		display: none;
+	}
+	.box {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		position: absolute;
+		z-index: 999;
+		// max-width: 910px;
+		width: 100%;
+		height: 400px;
+		// left: 330px;
+		top: 40px;
+		padding-inline: 20px;
+		padding-block: 20px;
+		overflow: auto;
+		background: white;
+		border: 3px solid #4c3f9b;
+		border-radius: 15px;
+
+		.user_card {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			border-radius: 15px;
+			padding-inline: 10px;
+
+			.form {
+				display: flex;
+				align-items: center;
+				gap: 15px;
+				img {
+					width: 50px;
+					height: 50px;
+					object-fit: cover;
+					border-radius: 50%;
+					border: 4px solid #4a9b32;
+				}
+				.text {
+					display: flex;
+					flex-direction: column;
+					h1 {
+						font-size: 12px;
+						cursor: pointer;
+					}
+					p {
+						font-size: 14px;
+					}
+				}
+			}
+			p {
+				font-size: 15px;
+			}
+		}
+		.user_card:hover {
+			background: #9285e1;
+			transition: 0.5s;
+			cursor: pointer;
+			border-radius: 15px;
 		}
 	}
 	.profilePictureAndIconDown {
@@ -146,6 +221,8 @@
 			width: 100%;
 			.aside {
 				width: 100%;
+				display: flex;
+				flex-direction: column;
 				input {
 					width: 100%;
 				}
