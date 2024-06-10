@@ -282,40 +282,40 @@ const Publications = () => {
 					onChange={handleFileChange}
 				/>
 			</div>
-			<div className={scss.section}>
-				{filteretData?.map((item) => (
-					<>
-						{isEdit === item.id ? (
-							<>
-								<div className={scss.edit}>
-									<textarea
-										value={editDes}
-										onChange={(e) => setEditDes(e.target.value)}
-									></textarea>
-									<button onClick={() => savePost(item.id)}>save</button>
-									<button onClick={() => setIsEdit(null)}>cancel</button>
-								</div>
-							</>
-						) : (
-							<div className={scss.photos} key={item.id}>
-								<img src={item.link} className={scss.image} alt="photos" />
-								<button onClick={() => ShowMessageAgain(item.id)}>
-									<IconDots />
-								</button>
-
-								<div
-									className={
-										isMessage[item.id] ? scss.isMessage_left : scss.none
-									}
-								>
-									<p onClick={() => editPost(item)}>редактировать</p>
-									<p onClick={() => removePost(item.id)}>удалить</p>
-								</div>
+			{filteretData?.map((item) => (
+				<>
+					{isEdit === item.id ? (
+						<>
+							<div className={scss.edit}>
+								<textarea
+									value={editDes}
+									onChange={(e) => setEditDes(e.target.value)}
+								></textarea>
+								<button onClick={() => savePost(item.id)}>save</button>
+								<button onClick={() => setIsEdit(null)}>cancel</button>
 							</div>
-						)}
-					</>
-				))}
-			</div>
+						</>
+					) : (
+						<div className={scss.photos} key={item.id}>
+							<img
+								src={item.link ? item.link : null}
+								className={scss.image}
+								alt="photos"
+							/>
+							<button onClick={() => ShowMessageAgain(item.id)}>
+								<IconDots />
+							</button>
+
+							<div
+								className={isMessage[item.id] ? scss.isMessage_left : scss.none}
+							>
+								<p onClick={() => editPost(item)}>редактировать</p>
+								<p onClick={() => removePost(item.id)}>удалить</p>
+							</div>
+						</div>
+					)}
+				</>
+			))}
 
 			<ModalTs open={modalFile} onCancel={handleCloseModal}>
 				<div className={scss.finish_modal}>

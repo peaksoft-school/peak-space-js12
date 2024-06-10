@@ -303,19 +303,18 @@
 	gap: 10px;
 	width: 980px;
 	.section {
-		outline: solid green;
-		
 		.general {
 			display: flex;
 		}
 		.photos {
-			outline: solid;
 			width: 320px;
 			height: 320px;
-		.image {
-			outline: solid;
-			object-fit: cover;
-		}
+			.image {
+				object-fit: cover;
+			}
+			.image:empty {
+				display: none;
+			}
 		}
 	}
 
@@ -325,6 +324,7 @@
 		font-weight: bold;
 	}
 	.bar {
+		cursor: pointer;
 		width: 320px;
 		height: 320px;
 		background: white;
@@ -333,71 +333,78 @@
 		justify-content: center;
 		:first-child {
 			display: flex;
+			cursor: pointer;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
 			gap: 20px;
 		}
 	}
-	.section {
-		display: flex;
-		gap: 6px;
-		flex-wrap: wrap;
+	.edit {
+		width: 100%;
+		max-width: 320px;
+		height: 320px;
+	}
 
-		.edit {
-			width: 100%;
-			max-width: 320px;
+	.photos {
+		position: relative;
+
+		button {
+			position: absolute;
+			top: 0;
+			right: 2px;
+			background: none;
+			outline: none;
+			border: none;
+			svg {
+				color: white;
+				opacity: 0;
+			}
+			cursor: pointer;
+		}
+		img {
+			width: 320px;
 			height: 320px;
+			object-fit: cover;
+		}
+		&:hover {
+			button {
+				svg {
+					opacity: 1;
+				}
+			}
 		}
 
-		.photos {
-			position: relative;
-
-			button {
-				position: absolute;
-				top: 0;
-				right: 2px;
-				background: none;
-				outline: none;
-				border: none;
-				svg {
-					color: white;
-					opacity: 0;
-				}
+		.isMessage_left {
+			position: absolute;
+			left: 160px;
+			top: 20px;
+			border-radius: 7px;
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			gap: 7px;
+			padding-inline: 20px;
+			padding-block: 10px;
+			background: rgb(255, 255, 255);
+			p {
 				cursor: pointer;
-			}
-			img {
-				width: 320px;
-				height: 320px;
-				object-fit: cover;
-			}
-			&:hover {
-				button {
-					svg {
-						opacity: 1;
-					}
+				padding: 10px;
+				transition: 0.2s;
+
+				&:hover {
+					background-color: lightgray;
+					padding: 10px;
+					border-radius: 7px;
+					transition: 0.2s;
 				}
 			}
+		}
 
-			.isMessage_left {
-				position: absolute;
-				left: 160px;
-				top: 20px;
-				border-radius: 7px;
-				display: flex;
-				flex-direction: column;
-				text-align: center;
-				gap: 7px;
-				padding-inline: 20px;
-				padding-block: 10px;
-				background: rgb(255, 255, 255);
-			}
-
-			.none {
-				position: absolute;
-				top: 0;
-				left: -1700px;
-			}
+		.none {
+			position: absolute;
+			top: 0;
+			left: -1700px;
 		}
 	}
 }
