@@ -29,6 +29,27 @@
 				width: 980px;
 				height: 90px;
 				background: #ffffff;
+				.far {
+					display: flex;
+					gap: 58px;
+					align-items: center;
+					div {
+						display: flex;
+						flex-direction: column;
+						cursor: pointer;
+						align-items: center;
+					}
+				}
+				.publics_count {
+					padding: 5px 15px;
+					transition: .3s;
+				}
+				.active_modal {
+					background-color: lightgray;
+					border-radius: 8px;
+					padding: 5px 15px;
+					transition: .3s;
+				}
 
 				img {
 					width: 150px;
