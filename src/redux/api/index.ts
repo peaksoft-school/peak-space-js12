@@ -37,7 +37,8 @@ export const api = createApi({
 		'registration',
 		'login', 
 		'blocked',
-		'friends'
+		'friends',
+		'comentsUsers'
 	],
 	endpoints: () => ({})
 });

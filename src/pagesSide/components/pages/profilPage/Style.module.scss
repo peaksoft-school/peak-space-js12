@@ -1538,13 +1538,13 @@
 	}
 }
 .modal_ts {
-	background: white;
 	width: 520px;
 	height: 422px;
-	border-radius: 10px;
+	border-radius: 25px;
 	text-align: center;
 	margin-left: -22px;
 	margin-top: -10px;
+	background: white;
 
 	.closeModal {
 		display: flex;
@@ -1554,6 +1554,11 @@
 		.cloose {
 			position: relative;
 			left: 130px;
+			button{
+				background: transparent;
+				border: none;
+				outline: none;
+			}
 		}
 		@media (max-width: 735px) {
 			.cloose {

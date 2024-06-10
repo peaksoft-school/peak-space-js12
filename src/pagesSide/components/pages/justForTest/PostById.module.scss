@@ -1,0 +1,158 @@
+.Test {
+	height: 100%;
+	width: 100%;
+	background: white;
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-inline: 10px;
+		position: relative;
+		h1 {
+			font-family: 'Roboto', sans-serif;
+			font-weight: 300;
+			text-align: center;
+			font-size: 33px;
+		}
+
+		button {
+			background: none;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			svg {
+				color: gray;
+			}
+			font-family: 'Roboto', sans-serif;
+			color: #4c3f9b;
+			font-size: 20px;
+			font-weight: 400;
+		}
+
+		.is_work {
+			position: absolute;
+			right: 16px;
+			top: 35px;
+			background: #fff;
+			border: 2px solid rgba(0, 0, 0, 0.3);
+			border-radius: 8px;
+
+			text-align: center;
+			padding: 10px;
+			z-index: 444;
+
+			.edit_pen {
+				display: flex;
+				align-items: center;
+				gap: 3px;
+				cursor: pointer;
+				p {
+					color: gray;
+					font-family: 'Roboto', sans-serif;
+					font-size: 15px;
+					font-weight: 400;
+					text-align: center;
+				}
+				svg {
+					color: gray;
+				}
+			}
+		}
+
+		.is_none {
+			position: absolute;
+			left: -600px;
+			top: 0;
+		}
+	}
+
+	.edit {
+		height: 100%;
+		position: relative;
+
+		textarea {
+			resize: none;
+			width: 100%;
+			max-width: 900px;
+			height: 61px;
+			outline: none;
+		}
+
+		.buttons {
+			position: absolute;
+			right: 35px;
+			top: 150px;
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			button {
+				color: #090909;
+				padding: 0.5em 1.7em;
+				font-size: 14px;
+				border-radius: 0.5em;
+				background: #e8e8e8;
+				cursor: pointer;
+				border: 1px solid #e8e8e8;
+				transition: all 0.3s;
+				box-shadow:
+					6px 6px 12px #c5c5c5,
+					-6px -6px 12px #ffffff;
+			}
+
+			button:active {
+				color: #666;
+				box-shadow:
+					inset 4px 4px 12px #c5c5c5,
+					inset -4px -4px 12px #ffffff;
+			}
+		}
+	}
+
+	.some {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		padding-inline: 20px;
+
+		.texts {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			h2 {
+				font-family: 'Roboto', sans-serif;
+				font-weight: 300;
+				font-size: 25px;
+			}
+
+			.text {
+				display: flex;
+				align-items: center;
+				gap: 2px;
+				p {
+					font-size: 25px;
+				}
+			}
+		}
+		.user_name {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			p {
+				font-size: 18px;
+				font-weight: 300;
+			}
+			img {
+				font-weight: 300;
+			}
+		}
+
+		.user_photo {
+			img {
+				width: 100%;
+				height: 617px;
+				object-fit: cover;
+			}
+		}
+	}
+}
