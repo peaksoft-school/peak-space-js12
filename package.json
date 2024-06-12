@@ -15,11 +15,13 @@
 		"@emoji-mart/data": "^1.2.1",
 		"@emoji-mart/react": "^1.1.1",
 		"@reduxjs/toolkit": "^2.2.3",
+		"@splidejs/react-splide": "^0.7.12",
 		"@tabler/icons": "^3.3.0",
 		"@tabler/icons-react": "^3.3.0",
 		"antd": "^5.16.1",
 		"emoji-mart": "^5.6.0",
 		"firebase": "^10.12.1",
+		"glider-js": "^1.7.9",
 		"install": "^0.13.0",
 		"keen-slider": "^6.8.6",
 		"react": "^18.2.0",
@@ -29,7 +31,8 @@
 		"react-router-dom": "^6.22.3",
 		"react-toastify": "^10.0.5",
 		"react-webcam": "^7.2.0",
-		"sass": "^1.74.1"
+		"sass": "^1.74.1",
+		"swiper": "^11.1.4"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.74",

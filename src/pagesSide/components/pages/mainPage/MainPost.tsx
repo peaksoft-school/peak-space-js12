@@ -64,6 +64,7 @@ const MainPost = () => {
 		setIsModal2(true);
 	};
 	const closeModal2 = () => {
+		
 		setIsModal2(false);
 	};
 
@@ -168,7 +169,7 @@ const MainPost = () => {
 												>
 													<div className={scss.start}>
 														<img src={item.img} alt={item.name} />
-														<div className={scss.text}>
+														<div className={scss.texts}>
 															<h3>{item.name}</h3>
 															<h4>{item.title}</h4>
 														</div>

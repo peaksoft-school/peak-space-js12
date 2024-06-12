@@ -29,6 +29,27 @@
 				width: 980px;
 				height: 90px;
 				background: #ffffff;
+				.far {
+					display: flex;
+					gap: 58px;
+					align-items: center;
+					div {
+						display: flex;
+						flex-direction: column;
+						cursor: pointer;
+						align-items: center;
+					}
+				}
+				.publics_count {
+					padding: 5px 15px;
+					transition: .3s;
+				}
+				.active_modal {
+					background-color: lightgray;
+					border-radius: 8px;
+					padding: 5px 15px;
+					transition: .3s;
+				}
 
 				img {
 					width: 150px;
@@ -300,7 +321,22 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
-	width: 100%;
+	width: 980px;
+	.section {
+		.general {
+			display: flex;
+		}
+		.photos {
+			width: 320px;
+			height: 320px;
+			.image {
+				object-fit: cover;
+			}
+			.image:empty {
+				display: none;
+			}
+		}
+	}
 
 	h1 {
 		text-align: center;
@@ -308,6 +344,7 @@
 		font-weight: bold;
 	}
 	.bar {
+		cursor: pointer;
 		width: 320px;
 		height: 320px;
 		background: white;
@@ -316,72 +353,78 @@
 		justify-content: center;
 		:first-child {
 			display: flex;
+			cursor: pointer;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
 			gap: 20px;
 		}
 	}
-	.section {
-		display: flex;
-		// flex-direction: column;
-		gap: 6px;
-		flex-wrap: wrap;
+	.edit {
+		width: 100%;
+		max-width: 320px;
+		height: 320px;
+	}
 
-		.edit {
-			width: 100%;
-			max-width: 320px;
+	.photos {
+		position: relative;
+
+		button {
+			position: absolute;
+			top: 0;
+			right: 2px;
+			background: none;
+			outline: none;
+			border: none;
+			svg {
+				color: white;
+				opacity: 0;
+			}
+			cursor: pointer;
+		}
+		img {
+			width: 320px;
 			height: 320px;
+			object-fit: cover;
+		}
+		&:hover {
+			button {
+				svg {
+					opacity: 1;
+				}
+			}
 		}
 
-		.photos {
-			position: relative;
-
-			button {
-				position: absolute;
-				top: 0;
-				right: 2px;
-				background: none;
-				outline: none;
-				border: none;
-				svg {
-					color: white;
-					opacity: 0;
-				}
+		.isMessage_left {
+			position: absolute;
+			left: 160px;
+			top: 20px;
+			border-radius: 7px;
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			gap: 7px;
+			padding-inline: 20px;
+			padding-block: 10px;
+			background: rgb(255, 255, 255);
+			p {
 				cursor: pointer;
-			}
-			img {
-				width: 320px;
-				height: 320px;
-				object-fit: cover;
-			}
-			&:hover {
-				button {
-					svg {
-						opacity: 1;
-					}
+				padding: 10px;
+				transition: 0.2s;
+
+				&:hover {
+					background-color: lightgray;
+					padding: 10px;
+					border-radius: 7px;
+					transition: 0.2s;
 				}
 			}
+		}
 
-			.isMessage_left {
-				position: absolute;
-				left: 160px;
-				top: 20px;
-				border-radius: 7px;
-				display: flex;
-				flex-direction: column;
-				text-align: center;
-				gap: 7px;
-				padding-inline: 20px;
-				padding-block: 10px;
-				background: rgb(255, 255, 255);
-			}
-
-			.none {
-				position: absolute;
-				top: 0;
-				left: -1700px;
-			}
+		.none {
+			position: absolute;
+			top: 0;
+			left: -1700px;
 		}
 	}
 }
@@ -1367,11 +1410,6 @@
 
 //////////////////////////////////////////////////////////////////////////////////// !1
 .content {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	width: 100%;
-
 	h1 {
 		text-align: center;
 		font-family: 'Courier New';
@@ -1393,10 +1431,6 @@
 		}
 	}
 	.section {
-		display: flex;
-		flex-direction: column;
-		gap: 6px;
-		flex-wrap: wrap;
 		img {
 			width: 320px;
 			height: 320px;
@@ -1504,13 +1538,13 @@
 	}
 }
 .modal_ts {
-	background: white;
 	width: 520px;
 	height: 422px;
-	border-radius: 10px;
+	border-radius: 25px;
 	text-align: center;
 	margin-left: -22px;
 	margin-top: -10px;
+	background: white;
 
 	.closeModal {
 		display: flex;
@@ -1520,6 +1554,11 @@
 		.cloose {
 			position: relative;
 			left: 130px;
+			button{
+				background: transparent;
+				border: none;
+				outline: none;
+			}
 		}
 		@media (max-width: 735px) {
 			.cloose {

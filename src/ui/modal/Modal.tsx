@@ -1,4 +1,4 @@
-import  { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Modal } from 'antd';
 import scss from './Modal.module.scss';
 

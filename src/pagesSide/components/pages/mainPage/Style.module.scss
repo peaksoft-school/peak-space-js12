@@ -65,6 +65,13 @@
 					width: 100%;
 					max-width: 912px;
 					position: relative;
+					.posts {
+						img {
+							width: 100%;
+							max-width: 100%;
+							object-fit: cover;
+						}
+					}
 					@media (max-width: 1118px) {
 						max-width: 860px;
 
@@ -336,9 +343,7 @@
 		}
 		.input_smile {
 			border-top: 0.5px solid rgba(0, 0, 0, 0.3);
-			// display: flex;
-			// align-items: center;
-			// gap: 23px;
+			
 			width: 100%;
 			padding: 5px;
 			position: relative;
@@ -741,7 +746,7 @@
 					height: 50px;
 					border-radius: 50%;
 				}
-				.text {
+				.texts {
 					display: flex;
 					flex-direction: column;
 				}
