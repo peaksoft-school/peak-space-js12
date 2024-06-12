@@ -10,7 +10,10 @@ const api = index.injectEndpoints({
 				{
 					url: '/auth/signUp',
 					method: 'POST',
-					body: data
+					body: data,
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+					}
 				}
 			),
 			invalidatesTags: ['registration']

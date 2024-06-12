@@ -133,6 +133,12 @@
 					font-size: 25px;
 				}
 			}
+
+			input {
+				width: 100%;
+				max-width: 400px;
+				padding-block: 5px;
+			}
 		}
 		.user_name {
 			display: flex;

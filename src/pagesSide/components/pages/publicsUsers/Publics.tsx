@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
 	Link,
 	Route,
@@ -19,14 +19,14 @@ const Publics = () => {
 	const handleProfile = () => {
 		navigate('/UsersProfile/side/public');
 	};
-	
-	useEffect(() => {
-		if (page) {
-			navigate('/publics/photo');
-		} else {
-			navigate('/publics/video');
-		}
-	}, [page, navigate]);
+
+	// useEffect(() => {
+	// 	if (page) {
+	// 		navigate('/publics/photo');
+	// 	} else {
+	// 		navigate('/publics/video');
+	// 	}
+	// }, [page, navigate]);
 
 	const links = [
 		{

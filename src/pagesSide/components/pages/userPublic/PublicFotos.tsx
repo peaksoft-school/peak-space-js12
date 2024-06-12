@@ -6,7 +6,7 @@ import {
 	usePostUserPublicMutation
 } from '@/src/redux/api/userPublic';
 import ModalTs from '@/src/ui/modal/Modal';
-import { IconCirclePlus,IconHeartFilled } from '@tabler/icons-react';
+import { IconCirclePlus, IconHeartFilled } from '@tabler/icons-react';
 import scss from './Style.module.scss';
 
 const PublicFotos = () => {

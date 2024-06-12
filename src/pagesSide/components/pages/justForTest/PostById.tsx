@@ -28,6 +28,7 @@ const PostById = () => {
 	const [patchPost] = usePatchPostMutation();
 	const [isEdit, setIsEdit] = useState(null);
 	const [editDescription, setEditDescription] = useState('');
+	const [editLocation, setEditLocation] = useState('');
 	const [isMessage, setIsMessage] = useState(false);
 	const [location, setLocation] = useState({
 		latitude: null,
@@ -38,6 +39,7 @@ const PostById = () => {
 	});
 
 	const navigate = useNavigate();
+
 	useEffect(() => {
 		if (postData) {
 			setPost(postData as any);
@@ -62,6 +64,7 @@ const PostById = () => {
 
 	const editPost = (item: any) => {
 		setEditDescription(item.description);
+		setEditLocation(item.location);
 		setIsEdit(item.postId);
 		setIsMessage(false);
 	};
@@ -69,7 +72,7 @@ const PostById = () => {
 	const savePost = async (id: number) => {
 		const newData = {
 			description: editDescription,
-			location: locationString || 'Unknown location'
+			location: editLocation
 		};
 		await patchPost({ id, newData });
 		setIsEdit(null);
@@ -113,8 +116,10 @@ const PostById = () => {
 											></textarea>
 										</div>
 										<div className={scss.text}>
-											<p>Mестоположение:</p>
-											<h2>{post.location}</h2>
+											<input
+												value={editLocation}
+												onChange={(e) => setEditLocation(e.target.value)}
+											/>
 										</div>
 									</div>
 									<div className={scss.user_name}>

@@ -13,9 +13,11 @@ import Publics from '../pages/publicsUsers/Publics';
 import MainPage from '../pages/mainPage/MainPage';
 import ChatPerson from '../pages/chat/ChatPerson';
 import scss from './LayoutSide.module.scss';
+import Test from '../pages/publicPage/Test';
 import NavBar from '@/src/ui/navBar/NavBar';
 import Header from './header/Header';
 import Footer from './footer/Footer';
+import ForMe from '../pages/justForTest/ForMe';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -40,11 +42,13 @@ const LayoutSide = () => {
 						<Route path="/chatperson" element={<ChatPerson />} />
 						<Route path="/notification" element={<Notifications />} />
 						<Route path="/users-profile/*" element={<UsersProfile />} />
-						<Route path="/publics/*" element={<Publics />} />
+						<Route path="/public" element={<PublicPage />} />
+						<Route path="/publics/:communityId/*" element={<Publics />} />
+						<Route path="/public/:communityId" element={<ForMe />} />
+						<Route path="/test/:publicName " element={<Test />} />
 						<Route path="/confindent" element={<ConfidentTwoPage />} />
 						<Route path="/blocked" element={<BlockedPages />} />
-						<Route path="/public" element={<PublicPage />} />
-						<Route path="/public/new-public" element={<NewPublic />} />
+						<Route path="/new-public" element={<NewPublic />} />
 						<Route path="/post/:postId" element={<PostById />} />
 					</Routes>
 				</main>
