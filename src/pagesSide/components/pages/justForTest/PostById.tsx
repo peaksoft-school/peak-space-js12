@@ -26,6 +26,7 @@ const PostById = () => {
 	const { data: postData } = useEditGetQuery(postId as any);
 	const [post, setPost] = useState<Edit>(null as any);
 	const [patchPost] = usePatchPostMutation();
+
 	const [isEdit, setIsEdit] = useState(null);
 	const [editDescription, setEditDescription] = useState('');
 	const [editLocation, setEditLocation] = useState('');

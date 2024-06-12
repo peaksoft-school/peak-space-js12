@@ -3,14 +3,15 @@ import {
 	useCreatePostMutation,
 	usePostCreateFileMutation,
 	useGetGeocodeQuery,
-	useGetMyPublicationQuery
+	useGetMyPublicationQuery,
+	useDeletePostMutation
 } from '@/src/redux/api/publications';
 import scss from './Style.module.scss';
 import ModalTs from '@/src/ui/modal/Modal';
 import { PlusIconSecond } from '@/src/assets/icons';
 import { filterValues } from './utils';
 import { Switch, Slider } from 'antd';
-import { IconArrowLeft } from '@tabler/icons-react';
+import { IconArrowLeft, IconDots } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 
 interface Types {
@@ -22,6 +23,7 @@ const Publications = () => {
 	const { data } = useGetMyPublicationQuery();
 	const [createFile] = usePostCreateFileMutation();
 	const [postRequest] = useCreatePostMutation();
+	const [deleteRequest] = useDeletePostMutation();
 	const [isModal, setIsModal] = useState(false);
 	const [modalFile, setModalFile] = useState(false);
 	const [modalSecond, setModalSecond] = useState(false);
@@ -46,6 +48,9 @@ const Publications = () => {
 	const [previewImage, setPreviewImage] = useState<string | null>(
 		localStorage.getItem('previewImage')
 	);
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const [showMessage, setShowMessage] = useState<any>({});
 
 	const navigate = useNavigate();
 
@@ -165,6 +170,14 @@ const Publications = () => {
 		};
 	};
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const ShowMessageAgain = (id: any) => {
+		setShowMessage((prevState: { [x: string]: string }) => ({
+			...prevState,
+			[id]: !prevState[id]
+		}));
+	};
+
 	const itsJustFinishModal = () => {
 		setModalSecond(false);
 		setModalFile(true);
@@ -204,6 +217,10 @@ const Publications = () => {
 
 	const naviagateToPhoto = (postId: number) => {
 		navigate(`/post/${postId}`);
+	};
+
+	const removeId = (id: number) => {
+		deleteRequest(id);
 	};
 
 	const dataURLToBlob = (dataurl: string) => {
@@ -257,16 +274,22 @@ const Publications = () => {
 			</div>
 			{filteretData?.map((item) => (
 				<>
-					<div
-						className={scss.photos}
-						key={item.id}
-						onClick={() => naviagateToPhoto(item.id)}
-					>
+					<div className={scss.photos} key={item.id}>
 						<img
 							src={item.link ? item.link : ''}
 							className={scss.image}
 							alt="photos"
+							onClick={() => naviagateToPhoto(item.id)}
 						/>
+						<button onClick={() => ShowMessageAgain(item.id)}>
+							<IconDots />
+						</button>
+
+						<div
+							className={showMessage[item.id] ? scss.isMessage_left : scss.none}
+						>
+							<p onClick={() => removeId(item.id)}>удалить пость</p>
+						</div>
 					</div>
 				</>
 			))}

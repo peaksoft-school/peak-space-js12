@@ -42,13 +42,13 @@
 				}
 				.publics_count {
 					padding: 5px 15px;
-					transition: .3s;
+					transition: 0.3s;
 				}
 				.active_modal {
 					background-color: lightgray;
 					border-radius: 8px;
 					padding: 5px 15px;
-					transition: .3s;
+					transition: 0.3s;
 				}
 
 				img {
@@ -329,6 +329,12 @@
 		.photos {
 			width: 320px;
 			height: 320px;
+
+			button {
+				background: none;
+				outline: none;
+				border: none;
+			}
 			.image {
 				object-fit: cover;
 			}
@@ -396,28 +402,19 @@
 		}
 
 		.isMessage_left {
-			position: absolute;
-			left: 160px;
-			top: 20px;
-			border-radius: 7px;
-			display: flex;
-			flex-direction: column;
-			text-align: center;
-			gap: 7px;
-			padding-inline: 20px;
-			padding-block: 10px;
 			background: rgb(255, 255, 255);
+			padding-inline: 10px;
+			padding-block: 8px;
+			position: absolute;
+			left: 184px;
+			top: 23px;
+			gap: 7px;
+			border-radius: 7px;
 			p {
+				font-family: 'Roboto', sans-serif;
+				font-weight: 400;
 				cursor: pointer;
-				padding: 10px;
-				transition: 0.2s;
-
-				&:hover {
-					background-color: lightgray;
-					padding: 10px;
-					border-radius: 7px;
-					transition: 0.2s;
-				}
+				text-align: center;
 			}
 		}
 
@@ -1554,7 +1551,7 @@
 		.cloose {
 			position: relative;
 			left: 130px;
-			button{
+			button {
 				background: transparent;
 				border: none;
 				outline: none;
