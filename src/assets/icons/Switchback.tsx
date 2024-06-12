@@ -1,5 +1,6 @@
-import { Switch } from 'antd';
 import { useState } from 'react';
+import { Switch } from 'antd';
+
 const Siwtchback = () => {
 	const [ellipsis, setEllipsis] = useState(true);
 	return (
@@ -14,6 +15,4 @@ const Siwtchback = () => {
 	);
 };
 export default Siwtchback;
-// const ComponentDemo = App;
 
-// createRoot(mountNode).render(<ComponentDemo />);
