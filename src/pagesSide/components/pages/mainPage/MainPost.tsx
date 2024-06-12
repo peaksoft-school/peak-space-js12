@@ -134,11 +134,11 @@ const MainPost = () => {
 							<div className={scss.modalst}>
 								<div className={scss.text}>
 									<p className={scss.p}>Поделиться</p>
-									<IconX onClick={closeModal2} className={scss.icons} />
+									<IconX onClick={closeModal2} className={scss.icons}  color='black'/>
 								</div>
 								<span></span>
 								<div className={scss.inputs}>
-									<IconSearch />
+									<IconSearch color='black' />
 									{usersArray.map((el, index) => (
 										<div
 											className={scss.div_users_names}

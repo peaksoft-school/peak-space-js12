@@ -1,11 +1,53 @@
-import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import Siwtchback from '@/src/assets/icons/Switchback';
-import vector from '../../../../assets/Vector (2).svg';
-import scss from './Style.module.scss';
+import { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ConfidentPage from './ConfidentPage';
+import { usePoastRivateAccountMutation } from '@/src/redux/api/privateAccount';
+import { Switch } from 'antd';
+import ModalTs from '@/src/ui/modal/Modal';
+import {
+	IconArrowNarrowLeft,
+	IconPhotoVideo,
+	IconAt,
+	IconCodePlus
+} from '@tabler/icons-react';
+import scss from './Style.module.scss';
 
 const ConfidentTwoPage: FC = () => {
+	const [isModal, setIsModal] = useState(false);
+	const [isModal2, setIsModal2] = useState(false);
+	const [ellipsis, setEllipsis] = useState(false);
+
+	const [postPrivateAccount] = usePoastRivateAccountMutation();
+	const navigate = useNavigate();
+
+	const openModal = () => {
+		if (ellipsis === false) {
+			setIsModal(true);
+		} else if (ellipsis === true) {
+			setIsModal2(true);
+		}
+	};
+
+	const closeModal = () => {
+		setIsModal(false);
+	};
+
+	const closeModal2 = () => {
+		setIsModal2(false);
+	};
+
+	const handleOk = async () => {
+		await postPrivateAccount();
+		setEllipsis(true);
+		setIsModal(false);
+	};
+
+	const handleOk2 = async () => {
+		await postPrivateAccount();
+		setEllipsis(false);
+		setIsModal2(false);
+	};
+
 	return (
 		<div className={scss.confident_content}>
 			<div>
@@ -13,14 +55,14 @@ const ConfidentTwoPage: FC = () => {
 			</div>
 			<div className={scss.vector_switch}>
 				<div className={scss.vector}>
-					<Link to="/settings">
-						<img src={vector} alt="Arrow" />
-					</Link>
+					<button onClick={() => navigate(-2)}>
+						<IconArrowNarrowLeft />
+					</button>
 					<h2>Конфиденциальность</h2>
 				</div>
 				<div className={scss.Switch}>
 					<p>Закрытый аккаунт </p>
-					<Siwtchback />
+					<Switch onClick={openModal} checked={ellipsis} />
 				</div>
 				<div className={scss.lorem_confident}>
 					<p>
@@ -34,6 +76,67 @@ const ConfidentTwoPage: FC = () => {
 						laborum.
 					</p>
 				</div>
+			</div>
+			<div>
+				<ModalTs open={isModal2} onCancel={closeModal2}>
+					<div className={scss.modalka}>
+						<h1>Сделать аккаунт закрытым?</h1>
+						<div className={scss.box}>
+							<div className={scss.text_icon}>
+								<IconPhotoVideo />
+								<p>
+									Кто угодно может смотреть ваши публикации, видео Reels и
+									истории, а также использовать вашу оригинальную аудиодорожку.
+								</p>
+							</div>
+
+							<div className={scss.text_icon}>
+								<IconAt />
+								<p>
+									Настройки того, кто может отправлять вам сообщения, а также
+									отмечать и упоминать вас с помощью символа "@", останутся
+									прежними.
+								</p>
+							</div>
+
+							<div className={scss.text_icon}>
+								<IconCodePlus />
+								<p>
+									Люди могут делать ремиксы с вашими видео Reels и скачивать их
+									как часть ремиксов. Вы можете изменить это в настройках.
+								</p>
+							</div>
+						</div>
+
+						<div className={scss.btn}>
+							<button onClick={handleOk2}>Сделать закрытым</button>
+							<button onClick={closeModal2}>Отмена</button>
+						</div>
+					</div>
+				</ModalTs>
+
+				<ModalTs open={isModal} onCancel={closeModal}>
+					<div className={scss.modalka2}>
+						<h1>Сделать аккаунт общедоступным?</h1>
+						<div className={scss.box}>
+							<div className={scss.text_icon}>
+								<IconPhotoVideo />
+								<p>Только ваши подписчики смогут увидеть ваши фото и видео.</p>
+							</div>
+
+							<div className={scss.text_icon}>
+								<IconAt />
+								<p>
+									Настройки того, кто может отправлять вам сообщения, а также
+								</p>
+							</div>
+						</div>
+						<div className={scss.btn}>
+							<button onClick={handleOk}>Сделать общественным</button>
+							<button onClick={closeModal}>Отмена</button>
+						</div>
+					</div>
+				</ModalTs>
 			</div>
 		</div>
 	);
