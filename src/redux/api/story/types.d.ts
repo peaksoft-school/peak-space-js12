@@ -23,4 +23,6 @@ namespace STORY {
 	type GetUsersRequest = {
 		keyWord: string;
 	};
+
+
 }

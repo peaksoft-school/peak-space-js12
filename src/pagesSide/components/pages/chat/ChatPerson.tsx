@@ -51,7 +51,7 @@ const ChatPerson = () => {
 		{
 			name: '_Bogomdan',
 			text: 'Сын божий',
-			img: 'https://s3-alpha-sig.figma.com/img/0c26/d887/ed060b47018885c4c6847048f8a83758?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HMh6SCEthtsRBcvq-InNBlSkR2JKX3vwep38tQPBZCc32zLCNAG1uKTGBHsWowL5aPrbJgmnXsdVdCYU3OfG91u97PyFDPqI-v6uT8oA3vydJFL~BhD~dZtVuyN7o5o4M8EegjUeDoo86YTByxEnM1-hv42~EpE~6fqUg9nhp4pc-LgKgFlTryNI2UUPaynKlYZgWyq-VOQvqv~U18ksz1sSLnxWy3--FLj7qDiLm-rzA4RreV5riABl-eIfiRhSsRImMgX76cYdchLfz~b53dg-812DVHbK1GtnvE2BOSiICtVvbvf9qPrctQOEXt1~OMgc4y8pVILzhAn588M0Mw__'
+			img: 'https://ca.slack-edge.com/T023L1WBFLH-U05UR1PLN10-13317808de8f-512'
 		}
 	];
 

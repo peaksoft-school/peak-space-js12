@@ -18,7 +18,9 @@ const api = index.injectEndpoints({
 				}
 			}),
 			providesTags: ['post']
-		})
+		}),
+
+	
 	})
 });
-export const { useGetStoryQuery, useUsersQuery } = api;
+export const { useGetStoryQuery, useUsersQuery,  } = api;

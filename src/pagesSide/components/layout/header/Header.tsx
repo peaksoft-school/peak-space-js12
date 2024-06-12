@@ -1,5 +1,5 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import FirstMan from '@/src/assets/FirstMan2.png';
 import UserStory from '@/src/assets/userStory.png';
 import Logo from '@/src/assets/peacSpaceLogo.png';
@@ -36,16 +36,18 @@ const Header = () => {
 		}
 	];
 
-	useEffect(() => {
-		searchParams.set('keyWord', inputValue);
+	const changeInputSearch = (value: string) => {
+		searchParams.set('keyWord', value);
 		setSearchParams(searchParams);
-		navigate(`/?${searchParams.toString()}`)
-	}, [inputValue])
-
-	const { data,  } = useUsersQuery({
+		navigate(`?${searchParams.toString()}`);
+		if (value === '') {
+			searchParams.delete('keyWord');
+			setSearchParams(searchParams);
+		}
+	};
+	const { data } = useUsersQuery({
 		keyWord: searchParams.toString()
 	});
-	console.log(data);
 
 	const [isBurgerMenuActive, setIsBurgerMenuActive] = useState<boolean>(false);
 	const changeBurgerMenuStateHandler = () => {
@@ -57,11 +59,11 @@ const Header = () => {
 	const isChatPerson = useParams();
 	const keys = isChatPerson['*'];
 
-
 	const handleValue = () => {
+		searchParams.delete("keyWord");
+		setSearchParams(searchParams);
 		setInputValue('');
 	};
-
 
 	return (
 		<header className={scss.headerContainer}>
@@ -74,59 +76,63 @@ const Header = () => {
 						<div className={scss.aside_avatar}></div>
 					) : (
 						<>
-						<div className={scss.test}>
-
-							<div className={scss.aside}>
-								{inputValue === '' ? (
-									<IconSearch
-										className={scss.magnifyingGlass}
-										onClick={() => {}}
-										tabIndex={0}
-										onKeyDown={(e) => e.key === 'Enter' && {}}
-										aria-label="Search"
-									/>
-								) : (
-									<IconXboxX
-										onClick={handleValue}
-										className={scss.icons}
-										tabIndex={0}
-										onKeyDown={(e) => e.key === 'Enter' && handleValue()}
-										aria-label="Clear"
-									/>
-								)}
-								<input
-									type="text"
-									value={inputValue}
-									onChange={(e) => setInputValue(e.target.value)}
-									aria-label="Search input"
-								/>
-							</div>
-							<div className={`${inputValue !== '' ? scss.box : scss.hidden}`}>
-								{inputValue !== '' &&
-									data &&
-									data.map((item) => (
-										<div
-											key={item.id}
+							<div className={scss.test}>
+								<div className={scss.aside}>
+									{inputValue === '' ? (
+										<IconSearch
+											className={scss.magnifyingGlass}
+											onClick={() => {}}
 											tabIndex={0}
-											onKeyDown={(e) => {
-												if (e.key === 'Enter') {
-													// Define the action that should happen when Enter is pressed
-												}
-											}}
-											className={scss.user_card}
-										>
-											<div className={scss.form}>
-												<img src={item.avatar} alt={item.userName} />
-												<div className={scss.text}>
-													<h4>{item.firstName}</h4>
-													<p>{item.userName}</p>
+											onKeyDown={(e) => e.key === 'Enter' && {}}
+											aria-label="Search"
+										/>
+									) : (
+										<IconXboxX
+											onClick={handleValue}
+											className={scss.icons}
+											tabIndex={0}
+											onKeyDown={(e) => e.key === 'Enter' && handleValue()}
+											aria-label="Clear"
+										/>
+									)}
+									<input
+										type="text"
+										value={inputValue}
+										onChange={(e) => {
+											setInputValue(e.target.value);
+											changeInputSearch(e.target.value);
+										}}
+										aria-label="Search input"
+									/>
+								</div>
+								<div
+									className={`${inputValue !== '' ? scss.box : scss.hidden}`}
+								>
+									{inputValue !== '' &&
+										data &&
+										data.map((item) => (
+											<div
+												key={item.id}
+												tabIndex={0}
+												onKeyDown={(e) => {
+													if (e.key === 'Enter') {
+														// Define the action that should happen when Enter is pressed
+													}
+												}}
+												className={scss.user_card}
+											>
+												<div className={scss.form}>
+													<img src={item.avatar} alt={item.userName} />
+													<div className={scss.text}>
+														<h4>{item.firstName}</h4>
+														<p>{item.userName}</p>
+													</div>
 												</div>
+												<p>{item.lastName}</p>
 											</div>
-											<p>{item.lastName}</p>
-										</div>
-									))}
+										))}
+								</div>
 							</div>
-						</div>
 						</>
 					)}
 

@@ -63,7 +63,7 @@ const NavBar = () => {
 					{navigationItems.map((item) => (
 						<li onClick={() => navigateTo(item.path)}>
 							<Link
-								className={`${pathname === item.path ? scss.active_page : scss.active_default}`}
+								className={`${pathname === item.path  ? scss.active_page : scss.active_default}`}
 								to={item.path}
 							>
 								{item.icon}
