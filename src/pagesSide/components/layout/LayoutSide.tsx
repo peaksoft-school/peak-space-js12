@@ -49,7 +49,6 @@ const LayoutSide = () => {
 						<Route path="/test/:publicName " element={<Test />} />
 						<Route path="/confindent" element={<ConfidentTwoPage />} />
 						<Route path="/blocked" element={<BlockedPages />} />
-
 						<Route path="/public" element={<PublicPage />} />
 						<Route path="/public/new-public" element={<NewPublic />} />
 						<Route path="/post/:postId" element={<PostById />} />

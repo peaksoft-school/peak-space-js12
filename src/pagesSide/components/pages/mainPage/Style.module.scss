@@ -657,7 +657,7 @@
 	height: 450px;
 	width: 100%;
 	background: white;
-	border: 4px solid #535188;
+	// border: 4px solid #535188;
 	border-radius: 15px;
 	margin-left: 15px;
 	margin-top: -15px;
@@ -682,6 +682,7 @@
 	}
 
 	.inputs {
+		// border-bottom: 1px solid black ;
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
@@ -714,10 +715,10 @@
 			background: transparent;
 			border: none;
 			outline: none;
-		}
-	}
+			}
+			}
 	span {
-		border: 1px solid #535188;
+		border: 1px solid #01000d;
 	}
 
 	.box {
@@ -782,10 +783,11 @@
 			}
 		}
 		.cards:hover {
-			transition: 0.5s;
+			transition: 0.3s;
 			background: #b8b8bd;
+			// border-left: 3px solid #01000d;
 			cursor: pointer;
-			border-radius: 10px;
+			border-radius: 10px  ;
 		}
 	}
 
