@@ -3,33 +3,32 @@ import {
 	useCreatePostMutation,
 	usePostCreateFileMutation,
 	useGetGeocodeQuery,
-	useGetMyPublicationQuery,
-	usePatchPostMutation
+	useGetMyPublicationQuery
 } from '@/src/redux/api/publications';
 import scss from './Style.module.scss';
 import ModalTs from '@/src/ui/modal/Modal';
 import { PlusIconSecond } from '@/src/assets/icons';
 import { filterValues } from './utils';
 import { Switch, Slider } from 'antd';
-import { IconArrowLeft, IconDots } from '@tabler/icons-react';
-import { useDeletePostMutation } from '@/src/redux/api/publications';
+import { IconArrowLeft } from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
+
+interface Types {
+	id: number;
+	link: string;
+}
 
 const Publications = () => {
-	const { data, refetch } = useGetMyPublicationQuery();
+	const { data } = useGetMyPublicationQuery();
 	const [createFile] = usePostCreateFileMutation();
 	const [postRequest] = useCreatePostMutation();
-	const [isDeleteFavorite] = useDeletePostMutation();
-	const [isPatch] = usePatchPostMutation();
 	const [isModal, setIsModal] = useState(false);
 	const [modalFile, setModalFile] = useState(false);
 	const [modalSecond, setModalSecond] = useState(false);
-	const [isEdit, setIsEdit] = useState(null);
-	const [isMessage, setIsMessage] = useState({});
 	const [ellipsis, setEllipsis] = useState(true);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [fileUrls, setFileUrls] = useState<string[]>([]);
 	const [descriptionOne, setDescription] = useState('');
-	const [editDes, setEditDes] = useState('');
 	const [brightness, setBrightness] = useState(1);
 	const [contrast, setContrast] = useState(1);
 	const [fade, setFade] = useState(0);
@@ -40,13 +39,15 @@ const Publications = () => {
 		latitude: number;
 		longitude: number;
 	} | null>(null);
-	const [filteretData, setFilteredData] = useState([]);
+	const [filteretData, setFilteredData] = useState<Types[]>([]);
 	const [selectedFilter, setSelectedFilter] = useState<string>(
 		localStorage.getItem('selectedFilter') || filterValues[0].class
 	);
 	const [previewImage, setPreviewImage] = useState<string | null>(
 		localStorage.getItem('previewImage')
 	);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (data?.publications) {
@@ -84,11 +85,6 @@ const Publications = () => {
 		if (fileInputRef.current) {
 			fileInputRef.current.click();
 		}
-	};
-
-	const removePost = (postId: number) => {
-		isDeleteFavorite(postId);
-		refetch();
 	};
 
 	const handleFileChange = async (
@@ -206,6 +202,10 @@ const Publications = () => {
 		setModalFile(false);
 	};
 
+	const naviagateToPhoto = (postId: number) => {
+		navigate(`/post/${postId}`);
+	};
+
 	const dataURLToBlob = (dataurl: string) => {
 		const arr = dataurl.split(',');
 		const mime = arr[0].match(/:(.*?);/)[1];
@@ -238,33 +238,6 @@ const Publications = () => {
 		};
 	};
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const editPost = (item: any) => {
-		console.log(item, 'ali');
-
-		setEditDes(item.descriptionOne);
-		setIsEdit(item.id);
-		refetch();
-	};
-
-	const savePost = (id: number) => {
-		const newData = {
-			description: editDes,
-			location: locationString || 'Unknown location',
-			blockComment: ellipsis
-		};
-		isPatch({ id, newData }).unwrap();
-		refetch();
-		setIsEdit(null);
-	};
-
-	const ShowMessageAgain = (id: number) => {
-		setIsMessage((prevState: { [x: string]: string }) => ({
-			...prevState,
-			[id]: !prevState[id]
-		}));
-	};
-
 	return (
 		<div className={scss.content}>
 			<div className={scss.bar} onClick={handleButtonClick}>
@@ -284,36 +257,17 @@ const Publications = () => {
 			</div>
 			{filteretData?.map((item) => (
 				<>
-					{isEdit === item.id ? (
-						<>
-							<div className={scss.edit}>
-								<textarea
-									value={editDes}
-									onChange={(e) => setEditDes(e.target.value)}
-								></textarea>
-								<button onClick={() => savePost(item.id)}>save</button>
-								<button onClick={() => setIsEdit(null)}>cancel</button>
-							</div>
-						</>
-					) : (
-						<div className={scss.photos} key={item.id}>
-							<img
-								src={item.link ? item.link : null}
-								className={scss.image}
-								alt="photos"
-							/>
-							<button onClick={() => ShowMessageAgain(item.id)}>
-								<IconDots />
-							</button>
-
-							<div
-								className={isMessage[item.id] ? scss.isMessage_left : scss.none}
-							>
-								<p onClick={() => editPost(item)}>редактировать</p>
-								<p onClick={() => removePost(item.id)}>удалить</p>
-							</div>
-						</div>
-					)}
+					<div
+						className={scss.photos}
+						key={item.id}
+						onClick={() => naviagateToPhoto(item.id)}
+					>
+						<img
+							src={item.link ? item.link : ''}
+							className={scss.image}
+							alt="photos"
+						/>
+					</div>
 				</>
 			))}
 
