@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// user-public.d.ts
 export namespace USERPUBLIC {
 	type GetUserPublicResponse = {
 		_id: number;
@@ -24,4 +23,33 @@ export namespace USERPUBLIC {
 	}[];
 
 	type GetPublicVideoRequest = void;
+
+	type CreatePublicResponse = {
+		cover: string;
+		avatar: string;
+		pablicName: string;
+		descriptionPublic: string;
+		tematica: string;
+	};
+
+	type CreatePublicRequest = {
+		cover: string;
+		avatar: string;
+		pablicName: string;
+		descriptionPublic: string;
+		tematica: string;
+	};
+
+	type GetResponse = {
+		publicId: number;
+		cover: string;
+		avatar: string;
+		pablicName: string;
+		userName: string;
+		descriptionPublic: string;
+		tematica: string;
+		countFollower: number;
+	}[];
+
+	type GetRequest = void;
 }

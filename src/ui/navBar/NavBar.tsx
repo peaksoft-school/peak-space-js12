@@ -40,11 +40,11 @@ const NavBar = () => {
 			label: 'Мой профиль'
 		},
 		{
-			path: '/publics/photo',
+			path: '/public',
 			icon: (
 				<img
 					className={
-						pathname === '/publics/photo'
+						pathname === '/public'
 							? `${scss.img} ${scss.active_img}`
 							: `${scss.img}`
 					}

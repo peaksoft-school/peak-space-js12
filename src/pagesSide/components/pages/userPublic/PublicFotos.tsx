@@ -7,6 +7,7 @@ import {
 	usePostUserPublicMutation
 } from '@/src/redux/api/userPublic';
 import ModalTs from '@/src/ui/modal/Modal';
+
 import {
 	IconCirclePlus,
 	IconDots,
@@ -19,6 +20,7 @@ import {
 	IconMoodPlus
 } from '@tabler/icons-react';
 import data from '@emoji-mart/data';
+
 import scss from './Style.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useGetBlockedUsersQuery } from '@/src/redux/api/blocked';
