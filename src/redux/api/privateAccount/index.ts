@@ -11,7 +11,9 @@ const api = index.injectEndpoints({
 				}
 			}),
 			invalidatesTags: ['post']
-		})
+		}),
+
+		
 	})
 });
 

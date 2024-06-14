@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ConfidentPage from './ConfidentPage';
 import { usePoastRivateAccountMutation } from '@/src/redux/api/privateAccount';
@@ -37,16 +37,34 @@ const ConfidentTwoPage: FC = () => {
 	};
 
 	const handleOk = async () => {
-		await postPrivateAccount();
-		setEllipsis(true);
+		const response = await postPrivateAccount();
+		if ('data' in response) {
+			if (response.data?.httpStatus === 'OK') {
+				localStorage.setItem('galochka', 'true');
+			}
+		}
 		setIsModal(false);
 	};
 
 	const handleOk2 = async () => {
-		await postPrivateAccount();
-		setEllipsis(false);
+		const response = await postPrivateAccount();
+		if ('data' in response) {
+			if (response.data?.httpStatus === 'OK') {
+				localStorage.removeItem('galochka');
+				localStorage.setItem('galochka', 'false');
+			}
+		}
+
 		setIsModal2(false);
 	};
+	useEffect(() => {
+		const test = localStorage.getItem('galochka');
+		if (test === 'true') {
+			setEllipsis(true);
+		} else if (test === 'false') {
+			setEllipsis(false);
+		}
+	}, [ellipsis, localStorage, handleOk]);
 
 	return (
 		<div className={scss.confident_content}>
