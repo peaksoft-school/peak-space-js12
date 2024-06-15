@@ -23,6 +23,8 @@ import { useAddFavoriteMutation } from '@/src/redux/api/favourites';
 
 const MainPost = () => {
 	const { data: items, refetch } = useGetMainPageQuery();
+	console.log(items);
+
 	const [isFavorite] = useAddFavoriteMutation();
 
 	const [isState, setIsState] = useState(false);
@@ -64,7 +66,6 @@ const MainPost = () => {
 		setIsModal2(true);
 	};
 	const closeModal2 = () => {
-		
 		setIsModal2(false);
 	};
 
@@ -85,8 +86,10 @@ const MainPost = () => {
 		}
 	};
 
+	const containerStyle = items && items.length > 0 ? '' : scss.none;
+
 	return (
-		<div>
+		<div className={containerStyle}>
 			{items?.map((item) => (
 				<div className={scss.section} key={item.id}>
 					<div className={scss.holder}>

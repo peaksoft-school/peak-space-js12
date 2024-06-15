@@ -33,7 +33,6 @@ const MainStory = () => {
 	const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
 	const [isOpen, setIsOpen] = useState(false);
 	const [image, setImage] = useState('');
-	const [complain, setComplain] = useState(false);
 	const [modalIsOpener, setModalIsOpener] = useState(false);
 
 	const handIsOpenEr = () => {
