@@ -29,7 +29,11 @@ const ForMe = () => {
 	const { communityId } = useParams();
 
 	const { data: datas, refetch } = useGetIdQuery(communityId as any);
+	console.log(datas);
+	
 	const { data: photo } = useGetPublicPhotosQuery(communityId as any);
+	console.log(photo);
+	
 
 	const [publics, setPublics] = useState<any[]>([]);
 
@@ -37,7 +41,6 @@ const ForMe = () => {
 	const [editRequest] = useEditPublicMutation();
 	const [deleteRequest] = useDeleteIdMutation();
 	const [deletePublicById] = useDeletePhotoByIdMutation();
-	const [page, setPage] = useState(true);
 	const [isEdit, setIsEdit] = useState(null);
 	const [editCover, setEdtiCover] = useState('');
 	const [edtiAvatar, setEditAvatar] = useState('');

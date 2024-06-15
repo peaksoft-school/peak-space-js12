@@ -91,6 +91,8 @@ const MainPost = () => {
 		}));
 	};
 
+	const containerStyle = items && items.length > 0 ? '' : scss.none;
+
 	return (
 		<div className={containerStyle}>
 			{items?.map((item) => (
