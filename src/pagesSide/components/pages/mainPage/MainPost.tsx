@@ -18,7 +18,6 @@ import {
 } from '@tabler/icons-react';
 import scss from './Style.module.scss';
 import { useAddFavoriteMutation } from '@/src/redux/api/favourites';
-import { set } from 'firebase/database';
 
 const MainPost = () => {
 	const { data: items, refetch } = useGetMainPageQuery();
@@ -26,7 +25,6 @@ const MainPost = () => {
 
 	const [isFavorite] = useAddFavoriteMutation();
 
-	const [isState, setIsState] = useState(false);
 	const [isModal, setIsModal] = useState(false);
 	const [inputStr, setInputStr] = useState('');
 	const [showPicker, setShowPicker] = useState(false);
@@ -85,7 +83,6 @@ const MainPost = () => {
 		}
 	};
 
-
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const ShowMessageAgain = (id: any) => {
 		setShowMessage((prevState: { [x: string]: string }) => ({
@@ -93,7 +90,6 @@ const MainPost = () => {
 			[id]: !prevState[id]
 		}));
 	};
-
 
 	return (
 		<div className={containerStyle}>
@@ -114,8 +110,7 @@ const MainPost = () => {
 						</div>
 						<div
 							className={
-								showMessage[item.postId
-								]
+								showMessage[item.postId]
 									? scss.post_menu_active
 									: scss.post_menu_disable
 							}
@@ -149,11 +144,15 @@ const MainPost = () => {
 							<div className={scss.modalst}>
 								<div className={scss.text}>
 									<p className={scss.p}>Поделиться</p>
-									<IconX onClick={closeModal2} className={scss.icons}  color='black'/>
+									<IconX
+										onClick={closeModal2}
+										className={scss.icons}
+										color="black"
+									/>
 								</div>
 								<span></span>
 								<div className={scss.inputs}>
-									<IconSearch color='black' />
+									<IconSearch color="black" />
 									{usersArray.map((el, index) => (
 										<div
 											className={scss.div_users_names}
