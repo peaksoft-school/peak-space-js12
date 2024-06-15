@@ -17,7 +17,7 @@ import { Skeleton } from 'antd';
 // 	userName: string;
 // 	tematica: string;
 // 	publicId: number;
-// 	pablicName: string;
+// 	pablicName: string; 
 // 	countFollower: number;
 // 	descriptionPublic: string;
 // }[];
@@ -133,7 +133,7 @@ const PublicPage = () => {
 									<div
 										key={item.id}
 										className={scss.public_item}
-										onClick={() => navigateToMyPublic(item.communityId)}
+										onClick={() => navigateToMyPublic(item.id)}
 									>
 										<div className={scss.cover}>
 											<img
