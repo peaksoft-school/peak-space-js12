@@ -31,6 +31,7 @@ const PublicPage = () => {
 	const [putRequest] = useJoinPublicByIdMutation();
 
 	const [publics, setPublics] = useState<any[]>([]);
+	console.log(publics);
 
 	const [activeItem, setActiveItem] = useState<string>('/');
 	const navigate = useNavigate();
@@ -52,6 +53,7 @@ const PublicPage = () => {
 			setPublics(transformedData);
 		}
 	}, [data]);
+	console.log(data);
 
 	if (isLoading) {
 		return (
@@ -131,9 +133,7 @@ const PublicPage = () => {
 									<div
 										key={item.id}
 										className={scss.public_item}
-										onClick={() => (
-											navigateToMyPublic(item.id), console.log(item.id)
-										)}
+										onClick={() => navigateToMyPublic(item.communityId)}
 									>
 										<div className={scss.cover}>
 											<img

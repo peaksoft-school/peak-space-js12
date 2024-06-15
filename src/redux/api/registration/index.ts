@@ -6,7 +6,6 @@ const api = index.injectEndpoints({
 			REGISTRATION.PostRegistrationRequest
 		>({
 			query: (data) => (
-				console.log(data),
 				{
 					url: '/auth/signUp',
 					method: 'POST',
