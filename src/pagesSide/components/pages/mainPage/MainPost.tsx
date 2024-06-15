@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
-
 import SliderMain from './SliderMain';
 import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
 import { useGetBlockedUsersQuery } from '@/src/redux/api/blocked';
@@ -20,6 +18,7 @@ import {
 } from '@tabler/icons-react';
 import scss from './Style.module.scss';
 import { useAddFavoriteMutation } from '@/src/redux/api/favourites';
+import { set } from 'firebase/database';
 
 const MainPost = () => {
 	const { data: items, refetch } = useGetMainPageQuery();
@@ -37,6 +36,9 @@ const MainPost = () => {
 	const { data, isLoading } = useGetBlockedUsersQuery();
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const [showMessage, setShowMessage] = useState<any>({});
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleGetEmoji = (event: any) => {
 		setInputStr((prevInput) => prevInput + event.native);
 		setShowPicker(false);
@@ -52,9 +54,6 @@ const MainPost = () => {
 		}
 	};
 
-	const changeState = () => {
-		setIsState(!isState);
-	};
 	const openModal = () => {
 		setIsModal(true);
 	};
@@ -86,7 +85,15 @@ const MainPost = () => {
 		}
 	};
 
-	const containerStyle = items && items.length > 0 ? '' : scss.none;
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const ShowMessageAgain = (id: any) => {
+		setShowMessage((prevState: { [x: string]: string }) => ({
+			...prevState,
+			[id]: !prevState[id]
+		}));
+	};
+
 
 	return (
 		<div className={containerStyle}>
@@ -101,18 +108,23 @@ const MainPost = () => {
 									<p>{item.location}</p>
 								</div>
 							</div>
-							<button onClick={changeState}>
-								<IconDotsVertical onClick={changeState} />
+							<button onClick={() => ShowMessageAgain(item.postId)}>
+								<IconDotsVertical />
 							</button>
 						</div>
 						<div
-							className={isState ? scss.one : scss.two}
-							onClick={changeState}
+							className={
+								showMessage[item.postId
+								]
+									? scss.post_menu_active
+									: scss.post_menu_disable
+							}
 						>
-							<p className={scss.red}>заблокировать пользователя</p>
-							<p>Пожаловаться</p>
-							<p>удалить фото</p>
-							<p>Отписаться</p>
+							<div className={scss.post_menu_container}>
+								<p className={scss.red}>заблокировать пользователя</p>
+								<p>Пожаловаться</p>
+								<p>Отписаться</p>
+							</div>
 						</div>
 						<p className={scss.text}>{item.description}</p>
 						<div className={scss.posts}>
@@ -137,11 +149,11 @@ const MainPost = () => {
 							<div className={scss.modalst}>
 								<div className={scss.text}>
 									<p className={scss.p}>Поделиться</p>
-									<IconX onClick={closeModal2} className={scss.icons} />
+									<IconX onClick={closeModal2} className={scss.icons}  color='black'/>
 								</div>
 								<span></span>
 								<div className={scss.inputs}>
-									<IconSearch />
+									<IconSearch color='black' />
 									{usersArray.map((el, index) => (
 										<div
 											className={scss.div_users_names}

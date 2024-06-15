@@ -16,7 +16,6 @@ import {
 	IconLetterCase,
 	IconStars,
 	IconCarambola,
-	// IconArrowRight,
 	IconPlus,
 	IconPhotoSensor2
 } from '@tabler/icons-react';
@@ -87,7 +86,6 @@ const MainStory = () => {
 						<div onClick={handleOpen} className={scss.plus_icon}>
 							<img className={scss.elipse} src={elipse} alt="" />
 							<img className={scss.plus} src={plusIcon} alt="" />
-
 							<h1>Добовить Историю</h1>
 						</div>
 						<ModalTs open={isOpen} onCancel={handleCancel}>
@@ -179,15 +177,6 @@ const MainStory = () => {
 									<p>{data[currentStoryIndex].createdAt}</p>
 								</div>
 							</div>
-							{/* <iframe
-								className={scss.iframe}
-								width="640"
-								height="480"
-								src={data[currentStoryIndex].photosOrVideosLink}
-								frameBorder="0"
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowFullScreen
-							></iframe> */}
 						</div>
 					</div>
 				)}
