@@ -288,7 +288,7 @@ const Publications = () => {
 						<div
 							className={showMessage[item.id] ? scss.isMessage_left : scss.none}
 						>
-							<p onClick={() => removeId(item.id)}>удалить пость</p>
+							<p onClick={() => removeId(item.id)}>удалить пост</p>
 						</div>
 					</div>
 				</>

@@ -117,7 +117,7 @@ const api = index.injectEndpoints({
 			invalidatesTags: ['post']
 		}),
 		editPublic: build.mutation({
-			query: (newData ) => ({
+			query: (newData) => ({
 				url: `/public-profiles`,
 				method: 'PATCH',
 				body: newData,
@@ -131,6 +131,77 @@ const api = index.injectEndpoints({
 		getId: build.query<USERPUBLIC.GetResponse, USERPUBLIC.GetRequest>({
 			query: (communityId) => ({
 				url: `/public-profiles/${communityId}`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
+		}),
+		postPublicById: build.mutation<
+			USERPUBLIC.PostPublicByIdResponse,
+			USERPUBLIC.PostPublicByIdRequest
+		>({
+			query: ({ communityId, newData }) => ({
+				url: `/public-profiles/${communityId}`,
+				method: 'POST',
+				body: newData,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+		getPublicPhotos: build.query<
+			USERPUBLIC.GetPublicPhotoResponse,
+			USERPUBLIC.GetPublicPhotoRequest
+		>({
+			query: (communityId) => ({
+				url: `/public-profiles/publications/${communityId}`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
+		}),
+		deletePhotoById: build.mutation({
+			query: (postId) => ({
+				url: `/public-posts/${postId}`,
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+		joinPublicById: build.mutation({
+			query: (publicId) => ({
+				url: `/public-profiles/send-join-public/${publicId}`,
+				method: 'PUT',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+
+		removeUserInPublic: build.mutation({
+			query: (friendId) => ({
+				url: `/public-profiles/tag/${friendId}`,
+				method: 'PUT',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+		modalComment: build.query<
+			USERPUBLIC.GetModalCommentResponse,
+			USERPUBLIC.GetModalCommentRequest
+		>({
+			query: (postId) => ({
+				url: `/posts/find/${postId}`,
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
@@ -153,5 +224,11 @@ export const {
 	useGetYuofollowQuery,
 	useDeleteIdMutation,
 	useGetIdQuery,
-	useEditPublicMutation
+	useEditPublicMutation,
+	usePostPublicByIdMutation,
+	useGetPublicPhotosQuery,
+	useDeletePhotoByIdMutation,
+	useJoinPublicByIdMutation,
+	useRemoveUserInPublicMutation,
+	useModalCommentQuery
 } = api;

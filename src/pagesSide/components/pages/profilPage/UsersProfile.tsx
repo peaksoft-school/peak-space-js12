@@ -37,7 +37,7 @@ const ProfilPage = () => {
 
 	const [complain, setComplain] = useState(false);
 	const handleComplain = () => {
-		setComplain(true);
+		setComplain(!complain);
 	};
 
 	const friends = [
@@ -140,55 +140,62 @@ const ProfilPage = () => {
 						<ModalTs open={isOpen2} onCancel={handleCloseModal2}>
 							<div className={scss.modalss}>
 								<div>
-									<h2>Вы точно заблокировать пользователя ?</h2>
+									<h2>Заблокировать krgz.132?</h2>
 								</div>
+								<p>
+									Этот пользователь не сможет найти ваш профиль, публикации или
+									истории в peak-space и не узнает о том, что вы его
+									заблокировали.
+								</p>
 								<div className={scss.buttons}>
-									<button onClick={handleCloseModal2}>Да</button>
+									<button onClick={handleCloseModal2}>Заблокировать</button>
 									<button onClick={handleCloseModal2}>Отмена </button>
 								</div>
 							</div>
 						</ModalTs>
 
 						<ModalTs open={isOpen} onCancel={handleCloseModal}>
-							<div className={scss.modal_ts}>
-								<div className={scss.closeModal}>
-									<h1>Пожаловаться</h1>
-									<div className={scss.cloose}>
-										<button onClick={handleCloseModal}>
-											<IconX  />
-										</button>
+							<div className={scss.wrap}>
+								<div className={scss.modal_ts}>
+									<div className={scss.closeModal}>
+										<h1>Пожаловаться</h1>
+										<div className={scss.cloose}>
+											<button onClick={handleCloseModal}>
+												<IconX />
+											</button>
+										</div>
 									</div>
-								</div>
-								<div className={scss.hring}>
-									<span className={scss.hr}></span>
-								</div>
-								<div className={scss.h1_teg}>
-									<h1 className={scss.h1}>
-										Почему вы хотите пожаловаться на этого пользователя?{' '}
-									</h1>
-									<p>
-										Ваша жалоба является анониной, за исключением случаев, когда
-										вы сообщаете о нарушениях прав на интеллектуальную
-										собственность
-									</p>
-								</div>
-								<div className={scss.spaner}>
-									<span className={scss.span1}> </span>
-								</div>
-								<div className={scss.let1}>
-									<p>Ребенок младше 13 лет</p>
-								</div>
-								<div className={scss.spaner}>
-									<span className={scss.span1}> </span>
-								</div>
-								<div className={scss.let1}>
-									<p>Этот человек выдает себя за другого </p>
-								</div>
-								<div className={scss.spaner}>
-									<span className={scss.span1}> </span>
-								</div>
-								<div className={scss.let1}>
-									<p>Другие</p>
+									<div className={scss.hring}>
+										<span className={scss.hr}></span>
+									</div>
+									<div className={scss.h1_teg}>
+										<h1 className={scss.h1}>
+											Почему вы хотите пожаловаться на этого пользователя?{' '}
+										</h1>
+										<p>
+											Ваша жалоба является анониной, за исключением случаев,
+											когда вы сообщаете о нарушениях прав на интеллектуальную
+											собственность
+										</p>
+									</div>
+									<div className={scss.spaner}>
+										<span className={scss.span1}> </span>
+									</div>
+									<div className={scss.let1}>
+										<p>Ребенок младше 13 лет</p>
+									</div>
+									<div className={scss.spaner}>
+										<span className={scss.span1}> </span>
+									</div>
+									<div className={scss.let1}>
+										<p>Этот человек выдает себя за другого </p>
+									</div>
+									<div className={scss.spaner}>
+										<span className={scss.span1}> </span>
+									</div>
+									<div className={scss.let1}>
+										<p>Другие</p>
+									</div>
 								</div>
 							</div>
 						</ModalTs>
@@ -258,29 +265,43 @@ const ProfilPage = () => {
 				</div>
 
 				<ModalTs open={isOpen3} onCancel={handleCloseModal3}>
-					<div className={scss.containers}>
-						<h1>Друзья</h1>
-						<nav>
-							<ul></ul>
-							<p>Добавить раздел</p>
-							<IconCirclePlus
-								stroke={1}
-								className={scss.plus_icon}
-								onClick={() => {}}
-							/>
-						</nav>
+					<div className={scss.friends}>
+						<div className={scss.containers}>
+							<h1>Друзья</h1>
+							<nav>
+								<ul></ul>
+								<p>Добавить раздел</p>
+								<IconCirclePlus
+									stroke={1}
+									className={scss.plus_icon}
+									onClick={() => {}}
+								/>
+							</nav>
 
-						<div className={scss.search_container}>
-							<IconSearch className={scss.search_img} />
-							<input placeholder="Поиск" />
-						</div>
-						<div>
-							<div onClick={handleOpen4} className={scss.form}>
-								<img className={scss.images3} src={friends[2].img} alt="logo" />
-								<img className={scss.images1} src={friends[0].img} alt="logo" />
-								<img className={scss.images2} src={friends[1].img} alt="logo" />
+							<div className={scss.search_container}>
+								<IconSearch className={scss.search_img} />
+								<input placeholder="Поиск" />
 							</div>
-							<h1 className={scss.h1}>Друзья</h1>
+							<div>
+								<div onClick={handleOpen4} className={scss.form}>
+									<img
+										className={scss.images3}
+										src={friends[2].img}
+										alt="logo"
+									/>
+									<img
+										className={scss.images1}
+										src={friends[0].img}
+										alt="logo"
+									/>
+									<img
+										className={scss.images2}
+										src={friends[1].img}
+										alt="logo"
+									/>
+								</div>
+								<h1 className={scss.h1}>Друзья</h1>
+							</div>
 						</div>
 					</div>
 				</ModalTs>

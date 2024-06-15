@@ -22,6 +22,8 @@ import { set } from 'firebase/database';
 
 const MainPost = () => {
 	const { data: items, refetch } = useGetMainPageQuery();
+	console.log(items);
+
 	const [isFavorite] = useAddFavoriteMutation();
 
 	const [isState, setIsState] = useState(false);
@@ -83,6 +85,7 @@ const MainPost = () => {
 		}
 	};
 
+
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const ShowMessageAgain = (id: any) => {
 		setShowMessage((prevState: { [x: string]: string }) => ({
@@ -91,8 +94,9 @@ const MainPost = () => {
 		}));
 	};
 
+
 	return (
-		<div>
+		<div className={containerStyle}>
 			{items?.map((item) => (
 				<div className={scss.section} key={item.id}>
 					<div className={scss.holder}>

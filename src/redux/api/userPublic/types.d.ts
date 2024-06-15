@@ -41,6 +41,7 @@ export namespace USERPUBLIC {
 	};
 
 	type GetResponse = {
+		id: Key | null | undefined;
 		publicId: number;
 		cover: string;
 		avatar: string;
@@ -52,4 +53,45 @@ export namespace USERPUBLIC {
 	}[];
 
 	type GetRequest = void;
+
+	type PostPublicByIdResponse = {
+		links: string[];
+		description: string;
+		location: string;
+		blockComment: boolean;
+	};
+
+	type PostPublicByIdRequest = {
+		links: string[];
+		description: string;
+		location: string;
+		blockComment: boolean;
+		communityId: string;
+		newData: string;
+	};
+
+	type GetPublicPhotoResponse = {
+		ownerId: number;
+		id: number;
+		link: string;
+	}[];
+
+	type GetPublicPhotoRequest = void;
+
+	type GetModalCommentResponse = {
+		id: number;
+		userId: number;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		avatar: any;
+		userName: string;
+		location: string;
+		description: string;
+		countLikes: number;
+		links: Link[];
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		commentResponses: any[];
+		blockComment: boolean;
+	};
+
+	type GetModalCommentRequest = void;
 }

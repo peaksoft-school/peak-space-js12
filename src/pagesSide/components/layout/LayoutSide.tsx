@@ -9,16 +9,16 @@ import ProfilPage from '../pages/profilPage/ProfilPage';
 import NewPublic from '../pages/publicPage/NewPublic';
 import PostById from '../pages/justForTest/PostById';
 import ChatMessage from '../pages/chat/ChatMessage';
-import Publics from '../pages/publicsUsers/Publics';
+// import Publics from '../pages/publicsUsers/';
 import MainPage from '../pages/mainPage/MainPage';
 import ChatPerson from '../pages/chat/ChatPerson';
+import ForMe from '../pages/justForTest/ForMe';
 import scss from './LayoutSide.module.scss';
 import Test from '../pages/publicPage/Test';
 import NavBar from '@/src/ui/navBar/NavBar';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import ForMe from '../pages/justForTest/ForMe';
-
+import UserPublic from '../pages/userPublic/UserPublic';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -44,14 +44,15 @@ const LayoutSide = () => {
 						<Route path="/notification" element={<Notifications />} />
 						<Route path="/users-profile/*" element={<UsersProfile />} />
 						<Route path="/public" element={<PublicPage />} />
-						<Route path="/publics/:communityId/*" element={<Publics />} />
+						{/* <Route path="/publics/:communityId/*" element={<Publics />} /> */}
 						<Route path="/public/:communityId" element={<ForMe />} />
+						<Route path="/new-public" element={<NewPublic />} />
 						<Route path="/test/:publicName " element={<Test />} />
 						<Route path="/confindent" element={<ConfidentTwoPage />} />
 						<Route path="/blocked" element={<BlockedPages />} />
-						<Route path="/public" element={<PublicPage />} />
 						<Route path="/public/new-public" element={<NewPublic />} />
 						<Route path="/post/:postId" element={<PostById />} />
+						<Route path="/photo/*" element={<UserPublic />} />
 					</Routes>
 				</main>
 			</div>
