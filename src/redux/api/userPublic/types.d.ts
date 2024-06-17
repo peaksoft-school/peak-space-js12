@@ -94,4 +94,16 @@ export namespace USERPUBLIC {
 	};
 
 	type GetModalCommentRequest = void;
+
+	type GetCommentResponse = {
+		innerCommentId: number;
+		userId: number;
+		avatar: string;
+		userName: string;
+		comment: string;
+		countLike: number;
+		createdAt: string;
+	};
+
+	type GetCommentRequest = void
 }

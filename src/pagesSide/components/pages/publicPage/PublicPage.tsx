@@ -17,7 +17,7 @@ import { Skeleton } from 'antd';
 // 	userName: string;
 // 	tematica: string;
 // 	publicId: number;
-// 	pablicName: string; 
+// 	pablicName: string;
 // 	countFollower: number;
 // 	descriptionPublic: string;
 // }[];
@@ -25,8 +25,10 @@ import { Skeleton } from 'antd';
 const PublicPage = () => {
 	const { data, isLoading, error, refetch } = useUserPublicmyCommunityQuery();
 	const { data: users } = useRecommendationGetQuery();
+	console.log(users);
 
 	const { data: follow } = useGetYuofollowQuery();
+	console.log(follow);
 
 	const [putRequest] = useJoinPublicByIdMutation();
 
@@ -211,11 +213,12 @@ const PublicPage = () => {
 											<img
 												key={item.id}
 												className={item.avatar ? scss.is_have : scss.is_none}
-												src={
-													item.avatar && item.avatar !== 'avatar'
-														? item.avatar
-														: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
-												}
+												// src={
+												// 	item.avatar && item.avatar !== 'avatar'
+												// 		? item.avatar
+												// 		: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
+												// }
+												src={item.avatar}
 												alt="avatar"
 											/>
 										</div>
@@ -263,11 +266,12 @@ const PublicPage = () => {
 										<div className={scss.user_img}>
 											<img
 												className={el.avatar ? scss.is_have : scss.is_none}
-												src={
-													el.avatar && el.avatar !== 'avatar'
-														? el.avatar
-														: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
-												}
+												// src={
+												// 	el.avatar && el.avatar !== 'avatar'
+												// 		? el.avatar
+												// 		: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
+												// }
+												src={el.avatar}
 												alt="UserAvatar"
 											/>
 										</div>
