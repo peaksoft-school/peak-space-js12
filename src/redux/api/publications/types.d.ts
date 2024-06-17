@@ -13,12 +13,15 @@ namespace PROFIL {
 	type GetVideoRequest = void;
 
 	type PostProfilResponse = {
+		httpStatus:string
 		data: any;
 		url(url: PostProfilResponse): unknown;
 		url: PostProfilResponse;
 		status: number;
 		id: number;
 		img: string;
+		object:string
+		
 	};
 	type PostProfilRequest = {
 		id: number;

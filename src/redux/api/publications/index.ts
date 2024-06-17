@@ -7,11 +7,11 @@ const api = index.injectEndpoints({
 			PROFIL.PostProfilResponse,
 			PROFIL.PostProfilRequest
 		>({
-			query: (newData) => ({
+			query: (formData) => ({
 				url: '/api/s3',
 				method: 'POST',
-				body: newData,
-				responseHandler: 'text'
+				body: formData
+				// responseHandler: 'text'
 			}),
 			invalidatesTags: ['post']
 		}),

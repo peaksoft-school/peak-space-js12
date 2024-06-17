@@ -56,6 +56,9 @@ dependencies:
   react-hook-form:
     specifier: ^7.51.2
     version: 7.51.5(react@18.3.1)
+  react-insta-stories:
+    specifier: ^2.7.0
+    version: 2.7.0(react@18.3.1)
   react-redux:
     specifier: ^9.1.0
     version: 9.1.2(@types/react@18.3.3)(react@18.3.1)(redux@5.0.1)
@@ -3507,6 +3510,14 @@ packages:
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.3.1
+    dev: false
+
+  /react-insta-stories@2.7.0(react@18.3.1):
+    resolution: {integrity: sha512-pCPHzC323b9Ttvr8ByLrX/iH/ft/L3ThWGDJPKdvHnaWdR5dhFkonrQ0/KNiEIH5t539dNyFPevLJUOobkD2WQ==}
+    peerDependencies:
+      react: '>=16.8.2'
     dependencies:
       react: 18.3.1
     dev: false

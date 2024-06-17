@@ -1,9 +1,14 @@
-import { useGetStoryQuery, usePostStoryMutation } from '@/src/redux/api/story';
+import {
+	useDeleteStoryMutation,
+	useGetStoryByIdQuery,
+	useGetStoryMyQuery,
+	useGetStoryQuery,
+	usePostStoryMutation
+} from '@/src/redux/api/story';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, KeyboardEvent } from 'react';
 import ModalTs from '@/src/ui/modal/Modal';
-import { Progress } from 'antd';
 import elipse from '../../../../assets/Rectangle 76.svg';
 import plusIcon from '../../../../assets/Plusicon.svg';
 import Webcam from 'react-webcam';
@@ -21,33 +26,9 @@ import {
 	IconVideoOff
 } from '@tabler/icons-react';
 import scss from './Style.module.scss';
-
-const data23 = [
-	{
-		img: 'https://ca.slack-edge.com/T023L1WBFLH-U05UR1PLN10-d76277dee9b1-192',
-		name: 'MUSTAFA',
-		age: '19+',
-		_id: '1'
-	},
-	{
-		name: 'NURSULTAN',
-		img: 'https://ca.slack-edge.com/T023L1WBFLH-U05UEGBFL4C-g180a7b25fb7-192',
-		age: '17+',
-		_id: '2'
-	},
-	{
-		name: 'KASYM',
-		img: 'https://ca.slack-edge.com/T023L1WBFLH-U0452B11NQ4-e0f8bfc721b7-192',
-		age: '18+',
-		_id: '3'
-	},
-	{
-		name: 'KADYRDIN',
-		img: 'https://ca.slack-edge.com/T023L1WBFLH-U05UMUYCCB1-2b4d42ec54e5-72',
-		age: 17,
-		_id: '4'
-	}
-];
+import { usePostCreateFileMutation } from '@/src/redux/api/publications';
+import Stories from 'react-insta-stories';
+// import { Result } from 'antd';
 
 const videoConstraints = {
 	width: 480,
@@ -56,30 +37,54 @@ const videoConstraints = {
 };
 
 const MainStory = () => {
-	const { data, isLoading } = useGetStoryQuery();
+	const { data: stories, isLoading: storiesLoading } = useGetStoryQuery();
 	const [postRequest] = usePostStoryMutation();
-	const [isOpenModalStory, setIsOpenModalStory] = useState(false);
-	const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
-	const [isOpen, setIsOpen] = useState(false);
-	const [image, setImage] = useState('');
-	const [complain, setComplain] = useState(false);
-	const [modalIsOpener, setModalIsOpener] = useState(false);
-	const [isOpenCamera, setIsOpenCamera] = useState(false);
-	console.log(data, 'allAli');
-
+	const [isOpenModalStory, setIsOpenModalStory] = useState<boolean>(false);
+	const [currentStoryIndex, setCurrentStoryIndex] = useState<number>(0);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [image, setImage] = useState<string>('');
+	const [complain, setComplain] = useState<boolean>(false);
+	const [modalIsOpener, setModalIsOpener] = useState<boolean>(false);
+	const [isOpenCamera, setIsOpenCamera] = useState<boolean>(false);
 	const webcamRef = useRef(null);
-	const [recording, setRecording] = useState(false);
+	const [recording, setRecording] = useState<boolean>(false);
 	const [mediaRecorder, setMediaRecorder] = useState(null);
 	const [recordedChunks, setRecordedChunks] = useState([]);
+	const [getId, setGetId] = useState<string | undefined>();
+	const [progress, setProgress] = useState<number>(0);
+	const progressTimer = useRef(null);
+	// const [isFillingStories, setIsFillingStories] = useState<boolean>(false);
+	const [postFile] = usePostCreateFileMutation();
+	const [storyUrl, setStoryUrl] = useState<string>('');
+	const [addedInput, setAddedInput] = useState<boolean>(false);
+	const [description, setDescription] = useState<string>('');
+	const [text, setText] = useState<string>('');
+	const [greenCircle, setGreenCircle] = useState<boolean>(false);
+	const [currentModalStory, setCurrentModalStory] = useState<any>(null);
+	const [deleteRequest] = useDeleteStoryMutation();
+	const { data: storiesId } = useGetStoryMyQuery();
+
+	const [postApiRequest] = usePostCreateFileMutation();
+	const [videoUrl, setVideoUrl] = useState<string>('');
+	const [testArr, setTestArr] = useState<string>('');
+
+	const [Arr, setArr] = useState([]);
+
+	const { data: storyById } = useGetStoryByIdQuery(getId);
+	const handleDelete = async (id: number) => {
+		await deleteRequest(id);
+		setImage('');
+	};
+	const handleOpenInput = () => {
+		setAddedInput(!addedInput);
+	};
 
 	const changeStateStore = () => {
 		setComplain(!complain);
 	};
-
 	const handIsOpenEr = () => {
 		setModalIsOpener(true);
 	};
-
 	const handICancelEr = () => {
 		setModalIsOpener(false);
 	};
@@ -92,18 +97,29 @@ const MainStory = () => {
 		setIsOpen(false);
 	};
 
-	const handOpenStory = (index: any) => {
-		setIsOpenModalStory(true);
-		setCurrentStoryIndex(index);
-	};
+	const handOpenStory = (id: string) => {
+		console.log(id, 'alihan');
 
+		setGetId(id);
+		setIsOpenModalStory(true);
+		setProgress(0);
+		progressTimer.current = setInterval(() => {
+			setProgress((prev) => {
+				if (prev >= 100) {
+					clearInterval(progressTimer.current!);
+					setIsOpenModalStory(false);
+					return 100;
+				}
+				return prev + 0.5; // Adjust the increment value as needed
+			});
+		}, 25);
+
+		// Find the story by ID and set it as the current modal story
+		const foundStory = stories?.find((story) => story.userId === id);
+		setCurrentModalStory(foundStory);
+	};
 	const handCancelStory = () => {
 		setIsOpenModalStory(false);
-	};
-
-	const handleDeleteImage = () => {
-		setIsOpenCamera(true);
-		setImage('');
 	};
 
 	const handleOpenCamera = () => setIsOpenCamera((prev) => !prev);
@@ -120,39 +136,53 @@ const MainStory = () => {
 		slides: { perView: 1 }
 	});
 
-	const scrrenShot = () => {
+	const takeScreenshot = () => {
 		if (webcamRef.current) {
-			const screenshot = webcamRef.current.getScreenshot();
+			console.log(webcamRef, webcamRef.current);
+
+			const screenshot: string = webcamRef.current.getScreenshot();
+
 			setImage(screenshot);
 		}
 	};
 
 	const backCamera = () => setImage('');
 
-	// const downloadImage = () => {
-	// 	const link = document.createElement('a');
-	// 	link.href = image;
-	// 	link.download = 'downloaded-image.jpg';
-	// 	document.body.appendChild(link);
-	// 	link.click();
-	// 	document.body.removeChild(link);
-	// };
-
-	const uploadImage = async (event: any) => {
+	const uploadImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files[0];
-		const reader = new FileReader();
-		reader.onloadend = () => {
-			setImage(reader.result as string);
-		};
 		if (file) {
+			const reader = new FileReader();
+			reader.onloadend = () => {
+				setImage(reader.result as string);
+				setVideoUrl(''); // Clear the video URL if an image is uploaded
+			};
 			const formData = new FormData();
 			formData.append('file', file);
-
 			try {
-				await postRequest(formData);
-				reader.readAsDataURL(file);
+				const result = await postFile(formData);
+				if ('data' in result) {
+					const resJson = JSON.parse(result.data);
+					setVideoUrl(resJson.object);
+				}
 			} catch (error) {
 				console.error('Error uploading image:', error);
+			}
+			reader.readAsDataURL(file);
+		}
+	};
+
+	const handlePost = async () => {
+		const newData = {
+			photoUrlOrVideoUrl: [storyUrl],
+			description: text,
+			idsOfTaggedPeople: [0]
+		};
+		const result = await postRequest(newData);
+		console.log(result);
+		if ('data' in result) {
+			if (result.data?.httpStatus === 'OK') {
+				setGreenCircle(true);
+				setIsOpen(false);
 			}
 		}
 	};
@@ -162,10 +192,28 @@ const MainStory = () => {
 			const stream = webcamRef.current.video.srcObject;
 			const options = { mimeType: 'video/webm; codecs=vp9' };
 			const mediaRecorder = new MediaRecorder(stream, options);
+			const chunks: BlobPart[] | undefined = [];
 
 			mediaRecorder.ondataavailable = (event) => {
 				if (event.data.size > 0) {
-					setRecordedChunks((prev) => [...prev, event.data]);
+					chunks.push(event.data);
+				}
+			};
+
+			mediaRecorder.onstop = async () => {
+				const blob = new Blob(chunks, { type: 'video/webm' });
+
+				const formData = new FormData();
+				formData.append('file', blob);
+
+				try {
+					const response = await postApiRequest(formData);
+					// Проверяем, что response.data содержит ссылку на сохраненное видео
+					if ('data' in response && 'url' in response.data) {
+						setArr((prev) => [...prev, response.data.url]); // Добавляем новую ссылку в массив состояния
+					}
+				} catch (error) {
+					console.error('Error uploading video:', error);
 				}
 			};
 
@@ -178,6 +226,7 @@ const MainStory = () => {
 	const stopRecording = () => {
 		if (mediaRecorder) {
 			mediaRecorder.stop();
+			setMediaRecorder(null);
 			setRecording(false);
 		}
 	};
@@ -187,24 +236,54 @@ const MainStory = () => {
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement('a');
 		document.body.appendChild(a);
-		// a.style = 'display: none';
 		a.href = url;
 		a.download = 'recording.webm';
 		a.click();
 		window.URL.revokeObjectURL(url);
 	};
 
+	const hadnleChangeInputValue = (e: KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === 'Enter') {
+			setText(description);
+			setAddedInput(false);
+			setDescription('');
+		}
+	};
+
+	useEffect(() => {
+		return () => {
+			if (mediaRecorder) {
+				mediaRecorder.stream
+					.getTracks()
+					.forEach((track: { stop: () => any }) => track.stop());
+				mediaRecorder.stop();
+			}
+		};
+	}, [mediaRecorder]);
+
+	console.log(image);
+
 	return (
 		<>
 			<div>
-				{isLoading ? (
+				{storiesLoading ? (
 					<p>Loading...</p>
 				) : (
 					<div ref={ref} className={`keen-slider ${scss.keen}`}>
 						<div onClick={handleOpen} className={scss.plus_icon}>
 							<img className={scss.elipse} src={elipse} alt="" />
-							<img className={scss.plus} src={plusIcon} alt="" />
-							<h1>Добавить Историю</h1>
+
+							{greenCircle ? (
+								<>
+									<div className={scss.ok_circle}></div>
+								</>
+							) : (
+								<>
+									<img className={scss.plus} src={plusIcon} alt="" />
+									<h1>Добавить Историю</h1>
+								</>
+							)}
+							<div></div>
 						</div>
 						<ModalTs open={isOpen} onCancel={handleCancel}>
 							<div className={scss.modal_modal}>
@@ -213,40 +292,101 @@ const MainStory = () => {
 										onClick={handleOpenCamera}
 										className={scss.camera}
 									/>
-									<IconMusic className={scss.music} />
-									<IconLetterCase className={scss.letter_case} />
-									<IconStars className={scss.stars} />
 									<div className={scss.change_state}>
-										<button onClick={changeStateStore}>
+										{/* <button onClick={changeStateStore}>
 											<Point onClick={changeStateStore} />
-										</button>
+										</button> */}
 									</div>
+									<button className={scss.added_iput} onClick={handleOpenInput}>
+										Отметка
+									</button>
+
 									<div
 										className={complain ? scss.there : scss.this}
 										onClick={changeStateStore}
 									>
-										{/* <button
-											className={scss.down_load}
-											onClick={downloadRecording}
-										>
-											Сохранить
-										</button> */}
-										{recordedChunks.length > 0 && (
-											<div>
-												<div>
-													<button onClick={downloadRecording}>Download</button>
+										{/* {recordedChunks ? (
+											<div className={scss.reconr}>
+												<div className={scss.down_delet}>
+													<button onClick={downloadRecording}>Сохранить</button>
+													<hr />
+
+													<button
+														className={scss.button_down}
+														onClick={() => handleDelete}
+													>
+														Удалить
+													</button>
 												</div>
-												<button
-													className={scss.delete}
-													onClick={handleDeleteImage}
-												>
-													Удалить
-												</button>
 											</div>
-										)}
+										) : null} */}
 									</div>
 								</div>
 								<div className={scss.video_camera}>
+									<p>{text}</p>
+									{addedInput ? (
+										<>
+											<input
+												value={description}
+												onChange={(e) => {
+													setDescription(e.target.value);
+												}}
+												onKeyPress={(e) => {
+													hadnleChangeInputValue(e);
+												}}
+												type="text"
+												placeholder="text"
+											/>
+										</>
+									) : null}
+									{storiesId?.map((item) => (
+										<>
+											{recordedChunks ? (
+												<div className={scss.reconr}>
+													<div className={scss.down_delet}>
+														<button onClick={downloadRecording}>
+															Сохранить
+														</button>
+														<hr />
+
+														<button
+															className={scss.button_down}
+															onClick={() => handleDelete(item.idStory)}
+														>
+															Удалить
+														</button>
+													</div>
+												</div>
+											) : null}
+											<div className={scss.key_working} key={item.idStory}>
+												{/* <h1>{item.linkPublic}</h1> */}
+												<img
+													className={scss.link_public}
+													src={image}
+													alt="photo"
+													// onClick={backCamera}
+												/>
+												{videoUrl && <video src={videoUrl} controls />}
+
+												<div>
+													{Arr.length > 0 && (
+														<div>
+															{Arr.map((videoUrl, index) => (
+																<div key={index}>
+																	<video controls>
+																		<source src={videoUrl} type="video/webm" />
+																	</video>
+																</div>
+															))}
+														</div>
+													)}
+												</div>
+
+												<p>{item.createdAt}</p>
+												<p>{item.text}</p>
+											</div>
+										</>
+									))}
 									{isOpenCamera && image === '' ? (
 										<>
 											<Webcam
@@ -261,34 +401,31 @@ const MainStory = () => {
 												videoConstraints={videoConstraints}
 											/>
 											<IconPhotoSensor2
-												onClick={scrrenShot}
+												onClick={takeScreenshot}
 												className={scss.iconred}
 											/>
 											{recording ? (
-												// <button onClick={stopRecording}>Stop Recording</button>
 												<IconVideoOff
 													className={scss.icon_video_off}
 													color="white"
+													onAuxClick={takeScreenshot}
 													onClick={stopRecording}
 												/>
 											) : (
-												// <button onClick={startRecording}>
-												// 	Start Recording
-												// </button>
 												<IconVideo color="white" onClick={startRecording} />
 											)}
 										</>
 									) : (
 										<>
-											<img src={image} alt="image" onClick={backCamera} />
+											{!storiesId?.length ? (
+												<img src={image} alt="image" onClick={backCamera} />
+											) : (
+												''
+											)}
 										</>
 									)}
 								</div>
-								{/* {recordedChunks.length > 0 && (
-									<div>
-										<button onClick={downloadRecording}>Download</button>
-									</div>
-								)} */}
+
 								<div className={scss.icon_green}>
 									<IconPhotoPlus
 										onClick={uploadImage}
@@ -299,81 +436,42 @@ const MainStory = () => {
 										type="file"
 										onChange={uploadImage}
 									/>
-									<div className={scss.handle_icon}>
-										<button onClick={handIsOpenEr} className={scss.button}>
-											<IconCarambola onClick={handIsOpenEr} color="green" />
-											Близких Друзей
-										</button>
 
-										<button className={scss.button3}>
+									<div className={scss.handle_icon}>
+										<button className={scss.button3} onClick={handlePost}>
 											<IconPlus color="white" />
 										</button>
 									</div>
 								</div>
-								<ModalTs open={modalIsOpener} onCancel={handICancelEr}>
-									<div className={scss.modal_left}>
-										{data23.map((item) => (
-											<div className={scss.group} key={item._id}>
-												<img src={item.img} alt="" />
-												<h4>{item.name}</h4>
-												<p>{item.age}</p>
-												<input type="checkbox" placeholder="checkbox" />
-											</div>
-										))}
-										<div className={scss.div_button}>
-											<button onClick={handICancelEr}>Далее</button>
-										</div>
-									</div>
-								</ModalTs>
 							</div>
 						</ModalTs>
-						{data?.map((item, index) => (
-							<div key={item._id} className="keen-slider__slide">
+						{stories?.map((item) => (
+							<div key={item.userId} className="keen-slider__slide">
 								<div className={scss.testDiv}>
 									<img
-										onClick={() => {
-											handOpenStory(index);
-										}}
+										onClick={() => handOpenStory(item.userId)}
 										className={scss.story_pic}
-										src={item.userPhoto}
-										alt=""
+										src={
+											item.avatar &&
+											'https://s3-alpha-sig.figma.com/img/05e8/e319/6a3565c67e1ffec70fc0377f3667177d?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HQJWd9ONzO4DIUtc6M7difbPOnq0CDE4cyUsgCI51P3z-hV4-HcuZIG0M~9Df4TmUFSCPJkW0AlRmFo9YOe89z5vP13W0mnh2SNjIpFpRT1KQ9DN~J~hCQsJhSQsBfPxst-oE8qrhR2oMRP5tbtsziYUXStIPnyIwnMfWN1wZuBU72is-Zyg11XQjm~vY9J90zVm6drdIlL0Jh9CUp0aIfMCzpn5uMQfAsxmVEgBtvifBWIx5349Xqcqv7t3SQbRiFhtjSxZJ6bJdeHYIzggEmVJXFWv1Hps8KWe86407~XwHUHTU~7fyw2rUfR4jbSPMBHB9srp9SkR2qqCnpKWBg__'
+										}
+										alt="avatar"
 									/>
-									<img src={item.userName} alt="" />
 								</div>
 							</div>
 						))}
 					</div>
 				)}
+				<ModalTs open={isOpenModalStory} onCancel={handCancelStory}>
+					<Stories
+						stories={stories}
+						// renderers={storyById}
+						defaultInterval={1500}
+						width={432}
+						height={768}
+					/>
+				</ModalTs>
 			</div>
-
-			<ModalTs open={isOpenModalStory} onCancel={handCancelStory}>
-				{data && (
-					<div className={scss.modal_story}>
-						<div className={scss.span}>
-							<Progress
-								strokeColor="white"
-								percent={(currentStoryIndex + 1) * (100 / data.length)}
-								showInfo={false}
-							/>
-						</div>
-						<div className={scss.id_key}>
-							<div className={scss.avatring}>
-								<img
-									className={scss.avatar}
-									src={data[currentStoryIndex].userPhoto}
-									alt=""
-								/>
-								<div className={scss.h1_p}>
-									<h4 className={scss.h4}>
-										{data[currentStoryIndex].userName}
-									</h4>
-									<p>{data[currentStoryIndex].createdAt}</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				)}
-			</ModalTs>
 		</>
 	);
 };

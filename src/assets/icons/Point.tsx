@@ -21,7 +21,7 @@ const Point: FC<PointProps> = ({ onClick }) => {
 					cx="3.500000"
 					cy="3.500000"
 					r="3.500000"
-					fill="#000000"
+					fill="currentColor"
 					fill-opacity="0.600000"
 				/>
 				<circle
@@ -29,7 +29,7 @@ const Point: FC<PointProps> = ({ onClick }) => {
 					cx="15.500000"
 					cy="3.500000"
 					r="3.500000"
-					fill="#000000"
+					fill="currentColor"
 					fill-opacity="0.600000"
 				/>
 				<circle
@@ -37,7 +37,7 @@ const Point: FC<PointProps> = ({ onClick }) => {
 					cx="27.500000"
 					cy="3.500000"
 					r="3.500000"
-					fill="#000000"
+					fill="currentColor"
 					fill-opacity="0.600000"
 				/>
 			</svg>

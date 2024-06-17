@@ -1,9 +1,10 @@
 import { api as index } from '..';
+
 const api = index.injectEndpoints({
 	endpoints: (build) => ({
 		getStory: build.query<STORY.GetStoryResponse, STORY.GetStoryRequest>({
 			query: () => ({
-				url: `/stories/all`,
+				url: '/stories/all',
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
@@ -11,11 +12,50 @@ const api = index.injectEndpoints({
 			}),
 			providesTags: ['story']
 		}),
-		PostStory: build.mutation({
+		getStoryById: build.query<
+			STORY.GetStoryByIdResponse,
+			STORY.GetStoryByIdRequest
+		>({
+			query: (id) => ({
+				url: `/stories?userId/${id}`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['story']
+		}),
+		getStoryMy: build.query<
+			STORY.GetStoryMyResponse,
+			STORY.GetStoryByIdRequest
+		>({
+			query: (id) => ({
+				url: `/stories/my-stories`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['story']
+		}),
+		postStory: build.mutation<STORY.PostStoryResponse, STORY.PostStoryRequest>({
 			query: (newData) => ({
-				url: 'https://9db48a88f5769e2c.mokky.dev/storis',
+				url: '/stories',
 				method: 'POST',
 				body: newData,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['story']
+		}),
+		deleteStory: build.mutation<
+			STORY.DeleteStoryResponse,
+			STORY.DeleteStoryRequest
+		>({
+			query: (id) => ({
+				url: `/stories/${id}`,
+				method: 'DELETE',
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
 				}
@@ -24,4 +64,11 @@ const api = index.injectEndpoints({
 		})
 	})
 });
-export const { useGetStoryQuery, usePostStoryMutation } = api;
+
+export const {
+	useGetStoryQuery,
+	useGetStoryByIdQuery,
+	useGetStoryMyQuery,
+	usePostStoryMutation,
+	useDeleteStoryMutation
+} = api;
