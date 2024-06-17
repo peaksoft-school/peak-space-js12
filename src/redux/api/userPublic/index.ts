@@ -208,6 +208,84 @@ const api = index.injectEndpoints({
 				}
 			}),
 			providesTags: ['post']
+		}),
+
+		likeComment: build.mutation({
+			query: (commentId) => ({
+				url: `/likes/to-comment/${commentId}`,
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+		likePost: build.mutation({
+			query: (postId) => ({
+				url: `/likes/to-post/${postId}`,
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+		commentPost: build.mutation({
+			query: ({ commentId, newData }) => ({
+				url: `/inner-comments/${commentId}`,
+				method: 'POST',
+				body: newData,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+		commentGet: build.query<
+			USERPUBLIC.GetCommentResponse,
+			USERPUBLIC.GetCommentRequest
+		>({
+			query: (commentId) => ({
+				url: `/inner-comments/${commentId}`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
+		}),
+		innerCommentDelete: build.mutation({
+			query: (commentId) => ({
+				url: `/inner-comments/${commentId}`,
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+		editComment: build.mutation({
+			query: ({ commentId, newData }) => ({
+				url: `/comments/${commentId}`,
+				method: 'PUT',
+				body: newData,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		}),
+
+		addedComment: build.mutation({
+			query: ({ postId, newData }) => ({
+				url: `/comments/${postId}`,
+				method: 'POST',
+				body: newData,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
 		})
 	})
 });
@@ -230,5 +308,10 @@ export const {
 	useDeletePhotoByIdMutation,
 	useJoinPublicByIdMutation,
 	useRemoveUserInPublicMutation,
-	useModalCommentQuery
+	useModalCommentQuery,
+	useCommentPostMutation,
+	useInnerCommentDeleteMutation,
+	useEditCommentMutation,
+	useLikeCommentMutation,
+	useAddedCommentMutation
 } = api;

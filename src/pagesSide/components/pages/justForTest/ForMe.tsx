@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
+	useAddedCommentMutation,
+	useCommentPostMutation,
 	useDeleteIdMutation,
 	useDeletePhotoByIdMutation,
+	useEditCommentMutation,
 	useEditPublicMutation,
 	useGetIdQuery,
 	useGetPublicPhotosQuery,
+	useInnerCommentDeleteMutation,
+	useLikeCommentMutation,
 	useModalCommentQuery,
 	usePostPublicByIdMutation,
 	useRemoveUserInPublicMutation
@@ -13,27 +18,28 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import scss from './ForMe.module.scss';
-import { IconCamera, IconDots } from '@tabler/icons-react';
+import { IconCamera, IconDots, IconHeart } from '@tabler/icons-react';
 import {
 	useGetGeocodeQuery,
 	usePostCreateFileMutation
 } from '@/src/redux/api/publications';
-import { PencilIcon, PlusIconSecond } from '@/src/assets/icons';
+import { PencilIcon, PlusIconSecond } from '@/src/assets/icons'; 
 import ModalTs from '@/src/ui/modal/Modal';
 import { Switch } from 'antd';
 import { Smile } from '@/src/assets/icons';
 
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
+import CustomButton from '@/src/ui/customButton/CustomButton';
+import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 const ForMe = () => {
 	const { communityId } = useParams();
 
 	const { data: datas, refetch } = useGetIdQuery(communityId as any);
 	console.log(datas);
-	
+
 	const { data: photo } = useGetPublicPhotosQuery(communityId as any);
 	console.log(photo);
-	
 
 	const [publics, setPublics] = useState<any[]>([]);
 
@@ -66,6 +72,20 @@ const ForMe = () => {
 	const [inputStr, setInputStr] = useState('');
 	const [showPicker, setShowPicker] = useState(false);
 	const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
+	const [isComment, setIsComment] = useState(false);
+	const [commentById, setCommentById] = useState<number | null>(null);
+	const [comment, setComment] = useState('');
+	const [isModalCommnet, setIsModalComment] = useState(false);
+	const [postComment] = useCommentPostMutation();
+	const [deleteComment] = useInnerCommentDeleteMutation();
+	const [deleteCommentById, setDeleteCommentById] = useState<number | null>(
+		null
+	);
+	const [putRequest] = useEditCommentMutation();
+	const [isEditComment, setIsEditCommnet] = useState(null);
+	const [editComment, setEditComment] = useState('');
+	const [likeRequest] = useLikeCommentMutation();
+	const [addedPostComment] = useAddedCommentMutation();
 	const navigate = useNavigate();
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -75,8 +95,6 @@ const ForMe = () => {
 	};
 
 	const showModal = (id: number) => {
-		console.log('nurs', id);
-
 		if (id) {
 			setSelectedPostId(id);
 			setIsModalOpen(true);
@@ -91,6 +109,7 @@ const ForMe = () => {
 	console.log(modalData);
 
 	const [modalContent, setModalContent] = useState([]);
+	console.log(modalContent);
 
 	const handleCancel = () => {
 		setIsModalOpen(false);
@@ -121,6 +140,16 @@ const ForMe = () => {
 		setIsModal(false);
 	};
 
+	const openModalComment = (id: number) => {
+		setIsModalComment(true);
+		setDeleteCommentById(id);
+	};
+
+	const closeModalComment = () => {
+		setIsModalComment(false);
+		setDeleteCommentById(null);
+	};
+
 	// const links = [
 	// 	{
 	// 		link: '/public/photo',
@@ -135,6 +164,20 @@ const ForMe = () => {
 	// 		isPage: false
 	// 	}
 	// ];
+
+	const editCommentById = (item: any) => {
+		setEditComment(item.comment);
+		setIsEditCommnet(item.id);
+		closeModalComment();
+	};
+
+	const saveEditComment = (commentId: number) => {
+		const newData = {
+			message: editComment
+		};
+		putRequest({ commentId, newData });
+		setIsEditCommnet(null);
+	};
 
 	const deleteUserPublic = (friendId: number) => {
 		removeUserInPublic(friendId);
@@ -314,6 +357,7 @@ const ForMe = () => {
 		};
 		try {
 			await postRequest({ communityId, newData } as any).unwrap();
+			setDescription('');
 			closeModal();
 			console.log('Публикация добавлена успешно');
 		} catch (error) {
@@ -325,7 +369,51 @@ const ForMe = () => {
 		deletePublicById(postId);
 	};
 
-	// const containerStyle = publics && publics.length > 0 ? scss.none : scss.Forme;
+	const handleAddComment = (id: number) => {
+		console.log(id, 'commentById');
+		setCommentById(id);
+
+		setIsComment(!isComment);
+	};
+
+	const handleSubmitComment = () => {
+		const newData = {
+			message: comment
+		};
+		postComment({ commentId: commentById, newData });
+		setIsComment(false);
+		setComment('');
+	};
+
+	const removeCommetById = (commentId: number) => {
+		deleteComment(commentId);
+		closeModalComment();
+	};
+
+	const OneMoreLike = (commentId: number) => {
+		console.log(commentId, 'nurs');
+
+		likeRequest(commentId);
+	};
+
+	const handleAddCommentUser = (postId:number) => {
+		const newData = {
+			message: inputStr
+		};
+		addedPostComment({ postId, newData });
+		setInputStr(''); 
+	};
+
+	const handleInputChange = (e:any) => {
+		setInputStr(e.target.value);
+	};
+
+	const handleInputKeyDown = (e:any, postId:number) => {
+		if (e.key === 'Enter') {
+			handleAddCommentUser(postId);
+		}
+	};
+
 	return (
 		<div className={scss.nursultan}>
 			<div className={scss.Forme}>
@@ -550,6 +638,121 @@ const ForMe = () => {
 																	<IconDots />
 																</button>
 															</div>
+															<div>
+																{item.commentResponses.map((el) => (
+																	<div>
+																		{isEditComment === el.id ? (
+																			<>
+																				<input
+																					value={editComment}
+																					onChange={(e) =>
+																						setEditComment(e.target.value)
+																					}
+																					type="text"
+																				/>
+																				<button
+																					onClick={() => saveEditComment(el.id)}
+																				>
+																					save
+																				</button>
+																			</>
+																		) : (
+																			<>
+																				<div className={scss.comment}>
+																					<img src={el.avatar} alt="" />
+																					<div className={scss.commentnickname}>
+																						<p>{el.userName}</p>
+																						<div className={scss.heart}>
+																							<p
+																								onClick={() =>
+																									openModalComment(el.id)
+																								}
+																							>
+																								{el.comment}
+																							</p>
+																							<div className={scss.likes}>
+																								<p
+																									onClick={() =>
+																										editCommentById(el)
+																									}
+																								>
+																									{el.countLike}
+																								</p>
+
+																								<button
+																									onClick={() =>
+																										OneMoreLike(el.id)
+																									}
+																								>
+																									<IconHeart />
+																								</button>
+																							</div>
+																						</div>
+
+																						<div className={scss.commentend}>
+																							<p>{el.createdAt}</p>
+																							<h4
+																								onClick={() =>
+																									handleAddComment(el.id)
+																								}
+																							>
+																								Ответить
+																							</h4>
+																							{isComment &&
+																								commentById === el.id && (
+																									<>
+																										<input
+																											type="text"
+																											placeholder="Введите ваш комментарий"
+																											value={comment}
+																											onChange={(e) =>
+																												setComment(
+																													e.target.value
+																												)
+																											}
+																										/>
+																										<button
+																											onClick={
+																												handleSubmitComment
+																											}
+																										>
+																											Отправить
+																										</button>
+																									</>
+																								)}
+																						</div>
+																					</div>
+																				</div>
+																			</>
+																		)}
+																		<ModalTs
+																			open={isModalCommnet}
+																			onCancel={closeModalComment}
+																		>
+																			<div
+																				className={scss.comment_modal_delete}
+																			>
+																				<div className={scss.modal_delete}>
+																					<p
+																						onClick={() =>
+																							removeCommetById(
+																								deleteCommentById!
+																							)
+																						}
+																					>
+																						удалить комментарий
+																					</p>
+																					<p
+																						onClick={() => editCommentById(el)}
+																					>
+																						edit
+																					</p>
+																				</div>
+																			</div>
+																		</ModalTs>
+																	</div>
+																))}
+															</div>
 														</div>
 														<div className={scss.input_smile}>
 															<Smile
@@ -559,7 +762,10 @@ const ForMe = () => {
 																type="text"
 																placeholder="Добавить комментарий..."
 																value={inputStr}
-																onChange={(e) => setInputStr(e.target.value)}
+																onChange={handleInputChange}
+																onKeyDown={(e) =>
+																	handleInputKeyDown(e, item.id)
+																}
 															/>
 															{showPicker && (
 																<Picker
@@ -581,26 +787,37 @@ const ForMe = () => {
 						<ModalTs open={isModal} onCancel={closeModal}>
 							<div className={scss.is_modal}>
 								<div className={scss.modal}>
-									<textarea
-										value={description}
-										onChange={(e) => setDescription(e.target.value)}
-									></textarea>
+									<div className={scss.added}>
+										<div>
+											<h3>добавить сообщество</h3>
 
-									<p>
-										{ellipsis
-											? 'Выключить комментарии'
-											: 'Включить комментарии'}
-									</p>
-									<Switch
-										checked={ellipsis}
-										onChange={() => {
-											setEllipsis(!ellipsis);
-										}}
-									/>
+											<textarea
+												value={description}
+												onChange={(e) => setDescription(e.target.value)}
+											></textarea>
+											<div className={scss.boolean}>
+												<p>
+													{ellipsis
+														? 'Выключить комментарии'
+														: 'Включить комментарии'}
+												</p>
+												<Switch
+													checked={ellipsis}
+													onChange={() => {
+														setEllipsis(!ellipsis);
+													}}
+												/>
+											</div>
+										</div>
 
-									<button onClick={() => handleAddPublic(communityId)}>
-										add
-									</button>
+										<div className={scss.buttons}>
+											<button onClick={closeModal}>отменить</button>
+
+											<button onClick={() => handleAddPublic(communityId)}>
+												добавить
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</ModalTs>
