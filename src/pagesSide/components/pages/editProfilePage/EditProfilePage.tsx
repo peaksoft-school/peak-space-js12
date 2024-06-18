@@ -1,12 +1,39 @@
+import { useRef, useState } from 'react';
 import { Select } from 'antd';
 import type { SelectProps } from 'antd';
 import ConfidentPage from './ConfidentPage';
-import CustomSelect from '@/src/ui/customSelect/CustomSelect';
 import UserEditProfile from '@/src/ui/userImages/UserEditProfile';
 import scss from './Style.module.scss';
+import { PencilIcon } from '@/src/assets/icons';
 
 const EditProfilePage = () => {
 	const options: SelectProps['options'] = [];
+	const [isInputsAreaVisible, setIsInputsAreaVisible] =
+		useState<boolean>(false);
+	const [, setIsPersonHasAWork] = useState<string>('');
+	const [coverImg, setCoverImg] = useState<string>('');
+	const fileInputRef = useRef<HTMLInputElement>(null);
+
+	const handleChooseCover = () => {
+		if (fileInputRef.current) {
+			fileInputRef.current.click();
+		}
+	};
+
+	const handleChangeCover = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const file = event?.target.files && event.target.files[0];
+		if (file) {
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				setCoverImg(e.target?.result as string);
+			};
+			reader.readAsDataURL(file);
+		}
+	};
+
+	const handleInputsAreaChangeState = () => {
+		setIsInputsAreaVisible((prev) => !prev);
+	};
 
 	for (let i = 10; i < 36; i++) {
 		options.push({
@@ -23,8 +50,30 @@ const EditProfilePage = () => {
 			<ConfidentPage />
 			<div className={scss.content}>
 				<div className={scss.head}>
-					<div className={scss.edit_img}>
-						<UserEditProfile />
+					<div className={scss.user_img_and_cover}>
+						<div className={scss.edit_img}>
+							<UserEditProfile />
+						</div>
+						<div className={scss.user_cover}>
+							<img
+								className={scss.cover_img}
+								style={{ display: coverImg ? 'block' : 'none' }}
+								src={coverImg ? coverImg : ''}
+							/>
+							<input
+								onChange={handleChangeCover}
+								type="file"
+								ref={fileInputRef}
+								style={{ display: 'none' }}
+							/>
+							<div
+								className={scss.cover_choose_btn}
+								onClick={handleChooseCover}
+							>
+								<PencilIcon className={scss.pencil_icon} />
+								<p>{coverImg ? 'Изменить обложку' : 'Добавить обложку'}</p>
+							</div>
+						</div>
 					</div>
 
 					<div className={scss.body}>
@@ -50,17 +99,23 @@ const EditProfilePage = () => {
 						</div>
 					</div>
 				</div>
-				<div className={scss.Secondary}>
+				<div
+					className={
+						isInputsAreaVisible ? scss.Secondary_active : scss.secondary_disable
+					}
+				>
 					<div className={scss.widget}>
 						<p className={scss.text}>Среднее образование</p>
-						<div className={scss.inner}>
-							<p>Город </p>
-							<CustomSelect />
-						</div>
-						<div className={scss.inner}>
-							<p>Школа</p>
-							<CustomSelect />
-						</div>
+						<button
+							onClick={handleInputsAreaChangeState}
+							className={scss.educations_button}
+						>
+							+
+						</button>
+					</div>
+					<div className={scss.educations_names_area}>
+						<input type="text" />
+						<input type="text" />
 					</div>
 				</div>
 
@@ -79,10 +134,22 @@ const EditProfilePage = () => {
 								Положение дел
 							</p>
 							<div className={scss.radio}>
-								<input placeholder="/" type="radio" /> <p>трудоустройство</p>
+								<input
+									type="radio"
+									name="work"
+									value="has a work"
+									onChange={(e) => setIsPersonHasAWork(e.target.value)}
+								/>
+								<p>трудоустройство</p>
 							</div>
 							<div className={scss.radio}>
-								<input type="radio" placeholder="/" /> <p>Безработные</p>
+								<input
+									type="radio"
+									name="work"
+									value="doesn't has a work"
+									onChange={(e) => setIsPersonHasAWork(e.target.value)}
+								/>
+								<p>безработный</p>
 							</div>
 						</div>
 					</div>

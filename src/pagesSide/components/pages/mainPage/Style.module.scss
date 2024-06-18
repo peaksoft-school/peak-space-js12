@@ -72,6 +72,44 @@
 							object-fit: cover;
 						}
 					}
+					.post_menu_active {
+						top: 90px;
+						left: 640px;
+						background-color: #fff;
+						position: absolute;
+						display: flex;
+						border: 1px solid #00000033;
+						justify-content: center;
+						width: 280px;
+						height: 160px;
+						padding-top: 15px;
+						gap: 0px;
+						border-radius: 5px 0px 0px 0px;
+						border: 1px 0px 0px 0px;
+						opacity: 0px;
+						.post_menu_container {
+							width: 230px;
+							height: 130px;
+							top: 15px;
+							left: 25px;
+							gap: 30px;
+							opacity: 0px;
+							.red {
+								color: red;
+							}
+							p {
+								font-size: 15px;
+								font-weight: 400;
+								line-height: 26px;
+								border-bottom: 1px solid #00000033;
+								margin-bottom: 19px;
+								text-align: center;
+							}
+						}
+					}
+					.post_menu_disable {
+						display: none;
+					}
 					@media (max-width: 1118px) {
 						max-width: 860px;
 
@@ -152,47 +190,7 @@
 							}
 						}
 					}
-					.one {
-						position: absolute;
-						bottom: 590px;
-						left: 671px;
-						z-index: 50;
-						width: 250px;
-						height: 170px;
-						background: #fff;
-						border: 2px solid rgba(0, 0, 0, 0.3);
-						border-radius: 8px;
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;
-						gap: 25px;
 
-						.red {
-							color: rgb(207, 22, 22);
-							font-size: 18px;
-							font-weight: 600;
-							line-height: 26px;
-							text-align: center;
-						}
-
-						p {
-							color: rgba(0, 0, 0, 0.8);
-							font-size: 18px;
-							font-weight: 400;
-							line-height: 22px;
-							text-align: center;
-							&:hover {
-								color: rgb(137, 137, 137);
-								cursor: pointer;
-							}
-						}
-					}
-					.two {
-						position: absolute;
-						top: 0;
-						left: -960px;
-					}
 					img {
 						width: 100%;
 						max-width: 454px;
@@ -343,7 +341,7 @@
 		}
 		.input_smile {
 			border-top: 0.5px solid rgba(0, 0, 0, 0.3);
-			
+
 			width: 100%;
 			padding: 5px;
 			position: relative;
