@@ -5,10 +5,7 @@ const api = index.injectEndpoints({
 		putPassword: build.mutation({
 			query: (newData) => ({
 				url: `/auth/forgotPassword?email=${encodeURIComponent(newData.email)}&link=${encodeURIComponent(newData.link)}`,
-				method: 'PUT',
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
-				}
+				method: 'PUT'
 			}),
 			invalidatesTags: ['login']
 		}),
@@ -16,10 +13,7 @@ const api = index.injectEndpoints({
 			query: (newItem) => ({
 				url: `/auth/createPassword?password=${encodeURIComponent(newItem.password)}&confirm=${encodeURIComponent(newItem.confirm)}&uuid=${encodeURIComponent(newItem.uuid)}`,
 				method: 'POST',
-				body: newItem,
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
-				}
+				body: newItem
 			}),
 			invalidatesTags: ['login']
 		})

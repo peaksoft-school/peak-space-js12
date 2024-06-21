@@ -1,6 +1,8 @@
 import { ChangeEvent, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { usePostRegistrationMutation } from '@/src/redux/api/registration';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
@@ -31,6 +33,8 @@ const Registration = () => {
 		setShowPassword(!showPassword);
 	};
 
+	// const notify = () => toast.error('Wow so easy!');
+
 	const {
 		register,
 		control,
@@ -41,23 +45,29 @@ const Registration = () => {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onSubmit = async (data: string | any) => {
-		try {
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const response: any = await postRequest(data);
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const response: any = await postRequest(data);
+		console.log(response, 'nurs');
 
-			console.log('Регистрация успешна:', response);
+		setConfirmPassword('');
+		// eslint-disable-next-line no-constant-condition
+		navigate(`/auth/confirm-by-email/${response.data.userId}` as string, {
+			replace: true
+		});
+		// if (response.status === 200 || response.status === 202) {
+		// }
+		// else if (response.status === 403) {
+		// 	notify();
+		// }
+		reset();
 
-			setConfirmPassword('');
-			navigate(`/auth/confirm-by-email/${response.data.userId}` as string);
-			reset();
-		} catch (error) {
-			console.error('Ошибка регистрации:', error);
-		}
 		if (password !== confirmPassword) {
-			alert('Пароли не совпадают');
+			toast.error('Пароли не совпадают'),
+				{
+					className: 'toast-red'
+				};
 			return null;
 		}
-		console.log(data);
 	};
 
 	return (
@@ -239,6 +249,7 @@ const Registration = () => {
 						<CustomButtonBold children="Зарегистрироваться" type="submit" />
 						<Link to="/auth/login">Уже есть аккаунт? Войти</Link>
 					</form>
+					<ToastContainer />
 				</div>
 			</div>
 		</div>

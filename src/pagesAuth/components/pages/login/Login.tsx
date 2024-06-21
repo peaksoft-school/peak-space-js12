@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -40,7 +39,7 @@ const Login = () => {
 	} = useForm<ErrorObject>({ mode: 'onBlur' });
 
 	const navigateToPages = () => {
-		navigate('/');
+		navigate('/', { replace: true });
 	};
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -70,8 +69,15 @@ const Login = () => {
 			const data = {
 				tokenFromGoogle: idToken
 			};
-			await postGoogleToken(data);
-			navigateToPages();
+			const response = await postGoogleToken(data);
+
+			if ('data' in response) {
+				const { token }: any = response.data;
+				localStorage.setItem('auth_token', token);
+				localStorage.setItem('isAuth', 'true');
+				navigateToPages();
+				reset();
+			}
 		} catch (error) {
 			console.error('Error during sign-in:', error);
 			return null;

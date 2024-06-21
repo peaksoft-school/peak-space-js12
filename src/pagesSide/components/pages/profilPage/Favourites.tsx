@@ -2,9 +2,14 @@ import { useGetFavouritesQuery } from '@/src/redux/api/favourites';
 import scss from './Style.module.scss';
 import { useEffect, useState } from 'react';
 
+interface Types {
+	link: string;
+	id: number;
+}
+
 const Favourites = () => {
 	const { data, isLoading, isError } = useGetFavouritesQuery();
-	const [filteretData, setFilteredData] = useState([]);
+	const [filteretData, setFilteredData] = useState<Types[]>([]);
 	console.log(data, 'favorite');
 	useEffect(() => {
 		if (data?.publications) {
@@ -24,9 +29,7 @@ const Favourites = () => {
 			{isError ? (
 				<p>Error fetching data</p>
 			) : (
-				<>
-					<p>Data loaded successfully</p>
-				</>
+				<>{/* <p>Data loaded successfully</p> */}</>
 			)}
 
 			{isLoading ? (
@@ -35,7 +38,7 @@ const Favourites = () => {
 				<>
 					{filteretData?.map((item) => (
 						<div className={scss.widget} key={item.id}>
-							<img src={item.img} alt="photo" />
+							<img src={item.link} alt="photo" />
 						</div>
 					))}
 				</>

@@ -1,7 +1,43 @@
+.error {
+	overflow: hidden;
+	width: 100%;
+
+	:global {
+		:where(
+				.css-dev-only-do-not-override-zg0ahe
+			).ant-skeleton.ant-skeleton-element
+			.ant-skeleton-button {
+			display: inline-block;
+			vertical-align: top;
+			background: rgba(0, 0, 0, 0.06);
+			border-radius: 4px;
+			width: 64px;
+			/* min-width: 64px; */
+			/* height: 32px; */
+			width: 100%;
+			height: 100vh;
+			line-height: 32px;
+
+			background: linear-gradient(
+				90deg,
+				rgba(0, 0, 0, 0.06) 25%,
+				rgba(0, 0, 0, 0.15) 37%,
+				rgba(0, 0, 0, 0.06) 63%
+			);
+			background-size: 400% 100%;
+			animation-name: css-dev-only-do-not-override-zg0ahe-ant-skeleton-loading;
+			animation-duration: 1.4s;
+			animation-timing-function: ease;
+			animation-iteration-count: infinite;
+		}
+	}
+}
+
 .Test {
-	height: 100%;
 	width: 100%;
 	background: white;
+	min-height: 100vh;
+	max-height: 100%;
 
 	.header {
 		display: flex;
@@ -68,51 +104,14 @@
 	}
 
 	.edit {
-		height: 100%;
+		// height: 100%;
 		position: relative;
-
-		textarea {
-			resize: none;
-			width: 100%;
-			max-width: 900px;
-			height: 61px;
-			outline: none;
-		}
-
-		.buttons {
-			position: absolute;
-			right: 35px;
-			top: 150px;
-			display: flex;
-			align-items: center;
-			gap: 16px;
-			button {
-				color: #090909;
-				padding: 0.5em 1.7em;
-				font-size: 14px;
-				border-radius: 0.5em;
-				background: #e8e8e8;
-				cursor: pointer;
-				border: 1px solid #e8e8e8;
-				transition: all 0.3s;
-				box-shadow:
-					6px 6px 12px #c5c5c5,
-					-6px -6px 12px #ffffff;
-			}
-
-			button:active {
-				color: #666;
-				box-shadow:
-					inset 4px 4px 12px #c5c5c5,
-					inset -4px -4px 12px #ffffff;
-			}
-		}
 	}
 
 	.some {
 		display: flex;
 		flex-direction: column;
-		gap: 30px;
+		gap: 50px;
 		padding-inline: 20px;
 
 		.texts {
@@ -143,7 +142,14 @@
 		.user_name {
 			display: flex;
 			align-items: center;
-			gap: 20px;
+			gap: 10px;
+
+			img {
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				object-fit: cover;
+			}
 			p {
 				font-size: 18px;
 				font-weight: 300;
@@ -154,11 +160,52 @@
 		}
 
 		.user_photo {
+			position: relative;
 			img {
 				width: 100%;
-				height: 617px;
+				max-height: 100%;
+				height: 730px;
 				object-fit: cover;
 			}
+		}
+	}
+}
+
+.is_modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.modal {
+		background: white;
+		height: 400px;
+		width: 100%;
+		max-width: 550px;
+		border-radius: 25px;
+		padding-inline: 10px;
+
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		h2 {
+			font-family: 'Roboto', sans-serif;
+			font-weight: 300;
+			text-align: center;
+			font-size: 29px;
+		}
+
+		.inputs {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+
+		.buttons {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 6px;
 		}
 	}
 }

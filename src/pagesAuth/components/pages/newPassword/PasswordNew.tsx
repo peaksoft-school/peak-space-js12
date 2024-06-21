@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
@@ -33,14 +34,21 @@ const PasswordNew = () => {
 			confirm: data.confirm,
 			uuid
 		};
+		const response = await postRequest(newData);
+
+		if ('data' in response) {
+			const { token }: any = response.data;
+			localStorage.setItem('auth_token', token);
+			localStorage.setItem('isAuth', 'true');
+			navigate('/', { replace: true });
+			reset();
+		}
+
+		reset();
 		if (data.password !== data.confirm) {
 			alert('Пароли не совпадают');
 			return;
 		}
-		console.log(data);
-		await postRequest(newData);
-		navigate('/');
-		reset();
 	};
 
 	const navigateToBack = () => {

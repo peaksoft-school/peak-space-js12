@@ -24,6 +24,7 @@ const ConfirmByEmail = () => {
 
 	useEffect(() => {
 		if (timeLeft <= 0) {
+			navigate('/auth/registration');
 			return;
 		}
 
@@ -36,13 +37,13 @@ const ConfirmByEmail = () => {
 		}, 1000);
 
 		return () => clearInterval(timerId);
-	}, [timeLeft]);
+	}, [timeLeft, navigate]);
 
 	const onSubmit = async (data: ConfirmByEmailForm) => {
 		console.log(data, 'data');
 		try {
 			await confirmByEmail({ ...data, id }).unwrap();
-			navigate('/');
+			navigate('/', { replace: true });
 			reset();
 			localStorage.removeItem('timeLeft');
 		} catch (error) {
@@ -93,6 +94,7 @@ const ConfirmByEmail = () => {
 						)}
 					</div>
 					<div>
+						<button>отменить</button>
 						<button type="submit" className={scss.submitButton}>
 							Отправить
 						</button>

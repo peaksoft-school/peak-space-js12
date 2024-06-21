@@ -107,8 +107,8 @@ const api = index.injectEndpoints({
 			providesTags: ['post']
 		}),
 		deleteId: build.mutation({
-			query: (publicId) => ({
-				url: `/public-profiles/${publicId}`,
+			query: () => ({
+				url: `/public-profiles`,
 				method: 'DELETE',
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
@@ -241,7 +241,7 @@ const api = index.injectEndpoints({
 			}),
 			invalidatesTags: ['post']
 		}),
-		commentGet: build.query<
+		innerCommentByid: build.query<
 			USERPUBLIC.GetCommentResponse,
 			USERPUBLIC.GetCommentRequest
 		>({
@@ -286,7 +286,21 @@ const api = index.injectEndpoints({
 				}
 			}),
 			invalidatesTags: ['post']
-		})
+		}),
+		commentResponse: build.query<
+			USERPUBLIC.GetCommentResponse,
+			USERPUBLIC.GetCommentRequest
+		>({
+			query: (postId) => ({
+				url: `/comments/${postId}`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
+		}),
+
 	})
 });
 
@@ -313,5 +327,7 @@ export const {
 	useInnerCommentDeleteMutation,
 	useEditCommentMutation,
 	useLikeCommentMutation,
-	useAddedCommentMutation
+	useAddedCommentMutation,
+	useInnerCommentByidQuery,
+	useCommentResponseQuery
 } = api;

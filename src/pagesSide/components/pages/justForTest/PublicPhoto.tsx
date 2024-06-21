@@ -11,8 +11,9 @@ import { useRef, useState, useEffect } from 'react';
 import scss from './ForMe.module.scss';
 import { useParams } from 'react-router-dom';
 import { PlusIconSecond } from '@/src/assets/icons';
-import { Switch } from 'antd';
+import { Switch, Input } from 'antd';
 import ModalTs from '@/src/ui/modal/Modal';
+import { IconDots } from '@tabler/icons-react';
 const PublicPhoto = () => {
 	const { communityId } = useParams();
 	const { data: photo } = useGetPublicPhotosQuery(communityId as any);
@@ -30,6 +31,8 @@ const PublicPhoto = () => {
 	const [postRequest] = usePostPublicByIdMutation();
 
 	const [createFile] = usePostCreateFileMutation();
+
+	const { TextArea } = Input;
 	const handleButtonClick = () => {
 		if (fileInputRef.current) {
 			fileInputRef.current.click();
@@ -153,6 +156,15 @@ const PublicPhoto = () => {
 								value={description}
 								onChange={(e) => setDescription(e.target.value)}
 							></textarea>
+
+							{/* <TextArea
+								showCount
+								maxLength={100}
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
+								placeholder="disable resize"
+								style={{ height: 230, resize: 'none' }}
+							/> */}
 
 							<p>
 								{ellipsis ? 'Выключить комментарии' : 'Включить комментарии'}
