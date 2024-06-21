@@ -43,7 +43,6 @@ const Login = () => {
 		navigate('/');
 	};
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onSubmit = async (data: any) => {
 		console.log(data, 'data');
 		try {
