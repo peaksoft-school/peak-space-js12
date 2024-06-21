@@ -11,7 +11,7 @@ import ModalTs from '@/src/ui/modal/Modal';
 import { PlusIconSecond } from '@/src/assets/icons';
 import { filterValues } from './utils';
 import { Switch, Slider } from 'antd';
-import { IconArrowLeft, IconDots } from '@tabler/icons-react';
+import { IconArrowLeft, IconDots, IconTrash } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 
 interface Types {
@@ -281,14 +281,23 @@ const Publications = () => {
 							alt="photos"
 							onClick={() => naviagateToPhoto(item.id)}
 						/>
-						<button onClick={() => ShowMessageAgain(item.id)}>
+						<button
+							className={scss.is_button}
+							onClick={() => ShowMessageAgain(item.id)}
+						>
 							<IconDots />
 						</button>
 
 						<div
 							className={showMessage[item.id] ? scss.isMessage_left : scss.none}
 						>
-							<p onClick={() => removeId(item.id)}>удалить пост</p>
+							<button
+								onClick={() => removeId(item.id)}
+								className={scss.button_delete}
+							>
+								<IconTrash />
+							</button>
+							{/* <p onClick={() => removeId(item.id)}>удалить пост</p> */}
 						</div>
 					</div>
 				</>
@@ -312,6 +321,7 @@ const Publications = () => {
 									<img
 										style={{
 											maxWidth: '640px',
+											width: '100%',
 											height: '581.6px',
 											objectFit: 'cover',
 											borderRadius: '5px'

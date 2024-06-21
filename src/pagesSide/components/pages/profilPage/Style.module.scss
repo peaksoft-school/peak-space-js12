@@ -1,6 +1,8 @@
 .main_page {
 	width: 100%;
-	height: 100vh;
+	min-height: 100vh;
+	max-height: 100%;
+	// height: 100vh;
 	// height: 100%;
 
 	.aside {
@@ -8,7 +10,7 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 30px;
+		gap: 40px;
 
 		.head {
 			width: 100%;
@@ -28,7 +30,7 @@
 				display: flex;
 				align-items: center;
 				width: 980px;
-				height: 90px;
+				height: 100px;
 				background: #ffffff;
 				.far {
 					display: flex;
@@ -323,14 +325,15 @@
 	flex-wrap: wrap;
 	gap: 10px;
 	width: 980px;
+	// min-height: 100vh;
+	// max-height: 100%;
 	.section {
 		.general {
 			display: flex;
 		}
 		.photos {
-			width: 320px;
-			height: 320px;
-
+			display: flex;
+			flex-wrap: wrap;
 			button {
 				background: none;
 				outline: none;
@@ -338,6 +341,9 @@
 			}
 			.image {
 				object-fit: cover;
+
+				width: 320px;
+				height: 320px;
 			}
 			.image:empty {
 				display: none;
@@ -375,8 +381,9 @@
 
 	.photos {
 		position: relative;
+		// display: flex;
 
-		button {
+		.is_button {
 			position: absolute;
 			top: 0;
 			right: 2px;
@@ -395,7 +402,7 @@
 			object-fit: cover;
 		}
 		&:hover {
-			button {
+			.is_button {
 				svg {
 					opacity: 1;
 				}
@@ -407,7 +414,7 @@
 			padding-inline: 10px;
 			padding-block: 8px;
 			position: absolute;
-			left: 184px;
+			left: 245px;
 			top: 23px;
 			gap: 7px;
 			border-radius: 7px;
@@ -416,6 +423,17 @@
 				font-weight: 400;
 				cursor: pointer;
 				text-align: center;
+			}
+
+			.button_delete {
+				background: none;
+				border: none;
+				outline: none;
+				cursor: pointer;
+
+				svg {
+					color: red;
+				}
 			}
 		}
 
