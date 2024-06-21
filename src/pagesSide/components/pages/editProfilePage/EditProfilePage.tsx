@@ -114,8 +114,14 @@ const EditProfilePage = () => {
 						</button>
 					</div>
 					<div className={scss.educations_names_area}>
-						<input type="text" />
-						<input type="text" />
+						<div className={scss.bar}>
+							<p>Город</p>
+							<input type="text" placeholder="Your city" />
+						</div>
+						<div className={scss.bar}>
+							<p>Школа</p>
+							<input type="text" placeholder="Your school" />
+						</div>
 					</div>
 				</div>
 

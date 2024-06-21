@@ -3,6 +3,9 @@
 	max-width: 930px;
 	height: 100%;
 	display: flex;
+	justify-content: space-between;
+	flex-direction: row-reverse;
+	gap: 10px;
 	.content {
 		display: flex;
 		flex-direction: column;
@@ -36,6 +39,7 @@
 				margin-bottom: 15px;
 				.user_cover {
 					width: 100%;
+					height: 100%;
 					position: absolute;
 					left: 10;
 					top: 0;
@@ -43,7 +47,7 @@
 					.cover_img {
 						object-fit: cover;
 						max-width: 700px;
-						height: 23vh;
+						height: 100%;
 						width: 100%;
 						display: block;
 					}
@@ -126,7 +130,7 @@
 		.Secondary_active {
 			background: #ffffff;
 			width: 100%;
-			height: 18%;
+			height: 100%;
 
 			.widget {
 				padding-inline: 40px;
@@ -158,6 +162,20 @@
 				display: flex;
 				flex-direction: column;
 				padding: 0px 40px;
+				.bar {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 8px;
+					p {
+						color: rgb(0, 0, 0);
+						font-size: 20px;
+						font-weight: 700;
+						line-height: 26px;
+						letter-spacing: 0%;
+						text-align: center;
+					}
+				}
 			}
 		}
 
@@ -245,37 +263,42 @@
 				transition: all 2s ease-in;
 				width: 100%;
 				max-width: 1000px;
-				.editImg {
-					width: 50vw;
-					height: 25vw;
-					// overflow: hidden;
+				.user_img_and_cover {
+					.editImg {
+						width: 50vw;
+						height: 25vw;
+					}
+					.user_cover {
+						height: 100%;
+						.cover_img {
+							height: 100%;
+						}
+						.cover_choose_btn {
+							left: 60%;
+						}
+					}
 				}
 
 				.body {
 					transition: all 2s ease-in-out;
-					display: grid;
 					grid-template-rows: repeat(1, 1fr);
 					grid-template-columns: repeat(2, 1fr);
-				}
-
-				.editImg {
-					width: 100%;
+					margin-bottom: 20px;
 				}
 			}
-
-			.Secondary {
-				transition: all 2s ease-in-out;
-
-				// display: grid;
-				// grid-template-columns: repeat(3, 1fr);
-				// grid-template-rows: repeat(3, 1fr);
-				.widget {
-					// display: grid;
-					// grid-template-columns: repeat(3, 1fr);
-					// grid-template-rows: repeat(3, 1fr);
-
-					// .inner {
-					// }
+			.secondary_disable {
+				margin-top: 2px;
+			}
+			.grid {
+				.col {
+					.row {
+						.radio {
+							input {
+								width: 25px;
+							}
+						}
+						gap: 20px;
+					}
 				}
 			}
 		}
@@ -283,9 +306,15 @@
 }
 
 @media (max-width: 800px) {
-	.section {
-		.content {
-			.head {
+	.section1 {
+		.content1 {
+			.img_texting {
+				li {
+					
+					p {
+						display: none;
+					}
+				}
 			}
 		}
 	}
@@ -295,10 +324,13 @@
 	.section {
 		.content {
 			.head {
-				.editImg {
+				.edit_img {
 					transition: all 2s ease-in;
 					height: 26vw;
 					width: 100%;
+				}
+				.cover_choose_btn {
+					margin-left: -10%;
 				}
 				.body {
 					display: flex;
@@ -431,6 +463,7 @@
 // !!confident TWO
 .confident_content {
 	display: flex;
+	flex-direction: row-reverse;
 	// max-width: 500px;
 	.vector_switch {
 		display: flex;
@@ -490,6 +523,7 @@
 // ! Blocked
 .blocked {
 	display: flex;
+	flex-direction: row-reverse;
 	max-width: 980px;
 	.contents {
 		display: flex;
