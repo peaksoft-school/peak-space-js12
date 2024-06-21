@@ -17,7 +17,8 @@ import {
 	useGetIdQuery,
 	useGetPublicPhotosQuery,
 	useModalCommentQuery,
-	usePostPublicByIdMutation
+	usePostPublicByIdMutation,
+	useLikeCommentMutation
 } from '@/src/redux/api/userPublic';
 import {
 	useGetGeocodeQuery,
@@ -100,6 +101,11 @@ const UserPublic = () => {
 		latitude: number;
 		longitude: number;
 	} | null>(null);
+
+	const [likeRequest] = useLikeCommentMutation();
+	const OneMoreLike = (commentId: number) => {
+		likeRequest(commentId);
+	};
 
 	// useEffect(() => {
 	// 	if (page) {
@@ -477,7 +483,9 @@ const UserPublic = () => {
 																						<div className={scss.button_like}>
 																							<p>{item.countLike}</p>
 																							<button
-																							// onClick={() => OneMoreLike(item.id)}
+																								onClick={() =>
+																									OneMoreLike(item.id)
+																								}
 																							>
 																								<IconHeart />
 																							</button>

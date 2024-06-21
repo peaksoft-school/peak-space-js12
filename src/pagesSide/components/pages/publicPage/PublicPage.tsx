@@ -27,6 +27,7 @@ const PublicPage = () => {
 	const { data: users } = useRecommendationGetQuery();
 	console.log(users);
 
+
 	const { data: follow } = useGetYuofollowQuery();
 	console.log(follow);
 
@@ -56,6 +57,7 @@ const PublicPage = () => {
 		}
 	}, [data]);
 	console.log(data);
+
 
 	if (isLoading) {
 		return (
