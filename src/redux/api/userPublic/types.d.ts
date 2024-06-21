@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export namespace USERPUBLIC {
 	type GetUserPublicResponse = {
@@ -96,6 +97,8 @@ export namespace USERPUBLIC {
 	type GetModalCommentRequest = void;
 
 	type GetCommentResponse = {
+		id: any;
+
 		innerCommentId: number;
 		userId: number;
 		avatar: string;
@@ -103,7 +106,19 @@ export namespace USERPUBLIC {
 		comment: string;
 		countLike: number;
 		createdAt: string;
-	};
+	}[];
 
-	type GetCommentRequest = void
+	type GetCommentRequest = void;
+
+	type GetCommentResponse = {
+		id: number;
+		userId: number;
+		avatar: string;
+		userName: string;
+		comment: string;
+		countLike: number;
+		createdAt: string;
+	}[];
+
+	type GetCommentRequest = void;
 }

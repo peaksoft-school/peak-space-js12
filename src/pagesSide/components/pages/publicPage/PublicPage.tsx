@@ -93,6 +93,12 @@ const PublicPage = () => {
 		refetch();
 	};
 
+	const navigateUserPublic = (communityId: number) => {
+		navigate(`/user-public/${communityId}`);
+
+		refetch();
+	};
+
 	const JoinByUser = (publicId: number) => {
 		if (publicId) {
 			putRequest(publicId)
@@ -133,9 +139,9 @@ const PublicPage = () => {
 							) : (
 								publics.map((item) => (
 									<div
+										onClick={() => navigateToMyPublic(item.id)}
 										key={item.id}
 										className={scss.public_item}
-										onClick={() => navigateToMyPublic(item.id)}
 									>
 										<div className={scss.cover}>
 											<img
@@ -183,7 +189,9 @@ const PublicPage = () => {
 														<h4>{item.countFollower}</h4>
 														<p>участников</p>
 													</div>
-													{/* <button>Присоединиться</button> */}
+													{/* <button onClick={() => JoinByUser(item.publicId)}>
+														отписаться
+													</button> */}
 												</div>
 											</div>
 										</div>
@@ -194,16 +202,85 @@ const PublicPage = () => {
 					</div>
 				</div>
 				<div className={scss.down}>
-					<div className={scss.second}>
+					<div className={scss.this_second}>
 						{follow?.map((item) => (
-							<div>
-								<div className={scss.users}>
-									<div>
+							<div key={item.id} className={scss.second_2}>
+								<div className={scss.cover}>
+									<img
+										onClick={() => navigateUserPublic(item.publicId)}
+										src={
+											item.cover && item.cover !== 'cover'
+												? item.cover
+												: 'https://s3-alpha-sig.figma.com/img/1c92/1bf5/b0093ed0ac29cf722c834434cf7ee611?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aRbcWs8eN-Mhny0ICI4GwKLx-LG7tHupNdjJBDCVlh37EbKJDndgV-0wSV8n0xq8OM-TEVcxPBLZMhjhy2C1~O1H2JnivHYvfFiLd8f4~KNWiFAE0eQMFjR3ROYnWqWASvOYYbWJ3tIuHScnYxKnlNZzjjQ71UfYzEjQNdRj1ecjFym1oI2wCHHRm-Qemi1VGm0kPLCnLZokRPxn9i8AM7SznezApo2HJlzd3v363puF6ylHtDDjwGSMgnpW2rSxKVyKz3utSjLTQRKy~mpnGsZbX4HRFovktCXL2aq9TiYvxvvHboBXhyz5aXbJzLt-WPGGp4rCyCdSTwL0fnntsA__'
+										}
+										className={
+											item.cover && item.cover.length > 0
+												? scss.have
+												: scss.none
+										}
+										alt=""
+									/>
+								</div>
+								<div className={scss.bar}>
+									<div className={scss.user_img}>
+										<img
+											src={
+												item.avatar && item.avatar !== 'avatar'
+													? item.avatar
+													: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
+											}
+											className={
+												item.avatar && item.avatar.lenth > 0
+													? scss.none_avata
+													: scss.have_avatar
+											}
+											alt="avatar"
+										/>
+									</div>
+									<div className={scss.side_bar}>
+										<div className={scss.start}>
+											<div className={scss.bar_aside}>
+												<h4>{item.pablicName}</h4>
+												<span></span>
+												<p>{item.userName}</p>
+											</div>
+											<h4>{item.descriptionPublic}</h4>
+											<p>{item.tematica}</p>
+										</div>
+										<div className={scss.end}>
+											<div>
+												<h4>{item.countFollower}</h4>
+												<p>участников</p>
+											</div>
+											<button onClick={() => JoinByUser(item.publicId)}>
+												отписаться
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+					<div className={scss.some_users}>
+						<h1>рекомендация</h1>
+						{users?.map((item) => (
+							<>
+								<div
+									onClick={() => navigateToMyPublic(item.id)}
+									key={item.id}
+									className={scss.third_3}
+								>
+									<div className={scss.cover}>
 										<img
 											src={
 												item.cover && item.cover !== 'cover'
 													? item.cover
 													: 'https://s3-alpha-sig.figma.com/img/1c92/1bf5/b0093ed0ac29cf722c834434cf7ee611?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aRbcWs8eN-Mhny0ICI4GwKLx-LG7tHupNdjJBDCVlh37EbKJDndgV-0wSV8n0xq8OM-TEVcxPBLZMhjhy2C1~O1H2JnivHYvfFiLd8f4~KNWiFAE0eQMFjR3ROYnWqWASvOYYbWJ3tIuHScnYxKnlNZzjjQ71UfYzEjQNdRj1ecjFym1oI2wCHHRm-Qemi1VGm0kPLCnLZokRPxn9i8AM7SznezApo2HJlzd3v363puF6ylHtDDjwGSMgnpW2rSxKVyKz3utSjLTQRKy~mpnGsZbX4HRFovktCXL2aq9TiYvxvvHboBXhyz5aXbJzLt-WPGGp4rCyCdSTwL0fnntsA__'
+											}
+											className={
+												item.cover && item.cover.length > 0
+													? scss.have
+													: scss.none
 											}
 											alt=""
 										/>
@@ -211,14 +288,16 @@ const PublicPage = () => {
 									<div className={scss.bar}>
 										<div className={scss.user_img}>
 											<img
-												key={item.id}
-												className={item.avatar ? scss.is_have : scss.is_none}
-												// src={
-												// 	item.avatar && item.avatar !== 'avatar'
-												// 		? item.avatar
-												// 		: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
-												// }
-												src={item.avatar}
+												src={
+													item.avatar && item.avatar !== 'avatar'
+														? item.avatar
+														: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
+												}
+												className={
+													item.avatar && item.avatar.lenth > 0
+														? scss.none_avata
+														: scss.have_avatar
+												}
 												alt="avatar"
 											/>
 										</div>
@@ -238,59 +317,6 @@ const PublicPage = () => {
 													<p>участников</p>
 												</div>
 												<button onClick={() => JoinByUser(item.publicId)}>
-													отписаться
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						))}
-					</div>
-					<div className={scss.second}>
-						<h1>рекомендация</h1>
-						{users?.map((el) => (
-							<>
-								<div className={scss.users}>
-									<div>
-										<img
-											src={
-												el.cover && el.cover !== 'cover'
-													? el.cover
-													: 'https://s3-alpha-sig.figma.com/img/1c92/1bf5/b0093ed0ac29cf722c834434cf7ee611?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aRbcWs8eN-Mhny0ICI4GwKLx-LG7tHupNdjJBDCVlh37EbKJDndgV-0wSV8n0xq8OM-TEVcxPBLZMhjhy2C1~O1H2JnivHYvfFiLd8f4~KNWiFAE0eQMFjR3ROYnWqWASvOYYbWJ3tIuHScnYxKnlNZzjjQ71UfYzEjQNdRj1ecjFym1oI2wCHHRm-Qemi1VGm0kPLCnLZokRPxn9i8AM7SznezApo2HJlzd3v363puF6ylHtDDjwGSMgnpW2rSxKVyKz3utSjLTQRKy~mpnGsZbX4HRFovktCXL2aq9TiYvxvvHboBXhyz5aXbJzLt-WPGGp4rCyCdSTwL0fnntsA__'
-											}
-											alt=""
-										/>
-									</div>
-									<div className={scss.bar}>
-										<div className={scss.user_img}>
-											<img
-												className={el.avatar ? scss.is_have : scss.is_none}
-												// src={
-												// 	el.avatar && el.avatar !== 'avatar'
-												// 		? el.avatar
-												// 		: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
-												// }
-												src={el.avatar}
-												alt="UserAvatar"
-											/>
-										</div>
-										<div className={scss.side_bar}>
-											<div className={scss.start}>
-												<div className={scss.bar_aside}>
-													<h4>{el.pablicName}</h4>
-													<span></span>
-													<p>{el.userName}</p>
-												</div>
-												<h4>{el.descriptionPublic}</h4>
-												<p>{el.tematica}</p>
-											</div>
-											<div className={scss.end}>
-												<div>
-													<h4>{el.countFollower}</h4>
-													<p>участников</p>
-												</div>
-												<button onClick={() => JoinByUser(el.publicId)}>
 													Присоединиться
 												</button>
 											</div>

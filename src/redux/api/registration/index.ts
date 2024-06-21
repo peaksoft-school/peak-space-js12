@@ -5,16 +5,11 @@ const api = index.injectEndpoints({
 			REGISTRATION.PostRegistrationResponse,
 			REGISTRATION.PostRegistrationRequest
 		>({
-			query: (data) => (
-				{
-					url: '/auth/signUp',
-					method: 'POST',
-					body: data,
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem('auth_token')}`
-					}
-				}
-			),
+			query: (data) => ({
+				url: '/auth/signUp',
+				method: 'POST',
+				body: data
+			}),
 			invalidatesTags: ['registration']
 		})
 	})

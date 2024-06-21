@@ -6,6 +6,7 @@ import Notifications from '../pages/notifications/Notifications';
 import UsersProfile from '../pages/profilPage/UsersProfile';
 import PublicPage from '../pages/publicPage/PublicPage';
 import ProfilPage from '../pages/profilPage/ProfilPage';
+import UserPublic from '../pages/userPublic/UserPublic';
 import NewPublic from '../pages/publicPage/NewPublic';
 import PostById from '../pages/justForTest/PostById';
 import ChatMessage from '../pages/chat/ChatMessage';
@@ -18,7 +19,6 @@ import Test from '../pages/publicPage/Test';
 import NavBar from '@/src/ui/navBar/NavBar';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import UserPublic from '../pages/userPublic/UserPublic';
 
 const LayoutSide = () => {
 	const location = useLocation();
@@ -52,7 +52,10 @@ const LayoutSide = () => {
 						<Route path="/blocked" element={<BlockedPages />} />
 						<Route path="/public/new-public" element={<NewPublic />} />
 						<Route path="/post/:postId" element={<PostById />} />
-						<Route path="/photo/*" element={<UserPublic />} />
+						<Route
+							path="/user-public/:communityId/*"
+							element={<UserPublic />}
+						/>
 					</Routes>
 				</main>
 			</div>

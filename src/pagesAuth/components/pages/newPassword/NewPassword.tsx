@@ -36,7 +36,7 @@ const NewPassword = () => {
 		};
 		await putRequest(newData);
 		notify();
-		navigate('/auth/login');
+		navigate('/auth/login',{replace:true});
 		reset();
 	};
 
@@ -81,7 +81,7 @@ const NewPassword = () => {
 								<span className={scss.error_email}>{errors.email.message}</span>
 							)}
 						</div>
-						<CustomButtonBold children="Войти" type="submit" />
+						<CustomButtonBold children="отправить" type="submit" />
 						<ToastContainer />
 					</form>
 				</div>
