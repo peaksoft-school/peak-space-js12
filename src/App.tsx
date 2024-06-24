@@ -6,7 +6,7 @@ import Call from './pagesSide/components/pages/call/Call';
 import CallTime from './pagesSide/components/pages/call/CallTime';
 import VideoCall from './pagesSide/components/pages/call/VideoCall';
 import VideoEnd from './pagesSide/components/pages/call/VideoEnd';
-import Preloader from '@/src/ui/preloader/Preloader';
+import Preloader from '@/src/ui/navBar/preloader/Preloader';
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(true);
