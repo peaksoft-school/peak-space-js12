@@ -6,13 +6,30 @@ const api = index.injectEndpoints({
 			BLOCKEDUSERS.GetBlockedUsersResponse,
 			BLOCKEDUSERS.GetBlockedUsersRequest
 		>({
-      query: () => ({
-        url: 'https://ba6384db517d4072.mokky.dev/blockedUsers',
-        method: 'GET'
-      }),
-      providesTags: ['blocked']
-    })
+			query: () => ({
+				url: '/user-infos/block-accounts',
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
+		}),
+
+		putBlockedUsers: builder.mutation<
+			BLOCKEDUSERS.PutBlockedUsersResponse,
+			BLOCKEDUSERS.PutBlockedUsersRequest
+		>({
+			query: ({ userId }) => ({
+				url: `/user-infos/block/${userId}`,
+				method: 'PUT',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
+		})
 	})
 });
 
-export const {useGetBlockedUsersQuery} = api
+export const { useGetBlockedUsersQuery, usePutBlockedUsersMutation } = api;

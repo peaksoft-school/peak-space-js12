@@ -5,14 +5,11 @@ const api = index.injectEndpoints({
 			LOGIN.PostRegistrationResponse,
 			LOGIN.PostRegistrationRequest
 		>({
-			query: (data) => (
-				console.log(data),
-				{
-					url: '/auth/signIn',
-					method: 'POST',
-					body: data
-				}
-			),
+			query: (data) => ({
+				url: '/auth/signIn',
+				method: 'POST',
+				body: data
+			}),
 			invalidatesTags: ['login']
 		}),
 		postWithGoogle: build.mutation({

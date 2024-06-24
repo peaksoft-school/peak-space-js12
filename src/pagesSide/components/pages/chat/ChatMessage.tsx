@@ -1,28 +1,33 @@
 import { useNavigate } from 'react-router-dom';
-import { useGetUsersQuery } from '@/src/redux/api/chat';
 import { IconSearch } from '@tabler/icons-react';
+import { useGetUsersQuery } from '@/src/redux/api/chat';
 import scss from './Style.module.scss';
 
 const ChatMessage = () => {
-	const { data, isLoading } = useGetUsersQuery();
 	const navigate = useNavigate();
+
+	const { data, isLoading } = useGetUsersQuery();
+
 	const chatPerson = () => {
 		navigate('/chatperson');
 	};
+
 	return (
 		<div className={scss.chat_meg}>
-			{isLoading ? (
-				<h1>Loading........</h1>
-			) : (
-				<>
-					<div className={scss.input_text}>
-						<p>Сообщения</p>
-						<div className={scss.inputs}>
-							<IconSearch color=" #818C99" className={scss.icons} />
-							<input type="text" placeholder="Поиск" />
-						</div>
-					</div>
-					<div className={scss.box}>
+			<div className={scss.input_text}>
+				<p>Сообщения</p>
+				<div className={scss.inputs}>
+					<IconSearch color=" #818C99" className={scss.icons} />
+					<input type="text" placeholder="Поиск" />
+				</div>
+			</div>
+			<div className={scss.box}>
+				{isLoading ? (
+					<>
+						<h1>Loading.....</h1>
+					</>
+				) : (
+					<>
 						{data?.map((item) => (
 							<div className={scss.aside} key={item.id}>
 								<div className={scss.form}>
@@ -35,10 +40,11 @@ const ChatMessage = () => {
 								<p>{item.title}</p>
 							</div>
 						))}
-					</div>
-				</>
-			)}
+					</>
+				)}
+			</div>
 		</div>
 	);
 };
+
 export default ChatMessage;

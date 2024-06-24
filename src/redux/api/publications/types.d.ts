@@ -22,8 +22,8 @@ namespace PROFIL {
 		countPablics: number;
 		publications: Publications;
 	};
+	type GetMyPublicationRequest = void;
 
-	interface Root {}
 
 	type CommentResponse = {
 		postId: number;
@@ -39,7 +39,6 @@ namespace PROFIL {
 
 	type CommentRequest = void;
 
-	type GetMyPublicationRequest = void;
 
 	type PostProfilResponse = {
 		data: never;

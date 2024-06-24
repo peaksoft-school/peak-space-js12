@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeEvent, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 import { usePostRegistrationMutation } from '@/src/redux/api/registration';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpaceImg from '../../../../assets/peakSpace.png';
 import scss from './Registration.module.scss';
-import { Input, Checkbox } from 'antd';
+import { Input, Checkbox, message } from 'antd';
 
 interface ErrorObject {
 	password: string;
@@ -20,7 +22,8 @@ const Registration = () => {
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState('');
-	const [postRequest] = usePostRegistrationMutation();
+	const [postRequest, { isLoading }] = usePostRegistrationMutation();
+	const [messageApi, contextHolder] = message.useMessage();
 	const navigate = useNavigate();
 
 	const handleConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,31 +42,52 @@ const Registration = () => {
 		reset
 	} = useForm<ErrorObject>({ mode: 'onBlur' });
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const onSubmit = async (data: string | any) => {
+	const onSubmit = async (data: any) => {
 		try {
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const response: any = await postRequest(data);
+			const response = await postRequest(data);
+			console.log('Full Response:', response);
 
-			console.log('Регистрация успешна:', response);
+			if (password !== confirmPassword) {
+				messageApi.open({
+					type: 'warning',
+					content: 'Пароли не совпадают'
+				});
+				return;
+			}
 
-			setConfirmPassword('');
-			navigate(`/auth/confirm-by-email/${response.data.userId}` as string);
+			// Если ответ успешен и пароли совпадают
+			navigate(`/auth/confirm-by-email/${response.data?.userId}` as string, {
+				replace: true
+			});
 			reset();
-		} catch (error) {
+			setConfirmPassword('');
+		} catch (error: any) {
 			console.error('Ошибка регистрации:', error);
+
+			// Проверка на код ошибки 417
+			if (error.status === 417) {
+				messageApi.open({
+					type: 'error',
+					content: 'Уже существует аккаунт с таким Gmail'
+				});
+			} else {
+				console.log('Registration failed', error);
+
+				messageApi.open({
+					type: 'warning',
+					content: 'Пароли не совпадают'
+				});
+
+				// notify('Ошибка при регистрации', 'Попробуйте снова', '/auth/register');
+			}
 		}
-		if (password !== confirmPassword) {
-			alert('Пароли не совпадают');
-			return null;
-		}
-		console.log(data);
 	};
 
 	return (
 		<div className={scss.back_header}>
 			<div className={scss.Registration}>
 				<div className="container">
+					{contextHolder}
 					<form onSubmit={handleSubmit(onSubmit)} className={scss.bar}>
 						<img src={peakSpaceImg} alt="Peak Space" />
 						<div className={scss.inputs}>
@@ -236,7 +260,11 @@ const Registration = () => {
 								<p className={scss.text}>Сохранить вход</p>
 							</Checkbox>
 						</div>
-						<CustomButtonBold children="Зарегистрироваться" type="submit" />
+						<CustomButtonBold
+							disabled={isLoading}
+							children={isLoading ? 'Вход...' : 'Зарегистрироваться'}
+							type="submit"
+						/>
 						<Link to="/auth/login">Уже есть аккаунт? Войти</Link>
 					</form>
 				</div>
@@ -244,4 +272,5 @@ const Registration = () => {
 		</div>
 	);
 };
+
 export default Registration;

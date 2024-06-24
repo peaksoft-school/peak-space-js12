@@ -4,10 +4,23 @@
 	background-color: white;
 	border-radius: 8px;
 	padding: 20px 30px;
+	position: relative;
 
 	h1 {
 		font-size: 25px;
 		margin-bottom: 15px;
+	}
+
+	.close {
+		position: absolute;
+		top: 25px;
+		right: 20px;
+		background: none;
+		outline: none;
+		border: none;
+		cursor: pointer;
+		svg {
+		}
 	}
 	.selected_link {
 		color: #4c3f9b;

@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import Registration from '../pages/registration/Registration';
 import NewPassword from '../pages/newPassword/NewPassword';
-import Login from '../pages/login/Login';
 import PasswordNew from '../pages/newPassword/PasswordNew';
 import ConfirmByEmail from '../pages/login/ConfirmByEmail.';
+import Login from '../pages/login/Login';
 
 const LayoutAuth = () => {
 	return (
@@ -16,7 +16,7 @@ const LayoutAuth = () => {
 				<Route path="/confirm-by-email/:id" element={<ConfirmByEmail />} />
 			</Routes>
 		</>
-	);
+	); 
 };
 
 export default LayoutAuth;

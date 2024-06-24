@@ -1,19 +1,26 @@
-import { Switch } from 'antd';
-import { useState } from 'react';
-const Siwtchback = () => {
-	const [ellipsis, setEllipsis] = useState(true);
-	return (
-		<>
-			<Switch
-				checked={ellipsis}
-				onChange={() => {
-					setEllipsis(!ellipsis);
-				}}
-			/>
-		</>
-	);
-};
-export default Siwtchback;
-// const ComponentDemo = App;
+// import { FC, useEffect, useState } from 'react';
+// import { Switch } from 'antd';
 
-// createRoot(mountNode).render(<ComponentDemo />);
+// interface SiwtchbackProps {
+// 	open: () => void;
+// 	onCancel: boolean;
+// }
+
+// const Siwtchback: FC<SiwtchbackProps> = ({ onCancel, open }) => {
+// 	const [ellipsis, setEllipsis] = useState(onCancel);
+
+// 	useEffect(() => {
+// 		if (onCancel === true) {
+// 			setEllipsis(onCancel);
+// 		setEllipsis(ellipsis);
+// 		} 
+// 	}, [onCancel]);
+
+// 	return (
+// 		<>
+// 			<Switch onClick={open} checked={ellipsis} />
+// 		</>
+// 	);
+// };
+
+// export default Siwtchback;

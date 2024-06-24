@@ -547,8 +547,8 @@
 // !!confident TWO
 .confident_content {
 	display: flex;
-	flex-direction: row-reverse;
-	// max-width: 500px;
+
+
 	.vector_switch {
 		display: flex;
 		flex-direction: column;
@@ -562,7 +562,18 @@
 			display: flex;
 			align-items: center;
 			justify-content: flex-start;
-			gap: 10px;
+
+			button {
+				border: none;
+				background: none;
+				outline: none;
+			}
+			svg {
+				cursor: pointer;
+				color: black;
+				width: 35px;
+				height: 35px;
+			}
 			@media (max-width: 350px) {
 				h2 {
 					font-size: 16px;
@@ -664,11 +675,11 @@
 	justify-content: space-between;
 	flex-direction: column;
 	background: white;
-	height: 250px;
+	height: 340px;
 	border-radius: 15px;
 	text-align: center;
 	width: 440px;
-	border: 3px solid #4c3f9b;
+	padding: 20px;
 
 	.text {
 		padding: 15px;
@@ -678,21 +689,115 @@
 	.buttons {
 		display: flex;
 		flex-direction: column;
+		gap: 10px;
 		button {
+			padding-top: 8px;
 			border: none;
-			height: 40px;
+			height: 35px;
 			background: transparent;
 			cursor: pointer;
 			color: #4c3f9b;
-			border-top: 3px solid #535188;
+			border-top: 2px solid black;
 		}
 		.button1 {
+			padding-top: 8px;
 			border: none;
-			height: 40px;
+			height: 35px;
 			background: transparent;
 			cursor: pointer;
-			border-top: 3px solid #535188;
-			color: red;
+			color: #4c3f9b;
+			border-top: 2px solid black;
 		}
 	}
+}
+// !
+.modalka {
+	background: white;
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	padding: 20px;
+	border-radius: 15px;
+	gap: 15px;
+	h1 {
+		text-align: center;
+		font-size: 20px;
+	}
+	.box {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+
+		.text_icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+
+			svg {
+				width: 70px;
+				height: 30px;
+			}
+		}
+	}
+.btn {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	button {
+		padding-top: 8px;
+		border: none;
+		height: 35px;
+		background: transparent;
+		cursor: pointer;
+		color: #4c3f9b;
+		border-top: 2px solid black;
+	}
+}
+}
+
+// !!!2
+.modalka2 {
+	background: white;
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	padding: 20px;
+	border-radius: 15px;
+	gap: 20px;
+	h1 {
+		text-align: center;
+		font-size: 20px;
+	}
+	.box {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+
+		.text_icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+
+			svg {
+				width: 70px;
+				height: 30px;
+			}
+		}
+	}
+.btn {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	button {
+		padding-top: 8px;
+		border: none;
+		height: 35px;
+		background: transparent;
+		cursor: pointer;
+		color: #4c3f9b;
+		border-top: 2px solid black;
+	}
+}
 }

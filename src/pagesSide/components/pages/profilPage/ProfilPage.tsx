@@ -16,19 +16,25 @@ import {
 	IconBasket,
 	IconPhoto,
 	IconHeart,
-	IconPinned
+	IconPinned,
+	IconX
 } from '@tabler/icons-react';
 import scss from './Style.module.scss';
 
 const ProfilPage = () => {
 	const { pathname } = useLocation();
-	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [page, setPage] = useState(true);
 	const navigate = useNavigate();
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const showModal = () => {
-		setIsModalOpen(!isModalOpen);
+		setIsModalOpen(true);
 	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
+
 	useEffect(() => {
 		if (page) {
 			navigate('/side/public');
@@ -123,11 +129,17 @@ const ProfilPage = () => {
 								>
 									<h4>365</h4>
 									<p>паблики</p>
-									<ModalTs open={isModalOpen} onCancel={() => {}}>
+									<ModalTs open={isModalOpen} onCancel={closeModal}>
 										<div className={scss.aside_modal}>
 											<div>
 												<MyFriends />
 											</div>
+											<button
+												onClick={() => setIsModalOpen(false)}
+												className={scss.close}
+											>
+												<IconX />
+											</button>
 										</div>
 									</ModalTs>
 								</div>

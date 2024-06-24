@@ -6,11 +6,12 @@ import {
 } from '@/src/redux/api/userPublic';
 import ModalTs from '@/src/ui/modal/Modal';
 
+
 import { IconCirclePlus ,
 	IconDots,
 	IconHeartFilled} from '@tabler/icons-react';
-import scss from './Style.module.scss';
 
+import scss from './Style.module.scss';
 
 const PublicVideo = () => {
 	const { data, isLoading } = useGetPublicVideoQuery();

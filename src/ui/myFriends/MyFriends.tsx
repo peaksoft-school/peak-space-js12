@@ -30,6 +30,8 @@ const MyFriends = () => {
 	return (
 		<div className={scss.container}>
 			<h1>Друзья</h1>
+
+
 			<nav className={scss.nav_bar}>
 				<ul className={scss.nav_list}>
 					{navigationBar.map((nav) => (
@@ -47,7 +49,11 @@ const MyFriends = () => {
 						</div>
 					))}
 				</ul>
-				<IconCirclePlus stroke={1} className={scss.plus_icon} onClick={() => {}} />
+				<IconCirclePlus
+					stroke={1}
+					className={scss.plus_icon}
+					onClick={() => {}}
+				/>
 			</nav>
 
 			<div className={scss.search_container}>
@@ -64,12 +70,10 @@ const MyFriends = () => {
 								<img
 									className={scss.user_profile_img}
 									src={user.ProfilePicture}
-									alt='photo'
+									alt="photo"
 								/>
 								<div className={scss.user_name_description}>
-
 									<Link to="/users-profile/side/public">
-
 										<h3>{user.name}</h3>
 									</Link>
 									<p>{user.description}</p>

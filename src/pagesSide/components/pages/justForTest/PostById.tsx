@@ -2,13 +2,14 @@
 import { useEffect, useState } from 'react';
 import {
 	useEditGetQuery,
-	useGetGeocodeQuery,
 	usePatchPostMutation
 } from '@/src/redux/api/publications';
 import { useNavigate, useParams } from 'react-router-dom';
 import scss from './PostById.module.scss';
 import { IconDots, IconEdit } from '@tabler/icons-react';
-
+import ModalTs from '@/src/ui/modal/Modal';
+import CustomButton from '@/src/ui/customButton/CustomButton';
+import { Input, Skeleton } from 'antd';
 interface Edit {
 	postId: number;
 	userId: number;
@@ -26,50 +27,44 @@ const PostById = () => {
 	const { data: postData } = useEditGetQuery(postId as any);
 	const [post, setPost] = useState<Edit>(null as any);
 	const [patchPost] = usePatchPostMutation();
+
 	const [isEdit, setIsEdit] = useState(null);
 	const [editDescription, setEditDescription] = useState('');
+	const [editLocation, setEditLocation] = useState('');
 	const [isMessage, setIsMessage] = useState(false);
-	const [location, setLocation] = useState({
-		latitude: null,
-		longitude: null
-	});
-	const { data: locationString } = useGetGeocodeQuery(location, {
-		skip: !location.latitude || !location.longitude
-	});
+
+	const [isModal, setIsModal] = useState(false);
 
 	const navigate = useNavigate();
+
+	const openModal = () => {
+		setIsModal(true);
+	};
+
+	const closeModal = () => {
+		setIsModal(false);
+	};
+
 	useEffect(() => {
 		if (postData) {
 			setPost(postData as any);
 		}
 	}, [postData]);
 
-	useEffect(() => {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(
-				(position) => {
-					const { latitude, longitude } = position.coords;
-					setLocation({ latitude, longitude });
-				},
-				(error) => {
-					console.error('Error getting location:', error);
-				}
-			);
-		} else {
-			console.error('Geolocation is not supported by this browser.');
-		}
-	}, []);
+	const { TextArea } = Input;
 
 	const editPost = (item: any) => {
 		setEditDescription(item.description);
+		setEditLocation(item.location);
 		setIsEdit(item.postId);
+		openModal();
 		setIsMessage(false);
 	};
 
 	const savePost = async (id: number) => {
 		const newData = {
 			description: editDescription,
-			location: locationString || 'Unknown location'
+			location: editLocation
 		};
 		await patchPost({ id, newData });
 		setIsEdit(null);
@@ -98,38 +93,68 @@ const PostById = () => {
 				</div>
 			</div>
 			{!post ? (
-				<p>Loading...</p>
+				<div className={scss.error}>
+					<Skeleton.Button active block />
+				</div>
 			) : (
 				<div key={post.postId}>
 					{isEdit === post.postId ? (
 						<>
 							<div className={scss.edit}>
+								<ModalTs open={isModal} onCancel={closeModal}>
+									<div className={scss.is_modal}>
+										<div className={scss.modal}>
+											<h2>редактировать публикацию</h2>
+
+											<div className={scss.inputs}>
+												<TextArea
+													showCount
+													maxLength={100}
+													value={editDescription}
+													onChange={(e) => setEditDescription(e.target.value)}
+													placeholder="описание"
+													style={{ height: 230, resize: 'none' }}
+												/>
+
+												<Input
+													allowClear
+													value={editLocation}
+													onChange={(e) => setEditLocation(e.target.value)}
+												/>
+											</div>
+
+											<div className={scss.buttons}>
+												<CustomButton
+													children={'Отменить'}
+													onClick={() => setIsEdit(null)}
+												/>
+												<CustomButton
+													children={'Сохранить'}
+													onClick={() => savePost(post.postId)}
+												/>
+											</div>
+										</div>
+									</div>
+								</ModalTs>
 								<div className={scss.some}>
 									<div className={scss.texts}>
 										<div className={scss.text}>
-											<textarea
-												value={editDescription}
-												onChange={(e) => setEditDescription(e.target.value)}
-											></textarea>
+											<p>Описание:</p>
+											<h2>{post.description}</h2>
 										</div>
 										<div className={scss.text}>
 											<p>Mестоположение:</p>
 											<h2>{post.location}</h2>
 										</div>
-									</div>
-									<div className={scss.user_name}>
-										<img src={post.avatar} alt={`${post.userName}'s avatar`} />
-										<p>{post.userName}</p>
+										<div className={scss.user_name}>
+											<img
+												src={post.avatar}
+												alt={`${post.userName}'s avatar`}
+											/>
+											<p>{post.userName}</p>
+										</div>
 									</div>
 									<div>
-										<p>Likes: {post.countLikes}</p>
-										<div className={scss.buttons}>
-											<button onClick={() => savePost(post.postId)}>
-												Сохранить
-											</button>
-											<button onClick={() => setIsEdit(null)}>Отменить</button>
-										</div>
-
 										{post.links.map((link) => (
 											<div className={scss.user_photo} key={link.id}>
 												<img src={link.link} alt="" />
@@ -151,12 +176,11 @@ const PostById = () => {
 										<p>Mестоположение:</p>
 										<h2>{post.location}</h2>
 									</div>
+									<div className={scss.user_name}>
+										<img src={post.avatar} alt={`${post.userName}'s avatar`} />
+										<p>{post.userName}</p>
+									</div>
 								</div>
-								<div className={scss.user_name}>
-									<img src={post.avatar} alt={`${post.userName}'s avatar`} />
-									<p>{post.userName}</p>
-								</div>
-								<p>Likes: {post.countLikes}</p>
 								<div>
 									{post.links.map((link) => (
 										<div className={scss.user_photo} key={link.id}>

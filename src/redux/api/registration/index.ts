@@ -5,14 +5,11 @@ const api = index.injectEndpoints({
 			REGISTRATION.PostRegistrationResponse,
 			REGISTRATION.PostRegistrationRequest
 		>({
-			query: (data) => (
-				console.log(data),
-				{
-					url: '/auth/signUp',
-					method: 'POST',
-					body: data
-				}
-			),
+			query: (data) => ({
+				url: '/auth/signUp',
+				method: 'POST',
+				body: data
+			}),
 			invalidatesTags: ['registration']
 		})
 	})
