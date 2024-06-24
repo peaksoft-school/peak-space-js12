@@ -45,49 +45,65 @@ const Login = () => {
 		navigate('/', { replace: true });
 	};
 
+	// const onSubmit = async (data: any) => {
+	// 	try {
+	// 		const response = await postRequest(data);
+	// 		console.log('Full Response:', response);
+
+	// 		if (response.data?.httpStatus === 'OK') {
+	// 			const responseData = response.data;
+	// 			console.log('Response Data:', responseData);
+
+	// 			const status = responseData?.httpStatus;
+	// 			const token = responseData?.token;
+
+	// 			if (status === 'OK') {
+	// 				localStorage.setItem('auth_token', token);
+	// 				localStorage.setItem('isAuth', 'true');
+	// 				navigateToPages();
+	// 				reset();
+	// 			} else {
+	// 				messageApi.open({
+	// 					type: 'warning',
+	// 					content: 'Произошла ошибка на сервере.'
+	// 				});
+	// 			}
+	// 		} else {
+	// 			console.error('Ошибка HTTP:', response.status);
+	// 			messageApi.open({
+	// 				type: 'error',
+	// 				content: 'Произошла ошибка при выполнении запроса, попробуйте снова.'
+	// 			});
+	// 		}
+	// 	} catch (error: any) {
+	// 		console.error('Ошибка входа:', error);
+
+	// 		if (error.response && error.response.status === 404) {
+	// 			const errorMessage =
+	// 				error.response.data?.message || 'Пользователь не найден.';
+	// 			alert(errorMessage);
+	// 		} else {
+	// 			messageApi.open({
+	// 				type: 'error',
+	// 				content: 'Произошла ошибка при входе, попробуйте снова.'
+	// 			});
+	// 		}
+	// 	}
+	// };
+
 	const onSubmit = async (data: any) => {
+
 		try {
-			const response = await postRequest(data);
-			console.log('Full Response:', response);
-
-			if (response.status === 200) {
-				const responseData = response.data;
-				console.log('Response Data:', responseData);
-
-				const status = responseData?.httpStatus;
-				const token = responseData?.token;
-
-				if (status === 'OK') {
-					localStorage.setItem('auth_token', token);
-					localStorage.setItem('isAuth', 'true');
-					navigateToPages();
-					reset();
-				} else {
-					messageApi.open({
-						type: 'warning',
-						content: 'Произошла ошибка на сервере.' 
-					});
-				}
-			} else {
-				console.error('Ошибка HTTP:', response.status);
-				messageApi.open({
-					type: 'error',
-					content: 'Произошла ошибка при выполнении запроса, попробуйте снова.'
-				});
+			const result = await postRequest(data);
+			if ('data' in result) {
+				const { token }: any = result.data;
+				localStorage.setItem('auth_token', token);
+				localStorage.setItem('isAuth', 'true');
+				navigateToPages();
+				reset();
 			}
-		} catch (error: any) {
+		} catch (error) {
 			console.error('Ошибка входа:', error);
-
-			if (error.response && error.response.status === 404) {
-				const errorMessage =
-					error.response.data?.message || 'Пользователь не найден.';
-				alert(errorMessage);
-			} else {
-				messageApi.open({
-					type: 'error',
-					content: 'Произошла ошибка при входе, попробуйте снова.'
-				});
-			}
 		}
 	};
 

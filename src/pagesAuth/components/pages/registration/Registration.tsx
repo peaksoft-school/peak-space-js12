@@ -55,7 +55,7 @@ const Registration = () => {
 				return;
 			}
 
-			// Если ответ успешен и пароли совпадают
+			
 			navigate(`/auth/confirm-by-email/${response.data?.userId}` as string, {
 				replace: true
 			});
@@ -64,7 +64,7 @@ const Registration = () => {
 		} catch (error: any) {
 			console.error('Ошибка регистрации:', error);
 
-			// Проверка на код ошибки 417
+		
 			if (error.status === 417) {
 				messageApi.open({
 					type: 'error',
@@ -78,7 +78,7 @@ const Registration = () => {
 					content: 'Пароли не совпадают'
 				});
 
-				// notify('Ошибка при регистрации', 'Попробуйте снова', '/auth/register');
+			
 			}
 		}
 	};

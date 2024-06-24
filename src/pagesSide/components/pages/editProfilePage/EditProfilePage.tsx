@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useEffect, useRef, useState } from 'react';
 import { Select } from 'antd';
 import type { SelectProps } from 'antd';
@@ -9,17 +11,15 @@ import { IconCamera } from '@tabler/icons-react';
 
 const EditProfilePage = () => {
 	const { data, refetch } = useGetUserInfoQuery();
-	const [userProfileData, setUserProfileData] = useState([]);
+	const [userProfileData, setUserProfileData] = useState<any[]>([]);
 	const [imageSrc, setImageSrc] = useState<string>('');
 	const fileInputRefAvatar = useRef<HTMLInputElement>(null);
 
 	const handleChooseFileButtonClick = () => {
-		if (fileInputRefAvatar) {
+		if (fileInputRefAvatar.current) {
 			fileInputRefAvatar.current.click();
 		}
-		
 	};
-	console.log(fileInputRefAvatar);
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files ? event.target.files[0] : null;
@@ -36,22 +36,20 @@ const EditProfilePage = () => {
 
 	useEffect(() => {
 		if (data) {
-			const userData = [
-				{
-					avatar: data.avatar,
-					cover: data.cover,
-					userName: data.userName,
-					email: data.email,
-					firstName: data.firstName,
-					lastName: data.lastName,
-					fathersName: data.fathersName,
-					aboutYourSelf: data.aboutYourSelf,
-					educationResponses: data.educationResponses,
-					profession: data.profession,
-					workOrNot: data.workOrNot
-				}
-			];
-			setUserProfileData(userData);
+			const userData = {
+				avatar: data.avatar,
+				cover: data.cover,
+				userName: data.userName,
+				email: data.email,
+				firstName: data.firstName,
+				lastName: data.lastName,
+				fathersName: data.fathersName,
+				aboutYourSelf: data.aboutYourSelf,
+				educationResponses: data.educationResponses || [],
+				profession: data.profession,
+				workOrNot: data.workOrNot
+			};
+			setUserProfileData([userData]);
 		}
 		refetch();
 	}, [data, refetch]);
@@ -97,8 +95,8 @@ const EditProfilePage = () => {
 
 	return (
 		<div className={scss.section}>
-			{userProfileData.map((userData) => (
-				<>
+			{userProfileData.map((userData, index) => (
+				<div key={index}>
 					<ConfidentPage />
 					<div className={scss.content}>
 						<div className={scss.head}>
@@ -127,7 +125,7 @@ const EditProfilePage = () => {
 									<img
 										className={scss.cover_img}
 										style={{ display: coverImg ? 'block' : 'none' }}
-										src={coverImg ? coverImg : userData.cover}
+										src={coverImg || userData.cover}
 									/>
 									<input
 										onChange={handleChangeCover}
@@ -151,7 +149,7 @@ const EditProfilePage = () => {
 									<input
 										type="text"
 										placeholder="Ivanov Ivan"
-										value={userData.firstName}
+										value={userData.firstName || ''}
 									/>
 								</div>
 								<div className={scss.bar}>
@@ -159,7 +157,7 @@ const EditProfilePage = () => {
 									<input
 										type="text"
 										placeholder="Ivanov Ivan Ivanovich"
-										value={userData.lastName}
+										value={userData.lastName || ''}
 									/>
 								</div>
 								<div className={scss.bar}>
@@ -167,7 +165,7 @@ const EditProfilePage = () => {
 									<input
 										type="text"
 										placeholder="Ivanov Ivan Ivanovich"
-										value={userData.userName}
+										value={userData.userName || ''}
 									/>
 								</div>
 								<div className={scss.bar}>
@@ -175,14 +173,14 @@ const EditProfilePage = () => {
 									<input
 										type="text"
 										placeholder="Ivanov Ivan Ivanovich"
-										value={userData.fathersName}
+										value={userData.fathersName || ''}
 									/>
 								</div>
 								<div className={scss.bar}>
 									<p>Обо мне</p>
 									<textarea
 										placeholder="Express yourself with your heart"
-										value={userData.aboutYourSelf}
+										value={userData.aboutYourSelf || ''}
 									></textarea>
 								</div>
 							</div>
@@ -203,26 +201,29 @@ const EditProfilePage = () => {
 									{isInputsAreaVisible ? '-' : '+'}
 								</button>
 							</div>
-							<div className={scss.educations_names_area}>
-								<div className={scss.bar}>
-									<p>Город</p>
-									<input
-										type="text"
-										placeholder="Your city"
-										value={userData.educationResponses[0].country}
-									/>
+							{userData.educationResponses[0] && (
+								<div className={scss.educations_names_area}>
+									<div className={scss.bar}>
+										<p>Город</p>
+										<input
+											type="text"
+											placeholder="Your city"
+											value={userData.educationResponses[0].country || ''}
+										/>
+									</div>
+									<div className={scss.bar}>
+										<p>Школа</p>
+										<input
+											type="text"
+											placeholder="Your school"
+											value={
+												userData.educationResponses[0].educationalInstitution ||
+												''
+											}
+										/>
+									</div>
 								</div>
-								<div className={scss.bar}>
-									<p>Школа</p>
-									<input
-										type="text"
-										placeholder="Your school"
-										value={
-											userData.educationResponses[0].educationalInstitution
-										}
-									/>
-								</div>
-							</div>
+							)}
 						</div>
 
 						<div className={scss.grid}>
@@ -261,7 +262,7 @@ const EditProfilePage = () => {
 							</div>
 						</div>
 					</div>
-				</>
+				</div>
 			))}
 		</div>
 	);
