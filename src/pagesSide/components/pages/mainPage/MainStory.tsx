@@ -415,7 +415,7 @@ const MainStory = () => {
 					item?.linkPublic ||
 					'https://via.placeholder.com/1200x720.png?text=Story+1',
 				header: {
-					heading: 'Alihan Isaev Handsome Boy' || 'Default Heading',
+					heading: 'Nursultan and Kadyrdin' || 'Default Heading',
 					subheading: (item?.createdAt || 'Default Subheading') as string,
 					profileImage: elipse || 'https://via.placeholder.com/50'
 				},
