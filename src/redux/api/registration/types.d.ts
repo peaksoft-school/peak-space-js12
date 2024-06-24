@@ -8,7 +8,8 @@ namespace REGISTRATION {
 		email: string;
 		password: string;
 		data: string;
-		userId:string
+		userId: string;
+		httpStatus:string;
 	};
 
 	type PostRegistrationRequest = {

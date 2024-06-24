@@ -27,7 +27,6 @@ const PublicPage = () => {
 	const { data: users } = useRecommendationGetQuery();
 	console.log(users);
 
-
 	const { data: follow } = useGetYuofollowQuery();
 	console.log(follow);
 
@@ -57,7 +56,6 @@ const PublicPage = () => {
 		}
 	}, [data]);
 	console.log(data);
-
 
 	if (isLoading) {
 		return (
@@ -183,7 +181,18 @@ const PublicPage = () => {
 														<span></span>
 														<p>{item.userName}</p>
 													</div>
-													<h4>{item.descriptionPublic}</h4>
+													<h4
+														style={{
+															width: '100%',
+															display: '-webkit-box',
+															maxWidth: '380px',
+															WebkitLineClamp: 1,
+															WebkitBoxOrient: 'vertical',
+															overflow: 'hidden'
+														}}
+													>
+														{item.descriptionPublic}
+													</h4>
 													<p>{item.tematica}</p>
 												</div>
 												<div className={scss.end}>
