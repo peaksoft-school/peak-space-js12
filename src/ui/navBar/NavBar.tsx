@@ -61,7 +61,7 @@ const NavBar = () => {
 		<div className={scss.content}>
 			<nav>
 				<ul className={!test ? scss.isNone : scss.none}>
-					<img src={Logo} alt="logo" className={scss.logo}/>
+					<img src={Logo} alt="logooo" className={scss.logo}/>
 					{navigationItems.map((item) => (
 						<li onClick={() => navigateTo(item.path)}>
 							<Link
