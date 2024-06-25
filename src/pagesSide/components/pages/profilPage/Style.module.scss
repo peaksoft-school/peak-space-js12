@@ -10,49 +10,81 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 40px;
+		gap: 80px;
 
 		.head {
 			width: 100%;
 			max-width: 980px;
 			max-height: 260px;
 			height: 100vh;
+			position: relative;
 
+			.cover_img {
+				position: relative;
+				overflow: hidden;
+
+				button {
+					position: absolute;
+					top: 0px;
+					right: -6px;
+					background: none;
+					outline: none;
+					border: none;
+
+					rotate: 90deg;
+					cursor: pointer;
+
+					svg {
+						color: white;
+					}
+				}
+				.active {
+					position: absolute;
+					right: 14px;
+					top: 33px;
+					border-radius: 7px;
+
+					padding-inline: 20px;
+					padding-block: 10px;
+
+					background: rgb(255, 255, 255);
+					display: flex;
+					flex-direction: column;
+					gap: 5px;
+					align-items: center;
+
+					span {
+						border: 1px solid rgba(0, 0, 0, 0.2);
+						width: 100%;
+					}
+
+					p {
+						font-size: 16px;
+						color: black;
+						cursor: pointer;
+					}
+				}
+
+				.default {
+					position: absolute;
+					left: 2300px;
+					top: 0px;
+				}
+			}
 			img {
 				width: 100%;
 				max-width: 979px;
-				max-height: 188px;
+				max-height: 224px;
 				object-fit: cover;
 				border-radius: 3px;
 			}
-			//////////////////////////// !
-			.bars {
+
+			.bar {
 				display: flex;
 				align-items: center;
 				width: 980px;
-				height: 100px;
+				height: 90px;
 				background: #ffffff;
-				.far {
-					display: flex;
-					gap: 58px;
-					align-items: center;
-					div {
-						display: flex;
-						flex-direction: column;
-						cursor: pointer;
-						align-items: center;
-					}
-				}
-				.publics_count {
-					padding: 5px 15px;
-					transition: 0.3s;
-				}
-				.active_modal {
-					background-color: lightgray;
-					border-radius: 8px;
-					padding: 5px 15px;
-					transition: 0.3s;
-				}
 
 				img {
 					width: 150px;
@@ -62,50 +94,57 @@
 					position: relative;
 					bottom: 50px;
 					margin-left: 13px;
+					cursor: pointer;
 				}
-				.sidebar {
-					width: 810px;
-					height: 90px;
+				.side_bar {
+					width: 750px;
 					display: flex;
 					justify-content: space-between;
 					padding-inline: 30px;
+					min-height: 100%;
+					max-height: 300px;
 
 					.col {
 						display: flex;
 						flex-direction: column;
 						gap: 6px;
 						padding-block: 10px;
-						button {
-							background: none;
-							border: none;
-							outline: none;
-							cursor: pointer;
+
+						.row {
+							display: flex;
+							align-items: center;
+							gap: 1px;
+
+							h4 {
+								font-size: 21px;
+								font-weight: 500;
+								line-height: 26px;
+								letter-spacing: 0%;
+								text-align: left;
+							}
+							button {
+								background: none;
+								border: none;
+								outline: none;
+								cursor: pointer;
+							}
 						}
 					}
+
 					.fars {
 						display: flex;
 						gap: 40px;
 						padding-block: 20px;
 						text-align: center;
-						&:nth-child(2) {
-							cursor: pointer;
-						}
-						.friends_count,
-						.publics_count {
-							padding: 5px 22px;
-						}
-
-						.active_modal {
-							transition: 0.6s;
-							background: #dedede;
-							padding: 5px 22px;
-							border-radius: 9px;
+						.friends_count {
+							display: flex;
+							flex-direction: column;
+							align-items: center;
+							justify-content: center;
 						}
 					}
 				}
 			}
-
-			//////////////////////////// !
 		}
 		.links {
 			width: 100%;
@@ -1961,6 +2000,118 @@
 			background: #b8b8bd;
 			cursor: pointer;
 			border-radius: 10px;
+		}
+	}
+}
+.is_friends {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.modal {
+		// width: 100%;
+		height: 800px;
+		border-radius: 10px;
+		background: rgb(255, 255, 255);
+		padding-inline: 20px;
+		padding-block: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		.header_friends {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			h2 {
+				color: rgba(0, 0, 0, 0.8);
+				font-size: 27px;
+				font-family: 'Poppins', sans-serif;
+				font-weight: 700;
+				line-height: 29px;
+				letter-spacing: 3%;
+				text-align: left;
+			}
+
+			.chapters {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				// gap: 70px;
+				.chapters_user {
+					display: flex;
+					align-items: center;
+					gap: 40px;
+				}
+				button {
+					background: none;
+					outline: none;
+					border: none;
+					cursor: pointer;
+					svg {
+						color: gray;
+					}
+				}
+			}
+		}
+
+		.content_friends {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			.center_friends {
+				width: 700px;
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+
+				.friends {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+
+					.over {
+						display: flex;
+						align-items: center;
+						gap: 8px;
+
+						.dec {
+							display: flex;
+							flex-direction: column;
+							justify-content: center;
+							gap: 12px;
+							h4 {
+								color: rgba(0, 0, 0, 0.8);
+								font-size: 20px;
+								font-family: 'Poppins', sans-serif;
+								font-weight: 600;
+								line-height: 16px;
+								letter-spacing: 0%;
+								text-align: left;
+							}
+							p {
+								color: rgba(0, 0, 0, 0.8);
+								font-size: 16px;
+								font-weight: 400;
+								font-family: 'Poppins', sans-serif;
+								line-height: 16px;
+								letter-spacing: 0%;
+								text-align: left;
+							}
+						}
+
+						img {
+							width: 55px;
+							height: 55px;
+							border-radius: 50%;
+						}
+					}
+				}
+
+				button {
+					width: 160px;
+					text-align: center;
+				}
+			}
 		}
 	}
 }

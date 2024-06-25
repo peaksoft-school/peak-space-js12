@@ -96,7 +96,10 @@ const EditProfilePage = () => {
 	return (
 		<div className={scss.section}>
 			{userProfileData.map((userData, index) => (
-				<div key={index}>
+				<div
+					style={{ display: 'flex', flexDirection: 'row-reverse' }}
+					key={index}
+				>
 					<ConfidentPage />
 					<div className={scss.content}>
 						<div className={scss.head}>
