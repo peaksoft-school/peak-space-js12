@@ -121,4 +121,14 @@ export namespace USERPUBLIC {
 	}[];
 
 	type GetCommentRequest = void;
+
+	type GetFriendsResponse = {
+		idUser: number;
+		avatar: string;
+		userName: string;
+		aboutMe: string;
+		isMyFriend: boolean;
+	};
+
+	type GetFriendsRequest = void;
 }

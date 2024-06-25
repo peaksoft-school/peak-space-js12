@@ -1,4 +1,13 @@
-import { useEffect, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+	JSXElementConstructor,
+	Key,
+	ReactElement,
+	ReactNode,
+	ReactPortal,
+	useEffect,
+	useState
+} from 'react';
 import {
 	Link,
 	Route,
@@ -9,30 +18,68 @@ import {
 import Publications from './Publications';
 import Favourites from './Favourites';
 import PhotoWith from './PhotoWith';
-import ModalTs from '@/src/ui/modal/Modal';
-import MyFriends from '@/src/ui/myFriends/MyFriends';
+import type { SearchProps } from 'antd/es/input/Search';
 import {
 	IconEdit,
-	IconBasket,
 	IconPhoto,
 	IconHeart,
 	IconPinned,
-	IconX
+	IconCirclePlus
 } from '@tabler/icons-react';
 import scss from './Style.module.scss';
+import { useGetMyPublicationQuery } from '@/src/redux/api/publications';
+import {
+	useAddChaptersQuery,
+	useUserFriendsQuery
+} from '@/src/redux/api/usersProfile';
+import ModalTs from '@/src/ui/modal/Modal';
+import Search from 'antd/es/input/Search';
+import CustomButton from '@/src/ui/customButton/CustomButton';
+
+interface Types {
+	userId: number;
+	cover: string;
+	avatar: string;
+	userName: string;
+	aboutMe: string;
+	major: string;
+	countFriends: number;
+	countPablics: number;
+}
 
 const ProfilPage = () => {
+	const { data } = useGetMyPublicationQuery();
+	const [profil, setProfil] = useState<Types[]>([]);
+	const [friendById, setFriendById] = useState<number | null>(null);
+	const { data: friendsData } = useUserFriendsQuery(friendById, {
+		skip: !friendById
+	});
+	console.log(friendsData);
+
+	const [chaptersById, setChaptersById] = useState<number | null>(null);
+	const { data: chapters } = useAddChaptersQuery(chaptersById, {
+		skip: !chaptersById
+	});
+	console.log(chapters);
+
 	const { pathname } = useLocation();
 	const [page, setPage] = useState(true);
 	const navigate = useNavigate();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const showModal = () => {
-		setIsModalOpen(true);
+	const showModal = (userId: number) => {
+		if (userId) {
+			setIsModalOpen(true);
+			setFriendById(userId);
+			setChaptersById(userId);
+		} else {
+			console.log('is not ', userId);
+		}
 	};
 
 	const closeModal = () => {
 		setIsModalOpen(false);
+		setFriendById(null);
 	};
 
 	useEffect(() => {
@@ -66,87 +113,168 @@ const ProfilPage = () => {
 		}
 	];
 
+	useEffect(() => {
+		if (data) {
+			const transformedProfilData = [
+				{
+					aboutMe: data.aboutMe,
+					avatar: data.avatar,
+					countFriends: data.countFriends,
+					countPablics: data.countPablics,
+					cover: data.cover,
+					major: data.major,
+					publications: data.publications,
+					userId: data.userId,
+					userName: data.userName
+				}
+			];
+			setProfil(transformedProfilData as any);
+		}
+	}, [data]);
+
+	const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
+		console.log(info?.source, value);
+
 	return (
 		<div className={scss.main_page}>
 			<div className={scss.aside}>
-				<div className={scss.head}>
-					<div>
-						<img
-							src={
-								'https://i.pinimg.com/564x/f6/da/51/f6da518578e44dde5d26460543c06e54.jpg'
-							}
-							alt="photo"
-						/>
-					</div>
-					<div className={scss.bars}>
-						<div className={scss.user_img}>
-							<img
-								src={
-									'https://i.pinimg.com/564x/ff/6d/a9/ff6da93f4a2a50401fe74ccee7ec23a0.jpg'
-								}
-								alt="photo"
-							/>
+				{profil.map((item) => (
+					<div className={scss.head}>
+						<div className={scss.cover_img}>
+							<img src={item.cover} alt="Background" />
 						</div>
-						<div className={scss.sidebar}>
-							<div className={scss.col}>
-								<div
-									style={{ display: 'flex', gap: '5px', alignItems: 'center' }}
-								>
-									<h4>Ivanov ivan</h4>
-									<button onClick={() => {}}>
-										<IconEdit />
-									</button>
-								</div>
-								<div>
-									<p>Что-то что-то</p>
-								</div>
-								<div className={scss.mobile}>
-									<div
-										style={{
-											display: 'flex',
-											gap: '5px',
-											alignItems: 'center'
-										}}
-									>
-										<IconBasket color="green" />
-										<p style={{ fontSize: '13.2px', color: 'gray' }}>
-											Фотограф
-										</p>
-									</div>
-								</div>
+						<div className={scss.bar}>
+							<div className={scss.user_img}>
+								<img src={item.avatar} alt="User" />
 							</div>
 
-							<div className={scss.far}>
-								<div className={scss.friends_count}>
-									<h4>110</h4>
-									<p>друзей </p>
+							<div className={scss.side_bar}>
+								<div className={scss.col}>
+									<div className={scss.row}>
+										<h4>{item.userName}</h4>
+										<button onClick={() => {}}>
+											<IconEdit />
+										</button>
+									</div>
+									<p>{item.aboutMe}</p>
+
+									<p>{item.major}</p>
 								</div>
-								<div
-									className={
-										isModalOpen ? scss.active_modal : scss.publics_count
-									}
-									onClick={showModal}
-								>
-									<h4>365</h4>
-									<p>паблики</p>
+								<div className={scss.fars}>
+									<div
+										onClick={() => showModal(item.userId!)}
+										className={scss.friends_count}
+									>
+										<h4>{item.countFriends}</h4>
+										<p>друзей </p>
+									</div>
+									<div className={scss.friends_count}>
+										<h4>{item.countPablics}</h4>
+										<p>паблики</p>
+									</div>
+
 									<ModalTs open={isModalOpen} onCancel={closeModal}>
-										<div className={scss.aside_modal}>
-											<div>
-												<MyFriends />
+										<div className={scss.is_friends}>
+											<div className={scss.modal}>
+												<div className={scss.header_friends}>
+													<h2>Друзья</h2>
+													<div className={scss.chapters}>
+														<div className={scss.chapters_user}>
+															{chapters?.map(
+																(item: {
+																	groupName:
+																		| string
+																		| number
+																		| boolean
+																		| ReactElement<
+																				any,
+																				string | JSXElementConstructor<any>
+																		  >
+																		| Iterable<ReactNode>
+																		| ReactPortal
+																		| null
+																		| undefined;
+																}) => (
+																	<div>
+																		<p>{item.groupName}</p>
+																	</div>
+																)
+															)}
+														</div>
+														<button>
+															<IconCirclePlus />
+														</button>
+													</div>
+												</div>
+												<div className={scss.content_friends}>
+													<div>
+														<Search
+															placeholder="input search text"
+															onSearch={onSearch}
+															enterButton
+														/>
+													</div>
+
+													<div className={scss.center_friends}>
+														{friendsData?.map(
+															(item: {
+																isUser: Key | null | undefined;
+																avatar: string | undefined;
+																userName:
+																	| string
+																	| number
+																	| boolean
+																	| ReactElement<
+																			any,
+																			string | JSXElementConstructor<any>
+																	  >
+																	| Iterable<ReactNode>
+																	| ReactPortal
+																	| null
+																	| undefined;
+																aboutMe:
+																	| string
+																	| number
+																	| boolean
+																	| ReactElement<
+																			any,
+																			string | JSXElementConstructor<any>
+																	  >
+																	| Iterable<ReactNode>
+																	| ReactPortal
+																	| null
+																	| undefined;
+															}) => (
+																<div className={scss.friends} key={item.isUser}>
+																	<div className={scss.over}>
+																		<img src={item.avatar} alt="" />
+																		<div className={scss.dec}>
+																			<h4>{item.userName}</h4>
+																			<p>{item.aboutMe}</p>
+																		</div>
+																	</div>
+
+																	<CustomButton
+																		children={'написать'}
+																		onClick={function (): void {
+																			throw new Error(
+																				'Function not implemented.'
+																			);
+																		}}
+																	/>
+																</div>
+															)
+														)}
+													</div>
+												</div>
 											</div>
-											<button
-												onClick={() => setIsModalOpen(false)}
-												className={scss.close}
-											>
-												<IconX />
-											</button>
 										</div>
 									</ModalTs>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				))}
 				<div className={scss.links}>
 					{links.map((link, index) => (
 						<div key={index}>
