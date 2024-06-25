@@ -521,7 +521,7 @@ const MainStory = () => {
 						>
 							<img className={scss.elipse} src={elipse} alt="elipse" />
 							<img className={scss.plus} src={plusIcon} alt="plus icon" />
-							<h1>Добовить Историю</h1>
+							<h1 className={scss.story_user_name}>Добавить историю</h1>
 						</div>
 						<ModalTs open={isOpen} onCancel={handleCancel}>
 							<div className={scss.modal_modal}>
