@@ -18,12 +18,12 @@ namespace PROFIL {
 		userName: string;
 		aboutMe: string;
 		major: string;
+		userId: number;
 		countFriends: number;
 		countPablics: number;
 		publications: Publications;
 	};
 	type GetMyPublicationRequest = void;
-
 
 	type CommentResponse = {
 		postId: number;
@@ -38,7 +38,6 @@ namespace PROFIL {
 	}[];
 
 	type CommentRequest = void;
-
 
 	type PostProfilResponse = {
 		data: never;

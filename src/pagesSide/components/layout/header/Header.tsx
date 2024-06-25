@@ -23,6 +23,7 @@ const Header = () => {
 		}, 1000);
 	};
 
+
 	const users = [
 		{
 			id: 0,
@@ -72,7 +73,9 @@ const Header = () => {
 					<div className={scss.logoContainer}>
 						<img src={Logo} alt="logo" />
 					</div>
-					{key === 'chat' || keys === 'chatperson' ? (
+					{key === 'chat' ||
+					keys === 'chatperson' ||
+					keys === 'notification' ? (
 						<div className={scss.aside_avatar}></div>
 					) : (
 						<>
@@ -108,29 +111,32 @@ const Header = () => {
 								<div
 									className={`${inputValue !== '' ? scss.box : scss.hidden}`}
 								>
-									{inputValue !== '' &&
+									{
+										(inputValue !== '' &&
+										
 										data &&
-										data.map((item) => (
-											<div
-												key={item.id}
-												tabIndex={0}
-												onKeyDown={(e) => {
-													if (e.key === 'Enter') {
-														// Define the action that should happen when Enter is pressed
-													}
-												}}
-												className={scss.user_card}
-											>
-												<div className={scss.form}>
-													<img src={item.avatar} alt={item.userName} />
-													<div className={scss.text}>
-														<h4>{item.firstName}</h4>
-														<p>{item.userName}</p>
+											data.map((item) => (
+												<div
+													key={item.id}
+													tabIndex={0}
+													onKeyDown={(e) => {
+														if (e.key === 'Enter') {
+															// Define the action that should happen when Enter is pressed
+														}
+													}}
+													className={scss.user_card}
+												>
+													<div className={scss.form}>
+														<img src={item.avatar} alt={item.userName} />
+														<div className={scss.text}>
+															<h4>{item.firstName}</h4>
+															<p>{item.userName}</p>
+														</div>
 													</div>
+													<p>{item.lastName}</p>
 												</div>
-												<p>{item.lastName}</p>
-											</div>
-										))}
+											)))
+									}
 								</div>
 							</div>
 						</>

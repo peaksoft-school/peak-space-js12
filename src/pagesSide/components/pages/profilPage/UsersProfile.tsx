@@ -5,18 +5,14 @@ import {
 	Route,
 	Routes,
 	useLocation,
-	useNavigate
+	useNavigate,
+	useParams
 } from 'react-router-dom';
 import { useGetFriendsQuery } from '@/src/redux/api/friends';
 import Publications from './Publications';
-
-// import Favourites from './Favourites';
-
 import PhotoWith from './PhotoWith';
 import ModalTs from '@/src/ui/modal/Modal';
 import MyFriends from '@/src/ui/myFriends/MyFriends';
-import baground from '@/src/assets/album.svg';
-import avatar from '@/src/assets/userProfile.png';
 import {
 	IconEdit,
 	IconPinned,
@@ -32,8 +28,10 @@ import scss from './Style.module.scss';
 const ProfilPage = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	const { data, isLoading } = useGetFriendsQuery();
+	
+  const {foundUserId} = useParams()
+	const { data, isLoading } = useGetFriendsQuery(foundUserId as any);
+	console.log(data, 'mufa');
 
 	const [complain, setComplain] = useState(false);
 	const handleComplain = () => {
@@ -122,147 +120,165 @@ const ProfilPage = () => {
 	return (
 		<div className={scss.main_pages}>
 			<div className={scss.aside}>
-				<div className={scss.head}>
-					<div className={scss.bag_icon}>
-						<img src={baground} alt="photo" />
-						<button className={scss.frame} onClick={handleComplain}>
-							<IconDots color="white" />
-						</button>
+				{isLoading ? (
+					<>
+						<h1>Isloading...</h1>
+					</>
+				) : (
+					<>
+						{data?.map((item) => (
+							<div className={scss.head} key={item.id}>
+								<div className={scss.bag_icon}>
+									<span>
+										<img src={item.cover} alt="photo" />
+										<button className={scss.frame} onClick={handleComplain}>
+											<IconDots color="white" />
+										</button>
+									</span>
 
-						{complain && (
-							<div className={scss.comp}>
-								<h4 onClick={handleOpen2}>заблокировать пользователя</h4>
-								<span className={scss.span}></span>
-								<p onClick={handleOpen}>пожаловаться</p>
-							</div>
-						)}
-
-						<ModalTs open={isOpen2} onCancel={handleCloseModal2}>
-							<div className={scss.modalss}>
-								<div>
-									<h2>Заблокировать krgz.132?</h2>
-								</div>
-								<p>
-									Этот пользователь не сможет найти ваш профиль, публикации или
-									истории в peak-space и не узнает о том, что вы его
-									заблокировали.
-								</p>
-								<div className={scss.buttons}>
-									<button onClick={handleCloseModal2}>Заблокировать</button>
-									<button onClick={handleCloseModal2}>Отмена </button>
-								</div>
-							</div>
-						</ModalTs>
-
-						<ModalTs open={isOpen} onCancel={handleCloseModal}>
-							<div className={scss.wrap}>
-								<div className={scss.modal_ts}>
-									<div className={scss.closeModal}>
-										<h1>Пожаловаться</h1>
-										<div className={scss.cloose}>
-											<button onClick={handleCloseModal}>
-												<IconX />
-											</button>
+									{complain && (
+										<div className={scss.comp}>
+											<h4 onClick={handleOpen2}>заблокировать пользователя</h4>
+											<span className={scss.span}></span>
+											<p onClick={handleOpen}>пожаловаться</p>
 										</div>
-									</div>
-									<div className={scss.hring}>
-										<span className={scss.hr}></span>
-									</div>
-									<div className={scss.h1_teg}>
-										<h1 className={scss.h1}>
-											Почему вы хотите пожаловаться на этого пользователя?{' '}
-										</h1>
-										<p>
-											Ваша жалоба является анониной, за исключением случаев,
-											когда вы сообщаете о нарушениях прав на интеллектуальную
-											собственность
-										</p>
-									</div>
-									<div className={scss.spaner}>
-										<span className={scss.span1}> </span>
-									</div>
-									<div className={scss.let1}>
-										<p>Ребенок младше 13 лет</p>
-									</div>
-									<div className={scss.spaner}>
-										<span className={scss.span1}> </span>
-									</div>
-									<div className={scss.let1}>
-										<p>Этот человек выдает себя за другого </p>
-									</div>
-									<div className={scss.spaner}>
-										<span className={scss.span1}> </span>
-									</div>
-									<div className={scss.let1}>
-										<p>Другие</p>
-									</div>
-								</div>
-							</div>
-						</ModalTs>
-					</div>
+									)}
 
-					<div className={scss.bar}>
-						<div className={scss.user_img}>
-							<img src={avatar} alt="avatar" />
-						</div>
-						<div className={scss.sidebar}>
-							<div className={scss.col}>
-								<div
-									style={{ display: 'flex', gap: '5px', alignItems: 'center' }}
-								>
-									<h4>Usubalieva</h4>
-									<IconEdit color="rgb(119, 114, 114)" />
-									<span></span>
-									<p onClick={handlePublic} className={scss.myfood}>
-										Myfood
-									</p>
-								</div>
-								<div>
-									<p>Самая самая</p>
-								</div>
-								<div className={scss.mobile}>
-									<div
-										style={{
-											display: 'flex',
-											gap: '5px',
-											alignItems: 'center'
-										}}
-									>
-										<IconBasket color="green" />
-										<p style={{ fontSize: '13.2px', color: 'gray' }}>
-											Фотограф
-										</p>
-									</div>
-								</div>
-							</div>
-							<div className={scss.far}>
-								<div style={{ display: 'flex', gap: '20px' }}>
-									<div>
-										<h4>110</h4>
-										<p>друзей</p>
-									</div>
-									<div
-										className={isModalOpen ? scss.active_modal : ''}
-										onClick={showModal}
-									>
-										<h4>365</h4>
-										<p>паблики</p>
-										<ModalTs open={isModalOpen} onCancel={handleCancel}>
-											<div className={scss.aside_modal}>
-												<div>
-													<MyFriends />
+									<ModalTs open={isOpen2} onCancel={handleCloseModal2}>
+										<div className={scss.modalss}>
+											<div>
+												<h2>Заблокировать krgz.132?</h2>
+											</div>
+											<p>
+												Этот пользователь не сможет найти ваш профиль,
+												публикации или истории в peak-space и не узнает о том,
+												что вы его заблокировали.
+											</p>
+											<div className={scss.buttons}>
+												<button onClick={handleCloseModal2}>
+													Заблокировать
+												</button>
+												<button onClick={handleCloseModal2}>Отмена </button>
+											</div>
+										</div>
+									</ModalTs>
+
+									<ModalTs open={isOpen} onCancel={handleCloseModal}>
+										<div className={scss.wrap}>
+											<div className={scss.modal_ts}>
+												<div className={scss.closeModal}>
+													<h1>Пожаловаться</h1>
+													<div className={scss.cloose}>
+														<button onClick={handleCloseModal}>
+															<IconX />
+														</button>
+													</div>
+												</div>
+												<div className={scss.hring}>
+													<span className={scss.hr}></span>
+												</div>
+												<div className={scss.h1_teg}>
+													<h1 className={scss.h1}>
+														Почему вы хотите пожаловаться на этого пользователя?{' '}
+													</h1>
+													<p>
+														Ваша жалоба является анониной, за исключением
+														случаев, когда вы сообщаете о нарушениях прав на
+														интеллектуальную собственность
+													</p>
+												</div>
+												<div className={scss.spaner}>
+													<span className={scss.span1}> </span>
+												</div>
+												<div className={scss.let1}>
+													<p>Ребенок младше 13 лет</p>
+												</div>
+												<div className={scss.spaner}>
+													<span className={scss.span1}> </span>
+												</div>
+												<div className={scss.let1}>
+													<p>Этот человек выдает себя за другого </p>
+												</div>
+												<div className={scss.spaner}>
+													<span className={scss.span1}> </span>
+												</div>
+												<div className={scss.let1}>
+													<p>Другие</p>
 												</div>
 											</div>
-										</ModalTs>
+										</div>
+									</ModalTs>
+								</div>
+
+								<div className={scss.bar}>
+									<div className={scss.user_img}>
+										<img src={item.avatar} alt="avatar" />
+									</div>
+									<div className={scss.sidebar}>
+										<div className={scss.col}>
+											<div
+												style={{
+													display: 'flex',
+													gap: '5px',
+													alignItems: 'center'
+												}}
+											>
+												<h4>{item.userName}</h4>
+												<IconEdit color="rgb(119, 114, 114)" />
+												<span></span>
+												<p onClick={handlePublic} className={scss.myfood}>
+													Myfood
+												</p>
+											</div>
+											<div>
+												<p>{item.aboutYourSelf}</p>
+											</div>
+											<div className={scss.mobile}>
+												<div
+													style={{
+														display: 'flex',
+														gap: '5px',
+														alignItems: 'center'
+													}}
+												>
+													<IconBasket color="green" />
+													<p style={{ fontSize: '13.2px', color: 'gray' }}>
+														{item.profession}
+													</p>
+												</div>
+											</div>
+										</div>
+										<div className={scss.far}>
+											<div style={{ display: 'flex', gap: '20px' }}>
+												<div>
+													<h4>{item.friendsSize}</h4>
+													<p>друзей</p>
+												</div>
+												<div
+													className={isModalOpen ? scss.active_modal : ''}
+													onClick={showModal}
+												>
+													<h4>{item.publicationsSize}</h4>
+													<p>паблики</p>
+													<ModalTs open={isModalOpen} onCancel={handleCancel}>
+														<div className={scss.aside_modal}>
+															<div>
+																<MyFriends />
+															</div>
+														</div>
+													</ModalTs>
+												</div>
+											</div>
+											<div className={scss.button}>
+												<button onClick={handleOpen3}>дружить</button>
+											</div>
+										</div>
 									</div>
 								</div>
-								<div className={scss.button}>
-									<button onClick={handleOpen3}>дружить</button>
-								</div>
 							</div>
-						</div>
-					</div>
-				</div>
+						))}
+					</>
+				)}
 
 				<ModalTs open={isOpen3} onCancel={handleCloseModal3}>
 					<div className={scss.friends}>
@@ -328,7 +344,7 @@ const ProfilPage = () => {
 								</>
 							) : (
 								<>
-									{data?.map((item, index) => (
+									{/* {data?.map((item, index) => (
 										<div key={index} className={scss.cards}>
 											<div className={scss.start}>
 												<img src={item.img} alt={item.name} />
@@ -339,7 +355,7 @@ const ProfilPage = () => {
 											</div>
 											<button>удалить</button>
 										</div>
-									))}
+									))} */}
 								</>
 							)}
 						</div>
