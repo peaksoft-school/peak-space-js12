@@ -9,6 +9,7 @@ import {
 	IconSettings
 } from '@tabler/icons-react';
 import scss from './NavBar.module.scss';
+import Logo from '@/src/assets/peacSpaceLogo.png';
 
 const NavBar = () => {
 	const { pathname } = useLocation();
@@ -60,10 +61,11 @@ const NavBar = () => {
 		<div className={scss.content}>
 			<nav>
 				<ul className={!test ? scss.isNone : scss.none}>
+					<img src={Logo} alt="logo" className={scss.logo}/>
 					{navigationItems.map((item) => (
 						<li onClick={() => navigateTo(item.path)}>
 							<Link
-								className={`${pathname === item.path  ? scss.active_page : scss.active_default}`}
+								className={`${pathname === item.path ? scss.active_page : scss.active_default}`}
 								to={item.path}
 							>
 								{item.icon}
