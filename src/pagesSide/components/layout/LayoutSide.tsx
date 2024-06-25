@@ -42,9 +42,12 @@ const LayoutSide = () => {
 						<Route path="/chat" element={<ChatMessage />} />
 						<Route path="/chatperson" element={<ChatPerson />} />
 						<Route path="/notification" element={<Notifications />} />
-						<Route path="/users-profile/*" element={<UsersProfile />} />
+						<Route
+							path="/users-profile/:foundUserId/*"
+							element={<UsersProfile />}
+						/>
 						<Route path="/public" element={<PublicPage />} />
-						{/* <Route path="/publics/:communityId/*" element={<Publics />} /> */}
+
 						<Route path="/public/:communityId" element={<ForMe />} />
 						<Route path="/new-public" element={<NewPublic />} />
 						<Route path="/test/:publicName " element={<Test />} />

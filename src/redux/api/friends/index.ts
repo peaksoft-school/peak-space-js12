@@ -6,13 +6,16 @@ const api = index.injectEndpoints({
 			FRIENDS.GetFriendsRespose,
 			FRIENDS.GetFriendsRequest
 		>({
-      query: ()=> ({
-        url: "https://74be1d548b99007d.mokky.dev/friends",
-        method: 'GET'
-      }),
-      providesTags: ['friends']
-    })
+			query: (foundUserId ) => ({
+				url: `/publics/profile-friends/${foundUserId}`,
+				method: 'GET', 
+        headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
+		})
 	})
 });
 
- export const {useGetFriendsQuery } = api
+export const { useGetFriendsQuery } = api;
