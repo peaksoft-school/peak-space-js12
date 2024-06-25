@@ -31,7 +31,7 @@ const LayoutSide = () => {
 
 	return (
 		<div className={scss.Layout}>
-			<Header />
+			{/* <Header /> */}
 			<div style={{ background: '#ebeff3' }}>
 				<main className="container">
 					{!isChatPerson && <NavBar />}

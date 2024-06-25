@@ -1,5 +1,5 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import {  useState } from 'react';
+import { useState } from 'react';
 import FirstMan from '@/src/assets/FirstMan2.png';
 import UserStory from '@/src/assets/userStory.png';
 import Logo from '@/src/assets/peacSpaceLogo.png';
@@ -60,7 +60,7 @@ const Header = () => {
 	const keys = isChatPerson['*'];
 
 	const handleValue = () => {
-		searchParams.delete("keyWord");
+		searchParams.delete('keyWord');
 		setSearchParams(searchParams);
 		setInputValue('');
 	};
