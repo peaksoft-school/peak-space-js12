@@ -2,9 +2,13 @@
 namespace FRIENDS {
 	type GetFriendsRespose = {
 		id: number;
-		name: string;
-		title: string;
-		img: string;
+		avatar: string;
+		cover: string;
+		userName: string;
+		aboutYourSelf: string;
+		profession: string;
+		friendsSize: number;
+		publicationsSize: number;
 	}[];
 
 	type GetFriendsRequest = void;
