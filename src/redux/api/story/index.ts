@@ -47,6 +47,18 @@ const api = index.injectEndpoints({
 			}),
 			providesTags: ['story']
 		}),
+		postStory: build.mutation<STORY.PostStoryResponse, STORY.PostStoryRequest>({
+			query: (newData) => ({
+				url: '/stories',
+				method: 'POST',
+				body: newData,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+					'Content-Type': 'application/json'
+				}
+			}),
+			invalidatesTags: ['story']
+		}),
 		users: build.query<STORY.GetUsersResponse, STORY.GetUsersRequest>({
 			query: ({ keyWord }) => ({
 				url: `/users/search-with-all?${keyWord}`,
@@ -56,6 +68,20 @@ const api = index.injectEndpoints({
 				}
 			}),
 			providesTags: ['post']
+		}),
+		shortenUrl: build.mutation({
+			query: (file) => {
+				const formData = new FormData();
+				formData.append('file', file);
+				return {
+					url: '/api/s3',
+					method: 'POST',
+					body: formData
+					// headers: {
+					// 	Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+					// }
+				};
+			}
 		})
 	})
 });
@@ -65,5 +91,7 @@ export const {
 	useGetStoryMyQuery,
 	useGetStoryQuery,
 	useGetStoryByIdQuery,
+	usePostStoryMutation,
+	useShortenUrlMutation,
 	useUsersQuery
 } = api;

@@ -57,7 +57,7 @@
 					filter: brightness(1) contrast(120%);
 					z-index: 2;
 					top: 4.2rem;
-					left: 2.35rem;
+					left: 2.3rem;
 				}
 
 				.story_user_name {
@@ -88,12 +88,20 @@
 				height: 100vh;
 			}
 
+			.main_container {
+				margin-inline: -7px;
+				border-radius: 5px;
+				display: flex;
+				flex-direction: column;
+				gap: 5rem;
+				background-color: white;
+			}
+
 			.section {
 				width: 100%;
 				background: #fff;
 				padding-inline: 30px;
 				border-radius: 5px;
-				margin-inline: -7px;
 
 				.holder {
 					display: flex;
@@ -256,6 +264,7 @@
 						font-size: 18px;
 						font-weight: 400;
 						line-height: 21px;
+						margin-bottom: 1rem;
 					}
 				}
 			}
@@ -597,30 +606,119 @@
 		color: rgba(255, 255, 255, 1);
 	}
 }
-
+.description {
+	color: #fff;
+	font-size: 1rem;
+	position: absolute;
+	left: 1rem;
+	bottom: 2rem;
+	color: white;
+}
 .modal_modal {
 	width: 500px;
 	height: 600px;
-	background-color: #fff;
+	background-color: black;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	align-items: center;
 	position: relative;
+
+	.image_story {
+		width: 500px;
+		height: 600px;
+	}
+
+	.input {
+		color: #fff;
+		font-size: 0.6rem;
+		background-color: transparent;
+		width: 90%;
+		box-sizing: border-box;
+		border: none;
+		border-bottom: var(--border-height) solid var(--border-before-color);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+
+	.input_border {
+		position: absolute;
+		background: var(--border-after-color);
+		height: 2px;
+		width: 90%;
+		bottom: 0;
+		left: 0;
+		transform: scaleX(0%);
+		transition: transform 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	}
+
+	.input:focus {
+		outline: none;
+	}
+
+	.input:focus + .input_border {
+		transform: scaleX(100%);
+	}
+
+	.form_control {
+		position: relative;
+		--width-of-input: 300px;
+	}
+
+	.input_alt {
+		font-size: 1rem;
+		padding-inline: 0.5em;
+		padding-block: 0.8em;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.input_border_alt {
+		height: 3px;
+		background: white;
+		transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+	}
+
+	.input_alt:focus + .input_border_alt {
+		transform: scaleX(100%);
+	}
+
+	.description {
+		color: #fff;
+		font-size: 1rem;
+		position: absolute;
+		left: 1rem;
+		bottom: 2rem;
+		color: white;
+	}
 
 	.add_icon {
 		position: absolute;
 		right: 1rem;
-		bottom: 4rem;
+		bottom: 1rem;
 		width: 40px;
 		height: 40px;
 		cursor: pointer;
 		color: white;
 	}
+	.circle_photo {
+		position: absolute;
+		bottom: 1.75rem;
+		left: 13.8rem;
+		color: white;
+		width: 45px;
+		height: 45px;
+		cursor: pointer;
+	}
+
+	.story_drop_down {
+		position: absolute;
+		right: 1rem;
+		top: 1rem;
+	}
 
 	.icon_edit {
 		display: flex;
 		position: absolute;
-		right: 2rem;
+		left: 1rem;
 		top: 1rem;
 		z-index: 10;
 		gap: 1rem;
@@ -643,13 +741,8 @@
 			cursor: pointer;
 			color: white;
 		}
-		.stars {
-			width: 40px;
-			height: 40px;
-			cursor: pointer;
-			color: white;
-		}
 	}
+
 	.video_camera {
 		display: flex;
 		justify-content: center;
@@ -659,12 +752,13 @@
 		z-index: 1;
 
 		.iconred {
+			cursor: pointer;
 			position: absolute;
 			bottom: 1rem;
-			left: 14rem;
+			left: 13rem;
 			color: white;
-			width: 50px;
-			height: 50px;
+			width: 70px;
+			height: 70px;
 		}
 	}
 	.icon_green {
