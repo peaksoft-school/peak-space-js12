@@ -1,11 +1,13 @@
 .chat_meg {
-	max-width: 979px;
-	width: 100%;
+	border-radius: 5px;
+	width: 75%;
 	background: white;
 	padding-inline: 20px;
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	// gap: 30px;
+	margin-inline: 2px;
+	margin-block: 5px;
 
 	.input_text {
 		padding-block: 22px;
@@ -27,6 +29,8 @@
 			padding-block: 5px;
 			padding-inline: 12px;
 			background: #e7e8e9b1;
+			border-radius: 15px;
+			height: 30px;
 
 			.icons {
 				width: 20px;
@@ -90,13 +94,14 @@
 	width: 100%;
 	height: 100vh;
 	.box {
-		max-width: 351px;
+		max-width: 380px;
 		height: 100%;
 		display: flex;
 		gap: 5px;
 		flex-direction: column;
 		background-color: white;
-		padding-top: 30px;
+		// padding-top: 30px;
+		overflow: scroll;
 
 		.aside {
 			width: 351px;
@@ -187,10 +192,10 @@
 			background: white;
 			display: flex;
 			align-items: center;
-			max-width: 940px;
-			padding-block: 2px;
+			max-width: 960px;
+			padding-block: 5px;
 			width: 100%;
-			border-radius: 2px;
+			border-radius: 0 0 5px 5px;
 			@media (max-width: 430px) {
 				.icons {
 					.icon {
@@ -270,14 +275,15 @@
 			display: flex;
 			align-items: center;
 			border: none;
-			padding-block: 2px;
+			// padding-block: 2px;
 			padding-inline: 12px;
 			gap: 10px;
 			background: white;
-			border-radius: 15px;
+			border-radius: 5px 5px 0 0;
 			max-width: 950px;
 			width: 100%;
-			height: auto;
+			height: 70px;
+			overflow: hidden;
 			textarea {
 				border: none;
 				outline: none;
@@ -285,6 +291,7 @@
 				width: 100%;
 				resize: none;
 				padding-top: 20px;
+				// overflow: scroll;
 			}
 			textarea::placeholder {
 				font-size: 22px;

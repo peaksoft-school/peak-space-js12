@@ -10,6 +10,7 @@ import {
 } from '@tabler/icons-react';
 import scss from './NavBar.module.scss';
 import Logo from '@/src/assets/peacSpaceLogo.png';
+import MiniLogo from '@/src/assets/mini-logo.svg';
 
 const NavBar = () => {
 	const { pathname } = useLocation();
@@ -19,6 +20,8 @@ const NavBar = () => {
 	const navigateTo = (path: string) => {
 		navigate(path);
 	};
+
+	const isChatPerson = pathname === '/chatperson';
 
 	const navigationItems = [
 		{ path: '/', icon: <IconHome />, label: 'Главная' },
@@ -58,18 +61,24 @@ const NavBar = () => {
 	];
 
 	return (
-		<div className={scss.content}>
+		<div className={`${scss.content} ${isChatPerson ? scss.chatPerson : ''}`}>
 			<nav>
 				<ul className={!test ? scss.isNone : scss.none}>
-					<img src={Logo} alt="logooo" className={scss.logo}/>
+					{!isChatPerson ? (
+						<img src={Logo} alt="logo" className={scss.logo} />
+					) : (
+						<img src={MiniLogo} alt="logo" className={scss.miniLogo} />
+					)}
+
 					{navigationItems.map((item) => (
-						<li onClick={() => navigateTo(item.path)}>
+						<li key={item.path} onClick={() => navigateTo(item.path)}>
 							<Link
 								className={`${pathname === item.path ? scss.active_page : scss.active_default}`}
 								to={item.path}
 							>
 								{item.icon}
-								<span>{item.label}</span>
+								{/* Conditionally render the label based on the current path */}
+								{!isChatPerson && <span>{item.label}</span>}
 							</Link>
 						</li>
 					))}
