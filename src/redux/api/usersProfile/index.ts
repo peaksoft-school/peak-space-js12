@@ -36,11 +36,23 @@ const api = index.injectEndpoints({
 				}
 			}),
 			providesTags: ['post']
+		}),
+		postChapter: build.mutation({
+			query: (newData) => ({
+				url: '/chapters',
+				method: 'POST',
+				body: newData,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			invalidatesTags: ['post']
 		})
 	})
 });
 export const {
 	useGetUsersprofileQuery,
 	useUserFriendsQuery,
-	useAddChaptersQuery
+	useAddChaptersQuery,
+	usePostChapterMutation
 } = api;

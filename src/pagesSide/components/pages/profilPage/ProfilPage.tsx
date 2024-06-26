@@ -1,13 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-	JSXElementConstructor,
-	Key,
-	ReactElement,
-	ReactNode,
-	ReactPortal,
-	useEffect,
-	useState
-} from 'react';
+import { Key, ReactNode, ReactPortal, useEffect, useState } from 'react';
 import {
 	Link,
 	Route,
@@ -30,11 +22,13 @@ import scss from './Style.module.scss';
 import { useGetMyPublicationQuery } from '@/src/redux/api/publications';
 import {
 	useAddChaptersQuery,
+	usePostChapterMutation,
 	useUserFriendsQuery
 } from '@/src/redux/api/usersProfile';
 import ModalTs from '@/src/ui/modal/Modal';
 import Search from 'antd/es/input/Search';
 import CustomButton from '@/src/ui/customButton/CustomButton';
+import { Input, Skeleton } from 'antd';
 
 interface Types {
 	userId: number;
@@ -48,7 +42,7 @@ interface Types {
 }
 
 const ProfilPage = () => {
-	const { data } = useGetMyPublicationQuery();
+	const { data, isLoading, error } = useGetMyPublicationQuery();
 	const [profil, setProfil] = useState<Types[]>([]);
 	const [friendById, setFriendById] = useState<number | null>(null);
 	const { data: friendsData } = useUserFriendsQuery(friendById, {
@@ -66,6 +60,9 @@ const ProfilPage = () => {
 	const [page, setPage] = useState(true);
 	const navigate = useNavigate();
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [addChapter] = usePostChapterMutation();
+	const [isValue, setIsValue] = useState('');
+	const [isModal, setIsModal] = useState(false);
 
 	const showModal = (userId: number) => {
 		if (userId) {
@@ -80,6 +77,14 @@ const ProfilPage = () => {
 	const closeModal = () => {
 		setIsModalOpen(false);
 		setFriendById(null);
+	};
+
+	const openModal = () => {
+		setIsModal(true);
+	};
+
+	const handleCloseModal = () => {
+		setIsModal(false);
 	};
 
 	useEffect(() => {
@@ -135,6 +140,45 @@ const ProfilPage = () => {
 	const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
 		console.log(info?.source, value);
 
+	const postRequestAddChapter = async () => {
+		const newData = {
+			groupName: isValue
+		};
+		await addChapter(newData);
+		setIsValue('');
+		handleCloseModal();
+	};
+
+	if (isLoading) {
+		return (
+			<div className={scss.error}>
+				<Skeleton.Button active block />
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div>
+				<div
+					style={{
+						height: '100vh'
+					}}
+				>
+					<h1
+						style={{
+							fontFamily: "'Courier New', Courier, monospace",
+							fontWeight: 'bold',
+							textAlign: 'center'
+						}}
+					>
+						Ошибка загрузки данных
+					</h1>
+				</div>
+			</div>
+		);
+	}
+
 	return (
 		<div className={scss.main_page}>
 			<div className={scss.aside}>
@@ -186,10 +230,6 @@ const ProfilPage = () => {
 																		| string
 																		| number
 																		| boolean
-																		| ReactElement<
-																				any,
-																				string | JSXElementConstructor<any>
-																		  >
 																		| Iterable<ReactNode>
 																		| ReactPortal
 																		| null
@@ -201,9 +241,39 @@ const ProfilPage = () => {
 																)
 															)}
 														</div>
-														<button>
+														<button onClick={openModal}>
 															<IconCirclePlus />
 														</button>
+
+														<ModalTs open={isModal} onCancel={handleCloseModal}>
+															<div className={scss.modal_chapter}>
+																<div className={scss.modal}>
+																	<h2>Cоздание раздела</h2>
+																	<div className={scss.text}>
+																		<Input
+																			placeholder="Filled"
+																			variant="filled"
+																			value={isValue}
+																			onChange={(e) =>
+																				setIsValue(e.target.value)
+																			}
+																		/>
+
+																		<div className={scss.buttons}>
+																			<CustomButton
+																				children={'отмена'}
+																				onClick={handleCloseModal}
+																			/>
+
+																			<CustomButton
+																				children={'добавить'}
+																				onClick={postRequestAddChapter}
+																			/>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</ModalTs>
 													</div>
 												</div>
 												<div className={scss.content_friends}>
@@ -224,10 +294,6 @@ const ProfilPage = () => {
 																	| string
 																	| number
 																	| boolean
-																	| ReactElement<
-																			any,
-																			string | JSXElementConstructor<any>
-																	  >
 																	| Iterable<ReactNode>
 																	| ReactPortal
 																	| null
@@ -236,10 +302,6 @@ const ProfilPage = () => {
 																	| string
 																	| number
 																	| boolean
-																	| ReactElement<
-																			any,
-																			string | JSXElementConstructor<any>
-																	  >
 																	| Iterable<ReactNode>
 																	| ReactPortal
 																	| null

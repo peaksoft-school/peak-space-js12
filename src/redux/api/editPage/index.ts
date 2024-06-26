@@ -25,9 +25,17 @@ const api = index.injectEndpoints({
 				body: { newImg }
 			}),
 			invalidatesTags: ['api']
+		}),
+		editPage: builder.mutation({
+			query: (newData) => ({
+				url: '/user-infos',
+				method: 'PUT',
+				body: newData
+			}),
+			invalidatesTags: ['post']
 		})
 	})
 });
 
-export const { useGetEditQuery, usePatchEditMutation, usePostEditMutation } =
+export const { useGetEditQuery, usePatchEditMutation, usePostEditMutation,useEditPageMutation } =
 	api;
