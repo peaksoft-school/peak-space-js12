@@ -1,7 +1,7 @@
 .section {
 	width: 100%;
-	max-width: 930px;
 	height: 100%;
+	// max-width: 1100px;
 	// display: flex;
 	// justify-content: space-between;
 	// flex-direction: row-reverse;
@@ -11,7 +11,7 @@
 		flex-direction: column;
 		gap: 10px;
 		width: 100%;
-		max-width: 700px;
+		max-width: 900px;
 		border-right: 2px solid #dee3f1;
 
 		input {
@@ -23,22 +23,21 @@
 			background: #ebeff3;
 		}
 		.head {
-			background: #ffffff;
+			// background: #ffffff;
 			height: 100vh;
 			display: flex;
 			flex-direction: column;
-			height: 58.5%;
 
 			.user_img_and_cover {
-				width: 100%;
-				height: 209px;
-				display: flex;
 				position: relative;
-				justify-content: center;
-				padding: 20px;
-				background-image: url('../../../../assets//backgroundWhite.jpeg');
-				background-position: 80% 55%;
-				margin-bottom: 15px;
+				overflow: hidden;
+				img {
+					width: 100%;
+					max-width: 979px;
+					max-height: 294px;
+					object-fit: cover;
+					border-radius: 3px;
+				}
 				.user_cover {
 					width: 100%;
 					height: 100%;
@@ -48,16 +47,15 @@
 					margin: 0;
 					.cover_img {
 						object-fit: cover;
-						max-width: 700px;
+						max-width: 807px;
 						height: 100%;
 						width: 100%;
-						display: block;
 					}
 					.cover_choose_btn {
 						position: absolute;
 						z-index: 10;
 						top: 10px;
-						left: 70%;
+						left: 600px;
 						cursor: pointer;
 						justify-content: center;
 						display: flex;
@@ -82,6 +80,7 @@
 					height: 150px;
 					border-radius: 100px;
 					z-index: 5;
+					position: relative;
 
 					.aside {
 						display: flex;
@@ -121,22 +120,26 @@
 							border-radius: 50%;
 						}
 						.userEditProfile {
-							width: 150px;
-							height: 150px;
+							width: 170px;
+							height: 170px;
 							border-radius: 100px;
 							border: 5px solid #999999;
 							background-position: center;
 							background: rgba(0, 0, 0, 0.4);
 							box-shadow: 0px 4px 4px 0px #00000040;
 							overflow: hidden;
+							position: absolute;
+							bottom: 220px;
+							left: 320px;
 						}
 						.editProfileIcon {
-							position: relative;
-							bottom: 105px;
-							left: 45px;
+							position: absolute;
+							bottom: 275px;
+							left: 374px;
 							z-index: 30;
 							width: 60px;
 							height: 60px;
+							cursor: pointer;
 						}
 						.bar {
 							display: flex;
@@ -429,98 +432,47 @@
 }
 // !!confident
 .section1 {
+	width: 100%;
+	max-width: 330px;
+	min-height: 100vh;
+	max-height: 100%;
 	background: white;
-	height: auto;
-	border-right: 4px solid #dee3f1;
 
-	.content1 {
-		@media (max-width: 767px) {
-			.img_texting {
-				width: 100%;
-				max-width: 767px;
-
-				.circle {
-					p {
-						opacity: 0;
-					}
-				}
-				.zip {
-					p {
-						opacity: 0;
-					}
-				}
-				.sub_tract {
-					p {
-						opacity: 0;
-					}
-				}
-				.info {
-					p {
-						opacity: 0;
-					}
-				}
-			}
-			.img_Texting {
-				.circle {
-					p {
-						opacity: 0;
-					}
-				}
-				.zip {
-					p {
-						opacity: 0;
-					}
-				}
-				.sub_tract {
-					p {
-						opacity: 0;
-					}
-				}
-				.info {
-					p {
-						opacity: 0;
-					}
-				}
-			}
-		}
-	}
 	.content1 {
 		display: flex;
 		justify-content: center;
-		height: 1460px;
 
 		.img_texting {
 			display: flex;
 			flex-direction: column;
-			align-items: center;
+			// align-items: center;
 
-			li {
-				list-style: none;
-			}
+			padding-top: 80px;
+
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+
+		li {
+			// list-style: none;
 
 			a {
 				display: flex;
 				align-items: center;
 				gap: 15px;
-				margin: 10px;
 				svg {
 					width: 25px;
 					height: 25px;
 					top: 13.5px;
-					left: 6px;
-					gap: 0px;
-					border: 2px 0px 0px 0px;
-					opacity: 0px;
-					color: black; // Default color for icons
 				}
 				p {
-					font-family: Manrope;
-					font-size: 15px;
+					font-size: 16px;
 					font-weight: 400;
 					line-height: 20.49px;
 					letter-spacing: 0.03em;
 					text-align: left;
-					width: 200px;
+					font-family: 'Poppins', sans-serif;
 				}
 			}
 
@@ -559,6 +511,9 @@
 		gap: 20px;
 		padding-inline: 20px;
 		background: white;
+
+		width: 100%;
+		max-width: 900px;
 
 		@media (max-width: 1000px) {
 			margin-inline: 20px;
@@ -621,13 +576,14 @@
 .blocked {
 	display: flex;
 	flex-direction: row-reverse;
-	max-width: 980px;
+
 	.contents {
+		width: 900px;
+
 		display: flex;
 		flex-direction: column;
-		width: 680px;
 		gap: 20px;
-		padding: 15px;
+		padding: 15px 20px;
 		background: white;
 		border-right: 2px solid rgb(220, 225, 230);
 

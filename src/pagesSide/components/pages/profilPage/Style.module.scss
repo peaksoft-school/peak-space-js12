@@ -1106,18 +1106,18 @@
 				display: flex;
 				position: relative;
 
-			span{
-				height: 160px;
-				.frame {
-					position: relative;
-					bottom: 155px;
-					left: 940px;
-					rotate: 90deg;
-					cursor: pointer;
-					background: transparent;
-					border: none;
+				span {
+					height: 160px;
+					.frame {
+						position: relative;
+						bottom: 155px;
+						left: 940px;
+						rotate: 90deg;
+						cursor: pointer;
+						background: transparent;
+						border: none;
+					}
 				}
-			}
 
 				.comp {
 					background: white;
@@ -2117,6 +2117,51 @@
 					text-align: center;
 				}
 			}
+		}
+	}
+}
+
+.modal_chapter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.modal {
+		background: white;
+		border-radius: 10px;
+
+		width: 100%;
+		max-width: 500px;
+		height: 140px;
+		padding: 5px 10px;
+
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		.text {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: end;
+			height: 130px;
+
+			.buttons{
+				display: flex;
+				align-items: center;
+				gap: 5px;
+			}
+		}
+
+		h2 {
+			text-align: center;
+			font-family: 'Poppins', sans-serif;
+			font-weight: 400;
+			font-size: 24px;
+		}
+
+		button {
+			width: 160px;
+			text-align: center;
 		}
 	}
 }
