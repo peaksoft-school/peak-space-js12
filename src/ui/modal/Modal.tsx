@@ -17,9 +17,9 @@ const ModalTs: React.FC<{
 				footer={null}
 				className={scss.modal}
 			>
-				{children}
+				{children}	
 			</Modal>
-		</>
+		</>	
 	);
 };
 

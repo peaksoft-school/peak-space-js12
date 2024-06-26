@@ -10,6 +10,15 @@ namespace STORY {
 	}[];
 	type GetStoryRequest = void;
 
+	type PostStoryRequest = {
+		photoUrlOrVideoUrl: string[];
+		description: string;
+		idsOfTaggedPeople: number[];
+	};
+	type PostStoryResponse = {
+		httpStatus: string;
+		message: string;
+	}[];
 	type GetUsersResponse = {
 		id: number;
 		avatar: string;
@@ -35,6 +44,7 @@ namespace STORY {
 		keyWord: string;
 	};
 	type GetStoryByIdResponse = {
+		text: ReactNode;
 		id: Key | null | undefined;
 		userPhoto: string;
 		userName: string;
