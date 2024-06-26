@@ -92,7 +92,6 @@ const Login = () => {
 	// };
 
 	const onSubmit = async (data: any) => {
-
 		try {
 			const result = await postRequest(data);
 			if ('data' in result) {

@@ -29,11 +29,11 @@ const ChatMessage = () => {
 				) : (
 					<>
 						{data?.map((item) => (
-							<div className={scss.aside} key={item.id}>
+							<div className={scss.aside} key={item.id} onClick={chatPerson}>
 								<div className={scss.form}>
 									<img className={scss.images} src={item.img} alt={item.name} />
 									<div className={scss.text}>
-										<h1 onClick={chatPerson}>{item.name}</h1>
+										<h1>{item.name}</h1>
 										<p>{item.text}</p>
 									</div>
 								</div>

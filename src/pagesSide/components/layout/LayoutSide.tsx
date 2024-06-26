@@ -32,7 +32,8 @@ const LayoutSide = () => {
 		<div className={scss.Layout}>
 			<div style={{ background: '#ebeff3' }} className="alihan">
 				<main className="container">
-					{!isChatPerson && <NavBar />}
+					{/* {!isChatPerson && <NavBar />} */}
+					<NavBar />
 					<Routes>
 						<Route path="/" element={<MainPage />} />
 						<Route path="/side/*" element={<ProfilPage />} />

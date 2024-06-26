@@ -52,11 +52,11 @@ body {
 	width: 100%;
 	max-width: 1500px;
 	margin: auto;
+	overflow-x: hidden;
 }
 
 .alihan {
 	width: 100%;
-
 	margin: auto;
 }
 @media (max-width: 360px) {
@@ -66,4 +66,17 @@ body {
 			padding 1.5s,
 			background 1.5s;
 	}
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: white;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #5e0a93;
+	border-radius: 10px;
 }
