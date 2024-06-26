@@ -84,73 +84,75 @@ const ConfidentTwoPage: FC = () => {
 				</div>
 				<div className={scss.lorem_confident}>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-						eiusmod tempor incididunt ut labore et dolore magna <br /> aliqua.
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat. <br /> Duis aute irure
-						dolor in reprehenderit in voluptate velit esse cillum dolore eu
-						fugiat nulla pariatur. <br /> Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est
-						laborum.
+						Если у вас общедоступный аккаунт, ваш профиль и публикации будут
+						видны всем в сети Peakspace
+					</p>
+					<p>
+						Если у вас закрытый аккаунт, только одобренные вами подписчики будут
+						видеть ваши публикации, в том числе фото и видео на страницах
+						хэштегов и мест, а также список ваших подписчиков и подписок.
 					</p>
 				</div>
 			</div>
 			<div>
 				<ModalTs open={isModal2} onCancel={closeModal2}>
-					<div className={scss.modalka}>
-						<h1>Сделать аккаунт закрытым?</h1>
+					<div className={scss.modalka2}>
+						<h1>Сделать аккаунт общедоступным?</h1>
 						<div className={scss.box}>
 							<div className={scss.text_icon}>
-								<IconPhotoVideo />
-								<p>
-									Кто угодно может смотреть ваши публикации, видео Reels и
-									истории, а также использовать вашу оригинальную аудиодорожку.
-								</p>
+								<button>
+									<IconPhotoVideo />
+								</button>
+								<p>Кто угодно может смотреть ваши публикации и истории</p>
 							</div>
 
 							<div className={scss.text_icon}>
-								<IconAt />
+								<button>
+									<IconAt />
+								</button>
 								<p>
 									Настройки того, кто может отправлять вам сообщения, а также
 									отмечать и упоминать вас с помощью символа "@", останутся
 									прежними.
 								</p>
 							</div>
-
-							<div className={scss.text_icon}>
-								<IconCodePlus />
-								<p>
-									Люди могут делать ремиксы с вашими видео Reels и скачивать их
-									как часть ремиксов. Вы можете изменить это в настройках.
-								</p>
-							</div>
 						</div>
-
 						<div className={scss.btn}>
-							<button onClick={handleOk2}>Сделать закрытым</button>
+							<span></span>
+							<button onClick={handleOk2}>Сделать общественным</button>
+							<span></span>
 							<button onClick={closeModal2}>Отмена</button>
 						</div>
 					</div>
 				</ModalTs>
 
 				<ModalTs open={isModal} onCancel={closeModal}>
-					<div className={scss.modalka2}>
-						<h1>Сделать аккаунт общедоступным?</h1>
+					<div className={scss.modalka}>
+						<h1>Сделать аккаунт закрытым?</h1>
 						<div className={scss.box}>
 							<div className={scss.text_icon}>
-								<IconPhotoVideo />
+								<button>
+									<IconPhotoVideo />
+								</button>
 								<p>Только ваши подписчики смогут увидеть ваши фото и видео.</p>
 							</div>
 
 							<div className={scss.text_icon}>
-								<IconAt />
+								<button>
+									<IconAt />
+								</button>
 								<p>
 									Настройки того, кто может отправлять вам сообщения, а также
+									отмечать и @упоминать вас, останутся прежними. Но вы не
+									сможете отмечать тех, кто на вас не подписан.
 								</p>
 							</div>
 						</div>
+
 						<div className={scss.btn}>
-							<button onClick={handleOk}>Сделать общественным</button>
+							<span></span>
+							<button onClick={handleOk}>Сделать закрытым</button>
+							<span></span>
 							<button onClick={closeModal}>Отмена</button>
 						</div>
 					</div>

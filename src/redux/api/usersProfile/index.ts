@@ -10,7 +10,37 @@ const api = index.injectEndpoints({
 				method: 'Get'
 			}),
 			providesTags: ['userProfile']
+		}),
+		userFriends: build.query<
+			usersProfile.GetFriendsResponse,
+			usersProfile.GetFriendsRequest
+		>({
+			query: (userId) => ({
+				url: `/chapters/all-my-friends/${userId} `,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
+		}),
+		addChapters: build.query<
+			usersProfile.GetChapterResponse,
+			usersProfile.GetChapterRequest
+		>({
+			query: (userId) => ({
+				url: `/chapters/user-chapters/${userId}`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
 		})
 	})
 });
-export const { useGetUsersprofileQuery } = api;
+export const {
+	useGetUsersprofileQuery,
+	useUserFriendsQuery,
+	useAddChaptersQuery
+} = api;

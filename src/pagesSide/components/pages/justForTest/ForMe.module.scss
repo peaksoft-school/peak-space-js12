@@ -33,7 +33,6 @@
 	}
 }
 
-
 .nursultan {
 	// overflow: hidden;
 }
@@ -170,6 +169,7 @@
 								width: 0.1px;
 							}
 						}
+
 						h4 {
 							color: rgb(0, 0, 0);
 							font-size: 13px;
@@ -823,6 +823,11 @@
 					border-radius: 50%;
 				}
 			}
+
+			.is_none {
+				// display: none;
+			}
+
 			.input_smile {
 				border-top: 0.5px solid rgba(0, 0, 0, 0.3);
 				width: 100%;

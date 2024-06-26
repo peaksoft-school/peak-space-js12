@@ -3,6 +3,7 @@ namespace LOGIN {
 	type PostRegistrationResponse = {
 		email: string;
 		password: string;
+		httpStatus: string;
 	};
 
 	type PostRegistrationRequest = {

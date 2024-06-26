@@ -17,7 +17,6 @@ import ForMe from '../pages/justForTest/ForMe';
 import scss from './LayoutSide.module.scss';
 import Test from '../pages/publicPage/Test';
 import NavBar from '@/src/ui/navBar/NavBar';
-import Header from './header/Header';
 import Footer from './footer/Footer';
 
 const LayoutSide = () => {
@@ -31,8 +30,7 @@ const LayoutSide = () => {
 
 	return (
 		<div className={scss.Layout}>
-			<Header />
-			<div style={{ background: '#ebeff3' }}>
+			<div style={{ background: '#ebeff3' }} className="alihan">
 				<main className="container">
 					{!isChatPerson && <NavBar />}
 					<Routes>
@@ -42,9 +40,12 @@ const LayoutSide = () => {
 						<Route path="/chat" element={<ChatMessage />} />
 						<Route path="/chatperson" element={<ChatPerson />} />
 						<Route path="/notification" element={<Notifications />} />
-						<Route path="/users-profile/*" element={<UsersProfile />} />
+						<Route
+							path="/users-profile/:foundUserId/*"
+							element={<UsersProfile />}
+						/>
 						<Route path="/public" element={<PublicPage />} />
-						{/* <Route path="/publics/:communityId/*" element={<Publics />} /> */}
+
 						<Route path="/public/:communityId" element={<ForMe />} />
 						<Route path="/new-public" element={<NewPublic />} />
 						<Route path="/test/:publicName " element={<Test />} />

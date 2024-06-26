@@ -973,6 +973,7 @@ const ForMe = () => {
 	const [commentResponseById, setCommetnResponseById] = useState<number | null>(
 		null
 	);
+
 	const [innerById, setInnerById] = useState<number | null>(null);
 	const [comment, setComment] = useState('');
 	const [isModalCommnet, setIsModalComment] = useState(false);
@@ -982,6 +983,7 @@ const ForMe = () => {
 	const [deleteCommentById, setDeleteCommentById] = useState<number | null>(
 		null
 	);
+	const [isReplyMode, setIsReplyMode] = useState(false);
 	const [putRequest] = useEditCommentMutation();
 	const [isEditComment, setIsEditCommnet] = useState(null);
 	const [editComment, setEditComment] = useState('');
@@ -1303,44 +1305,73 @@ const ForMe = () => {
 		deletePublicById(postId);
 	};
 
-	const handleAddComment = (commentId: number) => {
-		setCommentById(commentId);
-		setInnerById(commentId);
-
-		setIsComment(!isComment);
-	};
-
-	const handleSubmitComment = (commentId: number) => {
-		if (comment === '') {
-			return null;
-		}
-		{
-			const newData = {
-				message: comment
-			};
-			postComment({ commentId, newData });
-			setIsComment(false);
-			setComment('');
-		}
+	const OneMoreLike = (commentId: number) => {
+		likeRequest(commentId);
 	};
 
 	// const { data: innerCommentById } = useInnerCommentByidQuery(commentId);
 
 	// console.log(innerCommentById);
 
-	const handleInputKeyDownAnswer = (e: any, id: any) => {
-		if (e.key === 'Enter') {
-			handleSubmitComment(id);
-		}
-	};
+	// const handleAddComment = (commentId: number) => {
+	// 	setCommentById(commentId);
+	// 	setInnerById(commentId);
 
-	const removeCommetById = (commentId: number) => {
-		deleteComment(commentId);
-		closeModalComment();
-	};
+	// 	setIsComment(!isComment);
+	// };
 
-	const OneMoreLike = (commentId: number) => {
-		likeRequest(commentId);
+	// const handleSubmitComment = (commentId: number) => {
+	// 	if (comment === '') {
+	// 		return null;
+	// 	}
+	// 	{
+	// 		const newData = {
+	// 			message: comment
+	// 		};
+	// 		postComment({ commentId, newData });
+	// 		setIsComment(false);
+	// 		setComment('');
+	// 	}
+	// };
+
+	// const handleInputKeyDownAnswer = (e: any, id: any) => {
+	// 	if (e.key === 'Enter') {
+	// 		handleSubmitComment(id);
+	// 	}
+	// };
+
+	// const removeCommetById = (commentId: number) => {
+	// 	deleteComment(commentId);
+	// 	closeModalComment();
+	// };
+
+	// const handleAddCommentUser = (postId: number) => {
+	// 	const newData = {
+	// 		message: inputStr
+	// 	};
+	// 	addedPostComment({ postId, newData });
+	// 	console.log(postId, 'nursultan');
+
+	// 	setInputStr('');
+	// };
+
+	// const handleInputChange = (e: any) => {
+	// 	setInputStr(e.target.value);
+	// };
+
+	// const handleInputKeyDown = (e: any, postId: number) => {
+	// 	if (e.key === 'Enter') {
+	// 		handleAddCommentUser(postId);
+	// 	}
+	// };
+
+	const handleAddComment = (commentId: number, userName: string) => {
+		setCommentById(commentId);
+		setInnerById(commentId);
+
+		setIsReplyMode(true); // Устанавливаем режим ответа
+		setIsComment(!isComment);
+		setComment(`@${userName} `);
 	};
 
 	const handleAddCommentUser = (postId: number) => {
@@ -1351,15 +1382,35 @@ const ForMe = () => {
 		console.log(postId, 'nursultan');
 
 		setInputStr('');
+		setIsReplyMode(false);
+		setIsComment(false);
+	};
+
+	const handleInputKeyDown = (e: any, postId: number) => {
+		if (e.key === 'Enter') {
+			handleAddCommentUser(postId);
+		}
+	};
+
+	const handleSubmitComment = (commentId: number) => {
+		if (comment === '') {
+			return null;
+		}
+		const newData = {
+			message: comment
+		};
+		postComment({ commentId, newData });
+		setIsComment(false);
+		setComment('');
 	};
 
 	const handleInputChange = (e: any) => {
 		setInputStr(e.target.value);
 	};
 
-	const handleInputKeyDown = (e: any, postId: number) => {
+	const handleInputKeyDownAnswer = (e: any, commentId: number) => {
 		if (e.key === 'Enter') {
-			handleAddCommentUser(postId);
+			handleSubmitComment(commentId);
 		}
 	};
 
@@ -1529,7 +1580,19 @@ const ForMe = () => {
 														<span></span>
 														<p>{item.userName}</p>
 													</div>
-													<h4>{item.descriptionPublic}</h4>
+													<h4
+														style={{
+															width: '100%',
+															display: '-webkit-box',
+															maxWidth: '380px',
+															WebkitLineClamp: 1,
+															WebkitBoxOrient: 'vertical',
+															overflow: 'hidden'
+														}}
+														className={scss.length}
+													>
+														{item.descriptionPublic}
+													</h4>
 													<p>{item.tematica}</p>
 												</div>
 												<div className={scss.end}>
@@ -1642,7 +1705,10 @@ const ForMe = () => {
 
 																							<button
 																								onClick={() =>
-																									handleAddComment(item.id)
+																									handleAddComment(
+																										item.id,
+																										item.userName
+																									)
 																								}
 																							>
 																								Ответить
@@ -1655,7 +1721,7 @@ const ForMe = () => {
 																							))} */}
 
 																							<>
-																								{isComment &&
+																								{/* {isComment &&
 																									commentById === item.id && (
 																										<>
 																											<input
@@ -1676,7 +1742,7 @@ const ForMe = () => {
 																												}
 																											/>
 																										</>
-																									)}
+																									)} */}
 																							</>
 																						</div>
 																					</div>
@@ -1686,27 +1752,50 @@ const ForMe = () => {
 																	))}
 																</div>
 
-																<div className={scss.input_smile}>
-																	<Smile
-																		onClick={() => setShowPicker((val) => !val)}
-																	/>
-																	<input
-																		type="text"
-																		placeholder="Добавить комментарий..."
-																		value={inputStr}
-																		onChange={handleInputChange}
-																		onKeyDown={(e) =>
-																			handleInputKeyDown(e, item.id)
-																		}
-																	/>
-																	{showPicker && (
-																		<Picker
-																			data={data}
-																			onEmojiSelect={handleGetEmoji}
-																			theme={'light'}
+																{isComment && commentById === item.id ? (
+																	<>
+																		<input
+																			type="text"
+																			className={scss.answer}
+																			placeholder="Введите ваш комментарий"
+																			value={comment}
+																			onChange={handleCommentChange}
+																			onKeyDown={(e) =>
+																				handleInputKeyDownAnswer(e, item.id)
+																			}
 																		/>
-																	)}
-																</div>
+																	</>
+																) : (
+																	<div
+																		className={
+																			isComment
+																				? scss.is_none
+																				: scss.input_smile
+																		}
+																	>
+																		<Smile
+																			onClick={() =>
+																				setShowPicker((val) => !val)
+																			}
+																		/>
+																		<input
+																			type="text"
+																			placeholder="Добавить комментарий..."
+																			value={inputStr}
+																			onChange={handleInputChange}
+																			onKeyDown={(e) =>
+																				handleInputKeyDown(e, item.id)
+																			}
+																		/>
+																		{showPicker && (
+																			<Picker
+																				data={data}
+																				onEmojiSelect={handleGetEmoji}
+																				theme={'light'}
+																			/>
+																		)}
+																	</div>
+																)}
 															</div>
 														</div>
 													</div>

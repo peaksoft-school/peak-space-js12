@@ -12,6 +12,10 @@
 		z-index: 888 !important;
 	}
 
+	.logo {
+		padding-bottom: 20px;
+	}
+
 	nav {
 		padding-inline: 10px;
 		padding-block: 20px;
@@ -36,8 +40,11 @@
 		ul {
 			display: flex;
 			flex-direction: column;
-			gap: 15px;
+			gap: 24px;
 			position: relative;
+			padding-top: 20px;
+			padding-left: 18px;
+			font-size: 19px;
 
 			@media (max-width: 768px) {
 				position: fixed;
@@ -142,5 +149,11 @@
 				}
 			}
 		}
+	}
+}
+
+@media (max-width: 800px) {
+	.content {
+		width: 40%;
 	}
 }
