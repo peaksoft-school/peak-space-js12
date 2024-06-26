@@ -1,3 +1,38 @@
+.error {
+	overflow: hidden;
+	width: 100%;
+
+	:global {
+		:where(
+				.css-dev-only-do-not-override-zg0ahe
+			).ant-skeleton.ant-skeleton-element
+			.ant-skeleton-button {
+			display: inline-block;
+			vertical-align: top;
+			background: rgba(0, 0, 0, 0.06);
+			border-radius: 4px;
+			width: 64px;
+			/* min-width: 64px; */
+			/* height: 32px; */
+			width: 100%;
+			height: 100vh;
+			line-height: 32px;
+
+			background: linear-gradient(
+				90deg,
+				rgba(0, 0, 0, 0.06) 25%,
+				rgba(0, 0, 0, 0.15) 37%,
+				rgba(0, 0, 0, 0.06) 63%
+			);
+			background-size: 400% 100%;
+			animation-name: css-dev-only-do-not-override-zg0ahe-ant-skeleton-loading;
+			animation-duration: 1.4s;
+			animation-timing-function: ease;
+			animation-iteration-count: infinite;
+		}
+	}
+}
+
 .main_page {
 	width: 100%;
 	min-height: 100vh;
@@ -1106,18 +1141,18 @@
 				display: flex;
 				position: relative;
 
-			span{
-				height: 160px;
-				.frame {
-					position: relative;
-					bottom: 155px;
-					left: 940px;
-					rotate: 90deg;
-					cursor: pointer;
-					background: transparent;
-					border: none;
+				span {
+					height: 160px;
+					.frame {
+						position: relative;
+						bottom: 155px;
+						left: 940px;
+						rotate: 90deg;
+						cursor: pointer;
+						background: transparent;
+						border: none;
+					}
 				}
-			}
 
 				.comp {
 					background: white;
@@ -2117,6 +2152,51 @@
 					text-align: center;
 				}
 			}
+		}
+	}
+}
+
+.modal_chapter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.modal {
+		background: white;
+		border-radius: 10px;
+
+		width: 100%;
+		max-width: 500px;
+		height: 140px;
+		padding: 5px 10px;
+
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		.text {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: end;
+			height: 130px;
+
+			.buttons {
+				display: flex;
+				align-items: center;
+				gap: 5px;
+			}
+		}
+
+		h2 {
+			text-align: center;
+			font-family: 'Poppins', sans-serif;
+			font-weight: 400;
+			font-size: 24px;
+		}
+
+		button {
+			width: 160px;
+			text-align: center;
 		}
 	}
 }

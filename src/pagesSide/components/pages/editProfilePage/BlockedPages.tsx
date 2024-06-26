@@ -10,7 +10,7 @@ import scss from './Style.module.scss';
 const BlockedPages = () => {
 	const { data, isLoading } = useGetBlockedUsersQuery();
 	console.log(data);
-	
+
 	const [isModal, setIsModal] = useState(false);
 	const [putBlockedUsers] = usePutBlockedUsersMutation();
 
@@ -28,9 +28,8 @@ const BlockedPages = () => {
 	};
 	return (
 		<div className={scss.blocked}>
-			<div>
-				<ConfidentPage />
-			</div>
+			<ConfidentPage />
+
 			<div className={scss.contents}>
 				<div>
 					<h2>Заблокированные аккаунты</h2>
