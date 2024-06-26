@@ -112,10 +112,19 @@ const MainStory = () => {
 		[deleteStory]
 	);
 
+	const stopCameraStream = () => {
+		const webcamElement = webcamRef.current?.video;
+		if (webcamElement && webcamElement.srcObject) {
+			const stream = webcamElement.srcObject as MediaStream;
+			stream.getTracks().forEach((track) => track.stop());
+			webcamElement.srcObject = null;
+		}
+	};
+
 	useEffect(() => {
 		const webcamElement = webcamRef.current?.video;
 
-		if (isOpen && webcamElement) {
+		if (isOpen && webcamElement && isAddContent === false && image === '') {
 			const startStream = async () => {
 				const stream = await navigator.mediaDevices.getUserMedia({
 					video: true
@@ -123,23 +132,13 @@ const MainStory = () => {
 				webcamElement.srcObject = stream;
 			};
 			startStream();
-		} else if (webcamElement) {
-			const stream = webcamElement.srcObject;
-			if (stream) {
-				const tracks = (stream as MediaStream).getTracks();
-				tracks.forEach((track) => track.stop());
-				webcamElement.srcObject = null;
-			}
+		} else {
+			stopCameraStream();
 		}
 
-		return () => {
-			if (webcamElement && webcamElement.srcObject) {
-				const tracks = (webcamElement.srcObject as MediaStream).getTracks();
-				tracks.forEach((track) => track.stop());
-				webcamElement.srcObject = null;
-			}
-		};
-	}, [isOpen]);
+		return stopCameraStream;
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [image, isOpen]);
 
 	const STORY_ITEMS = (
 		item: {
@@ -191,7 +190,9 @@ const MainStory = () => {
 									placement="bottomLeft"
 									arrow={{ pointAtCenter: true }}
 								>
-									<IconDotsVertical style={{ color: 'white' }} />
+									<IconDotsVertical
+										style={{ color: 'white', cursor: 'pointer' }}
+									/>
 								</Dropdown>
 							</Space>
 						</Space>
@@ -243,6 +244,7 @@ const MainStory = () => {
 		setIsOpen(true);
 		setCurrentMyStoryIndex(0);
 		setDescription('');
+		setIsAddContent(true);
 	};
 	const handleCancel = () => {
 		setIsOpen(false);
@@ -262,6 +264,7 @@ const MainStory = () => {
 	const handCancelStory = () => {
 		setIsOpenModalStory(false);
 		setDescription('');
+		setIsAddContent(true);
 	};
 	const handleNextStory = () =>
 		setCurrentStoryIndex((prevIndex) =>
@@ -439,6 +442,7 @@ const MainStory = () => {
 
 											<input
 												type="file"
+												accept=".jpg, .png"
 												style={{ display: 'none' }}
 												ref={imageRef}
 												onChange={handleChange}
