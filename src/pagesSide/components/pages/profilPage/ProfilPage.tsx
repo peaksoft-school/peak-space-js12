@@ -28,7 +28,7 @@ import {
 import ModalTs from '@/src/ui/modal/Modal';
 import Search from 'antd/es/input/Search';
 import CustomButton from '@/src/ui/customButton/CustomButton';
-import { Input } from 'antd';
+import { Input, Skeleton } from 'antd';
 
 interface Types {
 	userId: number;
@@ -42,7 +42,7 @@ interface Types {
 }
 
 const ProfilPage = () => {
-	const { data } = useGetMyPublicationQuery();
+	const { data, isLoading, error } = useGetMyPublicationQuery();
 	const [profil, setProfil] = useState<Types[]>([]);
 	const [friendById, setFriendById] = useState<number | null>(null);
 	const { data: friendsData } = useUserFriendsQuery(friendById, {
@@ -148,6 +148,36 @@ const ProfilPage = () => {
 		setIsValue('');
 		handleCloseModal();
 	};
+
+	if (isLoading) {
+		return (
+			<div className={scss.error}>
+				<Skeleton.Button active block />
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div>
+				<div
+					style={{
+						height: '100vh'
+					}}
+				>
+					<h1
+						style={{
+							fontFamily: "'Courier New', Courier, monospace",
+							fontWeight: 'bold',
+							textAlign: 'center'
+						}}
+					>
+						Ошибка загрузки данных
+					</h1>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className={scss.main_page}>
