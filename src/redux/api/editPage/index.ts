@@ -30,6 +30,9 @@ const api = index.injectEndpoints({
 			query: (newData) => ({
 				url: '/user-infos',
 				method: 'PUT',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				},
 				body: newData
 			}),
 			invalidatesTags: ['post']
@@ -37,5 +40,9 @@ const api = index.injectEndpoints({
 	})
 });
 
-export const { useGetEditQuery, usePatchEditMutation, usePostEditMutation,useEditPageMutation } =
-	api;
+export const {
+	useGetEditQuery,
+	usePatchEditMutation,
+	usePostEditMutation,
+	useEditPageMutation
+} = api;
