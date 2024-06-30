@@ -2,12 +2,10 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import userProfileImg from '../../assets/FirstMan2.png';
 import userPublicImg from '../../assets/Ellipse 60.svg';
-import {
-	IconMessageCircle,
-	IconHome,
-	IconBell,
-	IconSettings
-} from '@tabler/icons-react';
+import bellIcon from '../../assets/bell-24px.svg';
+import settingIcon from '../../assets/carbon_settings.svg';
+import messageIcon from '../../assets/message-bubble.svg';
+import houseIcon from '../../assets/house-24px.svg';
 import scss from './NavBar.module.scss';
 import Logo from '@/src/assets/peacSpaceLogo.png';
 import MiniLogo from '@/src/assets/mini-logo.svg';
@@ -24,38 +22,34 @@ const NavBar = () => {
 	const isChatPerson = pathname === '/chatperson';
 
 	const navigationItems = [
-		{ path: '/', icon: <IconHome />, label: 'Главная' },
-		{ path: '/chat', icon: <IconMessageCircle />, label: 'Чаты' },
-		{ path: '/notification', icon: <IconBell />, label: 'Уведомления' },
-		{ path: '/settings', icon: <IconSettings />, label: 'Настройки' },
+		{
+			path: '/',
+			icon: <img src={houseIcon} className={scss.icon} />,
+			label: 'Главная'
+		},
+		{
+			path: '/chat',
+			icon: <img src={messageIcon} alt="message" className={scss.icon} />,
+			label: 'Чаты'
+		},
+		{
+			path: '/notification',
+			icon: <img src={bellIcon} alt="bell" className={scss.icon} />,
+			label: 'Уведомления'
+		},
+		{
+			path: '/settings',
+			icon: <img src={settingIcon} className={scss.icon} />,
+			label: 'Настройки'
+		},
 		{
 			path: '/side/public',
-			icon: (
-				<img
-					className={
-						pathname === '/side/public'
-							? `${scss.img} ${scss.active_img}`
-							: `${scss.img}`
-					}
-					src={userProfileImg}
-					alt="foto"
-				/>
-			),
+			icon: <img className={scss.img} src={userProfileImg} alt="foto" />,
 			label: 'Мой профиль'
 		},
 		{
 			path: '/public',
-			icon: (
-				<img
-					className={
-						pathname === '/public'
-							? `${scss.img} ${scss.active_img}`
-							: `${scss.img}`
-					}
-					src={userPublicImg}
-					alt="foto"
-				/>
-			),
+			icon: <img className={scss.img} src={userPublicImg} alt="foto" />,
 			label: 'Мои паблики'
 		}
 	];
@@ -77,7 +71,6 @@ const NavBar = () => {
 								to={item.path}
 							>
 								{item.icon}
-								{/* Conditionally render the label based on the current path */}
 								{!isChatPerson && <span>{item.label}</span>}
 							</Link>
 						</li>

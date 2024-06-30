@@ -21,6 +21,11 @@
 		padding-bottom: 20px;
 	}
 
+	.icon {
+		width: 30px;
+		height: 30px;
+	}
+
 	.miniLogo {
 		margin-left: -65px;
 		width: 170px;
@@ -50,6 +55,7 @@
 		ul {
 			display: flex;
 			flex-direction: column;
+			align-items: start;
 			gap: 24px;
 			position: relative;
 			padding-top: 20px;
@@ -142,7 +148,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				gap: 8px;
+				gap: 5px;
 				max-width: 150px;
 				@media (max-width: 768px) {
 					&:hover {
