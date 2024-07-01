@@ -10,13 +10,7 @@ namespace USEREDITPAGE {
 		lastName: string;
 		fathersName: string;
 		aboutYourSelf: string;
-		educationResponses: [
-			{
-				id: number;
-				country: string;
-				educationalInstitution: string;
-			}
-		];
+		educationResponses: string[];
 		profession: string;
 		workOrNot: null;
 	};

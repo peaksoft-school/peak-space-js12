@@ -64,6 +64,10 @@ const ProfilPage = () => {
 	const [isValue, setIsValue] = useState('');
 	const [isModal, setIsModal] = useState(false);
 
+	const navigateToEditPage = () => {
+		navigate('/settings');
+	};
+
 	const showModal = (userId: number) => {
 		if (userId) {
 			setIsModalOpen(true);
@@ -149,6 +153,10 @@ const ProfilPage = () => {
 		handleCloseModal();
 	};
 
+	const navigateToProfile = (id: number) => {
+		navigate(`users-profile/${id}`);
+	};
+
 	if (isLoading) {
 		return (
 			<div className={scss.error}>
@@ -196,7 +204,7 @@ const ProfilPage = () => {
 								<div className={scss.col}>
 									<div className={scss.row}>
 										<h4>{item.userName}</h4>
-										<button onClick={() => {}}>
+										<button onClick={navigateToEditPage}>
 											<IconEdit />
 										</button>
 									</div>
@@ -288,7 +296,7 @@ const ProfilPage = () => {
 													<div className={scss.center_friends}>
 														{friendsData?.map(
 															(item: {
-																isUser: Key | null | undefined;
+																isUser: number;
 																avatar: string | undefined;
 																userName:
 																	| string
@@ -310,7 +318,12 @@ const ProfilPage = () => {
 																<div className={scss.friends} key={item.isUser}>
 																	<div className={scss.over}>
 																		<img src={item.avatar} alt="" />
-																		<div className={scss.dec}>
+																		<div
+																			onClick={() =>
+																				navigateToProfile(item.isUser)
+																			}
+																			className={scss.dec}
+																		>
 																			<h4>{item.userName}</h4>
 																			<p>{item.aboutMe}</p>
 																		</div>

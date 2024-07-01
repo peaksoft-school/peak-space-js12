@@ -94,6 +94,21 @@ const NewPublic: React.FC = () => {
 		}
 	};
 
+	const subjectMatterMapping = {
+		MOVIE: 'ФИЛЬМ',
+		MUSIC: 'МУЗЫКА',
+		IT: 'IT-специалист',
+		HORROR: 'УЖАС',
+		SPORT: 'СПОРТ',
+		MULTFILM: 'МУЛЬТФИЛЬМ',
+		ANIME: 'АНИМЕ',
+		MEDICINE: 'МЕДИЦИНА',
+		TRANSPORT: 'ТРАНСПОРТ',
+		CONSTRUCTION: 'СТРОИТЕЛЬСТВО',
+		FINANCE: 'ФИНАНСЫ',
+		TOURISM: 'ТУРИЗМ'
+	};
+
 	return (
 		<div className={scss.container}>
 			<div className={scss.user_avatar_and_cover}>
@@ -156,19 +171,12 @@ const NewPublic: React.FC = () => {
 						value={tematica}
 						onChange={(e) => setTematica(e.target.value)}
 					>
-						<option value="">CHOOSE SUBJECT MATTER</option>
-						<option value="MOVIE">MOVIE</option>
-						<option value="MUSIC">MUSIC</option>
-						<option value="IT">IT</option>
-						<option value="HORROR">HORROR</option>
-						<option value="SPORT">SPORT</option>
-						<option value="MULTFILM">MULTFILM</option>
-						<option value="ANIME">ANIME</option>
-						<option value="MEDICINE">MEDICINE</option>
-						<option value="TRANSPORT">TRANSPORT</option>
-						<option value="CONSTRUCTION">CONSTRUCTION</option>
-						<option value="FINANCE">FINANCE</option>
-						<option value="TOURISM">TOURISM</option>
+						<option value="">ВЫБЕРИТЕ ТЕМАТИКУ</option>
+						{Object.entries(subjectMatterMapping).map(([key, value]) => (
+							<option key={key} value={key}>
+								{value}
+							</option>
+						))}
 					</select>
 				</div>
 				<div className={scss.save_public_button_container}>

@@ -276,13 +276,10 @@ const PublicPage = () => {
 						<h1>рекомендация</h1>
 						{users?.map((item) => (
 							<>
-								<div
-									onClick={() => navigateToMyPublic(item.id)}
-									key={item.id}
-									className={scss.third_3}
-								>
+								<div key={item.id} className={scss.third_3}>
 									<div className={scss.cover}>
 										<img
+											onClick={() => navigateToMyPublic(item.id)}
 											src={
 												item.cover && item.cover !== 'cover'
 													? item.cover
