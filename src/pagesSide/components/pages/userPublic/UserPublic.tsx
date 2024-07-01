@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { SetStateAction, useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import {
 	IconPhotoVideo,
@@ -25,16 +25,14 @@ import {
 	usePostCreateFileMutation
 } from '@/src/redux/api/publications';
 import { PlusIconSecond, Smile } from '@/src/assets/icons';
-import { Switch, Input, Skeleton } from 'antd';
+import { Switch, Input, Skeleton, Tooltip } from 'antd';
 import ModalTs from '@/src/ui/modal/Modal';
 import CustomButton from '@/src/ui/customButton/CustomButton';
 import { usePostComplainMutation } from '@/src/redux/api/complain';
-
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
 
 const UserPublic = () => {
-	const [, setActiveItem] = useState<string>('/');
 	const [inputStr, setInputStr] = useState('');
 	const [showPicker, setShowPicker] = useState(false);
 	const fileInputRef = useRef<HTMLInputElement>(null);
@@ -51,6 +49,7 @@ const UserPublic = () => {
 	const [selectedReason, setSelectedReason] = useState('');
 	const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
 	const [deletePublicById] = useDeletePhotoByIdMutation();
+	const [liked, setLiked] = useState(false);
 
 	const [addedPostComment] = useAddedCommentMutation();
 
@@ -63,10 +62,10 @@ const UserPublic = () => {
 		});
 	console.log(commentResponse, 'nurs');
 
-	const { pathname } = useLocation();
+	// const { pathname } = useLocation();
 
-	const [page, setPage] = useState(true);
-	const navigate = useNavigate();
+	// const [page, setPage] = useState(true);
+	// const navigate = useNavigate();
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleGetEmoji = (event: any) => {
@@ -88,6 +87,10 @@ const UserPublic = () => {
 
 	const closeText = () => {
 		setIsTextModal(false);
+	};
+
+	const handleLikeClick = () => {
+		setLiked(!liked);
 	};
 
 	const ShowMessageAgain = (id: any) => {
@@ -171,8 +174,12 @@ const UserPublic = () => {
 	console.log(modalContent);
 
 	const handleAddCommentUser = (postId: number) => {
+		const trimmedInputStr = inputStr.trim();
+		if (trimmedInputStr === '') {
+			return;
+		}
 		const newData = {
-			message: inputStr
+			message: trimmedInputStr
 		};
 		addedPostComment({ postId, newData });
 		console.log(postId, 'nursultan');
@@ -279,16 +286,22 @@ const UserPublic = () => {
 		const files = event.target.files;
 		if (files && files[0]) {
 			const file = files[0];
-			const newFileUrls: string[] = [];
-			const formData = new FormData();
+			const validTypes = ['image/png', 'image/jpeg'];
 
+			if (!validTypes.includes(file.type)) {
+				alert('Пожалуйста, загрузите файл формата PNG или JPG.');
+				event.target.value = '';
+				return;
+			}
+
+			const formData = new FormData();
 			formData.append('file', file);
 
 			try {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				const response: any = await createFile(formData as any);
 				const test = JSON.parse(response.data);
-				newFileUrls.push(test.object);
+				const newFileUrls: string[] = [test.object];
 				setFileUrls(newFileUrls);
 				openModal();
 			} catch (error) {
@@ -333,7 +346,12 @@ const UserPublic = () => {
 	if (isLoading) {
 		return (
 			<div className={scss.error}>
-				<Skeleton.Button active block />
+				<Skeleton active />
+				<Skeleton active />
+				<Skeleton active />
+				<Skeleton active />
+				<Skeleton active />
+				<Skeleton active />
 			</div>
 		);
 	}
@@ -364,7 +382,20 @@ const UserPublic = () => {
 											<span></span>
 											<p>{item.userName}</p>
 										</div>
-										<h4>{item.descriptionPublic}</h4>
+										<h4
+											style={{
+												width: '100%',
+												display: '-webkit-box',
+												maxWidth: '250px',
+												WebkitLineClamp: 1,
+												WebkitBoxOrient: 'vertical',
+												overflow: 'hidden'
+											}}
+										>
+											<Tooltip title={item.descriptionPublic}>
+												{item.descriptionPublic}
+											</Tooltip>
+										</h4>
 										<p>{item.tematica}</p>
 									</div>
 									<div className={scss.end}>
@@ -381,15 +412,15 @@ const UserPublic = () => {
 
 				<div className={scss.links}>
 					{links.map((link, index) => (
-						<div key={index}>
-							<Link
+						<div key={index} className={scss.link}>
+							{/* <Link
 								className={`${pathname === link.path ? scss.active_page : scss.link}`}
 								to={link.path}
 								onClick={() => setPage(link.isPage)}
-							>
-								{link.icon}
-								<p>{link.label}</p>
-							</Link>
+							> */}
+							{link.icon}
+							<p>{link.label}</p>
+							{/* </Link> */}
 						</div>
 					))}
 				</div>
@@ -398,9 +429,7 @@ const UserPublic = () => {
 					<div className={scss.bar} onClick={handleButtonClick}>
 						<label>
 							<PlusIconSecond />
-							<p style={{ textAlign: 'center' }}>
-								Добавить <br /> фото
-							</p>
+							<p style={{ textAlign: 'center' }}>Добавить фото</p>
 						</label>
 						<input
 							placeholder="file"
@@ -408,6 +437,7 @@ const UserPublic = () => {
 							ref={fileInputRef}
 							style={{ display: 'none' }}
 							onChange={handleFilePhoto}
+							accept=".jpg, .png"
 						/>
 					</div>
 					{photo?.map((item) => (
@@ -426,10 +456,9 @@ const UserPublic = () => {
 									showMessageIs[item.id] ? scss.showMessage : scss.isNotMessage
 								}
 							>
-								<p>удалить пользователя</p>
-								<h4 onClick={() => RemoveById(item.id)}>удалить</h4>
-								<p>профиль участника</p>
-								<h4 onClick={openText}>пожаловаться</h4>
+								<p>Профиль участника</p>
+								<h4 onClick={openText}>Пожаловаться</h4>
+								<h4 onClick={() => RemoveById(item.id)}>Удалить</h4>
 							</div>
 
 							<ModalTs open={isCommentModal} onCancel={closeCommentModal}>
@@ -478,16 +507,41 @@ const UserPublic = () => {
 																							<p className={scss.comment_width}>
 																								{item.comment}
 																							</p>
-																							<p>{item.createdAt}</p>
+																							<p>
+																								{new Date(
+																									item.createdAt
+																								).toLocaleString('ru-RU', {
+																									hour: 'numeric',
+																									minute: 'numeric',
+																									day: '2-digit',
+																									month: '2-digit',
+																									year: 'numeric'
+																								})}
+																							</p>
 																						</div>
 																						<div className={scss.button_like}>
 																							<p>{item.countLike}</p>
 																							<button
-																								onClick={() =>
-																									OneMoreLike(item.id)
-																								}
+																								onClick={() => {
+																									OneMoreLike(item.id);
+																									handleLikeClick();
+																								}}
 																							>
-																								<IconHeart />
+																								<IconHeart
+																									className={
+																										liked
+																											? 'scss.icon'
+																											: 'scss.heartIcon'
+																									}
+																									style={{
+																										fill: liked
+																											? 'red'
+																											: 'none',
+																										stroke: liked
+																											? 'red'
+																											: 'black'
+																									}}
+																								/>
 																							</button>
 
 																							<button
@@ -497,35 +551,6 @@ const UserPublic = () => {
 																							>
 																								Ответить
 																							</button>
-
-																							{/* {innerComment.map((item) => (
-																						<div>
-																							<p>{item.userName}</p>
-																						</div>
-																					))} */}
-
-																							<>
-																								{/* {isComment &&
-																							commentById === item.id && (
-																								<>
-																									<input
-																										type="text"
-																										className={scss.answer}
-																										placeholder="Введите ваш комментарий"
-																										value={comment}
-																										onChange={(e) =>
-																											setComment(e.target.value)
-																										}
-																										onKeyDown={(e) =>
-																											handleInputKeyDownAnswer(
-																												e,
-																												item.id
-																											)
-																										}
-																									/>
-																								</>
-																							)} */}
-																							</>
 																						</div>
 																					</div>
 																				</div>
@@ -571,12 +596,7 @@ const UserPublic = () => {
 							<div className={scss.modal}>
 								<div className={scss.added}>
 									<div>
-										<h3>добавить сообщество</h3>
-
-										{/* <textarea
-												value={description}
-												onChange={(e) => setDescription(e.target.value)}
-											></textarea> */}
+										<h3>Добавить сообщество</h3>
 
 										<div className={scss.ui}>
 											<TextArea
@@ -584,7 +604,7 @@ const UserPublic = () => {
 												maxLength={100}
 												value={description}
 												onChange={(e) => setDescription(e.target.value)}
-												placeholder="описание"
+												placeholder="Описание..."
 												style={{ height: 230, resize: 'none' }}
 											/>
 											<div className={scss.boolean}>
@@ -603,15 +623,13 @@ const UserPublic = () => {
 										</div>
 									</div>
 									<div className={scss.buttons}>
-										<CustomButton children="отменить" onClick={closeModal} />
+										<CustomButton children="Отменить" onClick={closeModal} />
 
 										<CustomButton
 											onClick={() => handleAddPublic(communityId)}
-											children={'добавить'}
+											children={'Добавить'}
 										/>
 									</div>
-
-									<div className={scss.buttons}></div>
 								</div>
 							</div>
 						</div>
@@ -633,10 +651,6 @@ const UserPublic = () => {
 							</div>
 						</div>
 					</ModalTs>
-					{/* <Routes>
-						<Route path="/public-photo" element={<PublicFotos />} />
-						<Route path="/public-video" element={<PublicVideo />} />
-					</Routes> */}
 				</div>
 			</div>
 		</div>

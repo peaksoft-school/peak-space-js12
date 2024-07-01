@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PublicsSlider from './PublicsSlider';
 import {
@@ -6,7 +6,7 @@ import {
 	usePostPublicFoodMutation
 } from '@/src/redux/api/publications';
 import ModalTs from '@/src/ui/modal/Modal';
-import { PlusIconSecond } from '@/src/assets/icons';
+// import { PlusIconSecond } from '@/src/assets/icons';
 import { IconDots, IconX } from '@tabler/icons-react';
 import scss from './Style.module.scss';
 
@@ -41,26 +41,40 @@ const PublicsPhoto = () => {
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
 		if (file) {
-			const reader = new FileReader();
-			setHidePhoto(true);
-			reader.onload = (e) => {
-				if (e.target) {
-					setImage(e.target.result as string);
-				}
-			};
-			reader.readAsDataURL(file);
+		  const validTypes = ["image/png", "image/jpeg"];
+	
+		  if (!validTypes.includes(file.type)) {
+			alert("Пожалуйста, загрузите файл формата PNG или JPG.");
+			event.target.value = ""; 
+			return;
+		  }
+	
+		  const reader = new FileReader();
+		  setHidePhoto(true);
+		  reader.onload = (e) => {
+			if (e.target) {
+			  setImage(e.target.result as string);
+			}
+		  };
+		  reader.readAsDataURL(file);
 		}
-	};
-
+		
 	const handleAddPhoto = async () => {
 		try {
-			let newData;
 			if (
 				fileInputRef.current &&
 				fileInputRef.current.files &&
 				fileInputRef.current.files.length > 0
 			) {
 				const file = fileInputRef.current.files[0];
+				const validTypes = ['image/png', 'image/jpeg'];
+
+				if (!validTypes.includes(file.type)) {
+					alert('Пожалуйста, загрузите файл формата PNG или JPG.');
+					fileInputRef.current.value = ''; // сбросить выбранный файл
+					return;
+				}
+
 				const reader = new FileReader();
 				reader.onload = (e) => {
 					if (e.target) {
@@ -68,19 +82,31 @@ const PublicsPhoto = () => {
 					}
 				};
 				reader.readAsDataURL(file);
-				newData = {
-					img: image
-				};
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				await postRequest(newData as any).unwrap();
 			} else {
 				return;
 			}
-			setImage('');
 		} catch (error) {
 			console.error('Error adding photo:', error);
 		}
 	};
+
+	useEffect(() => {
+		const postImage = async () => {
+			if (image) {
+				const newData = {
+					img: image
+				};
+				try {
+					await postRequest(newData as any).unwrap();
+					setImage('');
+				} catch (error) {
+					console.error('Error posting photo:', error);
+				}
+			}
+		};
+
+		postImage();
+	}, [image, postRequest]);
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleImageClick = (id: any) => {
 		setFilteredImages((prevState: { [x: string]: string }) => ({
@@ -117,7 +143,7 @@ const PublicsPhoto = () => {
 				<>
 					<div className={scss.bar}>
 						<div onClick={handleButtonClick}>
-							<PlusIconSecond />
+							{/* <PlusIconSecond /> */}
 							<p style={{ textAlign: 'center' }}>
 								Добавить <br /> фото
 							</p>
@@ -155,9 +181,9 @@ const PublicsPhoto = () => {
 									handleImageClick(item.id);
 								}}
 							>
-								<h4 onClick={handleOpenModal}>пожаловаться</h4>
+								<h4 onClick={handleOpenModal}>Пожаловаться</h4>
 								<span></span>
-								<p onClick={navigateToProfile}>профиль участника</p>
+								<p onClick={navigateToProfile}>Профиль участника</p>
 							</div>
 							<ModalTs open={isModal} onCancel={handleCancelModal}>
 								<div className={scss.modal}>
@@ -209,6 +235,7 @@ const PublicsPhoto = () => {
 				ref={fileInputRef}
 				style={{ display: 'none' }}
 				onChange={handleFileChange}
+				accept=".jpg, .png"
 			/>
 
 			<button onClick={handleAddPhoto}>Добавить фото</button>

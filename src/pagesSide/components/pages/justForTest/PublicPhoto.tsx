@@ -45,16 +45,22 @@ const PublicPhoto = () => {
 		const files = event.target.files;
 		if (files && files[0]) {
 			const file = files[0];
-			const newFileUrls: string[] = [];
-			const formData = new FormData();
+			const validTypes = ['image/png', 'image/jpeg'];
 
+			if (!validTypes.includes(file.type)) {
+				alert('Пожалуйста, загрузите файл формата PNG или JPG.');
+				fileInputRef.current.value = '';
+				return;
+			}
+
+			const formData = new FormData();
 			formData.append('file', file);
 
 			try {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				const response: any = await createFile(formData as any);
 				const test = JSON.parse(response.data);
-				newFileUrls.push(test.object);
+				const newFileUrls: string[] = [test.object];
 				setFileUrls(newFileUrls);
 				openModal();
 			} catch (error) {
@@ -130,6 +136,7 @@ const PublicPhoto = () => {
 						ref={fileInputRef}
 						style={{ display: 'none' }}
 						onChange={handleFilePhoto}
+						accept=".jpg, .png"
 					/>
 				</div>
 
@@ -144,7 +151,7 @@ const PublicPhoto = () => {
 								showMessageIs[item.id] ? scss.showMessage : scss.isNotMessage
 							}
 						>
-							<h4>удалить</h4>
+							<h4>Удалить</h4>
 						</div>
 					</div>
 				))}

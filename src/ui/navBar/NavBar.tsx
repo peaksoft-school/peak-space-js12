@@ -45,7 +45,8 @@ const NavBar = () => {
 			icon: (
 				<img
 					className={
-						pathname === '/public'
+						pathname === '/public' ||
+						pathname === '/public/user-public/:communityId/'
 							? `${scss.img} ${scss.active_img}`
 							: `${scss.img}`
 					}
@@ -61,7 +62,7 @@ const NavBar = () => {
 		<div className={scss.content}>
 			<nav>
 				<ul className={!test ? scss.isNone : scss.none}>
-					<img src={Logo} alt="logo" className={scss.logo}/>
+					<img src={Logo} alt="logo" className={scss.logo} />
 					{navigationItems.map((item) => (
 						<li onClick={() => navigateTo(item.path)}>
 							<Link

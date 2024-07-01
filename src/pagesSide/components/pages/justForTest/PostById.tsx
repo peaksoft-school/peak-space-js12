@@ -88,13 +88,13 @@ const PostById = () => {
 				<div className={isMessage ? scss.is_work : scss.is_none}>
 					<div className={scss.edit_pen} onClick={() => editPost(post)}>
 						<IconEdit />
-						<p>редактировать</p>
+						<p>Редактировать</p>
 					</div>
 				</div>
 			</div>
 			{!post ? (
 				<div className={scss.error}>
-					<Skeleton.Button active block />
+					<Skeleton active />
 				</div>
 			) : (
 				<div key={post.postId}>
@@ -104,7 +104,7 @@ const PostById = () => {
 								<ModalTs open={isModal} onCancel={closeModal}>
 									<div className={scss.is_modal}>
 										<div className={scss.modal}>
-											<h2>редактировать публикацию</h2>
+											<h2>Редактировать публикацию</h2>
 
 											<div className={scss.inputs}>
 												<TextArea
@@ -112,7 +112,7 @@ const PostById = () => {
 													maxLength={100}
 													value={editDescription}
 													onChange={(e) => setEditDescription(e.target.value)}
-													placeholder="описание"
+													placeholder="Описание"
 													style={{ height: 230, resize: 'none' }}
 												/>
 
