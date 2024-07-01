@@ -78,7 +78,7 @@ const EditProfilePage = () => {
 			location: editCity,
 			educationResponses: [
 				{
-					id: editEducationResponses[0].id,
+					id: editEducationResponses[0],
 					country: editCity,
 					educationalInstitution: editSchool
 				}

@@ -45,73 +45,34 @@ const Login = () => {
 		navigate('/', { replace: true });
 	};
 
-	// const onSubmit = async (data: any) => {
-	// 	try {
-	// 		const response = await postRequest(data);
-	// 		console.log('Full Response:', response);
 
-	// 		if (response.data?.httpStatus === 'OK') {
-	// 			const responseData = response.data;
-	// 			console.log('Response Data:', responseData);
-
-	// 			const status = responseData?.httpStatus;
-	// 			const token = responseData?.token;
-
-	// 			if (status === 'OK') {
-	// 				localStorage.setItem('auth_token', token);
-	// 				localStorage.setItem('isAuth', 'true');
-	// 				navigateToPages();
-	// 				reset();
-	// 			} else {
-	// 				messageApi.open({
-	// 					type: 'warning',
-	// 					content: 'Произошла ошибка на сервере.'
-	// 				});
-	// 			}
-	// 		} else {
-	// 			console.error('Ошибка HTTP:', response.status);
-	// 			messageApi.open({
-	// 				type: 'error',
-	// 				content: 'Произошла ошибка при выполнении запроса, попробуйте снова.'
-	// 			});
-	// 		}
-	// 	} catch (error: any) {
-	// 		console.error('Ошибка входа:', error);
-
-	// 		if (error.response && error.response.status === 404) {
-	// 			const errorMessage =
-	// 				error.response.data?.message || 'Пользователь не найден.';
-	// 			alert(errorMessage);
-	// 		} else {
-	// 			messageApi.open({
-	// 				type: 'error',
-	// 				content: 'Произошла ошибка при входе, попробуйте снова.'
-	// 			});
-	// 		}
-	// 	}
-	// };
 
 	const onSubmit = async (data: any) => {
-		try {
-			const response = await postRequest(data);
-			if ('data' in response) {
+		const response = (await postRequest(
+			data
+		)) as LOGIN.PostRegistrationResponse;
+		if ('data' in response) {
+			if (response.data) {
 				const { token }: any = response.data;
 				localStorage.setItem('auth_token', token);
 				localStorage.setItem('isAuth', 'true');
 				navigateToPages();
 				reset();
-
-
-
-				
-			}else if (response.data) {
-				console.log('full response',response);
-				
-				
-
 			}
-		} catch (error) {
-			console.error('Ошибка входа:', error);
+		}
+		if (response.error) {
+			console.log(response.error.data);
+			if (response.error.status === 404) {
+				messageApi.open({
+					type: 'warning',
+					content: response.error.data?.message
+				});
+			} else if (response.error.status === 417) {
+				messageApi.open({
+					type: 'warning',
+					content: response.error.data?.message
+				});
+			}
 		}
 	};
 
