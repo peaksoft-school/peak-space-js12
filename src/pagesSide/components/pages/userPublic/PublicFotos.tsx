@@ -27,13 +27,13 @@ import { useGetBlockedUsersQuery } from '@/src/redux/api/blocked';
 import { useGetComentUsersQuery } from '@/src/redux/api/comentsUsers/indexs';
 
 const PublicFotos = () => {
-	const { data:fotos, isLoading } = useGetUserPublicQuery();
+	const { data: fotos, isLoading } = useGetUserPublicQuery();
 	const [postRequest] = usePostUserPublicMutation();
 	const [, setHidePhoto] = useState(false);
 	const [image, setImage] = useState<string>('');
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const { data: datas } = useGetBlockedUsersQuery();
-	const [idModal, setIdModal] = useState<number>(0)
+	const [idModal, setIdModal] = useState<number>(0);
 	// !
 	const { data: users } = useGetComentUsersQuery();
 	const [inputStr, setInputStr] = useState('');
@@ -44,16 +44,16 @@ const PublicFotos = () => {
 		setInputStr((prevInput) => prevInput + event.native);
 		setShowPicker(false);
 	};
-console.log(fotos, 'array');
+	console.log(fotos, 'array');
 
 	// !modal
 	const [isModal, setIsModal] = useState(false);
 
 	const openModal = (id: number, img: string) => {
 		console.log(id, img);
-		
+
 		setIsModal(true);
-		setIdModal(id)
+		setIdModal(id);
 	};
 	const closeModal = () => {
 		setIsModal(false);
@@ -226,7 +226,7 @@ console.log(fotos, 'array');
 											</>
 										) : (
 											<>
-												{datas?.map((item) => (
+												{datas?.map((item: any) => (
 													<div
 														key={item.id}
 														className={scss.cards}
@@ -273,7 +273,7 @@ console.log(fotos, 'array');
 					<ModalTs open={isModal} onCancel={closeModal}>
 						<div className={scss.mufa}>
 							<div className={scss.slider}>
-								<SliderFoto idModal={idModal}/>
+								<SliderFoto idModal={idModal} />
 								<div className={scss.buttons}>
 									<div className={complain ? ` ${scss.btn}` : `${scss.button}`}>
 										<button>
@@ -373,6 +373,7 @@ console.log(fotos, 'array');
 				ref={fileInputRef}
 				style={{ display: 'none' }}
 				onChange={handleFileChange}
+				accept=".jpg, .png"
 			/>
 
 			<button onClick={handleAddPhoto}>Добавить фото</button>

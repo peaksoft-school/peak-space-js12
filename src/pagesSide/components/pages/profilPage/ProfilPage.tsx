@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode, ReactPortal, useEffect, useState } from 'react';
+=======
+// @ts-nocheck
+import { Key, ReactNode, ReactPortal, useEffect, useState } from 'react';
+>>>>>>> dev
 import {
 	Link,
 	Route,

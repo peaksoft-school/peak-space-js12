@@ -48,7 +48,8 @@ const NavBar = () => {
 			icon: (
 				<img
 					className={
-						pathname === '/public'
+						pathname === '/public' ||
+						pathname === '/public/user-public/:communityId/'
 							? `${scss.img} ${scss.active_img}`
 							: `${scss.img}`
 					}
@@ -59,6 +60,13 @@ const NavBar = () => {
 			label: 'Мои паблики'
 		}
 	];
+
+	const isActive = (href: string) => {
+		if (href === '/') {
+			return pathname === href;
+		}
+		return pathname.startsWith(href);
+	};
 
 	return (
 		<div className={`${scss.content} ${isChatPerson ? scss.chatPerson : ''}`}>
@@ -73,7 +81,7 @@ const NavBar = () => {
 					{navigationItems.map((item) => (
 						<li key={item.path} onClick={() => navigateTo(item.path)}>
 							<Link
-								className={`${pathname === item.path ? scss.active_page : scss.active_default}`}
+								className={`${isActive(item.path) ? scss.active_page : scss.active_default}`}
 								to={item.path}
 							>
 								{item.icon}

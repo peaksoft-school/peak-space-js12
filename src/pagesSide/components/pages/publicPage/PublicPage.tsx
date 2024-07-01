@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
+// @ts-nocheck
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import scss from './PublicPage.module.scss';
 
@@ -9,18 +9,7 @@ import {
 	useRecommendationGetQuery,
 	useUserPublicmyCommunityQuery
 } from '@/src/redux/api/userPublic';
-import { Skeleton } from 'antd';
-
-// interface Types {
-// 	cover: string;
-// 	avatar: string;
-// 	userName: string;
-// 	tematica: string;
-// 	publicId: number;
-// 	pablicName: string;
-// 	countFollower: number;
-// 	descriptionPublic: string;
-// }[];
+import { Skeleton, Tooltip } from 'antd';
 
 const PublicPage = () => {
 	const { data, isLoading, error, refetch } = useUserPublicmyCommunityQuery();
@@ -60,7 +49,9 @@ const PublicPage = () => {
 	if (isLoading) {
 		return (
 			<div className={scss.error}>
-				<Skeleton.Button active block />
+				<Skeleton active className={scss.custom_skeleton} />
+				<Skeleton active className={scss.custom_skeleton} />
+				<Skeleton active className={scss.custom_skeleton} />
 			</div>
 		);
 	}
@@ -87,19 +78,25 @@ const PublicPage = () => {
 		);
 	}
 
-	const navigateToMyPublic = (communityId: number) => {
+	const navigateToMyPublic = (communityId: number, event: React.MouseEvent) => {
+		event.stopPropagation();
+
 		navigate(`/public/${communityId}`);
 
 		refetch();
 	};
 
-	const navigateUserPublic = (communityId: number) => {
-		navigate(`/user-public/${communityId}`);
+	const navigateUserPublic = (communityId: number, event: React.MouseEvent) => {
+		event.stopPropagation();
+
+		navigate(`/public/user-public/${communityId}`);
 
 		refetch();
 	};
 
-	const JoinByUser = (publicId: number) => {
+	const JoinByUser = (publicId: number, event: React.MouseEvent) => {
+		event.stopPropagation();
+
 		if (publicId) {
 			putRequest(publicId)
 				.then((response) => {
@@ -139,7 +136,7 @@ const PublicPage = () => {
 							) : (
 								publics.map((item) => (
 									<div
-										onClick={() => navigateToMyPublic(item.id)}
+										onClick={(event) => navigateToMyPublic(item.id, event)}
 										key={item.id}
 										className={scss.public_item}
 									>
@@ -158,13 +155,14 @@ const PublicPage = () => {
 												alt=""
 											/>
 										</div>
+
 										<div className={scss.bar}>
 											<div className={scss.user_img}>
 												<img
 													src={
-														item.avatar && item.avatar !== 'avatar'
+														item.avatar
 															? item.avatar
-															: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
+															: 'https://cdn-icons-png.flaticon.com/512/1144/1144760.png'
 													}
 													className={
 														item.avatar && item.avatar.lenth > 0
@@ -185,13 +183,16 @@ const PublicPage = () => {
 														style={{
 															width: '100%',
 															display: '-webkit-box',
-															maxWidth: '380px',
+															maxWidth: '250px',
 															WebkitLineClamp: 1,
 															WebkitBoxOrient: 'vertical',
-															overflow: 'hidden'
+															overflow: 'hidden',
+															marginLeft: '-33px'
 														}}
 													>
-														{item.descriptionPublic}
+														<Tooltip title={item.descriptionPublic}>
+															{item.descriptionPublic}
+														</Tooltip>
 													</h4>
 													<p>{item.tematica}</p>
 												</div>
@@ -200,9 +201,6 @@ const PublicPage = () => {
 														<h4>{item.countFollower}</h4>
 														<p>участников</p>
 													</div>
-													{/* <button onClick={() => JoinByUser(item.publicId)}>
-														отписаться
-													</button> */}
 												</div>
 											</div>
 										</div>
@@ -218,7 +216,9 @@ const PublicPage = () => {
 							<div key={item.id} className={scss.second_2}>
 								<div className={scss.cover}>
 									<img
-										onClick={() => navigateUserPublic(item.publicId)}
+										onClick={(event) =>
+											navigateUserPublic(item.publicId, event)
+										}
 										src={
 											item.cover && item.cover !== 'cover'
 												? item.cover
@@ -241,9 +241,7 @@ const PublicPage = () => {
 													: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
 											}
 											className={
-												item.avatar && item.avatar.lenth > 0
-													? scss.none_avata
-													: scss.have_avatar
+												item.avatar ? scss.none_avata : scss.have_avatar
 											}
 											alt="avatar"
 										/>
@@ -255,7 +253,20 @@ const PublicPage = () => {
 												<span></span>
 												<p>{item.userName}</p>
 											</div>
-											<h4>{item.descriptionPublic}</h4>
+											<h4
+												style={{
+													width: '100%',
+													display: '-webkit-box',
+													maxWidth: '250px',
+													WebkitLineClamp: 1,
+													WebkitBoxOrient: 'vertical',
+													overflow: 'hidden'
+												}}
+											>
+												<Tooltip title={item.descriptionPublic}>
+													{item.descriptionPublic}
+												</Tooltip>
+											</h4>
 											<p>{item.tematica}</p>
 										</div>
 										<div className={scss.end}>
@@ -263,8 +274,10 @@ const PublicPage = () => {
 												<h4>{item.countFollower}</h4>
 												<p>участников</p>
 											</div>
-											<button onClick={() => JoinByUser(item.publicId)}>
-												отписаться
+											<button
+												onClick={(event) => JoinByUser(item.publicId, event)}
+											>
+												покинуть группу
 											</button>
 										</div>
 									</div>
@@ -273,60 +286,83 @@ const PublicPage = () => {
 						))}
 					</div>
 					<div className={scss.some_users}>
-						<h1>рекомендация</h1>
+						<h1 className={scss.my_community}>Рекомендация</h1>
 						{users?.map((item) => (
 							<>
 								<div key={item.id} className={scss.third_3}>
-									<div className={scss.cover}>
-										<img
-											onClick={() => navigateToMyPublic(item.id)}
-											src={
-												item.cover && item.cover !== 'cover'
-													? item.cover
-													: 'https://s3-alpha-sig.figma.com/img/1c92/1bf5/b0093ed0ac29cf722c834434cf7ee611?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aRbcWs8eN-Mhny0ICI4GwKLx-LG7tHupNdjJBDCVlh37EbKJDndgV-0wSV8n0xq8OM-TEVcxPBLZMhjhy2C1~O1H2JnivHYvfFiLd8f4~KNWiFAE0eQMFjR3ROYnWqWASvOYYbWJ3tIuHScnYxKnlNZzjjQ71UfYzEjQNdRj1ecjFym1oI2wCHHRm-Qemi1VGm0kPLCnLZokRPxn9i8AM7SznezApo2HJlzd3v363puF6ylHtDDjwGSMgnpW2rSxKVyKz3utSjLTQRKy~mpnGsZbX4HRFovktCXL2aq9TiYvxvvHboBXhyz5aXbJzLt-WPGGp4rCyCdSTwL0fnntsA__'
-											}
-											className={
-												item.cover && item.cover.length > 0
-													? scss.have
-													: scss.none
-											}
-											alt=""
-										/>
-									</div>
-									<div className={scss.bar}>
-										<div className={scss.user_img}>
+									<div
+										onClick={(event) => navigateToMyPublic(item.id, event)}
+										key={item.id}
+										className={scss.third_3}
+									>
+										<div className={scss.cover}>
 											<img
+												onClick={(event) => navigateToMyPublic(item.id, event)}
 												src={
-													item.avatar && item.avatar !== 'avatar'
-														? item.avatar
-														: 'https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg'
+													item.cover && item.cover !== 'cover'
+														? item.cover
+														: 'https://s3-alpha-sig.figma.com/img/1c92/1bf5/b0093ed0ac29cf722c834434cf7ee611?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aRbcWs8eN-Mhny0ICI4GwKLx-LG7tHupNdjJBDCVlh37EbKJDndgV-0wSV8n0xq8OM-TEVcxPBLZMhjhy2C1~O1H2JnivHYvfFiLd8f4~KNWiFAE0eQMFjR3ROYnWqWASvOYYbWJ3tIuHScnYxKnlNZzjjQ71UfYzEjQNdRj1ecjFym1oI2wCHHRm-Qemi1VGm0kPLCnLZokRPxn9i8AM7SznezApo2HJlzd3v363puF6ylHtDDjwGSMgnpW2rSxKVyKz3utSjLTQRKy~mpnGsZbX4HRFovktCXL2aq9TiYvxvvHboBXhyz5aXbJzLt-WPGGp4rCyCdSTwL0fnntsA__'
 												}
 												className={
-													item.avatar && item.avatar.lenth > 0
-														? scss.none_avata
-														: scss.have_avatar
+													item.cover && item.cover.length > 0
+														? scss.have
+														: scss.none
 												}
-												alt="avatar"
+												alt=""
 											/>
 										</div>
-										<div className={scss.side_bar}>
-											<div className={scss.start}>
-												<div className={scss.bar_aside}>
-													<h4>{item.pablicName}</h4>
-													<span></span>
-													<p>{item.userName}</p>
-												</div>
-												<h4>{item.descriptionPublic}</h4>
-												<p>{item.tematica}</p>
+										<div className={scss.bar}>
+											<div className={scss.user_img}>
+												<img
+													src={
+														item.avatar && item.avatar !== 'avatar'
+															? item.avatar
+															: 'https://www.transparentpng.com/download/user/gray-user-profile-icon-png-fP8Q1P.png'
+													}
+													className={
+														item.avatar && item.avatar.length > 0
+															? scss.none_avata
+															: scss.have_avatar
+													}
+													// alt="avatar"
+												/>
 											</div>
-											<div className={scss.end}>
-												<div>
-													<h4>{item.countFollower}</h4>
-													<p>участников</p>
+											<div className={scss.side_bar}>
+												<div className={scss.start}>
+													<div className={scss.bar_aside}>
+														<h4>{item.pablicName}</h4>
+														<span></span>
+														<p>{item.userName}</p>
+													</div>
+													<h4
+														style={{
+															width: '100%',
+															display: '-webkit-box',
+															maxWidth: '250px',
+															WebkitLineClamp: 1,
+															WebkitBoxOrient: 'vertical',
+															overflow: 'hidden'
+														}}
+													>
+														<Tooltip title={item.descriptionPublic}>
+															{item.descriptionPublic}
+														</Tooltip>
+													</h4>
+													<p>{item.tematica}</p>
 												</div>
-												<button onClick={() => JoinByUser(item.publicId)}>
-													Присоединиться
-												</button>
+												<div className={scss.end}>
+													<div>
+														<h4>{item.countFollower}</h4>
+														<p>участников</p>
+													</div>
+													<button
+														onClick={(event) =>
+															JoinByUser(item.publicId, event)
+														}
+													>
+														Присоединиться
+													</button>
+												</div>
 											</div>
 										</div>
 									</div>

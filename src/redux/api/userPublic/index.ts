@@ -299,9 +299,7 @@ const api = index.injectEndpoints({
 				}
 			}),
 			providesTags: ['post']
-		}),
-
-
+		})
 	})
 });
 

@@ -33,16 +33,28 @@
 	}
 }
 
+.heartLiked {
+	button {
+		background: none;
+		outline: none;
+		border: none;
+		cursor: pointer;
+
+		svg {
+			fill: red;
+			stroke: red;
+		}
+	}
+}
 
 .main_page {
 	width: 100%;
-	width: 980px;
+	margin-top: 6px;
 
 	min-height: 100vh;
 	max-height: 100%;
 
 	.aside {
-		width: 980px;
 		display: flex;
 		flex-direction: column;
 		gap: 70px;
@@ -50,7 +62,6 @@
 		// position: relative;
 		.head {
 			width: 100%;
-			max-width: 980px;
 			max-height: 260px;
 			height: 100vh;
 			position: relative;
@@ -109,7 +120,6 @@
 			}
 			img {
 				width: 100%;
-				max-width: 979px;
 				max-height: 224px;
 				object-fit: cover;
 				border-radius: 3px;
@@ -118,7 +128,6 @@
 			.bar {
 				display: flex;
 				align-items: center;
-				width: 980px;
 				height: 90px;
 				background: #ffffff;
 
@@ -133,11 +142,12 @@
 					cursor: pointer;
 				}
 				.side_bar {
-					width: 810px;
 					height: 90px;
 					display: flex;
 					justify-content: space-between;
 					padding-inline: 30px;
+					width: 100%;
+					margin-top: 20px;
 
 					.start {
 						display: flex;
@@ -186,6 +196,8 @@
 						flex-direction: column;
 						gap: 10px;
 						text-align: center;
+						margin-top: 10px;
+						margin-right: 40px;
 						h4 {
 							color: rgb(0, 0, 0);
 							font-size: 15px;
@@ -225,17 +237,13 @@
 		}
 		.links {
 			width: 100%;
-			max-width: 980px;
 			padding-block: 10px;
 			background: #fff;
 			display: flex;
-			justify-content: space-around;
+			justify-content: center;
 			align-items: center;
-			gap: 75px;
-
-			// position: absolute;
-			// top: 350px;
-			// left: 0px;
+			gap: 80px;
+			margin-top: -8px;
 
 			.link {
 				display: flex;
@@ -284,12 +292,12 @@
 			display: flex;
 			flex-wrap: wrap;
 			gap: 8px;
-			width: 980px;
+			margin-top: -60px;
 			.section {
 				display: flex;
 				.photos {
-					width: 320px;
-					height: 320px;
+					width: 350px;
+					height: 350px;
 
 					.image {
 						object-fit: cover;
@@ -314,8 +322,8 @@
 			}
 			.bar {
 				cursor: pointer;
-				width: 320px;
-				height: 320px;
+				width: 353px;
+				height: 353px;
 				background: white;
 				display: grid;
 				align-items: center;
@@ -331,8 +339,8 @@
 			}
 			.edit {
 				width: 100%;
-				max-width: 320px;
-				height: 320px;
+				max-width: 350px;
+				height: 350px;
 			}
 
 			.photos {
@@ -352,8 +360,8 @@
 					cursor: pointer;
 				}
 				img {
-					width: 320px;
-					height: 320px;
+					width: 353px;
+					height: 353px;
 					object-fit: cover;
 				}
 				&:hover {
@@ -430,6 +438,7 @@
 		max-width: 700px;
 		border-radius: 15px;
 		padding-inline: 10px;
+		padding: 10px 20px;
 
 		.added {
 			height: 400px;
@@ -454,6 +463,7 @@
 			.boolean {
 				display: flex;
 				justify-content: space-between;
+				font-size: 17px;
 			}
 
 			h3 {
@@ -468,6 +478,7 @@
 				align-items: center;
 				justify-content: center;
 				gap: 10px;
+				margin-top: -16px;
 			}
 		}
 	}
@@ -514,12 +525,12 @@
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
-
 					position: fixed;
-					right: 465px;
-					top: 120px;
+					height: 70px;
 					z-index: 50;
-					background: white;
+					background: #ffffff;
+					padding-left: 20px;
+
 					.user_avatar {
 						display: flex;
 						align-items: center;
@@ -561,6 +572,7 @@
 						border: none;
 						outline: none;
 						cursor: pointer;
+						padding-right: 32px;
 						svg {
 							color: gray;
 						}
@@ -571,6 +583,9 @@
 					color: #000;
 					display: flex;
 					flex-direction: column;
+					margin-left: 15px;
+					align-items: center;
+					margin-bottom: 50px;
 
 					.main_center {
 						display: flex;
@@ -579,7 +594,7 @@
 						.like {
 							// width: 100%;
 							// max-width: 440px;
-							width: 450px;
+							width: 410px;
 							display: flex;
 							justify-content: space-between;
 
@@ -593,11 +608,14 @@
 								flex-direction: column;
 								align-items: center;
 								position: relative;
+								top: -24px;
 
 								button {
 									background: none;
 									outline: none;
 									border: none;
+									cursor: pointer;
+
 									svg {
 										width: 14px;
 									}
@@ -632,21 +650,20 @@
 				}
 
 				.input_smile {
-					border-top: 0.5px solid rgba(0, 0, 0, 0.3);
 					width: 100%;
 					max-width: 490px;
-					padding: 5px;
+					padding: 20px;
 					position: fixed;
-					right: 465px;
-					top: 840px;
+					top: 807px;
 					width: 100%;
 					background: white;
+					display: flex;
+					align-items: center;
+
 					svg {
-						position: absolute;
-						top: 7px;
-						left: 0;
-						bottom: 6px;
+						position: relative;
 						cursor: pointer;
+						top: 3px;
 					}
 					input {
 						outline: 0;

@@ -1,7 +1,8 @@
+// @ts-nocheck
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useConfirmByEmailMutation } from '@/src/redux/api/login';
+import { useConfirmByEmailMutation } from '@/src/redux/api/auth';
 import scss from './Login.module.scss';
 import { Input } from 'antd';
 

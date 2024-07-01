@@ -9,18 +9,31 @@ import ProfilPage from '../pages/profilPage/ProfilPage';
 import UserPublic from '../pages/userPublic/UserPublic';
 import NewPublic from '../pages/publicPage/NewPublic';
 import PostById from '../pages/justForTest/PostById';
-import ChatMessage from '../pages/chat/ChatMessage';
 // import Publics from '../pages/publicsUsers/';
 import MainPage from '../pages/mainPage/MainPage';
-import ChatPerson from '../pages/chat/ChatPerson';
 import ForMe from '../pages/justForTest/ForMe';
 import scss from './LayoutSide.module.scss';
 import Test from '../pages/publicPage/Test';
 import NavBar from '@/src/ui/navBar/NavBar';
 import Footer from './footer/Footer';
+import { useEffect, useState } from 'react';
+import { useGetMeQuery } from '@/src/redux/api/auth';
+import ChatsPage from '@/src/pagesSide/components/pages/ChatsPage.tsx';
+import ChatUser from '@/src/pagesSide/components/pages/chatsSections/ChatUser.tsx';
+import PreloaderSpinner from '@/src/ui/preloaderSpinner/PreloaderSpinner.tsx';
 
 const LayoutSide = () => {
+	const { status } = useGetMeQuery();
+	const [isPreLoader, setIsPreloader] = useState(true);
 	const location = useLocation();
+
+	useEffect(() => {
+		if (status === 'fulfilled' || status === 'rejected') {
+			setTimeout(() => {
+				setIsPreloader(false);
+			}, 700);
+		}
+	}, [status]);
 
 	const isNotification = location.pathname === '/notification';
 	const isChatPerson = location.pathname === '/chatperson';
@@ -29,6 +42,7 @@ const LayoutSide = () => {
 	const isMainPage = location.pathname === '/';
 
 	return (
+<<<<<<< HEAD
 		<div className={scss.Layout}>
 			<div style={{ background: '#ebeff3' }} className="alihan">
 				<main className="container">
@@ -43,27 +57,61 @@ const LayoutSide = () => {
 						<Route path="/notification" element={<Notifications />} />
 						<Route path="/user-profile/:idUser/*" element={<UsersProfile />} />
 						<Route path="/public" element={<PublicPage />} />
+=======
+		<>
+			{isPreLoader ? (
+				<>
+					<PreloaderSpinner />
+				</>
+			) : (
+				<>
+					<div className={scss.Layout}>
+						<div style={{ background: '#ebeff3' }} className="alihan">
+							<main className="container">
+								{/* {!isChatPerson && <NavBar />} */}
+								<NavBar />
+								<Routes>
+									<Route path="/" element={<MainPage />} />
+									<Route path="/side/*" element={<ProfilPage />} />
+									<Route path="/settings" element={<EditProfilePage />} />
+									<Route path="/chat" element={<ChatsPage />}>
+										<Route path=":userEmail" element={<ChatUser />} />
+									</Route>
+									<Route path="/notification" element={<Notifications />} />
+									<Route
+										path="/users-profile/:foundUserId/*"
+										element={<UsersProfile />}
+									/>
+									<Route path="/public" element={<PublicPage />} />
+									<Route
+										path="/public/user-public/:communityId/*"
+										element={<UserPublic />}
+									/>
+>>>>>>> dev
 
-						<Route path="/public/:communityId" element={<ForMe />} />
-						<Route path="/new-public" element={<NewPublic />} />
-						<Route path="/test/:publicName " element={<Test />} />
-						<Route path="/confindent" element={<ConfidentTwoPage />} />
-						<Route path="/blocked" element={<BlockedPages />} />
-						<Route path="/public/new-public" element={<NewPublic />} />
-						<Route path="/post/:postId" element={<PostById />} />
-						<Route
-							path="/user-public/:communityId/*"
-							element={<UserPublic />}
-						/>
-					</Routes>
-				</main>
-			</div>
-			{!isSettingsPage &&
-				!isChat &&
-				!isChatPerson &&
-				!isMainPage &&
-				!isNotification && <Footer />}
-		</div>
+									<Route path="/public/:communityId" element={<ForMe />} />
+									<Route path="/new-public" element={<NewPublic />} />
+									<Route path="/test/:publicName " element={<Test />} />
+									<Route path="/confindent" element={<ConfidentTwoPage />} />
+									<Route path="/blocked" element={<BlockedPages />} />
+									<Route path="/new-public" element={<NewPublic />} />
+									<Route path="/post/:postId" element={<PostById />} />
+									<Route
+										path="/user-public/:communityId/*"
+										element={<UserPublic />}
+									/>
+								</Routes>
+							</main>
+						</div>
+						{!isSettingsPage &&
+							!isChat &&
+							!isChatPerson &&
+							!isMainPage &&
+							!isNotification && <Footer />}
+					</div>
+				</>
+			)}
+		</>
 	);
 };
 

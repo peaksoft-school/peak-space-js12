@@ -12,8 +12,7 @@
 			background: rgba(0, 0, 0, 0.06);
 			border-radius: 4px;
 			width: 64px;
-			/* min-width: 64px; */
-			/* height: 32px; */
+
 			width: 100%;
 			height: 100vh;
 			line-height: 32px;
@@ -33,17 +32,28 @@
 	}
 }
 
+.custom_skeleton {
+	background-color: #f0f2f5;
+	border-radius: 4px;
+	height: 250px;
+	margin-bottom: 16px;
+}
+
+.my_community {
+	font-size: 24px;
+	position: relative;
+	top: 28px;
+}
+
 .container {
-	max-width: 980px;
 	width: 100%;
 	min-height: 100vh;
-	max-height: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 50px;
 	overflow: hidden;
+
 	.content {
-		background-color: white;
 		width: 100%;
 		height: 260px;
 
@@ -58,41 +68,34 @@
 		}
 		.head {
 			position: relative;
-			width: 979px;
+			width: 100%;
 			height: 158px;
 			left: 1px;
-			background: #d9d9d959;
+			background: #c9c9c959;
+			top: 4px;
 		}
 		.publics {
 			padding-top: 19px;
 			text-align: center;
+			background-color: #ffffff;
+			padding: 20px;
 
 			.public_item {
 				width: 100%;
-				max-width: 980px;
 				max-height: 260px;
 				height: 100vh;
 				position: absolute;
 				top: 0px;
 				left: 0px;
 
-				.have {
-					// border: 2px solid green;
-				}
-
-				.none {
-					// background: #d9d9d959;
-					// padding: 75px 492px;
-				}
-
 				.cover {
 					position: relative;
 					img {
 						width: 100%;
-						max-width: 979px;
 						max-height: 200px;
 						object-fit: cover;
 						border-radius: 3px;
+						cursor: pointer;
 					}
 
 					button {
@@ -144,17 +147,9 @@
 				.bar {
 					display: flex;
 					align-items: center;
-					width: 980px;
+					width: 100%;
 					height: 90px;
 					background: #ffffff;
-
-					.none_avata {
-						border: 2px solid red;
-					}
-
-					.have_avatar {
-						// padding: 50px 38px;
-					}
 
 					img {
 						width: 150px;
@@ -167,7 +162,7 @@
 						margin-left: 13px;
 					}
 					.side_bar {
-						width: 810px;
+						width: 100%;
 						height: 90px;
 						display: flex;
 						align-items: center;
@@ -177,10 +172,12 @@
 						.start {
 							display: flex;
 							flex-direction: column;
+							align-items: baseline;
 							gap: 7px;
+							margin-top: 6px;
 							.bar_aside {
 								display: flex;
-								align-items: center;
+								align-items: baseline;
 								gap: 8px;
 								h4 {
 									color: rgb(0, 0, 0);
@@ -207,6 +204,7 @@
 								font-size: 13px;
 								font-weight: 400;
 								line-height: 15px;
+								margin-top: -8px;
 							}
 							p {
 								color: rgba(0, 0, 0, 0.7);
@@ -217,10 +215,8 @@
 						}
 
 						.end {
-							display: flex;
-							flex-direction: column;
-							gap: 10px;
-							text-align: center;
+							position: relative;
+							right: 50px;
 							h4 {
 								color: rgb(0, 0, 0);
 								font-size: 15px;
@@ -283,23 +279,20 @@
 		display: flex;
 		flex-direction: column;
 		gap: 60px;
+
 		.third_3 {
 			width: 100%;
-			max-width: 980px;
 			max-height: 260px;
 			height: 100vh;
-			// position: absolute;
-			// top: 0px;
-			// left: 0px;
 
 			.cover {
 				position: relative;
 				img {
 					width: 100%;
-					max-width: 979px;
 					max-height: 200px;
 					object-fit: cover;
 					border-radius: 3px;
+					cursor: pointer;
 				}
 
 				button {
@@ -351,17 +344,9 @@
 			.bar {
 				display: flex;
 				align-items: center;
-				width: 980px;
+				width: 100%;
 				height: 90px;
 				background: #ffffff;
-
-				.none_avata {
-					border: 2px solid red;
-				}
-
-				.have_avatar {
-					// padding: 50px 38px;
-				}
 
 				img {
 					width: 150px;
@@ -374,7 +359,7 @@
 					margin-left: 13px;
 				}
 				.side_bar {
-					width: 810px;
+					width: 100%;
 					height: 90px;
 					display: flex;
 					align-items: center;
@@ -474,27 +459,13 @@
 
 		.second_2 {
 			width: 100%;
-			max-width: 980px;
 			max-height: 260px;
 			height: 100vh;
-			// position: absolute;
-			// top: 0px;
-			// left: 0px;
-
-			.have {
-				// border: 2px solid green;
-			}
-
-			.none {
-				// background: #d9d9d959;
-				// padding: 75px 492px;
-			}
 
 			.cover {
 				position: relative;
 				img {
 					width: 100%;
-					max-width: 979px;
 					max-height: 200px;
 					object-fit: cover;
 					border-radius: 3px;
@@ -547,19 +518,11 @@
 			}
 
 			.bar {
+				width: 100%;
 				display: flex;
 				align-items: center;
-				width: 980px;
 				height: 90px;
 				background: #ffffff;
-
-				.none_avata {
-					border: 2px solid red;
-				}
-
-				.have_avatar {
-					// padding: 50px 38px;
-				}
 
 				img {
 					width: 150px;
@@ -572,7 +535,7 @@
 					margin-left: 13px;
 				}
 				.side_bar {
-					width: 810px;
+					width: 100%;
 					height: 90px;
 					display: flex;
 					align-items: center;
@@ -667,21 +630,14 @@
 
 	.users {
 		width: 100%;
-		max-width: 980px;
 		max-height: 260px;
 		height: auto;
 		display: flex;
 		flex-direction: column;
 		gap: 30px;
 
-		.have {
-			// background: #d9d9d959;
-			// padding: 75px 489px;
-		}
-
 		img {
 			width: 100%;
-			max-width: 979px;
 			max-height: 200px;
 			object-fit: cover;
 			border-radius: 3px;
@@ -690,7 +646,6 @@
 		.bar {
 			display: flex;
 			align-items: center;
-			width: 980px;
 			height: 93px;
 			background: #ffffff;
 			position: relative;
@@ -700,7 +655,6 @@
 				width: 150px;
 				height: 150px;
 
-				// position: absolute;
 				left: 0px;
 				bottom: 70px;
 				z-index: 100;
@@ -716,7 +670,7 @@
 				margin-left: 13px;
 			}
 			.side_bar {
-				width: 940px;
+				width: 100%;
 				height: 90px;
 				display: flex;
 				align-items: center;

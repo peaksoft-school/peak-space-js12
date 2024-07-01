@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from 'react';
 import { SelectProps, Skeleton, message } from 'antd';
 import ConfidentPage from './ConfidentPage';
@@ -30,7 +29,7 @@ interface Type {
 const EditProfilePage = () => {
 	const { data, refetch, isLoading, error } = useGetUserInfoQuery();
 
-	const [userProfileData, setUserProfileData] = useState<Type>([]);
+	const [userProfileData, setUserProfileData] = useState<Type>();
 	const [putRequest] = useEditPageMutation();
 	const [createFile] = usePostCreateFileMutation();
 
@@ -53,8 +52,8 @@ const EditProfilePage = () => {
 	);
 	const [isPersonHasAWork, setIsPersonHasAWork] = useState<string | null>(null);
 
-	const [editCity, setEditCity] = useState<string>('');
-	const [editSchool, setEditSchool] = useState<string>('');
+	const [editCity] = useState<string>('');
+	const [editSchool] = useState<string>('');
 	const [messageApi, contextHolder] = message.useMessage();
 
 	const success = () => {
@@ -242,7 +241,7 @@ const EditProfilePage = () => {
 									/>
 									<img
 										className={scss.userEditProfile}
-										src={avatar || userProfileData.avatar}
+										src={avatar || userProfileData?.avatar}
 										alt=""
 									/>
 									<IconCamera
@@ -255,8 +254,8 @@ const EditProfilePage = () => {
 							<div className={scss.user_cover}>
 								<img
 									className={scss.cover_img}
-									src={coverImg || userProfileData.coverImg}
-									alt={`cover${userProfileData.userName}`}
+									src={coverImg || userProfileData?.coverImg}
+									alt={`cover${userProfileData?.userName}`}
 								/>
 								<input
 									onChange={handleChangeCover}
@@ -400,7 +399,7 @@ const EditProfilePage = () => {
 											<div className={scss.f}>
 												<img
 													className={scss.userEditProfile}
-													src={avatar || userProfileData.avatar}
+													src={avatar || userProfileData?.avatar}
 													alt=""
 												/>
 												<p>Cохранить изменения?</p>

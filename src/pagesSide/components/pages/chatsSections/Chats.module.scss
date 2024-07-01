@@ -1,0 +1,53 @@
+.Chats {
+	width: 100%;
+	.content {
+		display: flex;
+		//gap: 10px;
+		justify-content: center;
+		.left {
+			padding-block: 10px;
+			width: 100%;
+			background: var(--white);
+			border-radius: 0px 0px 4px 4px;
+			border-left: 1px solid #e7e8ec;
+			border-right: 1px solid #e7e8ec;
+			border-bottom: 1px solid #e7e8ec;
+			display: flex;
+			//gap: 10px;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			.user {
+				width: 100%;
+				padding: 10px 16px;
+				display: flex;
+				gap: 10px;
+				justify-content: flex-start;
+				align-items: center;
+				border-radius: var(--border-radius);
+				color: #000000b2;
+				&.active {
+					background-color: var(--purple);
+					color: var(--white);
+				}
+				.name_message {
+					display: flex;
+					gap: 2px;
+					flex-direction: column;
+					justify-content: center;
+					align-items: flex-start;
+					.name {
+						font-size: 16px;
+					}
+					.message {
+						font-size: 12px;
+					}
+				}
+			}
+		}
+		.right {
+			position: relative;
+			width: 100%;
+		}
+	}
+}

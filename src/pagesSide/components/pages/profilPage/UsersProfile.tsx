@@ -436,6 +436,7 @@ import UserPublics from './UserPublics';
 import ModalTs from '@/src/ui/modal/Modal';
 import { usePutBlockedUsersMutation } from '@/src/redux/api/blocked';
 
+<<<<<<< HEAD
 interface Types {
 	id: number;
 	avatar: string;
@@ -446,6 +447,15 @@ interface Types {
 	friendsSize: number;
 	publicationsSize: number;
 }
+=======
+const ProfilPage = () => {
+	const [, setActiveItem] = useState<string>('/');
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const { foundUserId } = useParams();
+	const { data, isLoading } = useGetFriendsQuery(foundUserId as any);
+	console.log(data, 'mufa');
+>>>>>>> dev
 
 const UsersProfile = () => {
 	const { idUser } = useParams();

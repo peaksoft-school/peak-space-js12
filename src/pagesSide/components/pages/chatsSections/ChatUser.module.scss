@@ -1,0 +1,52 @@
+.ChatUser {
+	width: 100%;
+	.content {
+		display: flex;
+		flex-direction: column;
+		.user {
+			padding: 10px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			background: var(--white);
+			border-radius: 0px 0px 4px 4px;
+			border-left: 1px solid #e7e8ec;
+			border-right: 1px solid #e7e8ec;
+			border-bottom: 1px solid #e7e8ec;
+			.buttons {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				button {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					svg {
+						width: 30px;
+						height: 30px;
+					}
+				}
+			}
+		}
+		.chat {
+			display: flex;
+			flex-direction: column;
+			.myMessage {
+				align-self: flex-end;
+				background-color: #daf8cb;
+				padding: 10px;
+				border-radius: 10px;
+				margin: 5px;
+			}
+
+			.otherMessage {
+				align-self: flex-start;
+				background-color: var(--white);
+				padding: 10px;
+				border-radius: 10px;
+				margin: 5px;
+			}
+		}
+	}
+}

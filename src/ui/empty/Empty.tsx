@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Empty } from 'antd';
 
 const Empty = () => {

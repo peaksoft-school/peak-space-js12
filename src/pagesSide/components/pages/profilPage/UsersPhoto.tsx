@@ -23,4 +23,3 @@ const UsersPhoto = () => {
 };
 
 export default UsersPhoto;
-
