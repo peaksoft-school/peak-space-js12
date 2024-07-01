@@ -1,4 +1,6 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
+import ChatUser from '@/src/pagesSide/components/pages/chatsSections/ChatUser.tsx';
+import PreloaderSpinner from '@/src/ui/preloaderSpinner/PreloaderSpinner.tsx';
 import ConfidentTwoPage from '../pages/editProfilePage/ConfidentTwoPage';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import BlockedPages from '../pages/editProfilePage/BlockedPages';
@@ -19,8 +21,6 @@ import Footer from './footer/Footer';
 import { useEffect, useState } from 'react';
 import { useGetMeQuery } from '@/src/redux/api/auth';
 import ChatsPage from '@/src/pagesSide/components/pages/ChatsPage.tsx';
-import ChatUser from '@/src/pagesSide/components/pages/chatsSections/ChatUser.tsx';
-import PreloaderSpinner from '@/src/ui/preloaderSpinner/PreloaderSpinner.tsx';
 
 const LayoutSide = () => {
 	const { status } = useGetMeQuery();
@@ -42,22 +42,6 @@ const LayoutSide = () => {
 	const isMainPage = location.pathname === '/';
 
 	return (
-<<<<<<< HEAD
-		<div className={scss.Layout}>
-			<div style={{ background: '#ebeff3' }} className="alihan">
-				<main className="container">
-					{/* {!isChatPerson && <NavBar />} */}
-					<NavBar />
-					<Routes>
-						<Route path="/" element={<MainPage />} />
-						<Route path="/side/*" element={<ProfilPage />} />
-						<Route path="/settings" element={<EditProfilePage />} />
-						<Route path="/chat" element={<ChatMessage />} />
-						<Route path="/chatperson" element={<ChatPerson />} />
-						<Route path="/notification" element={<Notifications />} />
-						<Route path="/user-profile/:idUser/*" element={<UsersProfile />} />
-						<Route path="/public" element={<PublicPage />} />
-=======
 		<>
 			{isPreLoader ? (
 				<>
@@ -87,7 +71,6 @@ const LayoutSide = () => {
 										path="/public/user-public/:communityId/*"
 										element={<UserPublic />}
 									/>
->>>>>>> dev
 
 									<Route path="/public/:communityId" element={<ForMe />} />
 									<Route path="/new-public" element={<NewPublic />} />

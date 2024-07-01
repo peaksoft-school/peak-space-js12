@@ -27,19 +27,6 @@
 // } from '@tabler/icons-react';
 // import scss from './Style.module.scss';
 
-import {
-	useGetFriendsQuery,
-	useGetPhotoFriendQuery
-} from '@/src/redux/api/friends';
-import {
-	Link,
-	Route,
-	Routes,
-	useLocation,
-	useNavigate,
-	useParams
-} from 'react-router-dom';
-
 // const userProfile = () => {
 // 	const [, setActiveItem] = useState<string>('/');
 // 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -431,12 +418,16 @@ import {
 	IconPinned,
 	IconX
 } from '@tabler/icons-react';
+import {
+	useGetFriendsQuery,
+	useGetPhotoFriendQuery
+} from '@/src/redux/api/friends';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import PhotoWith from './PhotoWith';
 import UserPublics from './UserPublics';
 import ModalTs from '@/src/ui/modal/Modal';
 import { usePutBlockedUsersMutation } from '@/src/redux/api/blocked';
 
-<<<<<<< HEAD
 interface Types {
 	id: number;
 	avatar: string;
@@ -447,19 +438,10 @@ interface Types {
 	friendsSize: number;
 	publicationsSize: number;
 }
-=======
-const ProfilPage = () => {
-	const [, setActiveItem] = useState<string>('/');
-	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	const { foundUserId } = useParams();
-	const { data, isLoading } = useGetFriendsQuery(foundUserId as any);
-	console.log(data, 'mufa');
->>>>>>> dev
 
 const UsersProfile = () => {
 	const { idUser } = useParams();
-	const { data } = useGetFriendsQuery<Types>(idUser as any);
+	const { data } = useGetFriendsQuery<Types[]>(idUser as any);
 	console.log(data);
 
 	const [profile, setProfile] = useState<Types[]>([]);
@@ -658,7 +640,7 @@ const UsersProfile = () => {
 				</div>
 
 				<div className={scss.imgs}>
-					{userPhoto?.map((item) => (
+					{userPhoto?.map((item: { linkPublications: any[] }) => (
 						<div className={scss.user_img}>
 							{item.linkPublications.map((el) => (
 								<div>

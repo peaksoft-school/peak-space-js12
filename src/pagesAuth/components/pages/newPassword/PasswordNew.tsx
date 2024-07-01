@@ -136,10 +136,7 @@ const PasswordNew = () => {
 						type={'submit'}
 						disabled={false}
 					/>
-<<<<<<< HEAD
 					<CustomButton children={'cancel'} onClick={() => console.log()} />
-=======
->>>>>>> dev
 				</form>
 			</div>
 		</div>

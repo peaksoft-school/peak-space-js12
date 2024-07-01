@@ -3,7 +3,7 @@ import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import peakSpace from '../../../../assets/peakSpace.png';
 import { Controller, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Input, Checkbox, message } from 'antd';
 import { signInWithPopup } from 'firebase/auth';
 import { GoogleImg } from '@/src/assets/icons';
@@ -24,8 +24,9 @@ interface LoginFormInputs {
 const Login = () => {
 	const [postGoogleToken] = usePostWithGoogleMutation();
 	const [postRequest, { isLoading }] = usePostLoginMutation();
-	const [_, contextHolder] = message.useMessage();
+	const [messageApi, contextHolder] = message.useMessage();
 	const [rememberMe, setRememberMe] = useState<boolean>(false); // новое состояние для чекбокса
+	const navigate = useNavigate();
 
 	const {
 		control,
@@ -35,11 +36,9 @@ const Login = () => {
 	} = useForm<LoginFormInputs>({ mode: 'onBlur' });
 
 	const navigateToPages = () => {
-		window.location.reload();
+		// window.location.reload();
+		navigate('/');
 	};
-
-<<<<<<< HEAD
-
 
 	const onSubmit = async (data: any) => {
 		const response = (await postRequest(
@@ -50,20 +49,6 @@ const Login = () => {
 				const { token }: any = response.data;
 				localStorage.setItem('auth_token', token);
 				localStorage.setItem('isAuth', 'true');
-=======
-	const handleLogin = async (data: LoginFormInputs) => {
-		try {
-			const result = await postRequest(data);
-			if ('data' in result) {
-				const { token } = result.data!;
-				if (rememberMe) {
-					localStorage.setItem('auth_token', JSON.stringify(token));
-					localStorage.setItem('isAuth', 'true');
-				} else {
-					sessionStorage.setItem('auth_token', JSON.stringify(token));
-					sessionStorage.setItem('isAuth', 'true');
-				}
->>>>>>> dev
 				navigateToPages();
 				reset();
 			}
@@ -119,7 +104,7 @@ const Login = () => {
 				<div className="container">
 					<div className={scss.aside}>
 						<img src={peakSpace} alt="peakSpace" />
-						<form onSubmit={handleSubmit(handleLogin)} className={scss.form}>
+						<form onSubmit={handleSubmit(onSubmit)} className={scss.form}>
 							{contextHolder}
 							<Controller
 								name="email"
