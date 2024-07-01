@@ -48,7 +48,8 @@ const NavBar = () => {
 			icon: (
 				<img
 					className={
-						pathname === '/public'
+						pathname === '/public' ||
+						pathname === '/public/user-public/:communityId/'
 							? `${scss.img} ${scss.active_img}`
 							: `${scss.img}`
 					}
