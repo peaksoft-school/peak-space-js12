@@ -290,7 +290,8 @@ const PublicPage = () => {
 						{users?.map((item) => (
 							<>
 								<div key={item.id} className={scss.third_3}>
-								<div
+
+											<div
 									onClick={(event) => navigateToMyPublic(item.id, event)}
 									key={item.id}
 									className={scss.third_3}
@@ -364,6 +365,8 @@ const PublicPage = () => {
 										</div>
 									</div>
 								</div>
+								</div>
+						
 							</>
 						))}
 					</div>
