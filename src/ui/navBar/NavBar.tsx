@@ -11,6 +11,7 @@ import {
 import scss from './NavBar.module.scss';
 import Logo from '@/src/assets/peacSpaceLogo.png';
 import MiniLogo from '@/src/assets/mini-logo.svg';
+import UserInfoLogout from '@/src/ui/userInfoLogout/UserInfoLogout.tsx';
 
 const NavBar = () => {
 	const { pathname } = useLocation();
@@ -35,10 +36,10 @@ const NavBar = () => {
 					className={
 						pathname === '/side/public'
 							? `${scss.img} ${scss.active_img}`
-							: `${scss.img}`
+							: scss.img
 					}
 					src={userProfileImg}
-					alt="foto"
+					alt="Profile"
 				/>
 			),
 			label: 'Мой профиль'
@@ -51,10 +52,10 @@ const NavBar = () => {
 						pathname === '/public' ||
 						pathname === '/public/user-public/:communityId/'
 							? `${scss.img} ${scss.active_img}`
-							: `${scss.img}`
+							: scss.img
 					}
 					src={userPublicImg}
-					alt="foto"
+					alt="Public"
 				/>
 			),
 			label: 'Мои паблики'
@@ -70,28 +71,33 @@ const NavBar = () => {
 
 	return (
 		<div className={`${scss.content} ${isChatPerson ? scss.chatPerson : ''}`}>
-			<nav>
-				<ul className={!test ? scss.isNone : scss.none}>
-					{!isChatPerson ? (
-						<img src={Logo} alt="logo" className={scss.logo} />
-					) : (
-						<img src={MiniLogo} alt="logo" className={scss.miniLogo} />
-					)}
-
-					{navigationItems.map((item) => (
-						<li key={item.path} onClick={() => navigateTo(item.path)}>
-							<Link
-								className={`${isActive(item.path) ? scss.active_page : scss.active_default}`}
-								to={item.path}
-							>
-								{item.icon}
-								{/* Conditionally render the label based on the current path */}
-								{!isChatPerson && <span>{item.label}</span>}
-							</Link>
-						</li>
-					))}
-				</ul>
-			</nav>
+			<div className={scss.top}>
+				{!isChatPerson ? (
+					<img src={Logo} alt="Logo" className={scss.logo} />
+				) : (
+					<img src={MiniLogo} alt="Logo" className={scss.miniLogo} />
+				)}
+				<nav>
+					<ul className={!test ? scss.isNone : scss.none}>
+						{navigationItems.map((item) => (
+							<li key={item.path} onClick={() => navigateTo(item.path)}>
+								<Link
+									className={
+										isActive(item.path) ? scss.active_page : scss.active_default
+									}
+									to={item.path}
+								>
+									{item.icon}
+									{!isChatPerson && <span>{item.label}</span>}
+								</Link>
+							</li>
+						))}
+					</ul>
+				</nav>
+			</div>
+			<div className={scss.bottom}>
+				<UserInfoLogout />
+			</div>
 		</div>
 	);
 };
