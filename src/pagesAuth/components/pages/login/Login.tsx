@@ -93,13 +93,22 @@ const Login = () => {
 
 	const onSubmit = async (data: any) => {
 		try {
-			const result = await postRequest(data);
-			if ('data' in result) {
-				const { token }: any = result.data;
+			const response = await postRequest(data);
+			if ('data' in response) {
+				const { token }: any = response.data;
 				localStorage.setItem('auth_token', token);
 				localStorage.setItem('isAuth', 'true');
 				navigateToPages();
 				reset();
+
+
+
+				
+			}else if (response.data) {
+				console.log('full response',response);
+				
+				
+
 			}
 		} catch (error) {
 			console.error('Ошибка входа:', error);

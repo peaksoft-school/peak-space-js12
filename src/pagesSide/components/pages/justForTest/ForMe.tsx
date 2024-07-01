@@ -1645,6 +1645,7 @@ const ForMe = () => {
 												: scss.isNotMessage
 										}
 									>
+										{item. id === item.id ? '1' : '2'}
 										<p onClick={() => deleteUserPublic(item.ownerId)}>
 											удалить пользователя
 										</p>

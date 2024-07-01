@@ -341,7 +341,6 @@ const EditProfilePage = () => {
 								<div>
 									<div className={scss.bar}>
 										<p>Город</p>
-										<input type="text" />
 
 										<input
 											type="text"
@@ -351,7 +350,6 @@ const EditProfilePage = () => {
 									</div>
 									<div className={scss.bar}>
 										<p>ВУЗ</p>
-										<input type="text" />
 										<input
 											type="text"
 											placeholder="Your school"

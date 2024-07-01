@@ -20,6 +20,7 @@ namespace usersProfile {
 
 	type GetChapterResponse = {
 		map: any;
+		length: any;
 
 		groupName: string;
 		id: number;

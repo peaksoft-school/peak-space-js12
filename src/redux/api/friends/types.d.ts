@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 namespace FRIENDS {
-	type GetFriendsRespose = {
+	type GetFriendsResponse = {
 		id: number;
 		avatar: string;
 		cover: string;
@@ -12,4 +12,12 @@ namespace FRIENDS {
 	}[];
 
 	type GetFriendsRequest = void;
+
+	type GetPhotoFriendResponse = {
+		id: number;
+		linkPublications: string[];
+	};
+
+
+	type GetPhotoFriendRequest = void
 }
