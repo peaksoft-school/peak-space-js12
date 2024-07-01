@@ -1,5 +1,4 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import PreLoader from '@/src/ui/preLoader/Preloader.tsx';
 import ConfidentTwoPage from '../pages/editProfilePage/ConfidentTwoPage';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import BlockedPages from '../pages/editProfilePage/BlockedPages';
@@ -21,6 +20,7 @@ import { useEffect, useState } from 'react';
 import { useGetMeQuery } from '@/src/redux/api/auth';
 import ChatsPage from '@/src/pagesSide/components/pages/ChatsPage.tsx';
 import ChatUser from '@/src/pagesSide/components/pages/chatsSections/ChatUser.tsx';
+import PreLoader from '@/src/ui/preLoader/PreLoader';
 
 const LayoutSide = () => {
 	const { status } = useGetMeQuery();
