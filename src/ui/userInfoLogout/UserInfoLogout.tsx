@@ -7,10 +7,6 @@ import { useGetMeQuery } from '@/src/redux/api/auth';
 const UserInfoLogout: FC = () => {
 	const { data } = useGetMeQuery();
 
-	// const logout = () => {
-
-	// }
-
 	return (
 		<>
 			<div className={scss.UserInfoLogout} onClick={(e) => e.stopPropagation()}>
