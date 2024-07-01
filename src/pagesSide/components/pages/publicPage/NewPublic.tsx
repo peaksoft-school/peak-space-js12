@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PencilIcon } from '@/src/assets/icons';

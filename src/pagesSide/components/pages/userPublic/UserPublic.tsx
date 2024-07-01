@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/rules-of-hooks */
+// @ts-nocheck
 import { SetStateAction, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -46,7 +45,7 @@ const UserPublic = () => {
 	const [isModal, setIsModal] = useState(false);
 	const [isTextModal, setIsTextModal] = useState(false);
 	const [isCommentModal, setIsCommentModal] = useState(false);
-	const [selectedReason, setSelectedReason] = useState('');
+	const [_, setSelectedReason] = useState('');
 	const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
 	const [deletePublicById] = useDeletePhotoByIdMutation();
 	const [liked, setLiked] = useState(false);

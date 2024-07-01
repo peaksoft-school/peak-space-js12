@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 namespace PROFIL {
 	type GetProfilResponse = {
 		id: number;
@@ -33,7 +32,7 @@ namespace PROFIL {
 		location: string;
 		description: string;
 		countLikes: number;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 		links: any[];
 	}[];
 
@@ -48,7 +47,7 @@ namespace PROFIL {
 		img: string;
 	};
 	type PostProfilRequest = {
-		id: number;
+		id?: number;
 		img: string;
 	};
 }

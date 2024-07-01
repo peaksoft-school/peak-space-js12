@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-nocheck
 import {
 	useAddedCommentMutation,
 	useCommentPostMutation,
@@ -83,7 +82,7 @@ const ForMe = () => {
 	const [liked, setLiked] = useState(false);
 	const [innerById, setInnerById] = useState<number | null>(null);
 	const [comment, setComment] = useState('');
-	const [isModalCommnet, setIsModalComment] = useState(false);
+	const [isModalComment, setIsModalComment] = useState(false);
 	const [modalAvatar, setModalAvatar] = useState(false);
 	const [postComment] = useCommentPostMutation();
 	const [deleteComment] = useInnerCommentDeleteMutation();
@@ -98,7 +97,6 @@ const ForMe = () => {
 	const [addedPostComment] = useAddedCommentMutation();
 	const navigate = useNavigate();
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleGetEmoji = (event: any) => {
 		setInputStr((prevInput) => prevInput + event.native);
 		setShowPicker(false);

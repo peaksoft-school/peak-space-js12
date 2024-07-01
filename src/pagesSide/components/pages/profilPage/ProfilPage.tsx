@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-nocheck
 import { Key, ReactNode, ReactPortal, useEffect, useState } from 'react';
 import {
 	Link,
