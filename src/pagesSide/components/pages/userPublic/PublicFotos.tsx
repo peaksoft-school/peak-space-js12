@@ -226,7 +226,7 @@ const PublicFotos = () => {
 											</>
 										) : (
 											<>
-												{datas?.map((item) => (
+												{datas?.map((item: any) => (
 													<div
 														key={item.id}
 														className={scss.cards}

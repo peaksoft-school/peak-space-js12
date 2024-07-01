@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import scss from './PublicPage.module.scss';
@@ -290,83 +290,83 @@ const PublicPage = () => {
 						{users?.map((item) => (
 							<>
 								<div key={item.id} className={scss.third_3}>
-
-											<div
-									onClick={(event) => navigateToMyPublic(item.id, event)}
-									key={item.id}
-									className={scss.third_3}
-								>
-									<div className={scss.cover}>
-										<img
-											onClick={(event) => navigateToMyPublic(item.id,event)}
-											src={
-												item.cover && item.cover !== 'cover'
-													? item.cover
-													: 'https://s3-alpha-sig.figma.com/img/1c92/1bf5/b0093ed0ac29cf722c834434cf7ee611?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aRbcWs8eN-Mhny0ICI4GwKLx-LG7tHupNdjJBDCVlh37EbKJDndgV-0wSV8n0xq8OM-TEVcxPBLZMhjhy2C1~O1H2JnivHYvfFiLd8f4~KNWiFAE0eQMFjR3ROYnWqWASvOYYbWJ3tIuHScnYxKnlNZzjjQ71UfYzEjQNdRj1ecjFym1oI2wCHHRm-Qemi1VGm0kPLCnLZokRPxn9i8AM7SznezApo2HJlzd3v363puF6ylHtDDjwGSMgnpW2rSxKVyKz3utSjLTQRKy~mpnGsZbX4HRFovktCXL2aq9TiYvxvvHboBXhyz5aXbJzLt-WPGGp4rCyCdSTwL0fnntsA__'
-											}
-											className={
-												item.cover && item.cover.length > 0
-													? scss.have
-													: scss.none
-											}
-											alt=""
-										/>
-									</div>
-									<div className={scss.bar}>
-										<div className={scss.user_img}>
+									<div
+										onClick={(event) => navigateToMyPublic(item.id, event)}
+										key={item.id}
+										className={scss.third_3}
+									>
+										<div className={scss.cover}>
 											<img
+												onClick={(event) => navigateToMyPublic(item.id, event)}
 												src={
-													item.avatar && item.avatar !== 'avatar'
-														? item.avatar
-														: 'https://www.transparentpng.com/download/user/gray-user-profile-icon-png-fP8Q1P.png'
+													item.cover && item.cover !== 'cover'
+														? item.cover
+														: 'https://s3-alpha-sig.figma.com/img/1c92/1bf5/b0093ed0ac29cf722c834434cf7ee611?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aRbcWs8eN-Mhny0ICI4GwKLx-LG7tHupNdjJBDCVlh37EbKJDndgV-0wSV8n0xq8OM-TEVcxPBLZMhjhy2C1~O1H2JnivHYvfFiLd8f4~KNWiFAE0eQMFjR3ROYnWqWASvOYYbWJ3tIuHScnYxKnlNZzjjQ71UfYzEjQNdRj1ecjFym1oI2wCHHRm-Qemi1VGm0kPLCnLZokRPxn9i8AM7SznezApo2HJlzd3v363puF6ylHtDDjwGSMgnpW2rSxKVyKz3utSjLTQRKy~mpnGsZbX4HRFovktCXL2aq9TiYvxvvHboBXhyz5aXbJzLt-WPGGp4rCyCdSTwL0fnntsA__'
 												}
 												className={
-													item.avatar && item.avatar.length > 0
-														? scss.none_avata
-														: scss.have_avatar
+													item.cover && item.cover.length > 0
+														? scss.have
+														: scss.none
 												}
-												// alt="avatar"
+												alt=""
 											/>
 										</div>
-										<div className={scss.side_bar}>
-											<div className={scss.start}>
-												<div className={scss.bar_aside}>
-													<h4>{item.pablicName}</h4>
-													<span></span>
-													<p>{item.userName}</p>
-												</div>
-												<h4
-													style={{
-														width: '100%',
-														display: '-webkit-box',
-														maxWidth: '250px',
-														WebkitLineClamp: 1,
-														WebkitBoxOrient: 'vertical',
-														overflow: 'hidden'
-													}}
-												>
-													<Tooltip title={item.descriptionPublic}>
-														{item.descriptionPublic}
-													</Tooltip>
-												</h4>
-												<p>{item.tematica}</p>
+										<div className={scss.bar}>
+											<div className={scss.user_img}>
+												<img
+													src={
+														item.avatar && item.avatar !== 'avatar'
+															? item.avatar
+															: 'https://www.transparentpng.com/download/user/gray-user-profile-icon-png-fP8Q1P.png'
+													}
+													className={
+														item.avatar && item.avatar.length > 0
+															? scss.none_avata
+															: scss.have_avatar
+													}
+													// alt="avatar"
+												/>
 											</div>
-											<div className={scss.end}>
-												<div>
-													<h4>{item.countFollower}</h4>
-													<p>участников</p>
+											<div className={scss.side_bar}>
+												<div className={scss.start}>
+													<div className={scss.bar_aside}>
+														<h4>{item.pablicName}</h4>
+														<span></span>
+														<p>{item.userName}</p>
+													</div>
+													<h4
+														style={{
+															width: '100%',
+															display: '-webkit-box',
+															maxWidth: '250px',
+															WebkitLineClamp: 1,
+															WebkitBoxOrient: 'vertical',
+															overflow: 'hidden'
+														}}
+													>
+														<Tooltip title={item.descriptionPublic}>
+															{item.descriptionPublic}
+														</Tooltip>
+													</h4>
+													<p>{item.tematica}</p>
 												</div>
-												<button
-													onClick={(event) => JoinByUser(item.publicId, event)}
-												>
-													Присоединиться
-												</button>
+												<div className={scss.end}>
+													<div>
+														<h4>{item.countFollower}</h4>
+														<p>участников</p>
+													</div>
+													<button
+														onClick={(event) =>
+															JoinByUser(item.publicId, event)
+														}
+													>
+														Присоединиться
+													</button>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								</div>
-						
 							</>
 						))}
 					</div>

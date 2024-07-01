@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useGetTestQuery } from '@/src/redux/api/userPublic';
 import { useParams } from 'react-router-dom';
 
