@@ -12,11 +12,5 @@ namespace BLOCKEDUSERS {
 
 	type GetBlockedUsersRequest = void;
 
-	type PutBlockedUsersResponse = {
-		userId: number;
-	};
 
-	type PutBlockedUsersRequest = {
-		userId: number;
-	};
 }

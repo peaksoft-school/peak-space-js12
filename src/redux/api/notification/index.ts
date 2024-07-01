@@ -6,9 +6,11 @@ const api = index.injectEndpoints({
 			NOTIFICATIONS.GetNotificationRequest
 		>({
 			query: () => ({
-				url: '/https://07cf8c38cd79d90d.mokky.dev/mokkey',
-				// url: 'https://6155bff3810f5771.mokky.dev/items',
-				method: 'GET'
+				url: '/notifications',
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
 			}),
 			providesTags: ['api']
 		})

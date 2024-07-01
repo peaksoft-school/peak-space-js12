@@ -7,6 +7,7 @@ import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import scss from './NewPassword.module.scss';
 import { Input } from 'antd';
+import CustomButton from '@/src/ui/customButton/CustomButton';
 
 interface ErrorProps {
 	password: string;
@@ -135,10 +136,11 @@ const PasswordNew = () => {
 						type={'submit'}
 						disabled={false}
 					/>
+<<<<<<< HEAD
+					<CustomButton children={'cancel'} onClick={() => console.log()} />
+=======
+>>>>>>> dev
 				</form>
-				<button onClick={navigateToBack} className={scss.button}>
-					отмена
-				</button>
 			</div>
 		</div>
 	);

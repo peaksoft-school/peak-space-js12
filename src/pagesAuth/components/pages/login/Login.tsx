@@ -38,6 +38,19 @@ const Login = () => {
 		window.location.reload();
 	};
 
+<<<<<<< HEAD
+
+
+	const onSubmit = async (data: any) => {
+		const response = (await postRequest(
+			data
+		)) as LOGIN.PostRegistrationResponse;
+		if ('data' in response) {
+			if (response.data) {
+				const { token }: any = response.data;
+				localStorage.setItem('auth_token', token);
+				localStorage.setItem('isAuth', 'true');
+=======
 	const handleLogin = async (data: LoginFormInputs) => {
 		try {
 			const result = await postRequest(data);
@@ -50,11 +63,24 @@ const Login = () => {
 					sessionStorage.setItem('auth_token', JSON.stringify(token));
 					sessionStorage.setItem('isAuth', 'true');
 				}
+>>>>>>> dev
 				navigateToPages();
 				reset();
 			}
-		} catch (error) {
-			console.error('Ошибка входа:', error);
+		}
+		if (response.error) {
+			console.log(response.error.data);
+			if (response.error.status === 404) {
+				messageApi.open({
+					type: 'warning',
+					content: response.error.data?.message
+				});
+			} else if (response.error.status === 417) {
+				messageApi.open({
+					type: 'warning',
+					content: response.error.data?.message
+				});
+			}
 		}
 	};
 

@@ -42,6 +42,22 @@ const LayoutSide = () => {
 	const isMainPage = location.pathname === '/';
 
 	return (
+<<<<<<< HEAD
+		<div className={scss.Layout}>
+			<div style={{ background: '#ebeff3' }} className="alihan">
+				<main className="container">
+					{/* {!isChatPerson && <NavBar />} */}
+					<NavBar />
+					<Routes>
+						<Route path="/" element={<MainPage />} />
+						<Route path="/side/*" element={<ProfilPage />} />
+						<Route path="/settings" element={<EditProfilePage />} />
+						<Route path="/chat" element={<ChatMessage />} />
+						<Route path="/chatperson" element={<ChatPerson />} />
+						<Route path="/notification" element={<Notifications />} />
+						<Route path="/user-profile/:idUser/*" element={<UsersProfile />} />
+						<Route path="/public" element={<PublicPage />} />
+=======
 		<>
 			{isPreLoader ? (
 				<>
@@ -71,6 +87,7 @@ const LayoutSide = () => {
 										path="/public/user-public/:communityId/*"
 										element={<UserPublic />}
 									/>
+>>>>>>> dev
 
 									<Route path="/public/:communityId" element={<ForMe />} />
 									<Route path="/new-public" element={<NewPublic />} />

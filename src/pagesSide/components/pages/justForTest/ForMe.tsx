@@ -729,7 +729,15 @@ const ForMe = () => {
 												: scss.isNotMessage
 										}
 									>
+<<<<<<< HEAD
+										{item. id === item.id ? '1' : '2'}
+										<p onClick={() => deleteUserPublic(item.ownerId)}>
+											удалить пользователя
+										</p>
+										<h4 onClick={() => RemoveById(item.id)}>удалить</h4>
+=======
 										<h4 onClick={() => RemoveById(item.id)}>Удалить</h4>
+>>>>>>> dev
 									</div>
 								</div>
 

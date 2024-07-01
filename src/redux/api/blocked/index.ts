@@ -16,12 +16,9 @@ const api = index.injectEndpoints({
 			providesTags: ['post']
 		}),
 
-		putBlockedUsers: builder.mutation<
-			BLOCKEDUSERS.PutBlockedUsersResponse,
-			BLOCKEDUSERS.PutBlockedUsersRequest
-		>({
-			query: ({ userId }) => ({
-				url: `/user-infos/block/${userId}`,
+		putBlockedUsers: builder.mutation({
+			query: (id) => ({
+				url: `/user-infos/block/${id}`,
 				method: 'PUT',
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth_token')}`

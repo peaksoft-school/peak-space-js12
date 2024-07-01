@@ -689,12 +689,12 @@
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
-	background: white;
-	height: 340px;
-	border-radius: 15px;
 	text-align: center;
+	background: white;
+	height: 280px;
 	width: 440px;
-	padding: 20px;
+	padding: 15px;
+	border-radius: 15px;
 
 	.text {
 		padding: 15px;
@@ -712,7 +712,7 @@
 			background: transparent;
 			cursor: pointer;
 			color: #4c3f9b;
-			border-top: 2px solid black;
+			border-top: 1px solid gray;
 		}
 		.button1 {
 			padding-top: 8px;
@@ -721,7 +721,7 @@
 			background: transparent;
 			cursor: pointer;
 			color: #4c3f9b;
-			border-top: 2px solid black;
+			border-top: 1px solid gray;
 		}
 	}
 }

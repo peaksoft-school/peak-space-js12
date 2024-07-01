@@ -11,6 +11,8 @@ import { Skeleton } from 'antd';
 const Notifications = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const { data: datas, isLoading, error } = useGetNotificationQuery();
+	console.log(datas);
+
 	const [inputStr, setInputStr] = useState('');
 	const [showPicker, setShowPicker] = useState(false);
 
@@ -76,46 +78,51 @@ const Notifications = () => {
 									/>
 									<div>
 										<h4>{item.senderUserName}</h4>
-										<p className={scss.text}>{item.createdAt}</p>
+										<p className={scss.text}>{item.message}</p>
 									</div>
 								</div>
 							</div>
-							<img
-								onClick={showModal}
-								src={item.publicationOrStoryImageUrl}
-								alt="photo"
-							/>
+
+							<div className={scss.end}>
+								<p>{item.createdAt}</p>
+								<img
+									onClick={showModal}
+									src={item.senderProfileImageUrl}
+									alt="photo"
+								/>
+							</div>
+
+							<ModalTs open={isModalOpen} onCancel={handleCancel}>
+								<div className={scss.tool_tip}>
+									<div className={scss.open_modal}>
+										<div className={scss.slider}>
+											<img src={item.senderProfileImageUrl} alt="" />
+										</div>
+										<div className={scss.aside_bar}>
+											<div className={scss.input_smile}>
+												<Smile onClick={() => setShowPicker((val) => !val)} />
+												<input
+													type="text"
+													placeholder="Добавить комментарий..."
+													value={inputStr}
+													onChange={(e) => setInputStr(e.target.value)}
+												/>
+												{showPicker && (
+													<Picker
+														data={data}
+														onEmojiSelect={handleGetEmoji}
+														theme={'light'}
+													/>
+												)}
+											</div>
+										</div>
+									</div>
+								</div>
+							</ModalTs>
 						</div>
 					))}
 				</div>
 			</div>
-			<ModalTs open={isModalOpen} onCancel={handleCancel}>
-				<div className={scss.tool_tip}>
-					<div className={scss.open_modal}>
-						<div className={scss.slider}>
-							<NotificationsSlider />
-						</div>
-						<div className={scss.aside_bar}>
-							<div className={scss.input_smile}>
-								<Smile onClick={() => setShowPicker((val) => !val)} />
-								<input
-									type="text"
-									placeholder="Добавить комментарий..."
-									value={inputStr}
-									onChange={(e) => setInputStr(e.target.value)}
-								/>
-								{showPicker && (
-									<Picker
-										data={data}
-										onEmojiSelect={handleGetEmoji}
-										theme={'light'}
-									/>
-								)}
-							</div>
-						</div>
-					</div>
-				</div>
-			</ModalTs>
 		</div>
 	);
 };

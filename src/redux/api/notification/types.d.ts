@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 namespace NOTIFICATIONS {
 	type GetNotificationResponse = {
-		id: Key | null | undefined;
+		id: number;
 		message: string;
 		senderUserName: string;
 		createdAt: number;
