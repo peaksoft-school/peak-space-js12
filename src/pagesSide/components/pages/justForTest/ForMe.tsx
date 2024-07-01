@@ -337,16 +337,25 @@ const ForMe = () => {
 	};
 
 	const saveEdit = async (id?: number) => {
+		const trimmedPablicName = editPablicName.trim();
+		const trimmedDescriptionPublic = editDescriptionPublic.trim();
+
 		const newData = {
 			cover: editCover,
 			avatar: edtiAvatar,
-			pablicName: editPablicName,
+			pablicName:
+				trimmedPablicName === '' ? item.pablicName : trimmedPablicName,
 			tematica: editTematica,
-			descriptionPublic: editDescriptionPublic
+			descriptionPublic:
+				trimmedDescriptionPublic === ''
+					? item.descriptionPublic
+					: trimmedDescriptionPublic
 		};
+
 		await editRequest(newData);
 		setIsEdit(null);
 	};
+
 	const removeId = async () => {
 		try {
 			await deleteRequest().unwrap();
@@ -561,6 +570,7 @@ const ForMe = () => {
 											</div>
 											<div className={scss.subject_matter}>
 												<p>Тематика</p>
+
 												<select
 													value={editTematica}
 													onChange={(e) => setEditTematica(e.target.value)}
@@ -590,6 +600,27 @@ const ForMe = () => {
 												<button
 													onClick={() => saveEdit(item.id)}
 													className={scss.save_public_button}
+													disabled={
+														editPablicName === '' ||
+														editDescriptionPublic === ''
+													}
+													style={{
+														backgroundColor:
+															editPablicName === '' ||
+															editDescriptionPublic === ''
+																? '#ced4da'
+																: '',
+														color:
+															editPablicName === '' ||
+															editDescriptionPublic === ''
+																? '#6c757d'
+																: '#ffffff',
+														cursor:
+															editPablicName === '' ||
+															editDescriptionPublic === ''
+																? 'not-allowed'
+																: 'pointer'
+													}}
 												>
 													Сохранить
 												</button>
