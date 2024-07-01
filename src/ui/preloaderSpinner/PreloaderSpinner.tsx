@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import scss from './PreLoader.module.scss';
+import scss from './PreloaderSpinner.module.scss';
 
-const PreLoader: FC = () => {
+const PreloaderSpinner: FC = () => {
 	return (
 		<div className={scss.loader}>
 			<div className={scss.infinityChrome}>
@@ -13,4 +13,4 @@ const PreLoader: FC = () => {
 	);
 };
 
-export default PreLoader;
+export default PreloaderSpinner;
