@@ -38,8 +38,15 @@ const NewPublic: React.FC = () => {
 		const files = event.target.files;
 		if (files && files[0]) {
 			const file = files[0];
-			const formData = new FormData();
+			const validTypes = ['image/png', 'image/jpeg'];
 
+			if (!validTypes.includes(file.type)) {
+				alert('Пожалуйста, загрузите файл формата PNG или JPG.');
+				fileInputRef.current.value = '';
+				return;
+			}
+
+			const formData = new FormData();
 			formData.append('file', file);
 
 			try {
@@ -124,6 +131,7 @@ const NewPublic: React.FC = () => {
 						type="file"
 						ref={coverInputRef}
 						style={{ display: 'none' }}
+						accept=".jpg, .png"
 					/>
 					<div className={scss.cover_choose_btn} onClick={handleChooseCover}>
 						<PencilIcon className={scss.pencil_icon} />
@@ -137,6 +145,7 @@ const NewPublic: React.FC = () => {
 							ref={avatarInputRef}
 							style={{ display: 'none' }}
 							onChange={handleAddAvatar}
+							accept=".jpg, .png"
 						/>
 						<img className={scss.userEditProfile} src={avatarImg} alt="" />
 						<IconCamera

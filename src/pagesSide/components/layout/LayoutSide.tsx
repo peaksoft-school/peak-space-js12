@@ -65,13 +65,17 @@ const LayoutSide = () => {
 										element={<UsersProfile />}
 									/>
 									<Route path="/public" element={<PublicPage />} />
+									<Route
+										path="/public/user-public/:communityId/*"
+										element={<UserPublic />}
+									/>
 
 									<Route path="/public/:communityId" element={<ForMe />} />
 									<Route path="/new-public" element={<NewPublic />} />
 									<Route path="/test/:publicName " element={<Test />} />
 									<Route path="/confindent" element={<ConfidentTwoPage />} />
 									<Route path="/blocked" element={<BlockedPages />} />
-									<Route path="/public/new-public" element={<NewPublic />} />
+									<Route path="/new-public" element={<NewPublic />} />
 									<Route path="/post/:postId" element={<PostById />} />
 									<Route
 										path="/user-public/:communityId/*"

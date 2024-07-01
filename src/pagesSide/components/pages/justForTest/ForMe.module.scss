@@ -33,15 +33,27 @@
 	}
 }
 
-.nursultan {
-	// overflow: hidden;
+.custom_skeleton {
+	background-color: #f0f2f5;
+	border-radius: 4px;
+	height: 250px;
+	margin-bottom: 16px;
+}
+
+.main {
+	width: 100%;
+	margin-top: 6px;
+}
+
+.dots {
+	margin-right: 10px;
+	margin-top: 5px;
 }
 
 .Forme {
-	width: 100%;
-	max-width: 980px;
 	min-height: 100vh;
 	max-height: 100%;
+	width: 100%;
 
 	// height: 100vh;
 	// max-height: 100%;
@@ -50,9 +62,9 @@
 		display: flex;
 		flex-direction: column;
 		gap: 80px;
+		width: 100%;
 		.head {
 			width: 100%;
-			max-width: 980px;
 			max-height: 260px;
 			height: 100vh;
 			position: relative;
@@ -60,6 +72,7 @@
 			.cover_img {
 				position: relative;
 				overflow: hidden;
+				width: 100%;
 
 				button {
 					position: absolute;
@@ -111,7 +124,6 @@
 			}
 			img {
 				width: 100%;
-				max-width: 979px;
 				max-height: 224px;
 				object-fit: cover;
 				border-radius: 3px;
@@ -120,9 +132,9 @@
 			.bar {
 				display: flex;
 				align-items: center;
-				width: 980px;
 				height: 90px;
 				background: #ffffff;
+				width: 100%;
 
 				img {
 					width: 150px;
@@ -145,10 +157,12 @@
 						display: flex;
 						flex-direction: column;
 						gap: 7px;
+
 						.bar_aside {
 							display: flex;
 							align-items: center;
 							gap: 8px;
+							margin-top: 10px;
 							h4 {
 								color: rgb(0, 0, 0);
 								font-size: 21px;
@@ -189,6 +203,8 @@
 						flex-direction: column;
 						gap: 10px;
 						text-align: center;
+						margin-top: 20px;
+						margin-right: -50px;
 						h4 {
 							color: rgb(0, 0, 0);
 							font-size: 15px;
@@ -252,7 +268,6 @@
 		}
 
 		.container {
-			max-width: 980px;
 			width: 100%;
 			display: flex;
 			flex-direction: column;
@@ -304,7 +319,6 @@
 				}
 			}
 			.user_cover {
-				width: 980px;
 				height: 253px;
 				position: relative;
 
@@ -341,7 +355,6 @@
 				}
 			}
 			.public_content {
-				max-width: 980px;
 				width: 100%;
 				background-color: white;
 				display: flex;
@@ -350,7 +363,6 @@
 				padding: 20px 0px 30px 50px;
 
 				div {
-					max-width: 900px;
 					width: 100%;
 					display: flex;
 					flex-direction: column;
@@ -424,12 +436,11 @@
 			display: flex;
 			flex-wrap: wrap;
 			gap: 8px;
-			width: 980px;
 			.section {
 				display: flex;
 				.photos {
-					width: 320px;
-					height: 320px;
+					width: 450px;
+					height: 450px;
 
 					.image {
 						object-fit: cover;
@@ -454,8 +465,8 @@
 			}
 			.bar {
 				cursor: pointer;
-				width: 320px;
-				height: 320px;
+				width: 353px;
+				height: 353px;
 				background: white;
 				display: grid;
 				align-items: center;
@@ -471,8 +482,8 @@
 			}
 			.edit {
 				width: 100%;
-				max-width: 320px;
-				height: 320px;
+				max-width: 356px;
+				height: 356px;
 			}
 
 			.photos {
@@ -492,8 +503,8 @@
 					cursor: pointer;
 				}
 				img {
-					width: 320px;
-					height: 320px;
+					width: 353px;
+					height: 353px;
 					object-fit: cover;
 				}
 				&:hover {
@@ -584,6 +595,8 @@
 		width: 100%;
 		max-width: 700px;
 		border-radius: 15px;
+		padding-inline: 10px;
+		padding: 10px 20px;
 
 		.added {
 			height: 400px;
@@ -608,6 +621,7 @@
 			.boolean {
 				display: flex;
 				justify-content: space-between;
+				font-size: 17px;
 			}
 
 			h3 {
@@ -622,6 +636,7 @@
 				align-items: center;
 				justify-content: center;
 				gap: 10px;
+				margin-top: -16px;
 			}
 		}
 	}
@@ -829,21 +844,20 @@
 			}
 
 			.input_smile {
-				border-top: 0.5px solid rgba(0, 0, 0, 0.3);
 				width: 100%;
 				max-width: 490px;
-				padding: 5px;
+				padding: 20px;
 				position: fixed;
-				right: 46 0px;
-				top: 840px;
+				top: 807px;
 				width: 100%;
 				background: white;
+				display: flex;
+				align-items: center;
+
 				svg {
-					position: absolute;
-					top: 7px;
-					left: 0;
-					bottom: 6px;
+					position: relative;
 					cursor: pointer;
+					top: 3px;
 				}
 				input {
 					outline: 0;
@@ -932,12 +946,12 @@
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
-
 					position: fixed;
-					right: 465px;
-					top: 120px;
+					height: 70px;
 					z-index: 50;
-					background: white;
+					background: #ffffff;
+					padding-left: 20px;
+
 					.user_avatar {
 						display: flex;
 						align-items: center;
@@ -979,6 +993,7 @@
 						border: none;
 						outline: none;
 						cursor: pointer;
+						padding-right: 32px;
 						svg {
 							color: gray;
 						}
@@ -989,6 +1004,9 @@
 					color: #000;
 					display: flex;
 					flex-direction: column;
+					margin-left: 15px;
+					align-items: center;
+					margin-bottom: 50px;
 
 					.main_center {
 						display: flex;
@@ -997,7 +1015,7 @@
 						.like {
 							// width: 100%;
 							// max-width: 440px;
-							width: 450px;
+							width: 410px;
 							display: flex;
 							justify-content: space-between;
 
@@ -1011,11 +1029,14 @@
 								flex-direction: column;
 								align-items: center;
 								position: relative;
+								top: -24px;
 
 								button {
 									background: none;
 									outline: none;
 									border: none;
+									cursor: pointer;
+
 									svg {
 										width: 14px;
 									}
@@ -1050,21 +1071,20 @@
 				}
 
 				.input_smile {
-					border-top: 0.5px solid rgba(0, 0, 0, 0.3);
 					width: 100%;
 					max-width: 490px;
-					padding: 5px;
+					padding: 20px;
 					position: fixed;
-					right: 465px;
-					top: 840px;
+					top: 807px;
 					width: 100%;
 					background: white;
+					display: flex;
+					align-items: center;
+
 					svg {
-						position: absolute;
-						top: 7px;
-						left: 0;
-						bottom: 6px;
+						position: relative;
 						cursor: pointer;
+						top: 3px;
 					}
 					input {
 						outline: 0;

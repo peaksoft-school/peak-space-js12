@@ -373,6 +373,7 @@ const PublicFotos = () => {
 				ref={fileInputRef}
 				style={{ display: 'none' }}
 				onChange={handleFileChange}
+				accept=".jpg, .png"
 			/>
 
 			<button onClick={handleAddPhoto}>Добавить фото</button>
