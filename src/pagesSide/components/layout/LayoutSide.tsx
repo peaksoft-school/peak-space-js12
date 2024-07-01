@@ -10,10 +10,8 @@ import ProfilPage from '../pages/profilPage/ProfilPage';
 import UserPublic from '../pages/userPublic/UserPublic';
 import NewPublic from '../pages/publicPage/NewPublic';
 import PostById from '../pages/justForTest/PostById';
-import ChatMessage from '../pages/chat/ChatMessage';
 // import Publics from '../pages/publicsUsers/';
 import MainPage from '../pages/mainPage/MainPage';
-import ChatPerson from '../pages/chat/ChatPerson';
 import ForMe from '../pages/justForTest/ForMe';
 import scss from './LayoutSide.module.scss';
 import Test from '../pages/publicPage/Test';
@@ -21,6 +19,8 @@ import NavBar from '@/src/ui/navBar/NavBar';
 import Footer from './footer/Footer';
 import { useEffect, useState } from 'react';
 import { useGetMeQuery } from '@/src/redux/api/auth';
+import ChatsPage from '@/src/pagesSide/components/pages/ChatsPage.tsx';
+import ChatUser from '@/src/pagesSide/components/pages/chatsSections/ChatUser.tsx';
 
 const LayoutSide = () => {
 	const { status } = useGetMeQuery();
@@ -56,8 +56,9 @@ const LayoutSide = () => {
 									<Route path="/" element={<MainPage />} />
 									<Route path="/side/*" element={<ProfilPage />} />
 									<Route path="/settings" element={<EditProfilePage />} />
-									<Route path="/chat" element={<ChatMessage />} />
-									<Route path="/chatperson" element={<ChatPerson />} />
+									<Route path="/chat" element={<ChatsPage />}>
+										<Route path=":userEmail" element={<ChatUser />} />
+									</Route>
 									<Route path="/notification" element={<Notifications />} />
 									<Route
 										path="/users-profile/:foundUserId/*"
