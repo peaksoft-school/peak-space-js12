@@ -20,7 +20,7 @@ import { useEffect, useState } from 'react';
 import { useGetMeQuery } from '@/src/redux/api/auth';
 import ChatsPage from '@/src/pagesSide/components/pages/ChatsPage.tsx';
 import ChatUser from '@/src/pagesSide/components/pages/chatsSections/ChatUser.tsx';
-import PreLoader from '@/src/ui/preLoader/PreLoader';
+import PreLoader from '@/src/ui/preLoader/Preloader';
 
 const LayoutSide = () => {
 	const { status } = useGetMeQuery();
