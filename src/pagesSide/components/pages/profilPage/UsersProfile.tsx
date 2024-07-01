@@ -28,8 +28,8 @@ import scss from './Style.module.scss';
 const ProfilPage = () => {
 	const [, setActiveItem] = useState<string>('/');
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	
-  const {foundUserId} = useParams()
+
+	const { foundUserId } = useParams();
 	const { data, isLoading } = useGetFriendsQuery(foundUserId as any);
 	console.log(data, 'mufa');
 

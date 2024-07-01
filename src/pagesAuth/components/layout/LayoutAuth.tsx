@@ -16,7 +16,7 @@ const LayoutAuth = () => {
 				<Route path="/confirm-by-email/:id" element={<ConfirmByEmail />} />
 			</Routes>
 		</>
-	); 
+	);
 };
 
 export default LayoutAuth;

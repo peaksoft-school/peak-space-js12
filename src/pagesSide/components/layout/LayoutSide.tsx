@@ -1,4 +1,5 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
+import PreLoader from '@/src/ui/preLoader/Preloader.tsx';
 import ConfidentTwoPage from '../pages/editProfilePage/ConfidentTwoPage';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
 import BlockedPages from '../pages/editProfilePage/BlockedPages';
@@ -18,9 +19,19 @@ import scss from './LayoutSide.module.scss';
 import Test from '../pages/publicPage/Test';
 import NavBar from '@/src/ui/navBar/NavBar';
 import Footer from './footer/Footer';
+import { useEffect, useState } from 'react';
+import { useGetMeQuery } from '@/src/redux/api/auth';
 
 const LayoutSide = () => {
+	const { status } = useGetMeQuery();
+	const [isPreLoader, setIsPreloader] = useState(true);
 	const location = useLocation();
+
+	useEffect(() => {
+		if (status === 'fulfilled' || status === 'rejected') {
+			setIsPreloader(false);
+		}
+	}, [status]);
 
 	const isNotification = location.pathname === '/notification';
 	const isChatPerson = location.pathname === '/chatperson';
@@ -29,44 +40,54 @@ const LayoutSide = () => {
 	const isMainPage = location.pathname === '/';
 
 	return (
-		<div className={scss.Layout}>
-			<div style={{ background: '#ebeff3' }} className="alihan">
-				<main className="container">
-					{/* {!isChatPerson && <NavBar />} */}
-					<NavBar />
-					<Routes>
-						<Route path="/" element={<MainPage />} />
-						<Route path="/side/*" element={<ProfilPage />} />
-						<Route path="/settings" element={<EditProfilePage />} />
-						<Route path="/chat" element={<ChatMessage />} />
-						<Route path="/chatperson" element={<ChatPerson />} />
-						<Route path="/notification" element={<Notifications />} />
-						<Route
-							path="/users-profile/:foundUserId/*"
-							element={<UsersProfile />}
-						/>
-						<Route path="/public" element={<PublicPage />} />
+		<>
+			{isPreLoader ? (
+				<>
+					<PreLoader />
+				</>
+			) : (
+				<>
+					<div className={scss.Layout}>
+						<div style={{ background: '#ebeff3' }} className="alihan">
+							<main className="container">
+								{/* {!isChatPerson && <NavBar />} */}
+								<NavBar />
+								<Routes>
+									<Route path="/" element={<MainPage />} />
+									<Route path="/side/*" element={<ProfilPage />} />
+									<Route path="/settings" element={<EditProfilePage />} />
+									<Route path="/chat" element={<ChatMessage />} />
+									<Route path="/chatperson" element={<ChatPerson />} />
+									<Route path="/notification" element={<Notifications />} />
+									<Route
+										path="/users-profile/:foundUserId/*"
+										element={<UsersProfile />}
+									/>
+									<Route path="/public" element={<PublicPage />} />
 
-						<Route path="/public/:communityId" element={<ForMe />} />
-						<Route path="/new-public" element={<NewPublic />} />
-						<Route path="/test/:publicName " element={<Test />} />
-						<Route path="/confindent" element={<ConfidentTwoPage />} />
-						<Route path="/blocked" element={<BlockedPages />} />
-						<Route path="/public/new-public" element={<NewPublic />} />
-						<Route path="/post/:postId" element={<PostById />} />
-						<Route
-							path="/user-public/:communityId/*"
-							element={<UserPublic />}
-						/>
-					</Routes>
-				</main>
-			</div>
-			{!isSettingsPage &&
-				!isChat &&
-				!isChatPerson &&
-				!isMainPage &&
-				!isNotification && <Footer />}
-		</div>
+									<Route path="/public/:communityId" element={<ForMe />} />
+									<Route path="/new-public" element={<NewPublic />} />
+									<Route path="/test/:publicName " element={<Test />} />
+									<Route path="/confindent" element={<ConfidentTwoPage />} />
+									<Route path="/blocked" element={<BlockedPages />} />
+									<Route path="/public/new-public" element={<NewPublic />} />
+									<Route path="/post/:postId" element={<PostById />} />
+									<Route
+										path="/user-public/:communityId/*"
+										element={<UserPublic />}
+									/>
+								</Routes>
+							</main>
+						</div>
+						{!isSettingsPage &&
+							!isChat &&
+							!isChatPerson &&
+							!isMainPage &&
+							!isNotification && <Footer />}
+					</div>
+				</>
+			)}
+		</>
 	);
 };
 

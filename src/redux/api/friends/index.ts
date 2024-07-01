@@ -6,10 +6,10 @@ const api = index.injectEndpoints({
 			FRIENDS.GetFriendsRespose,
 			FRIENDS.GetFriendsRequest
 		>({
-			query: (foundUserId ) => ({
+			query: (foundUserId) => ({
 				url: `/publics/profile-friends/${foundUserId}`,
-				method: 'GET', 
-        headers: {
+				method: 'GET',
+				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
 				}
 			}),

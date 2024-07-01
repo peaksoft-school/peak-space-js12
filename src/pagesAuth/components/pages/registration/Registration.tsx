@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeEvent, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import { usePostRegistrationMutation } from '@/src/redux/api/registration';
+import { usePostRegistrationMutation } from '@/src/redux/api/auth';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpaceImg from '../../../../assets/peakSpace.png';
