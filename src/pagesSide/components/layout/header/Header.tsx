@@ -23,7 +23,6 @@ const Header = () => {
 		}, 1000);
 	};
 
-
 	const users = [
 		{
 			id: 0,
@@ -111,32 +110,29 @@ const Header = () => {
 								<div
 									className={`${inputValue !== '' ? scss.box : scss.hidden}`}
 								>
-									{
-										(inputValue !== '' &&
-										
+									{inputValue !== '' &&
 										data &&
-											data.map((item) => (
-												<div
-													key={item.id}
-													tabIndex={0}
-													onKeyDown={(e) => {
-														if (e.key === 'Enter') {
-															// Define the action that should happen when Enter is pressed
-														}
-													}}
-													className={scss.user_card}
-												>
-													<div className={scss.form}>
-														<img src={item.avatar} alt={item.userName} />
-														<div className={scss.text}>
-															<h4>{item.firstName}</h4>
-															<p>{item.userName}</p>
-														</div>
+										data.map((item) => (
+											<div
+												key={item.id}
+												tabIndex={0}
+												onKeyDown={(e) => {
+													if (e.key === 'Enter') {
+														// Define the action that should happen when Enter is pressed
+													}
+												}}
+												className={scss.user_card}
+											>
+												<div className={scss.form}>
+													<img src={item.avatar} alt={item.userName} />
+													<div className={scss.text}>
+														<h4>{item.firstName}</h4>
+														<p>{item.userName}</p>
 													</div>
-													<p>{item.lastName}</p>
 												</div>
-											)))
-									}
+												<p>{item.lastName}</p>
+											</div>
+										))}
 								</div>
 							</div>
 						</>

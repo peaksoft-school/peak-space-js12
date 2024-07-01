@@ -1,11 +1,16 @@
-import scss from './Preloader.module.scss';
-const Preloader = () => {
+import { FC } from 'react';
+import scss from './PreLoader.module.scss';
+
+const PreLoader: FC = () => {
 	return (
-		<div className={scss.center}>
-			<div className={scss.ring}></div>
-			<span>PeakSpace</span>
+		<div className={scss.loader}>
+			<div className={scss.infinityChrome}>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
 		</div>
 	);
 };
 
-export default Preloader;
+export default PreLoader;

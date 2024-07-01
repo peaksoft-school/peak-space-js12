@@ -36,7 +36,7 @@
 // 		const response = await putRequest(newData);
 
 // 		if (response.data.httpStatus === 'OK') {
-// 			navigate('/auth/login', { replace: true });
+// 			navigate('/auth/auth', { replace: true });
 // 			reset();
 // 		} else if (response.data.httpStatus === 404) {
 // 			messageApi.open({
@@ -105,7 +105,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import 'react-toastify/dist/ReactToastify.css';
 import { Input, message } from 'antd';
-import { usePutPasswordMutation } from '@/src/redux/api/forgetPassword';
+import { usePutPasswordMutation } from '@/src/redux/api/auth';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpace from '../../../../assets/peakSpace.png';
 import scss from './NewPassword.module.scss';

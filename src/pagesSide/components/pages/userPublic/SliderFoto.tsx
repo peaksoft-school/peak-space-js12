@@ -24,8 +24,8 @@ const SliderFoto: FC<SliderFotoTypes> = ({ idModal }) => {
 
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
-		setResultOpenModal1(idModal - 1)
-		setResultOpenModal2(idModal)
+		setResultOpenModal1(idModal - 1);
+		setResultOpenModal2(idModal);
 	}, [idModal]);
 
 	return (

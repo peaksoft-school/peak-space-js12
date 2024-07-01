@@ -2,7 +2,10 @@ import { api as index } from '..';
 
 const api = index.injectEndpoints({
 	endpoints: (builder) => ({
-		poastRivateAccount: builder.mutation<PRIVATEACCOUNT.GetResponse,PRIVATEACCOUNT.GetRequest>({
+		poastRivateAccount: builder.mutation<
+			PRIVATEACCOUNT.GetResponse,
+			PRIVATEACCOUNT.GetRequest
+		>({
 			query: () => ({
 				url: '/user-infos/close-account',
 				method: 'POST',
@@ -11,9 +14,7 @@ const api = index.injectEndpoints({
 				}
 			}),
 			invalidatesTags: ['post']
-		}),
-
-		
+		})
 	})
 });
 

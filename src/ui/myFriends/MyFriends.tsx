@@ -31,7 +31,6 @@ const MyFriends = () => {
 		<div className={scss.container}>
 			<h1>Друзья</h1>
 
-
 			<nav className={scss.nav_bar}>
 				<ul className={scss.nav_list}>
 					{navigationBar.map((nav) => (

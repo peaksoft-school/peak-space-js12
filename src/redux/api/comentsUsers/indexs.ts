@@ -6,13 +6,13 @@ const api = index.injectEndpoints({
 			COMENTSUSERS.GetComentsUsersResponse,
 			COMENTSUSERS.GetComentsUsersRequest
 		>({
-      query : ()=> ({
-        url: 'https://e37485282aedd244.mokky.dev/comments',
-        method: 'GET'
-      }),
-      providesTags: ['comentsUsers']
-    })
+			query: () => ({
+				url: 'https://e37485282aedd244.mokky.dev/comments',
+				method: 'GET'
+			}),
+			providesTags: ['comentsUsers']
+		})
 	})
 });
 
-export const {useGetComentUsersQuery} = api
+export const { useGetComentUsersQuery } = api;
