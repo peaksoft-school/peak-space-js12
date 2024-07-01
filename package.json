@@ -20,6 +20,7 @@
 		"@splidejs/react-splide": "^0.7.12",
 		"@tabler/icons": "^3.3.0",
 		"@tabler/icons-react": "^3.3.0",
+		"@zegocloud/zego-uikit-prebuilt": "^2.6.0",
 		"antd": "^5.18.3",
 		"emoji-mart": "^5.6.0",
 		"firebase": "^10.12.1",

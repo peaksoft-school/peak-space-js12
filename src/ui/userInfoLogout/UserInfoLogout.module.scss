@@ -1,0 +1,49 @@
+.UserInfoLogout {
+	padding: 15px;
+	background: var(--white);
+	box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+	border-radius: var(--border-radius);
+	.content {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		.user_profile {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			.user_data {
+				.user_name {
+					font-size: 16px;
+					font-weight: 500;
+					color: var(--black);
+				}
+				.user_email {
+					font-size: 14px;
+					color: var(--navy-shadow);
+				}
+			}
+		}
+		.auth {
+			.logout {
+				padding: 7px 14px;
+				width: 100%;
+				background: transparent;
+				border: none;
+				outline: none;
+				display: flex;
+				gap: 7px;
+				justify-content: flex-start;
+				align-items: center;
+				border-radius: var(--border-radius);
+				font-size: 14px;
+				font-weight: 500;
+				color: #ff5f54;
+				transition: var(--transition);
+				&:hover {
+					background: #ff5f54;
+					color: var(--white-bg);
+				}
+			}
+		}
+	}
+}

@@ -34,7 +34,7 @@ export const api = createApi({
 		'main',
 		'post',
 		'slider',
-		'userProfile',
+		'userInfoLogout',
 		'chat',
 		'registration',
 		'auth',

@@ -9,7 +9,7 @@ const api = index.injectEndpoints({
 				url: 'https://33707de987c7c248.mokky.dev/newPhoto',
 				method: 'Get'
 			}),
-			providesTags: ['userProfile']
+			providesTags: ['userInfoLogout']
 		}),
 		userFriends: build.query<
 			usersProfile.GetFriendsResponse,
