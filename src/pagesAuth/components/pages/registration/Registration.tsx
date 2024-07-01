@@ -55,7 +55,6 @@ const Registration = () => {
 				return;
 			}
 
-			
 			navigate(`/auth/confirm-by-email/${response.data?.userId}` as string, {
 				replace: true
 			});
@@ -64,8 +63,7 @@ const Registration = () => {
 		} catch (error: any) {
 			console.error('Ошибка регистрации:', error);
 
-		
-			if (error.status === 417) {
+			if (error.status === 404) {
 				messageApi.open({
 					type: 'error',
 					content: 'Уже существует аккаунт с таким Gmail'
@@ -77,8 +75,6 @@ const Registration = () => {
 					type: 'warning',
 					content: 'Пароли не совпадают'
 				});
-
-			
 			}
 		}
 	};

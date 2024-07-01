@@ -6,10 +6,11 @@ import { useGetNotificationQuery } from '@/src/redux/api/notification';
 import ModalTs from '@/src/ui/modal/Modal';
 import { Smile } from '@/src/assets/icons';
 import scss from './Notifications.module.scss';
+import { Skeleton } from 'antd';
 
 const Notifications = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const { data: datas } = useGetNotificationQuery();
+	const { data: datas, isLoading, error } = useGetNotificationQuery();
 	const [inputStr, setInputStr] = useState('');
 	const [showPicker, setShowPicker] = useState(false);
 
@@ -26,6 +27,36 @@ const Notifications = () => {
 	const handleCancel = () => {
 		setIsModalOpen(false);
 	};
+
+	if (isLoading) {
+		return (
+			<div className={scss.error}>
+				<Skeleton.Button active block />
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div>
+				<div
+					style={{
+						height: '100vh'
+					}}
+				>
+					<h1
+						style={{
+							fontFamily: "'Courier New', Courier, monospace",
+							fontWeight: 'bold',
+							textAlign: 'center'
+						}}
+					>
+						Ошибка загрузки данных
+					</h1>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className={scss.notifi}>

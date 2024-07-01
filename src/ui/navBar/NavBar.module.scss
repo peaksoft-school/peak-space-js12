@@ -12,8 +12,18 @@
 		z-index: 888 !important;
 	}
 
+	&.chatPerson {
+		width: 5%;
+		transition: width 0.5s;
+	}
+
 	.logo {
 		padding-bottom: 20px;
+	}
+
+	.miniLogo {
+		margin-left: -65px;
+		width: 170px;
 	}
 
 	nav {

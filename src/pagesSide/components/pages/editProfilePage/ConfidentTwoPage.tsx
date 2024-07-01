@@ -7,8 +7,7 @@ import ModalTs from '@/src/ui/modal/Modal';
 import {
 	IconArrowNarrowLeft,
 	IconPhotoVideo,
-	IconAt,
-	IconCodePlus
+	IconAt
 } from '@tabler/icons-react';
 import scss from './Style.module.scss';
 
@@ -68,9 +67,7 @@ const ConfidentTwoPage: FC = () => {
 
 	return (
 		<div className={scss.confident_content}>
-			<div>
-				<ConfidentPage />
-			</div>
+			<ConfidentPage />
 			<div className={scss.vector_switch}>
 				<div className={scss.vector}>
 					<button onClick={() => navigate(-2)}>

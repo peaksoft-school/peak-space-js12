@@ -24,8 +24,8 @@ const PublicPhoto = () => {
 	const [description, setDescription] = useState('');
 	const [ellipsis, setEllipsis] = useState(true);
 	const [location, setLocation] = useState<{
-		latitude: number;
-		longitude: number;
+		latitude: number | null;
+		longitude: number | null;
 	} | null>(null);
 	const [isModal, setIsModal] = useState(false);
 	const [postRequest] = usePostPublicByIdMutation();
@@ -159,19 +159,19 @@ const PublicPhoto = () => {
 				<ModalTs open={isModal} onCancel={closeModal}>
 					<div className={scss.is_modal}>
 						<div className={scss.modal}>
-							<textarea
+							{/* <textarea
 								value={description}
 								onChange={(e) => setDescription(e.target.value)}
-							></textarea>
+							></textarea> */}
 
-							{/* <TextArea
+							<TextArea
 								showCount
 								maxLength={100}
 								value={description}
 								onChange={(e) => setDescription(e.target.value)}
 								placeholder="disable resize"
 								style={{ height: 230, resize: 'none' }}
-							/> */}
+							/>
 
 							<p>
 								{ellipsis ? 'Выключить комментарии' : 'Включить комментарии'}
