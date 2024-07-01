@@ -7,9 +7,9 @@ import { useGetMeQuery } from '@/src/redux/api/auth';
 const UserInfoLogout: FC = () => {
 	const { data } = useGetMeQuery();
 
-	const logout = () => {
-		
-	}
+	// const logout = () => {
+
+	// }
 
 	return (
 		<>
