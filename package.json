@@ -25,7 +25,6 @@
 		"firebase": "^10.12.1",
 		"glider-js": "^1.7.9",
 		"keen-slider": "^6.8.6",
-		"peac-space-js12": "link:",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-hook-form": "^7.51.2",
