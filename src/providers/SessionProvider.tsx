@@ -25,7 +25,7 @@ export const SessionProvider: FC<ProtectedRouteProps> = ({ children }) => {
 				break;
 			case '/':
 			case '/chat':
-			case '/chats:userName':
+			case '/chat:userName':
 			case '/notifications':
 			case '/settings':
 			case '/side/public':
