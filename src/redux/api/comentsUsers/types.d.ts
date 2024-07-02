@@ -3,10 +3,27 @@
 namespace COMENTSUSERS {
 	type GetComentsUsersResponse = {
 		id: number;
-		name: string;
-		title: string;
-		img: string;
+		userId: number;
+		avatar: string;
+		userName: string;
+		comment: string;
+		countLike: number;
+		createdAt: string;
+		like: boolean;
 	}[];
+	type PostComentsUsersResponse = {
+		httpStatus: string;
+		message: string;
+		isBlock: boolean;
+	};
 
-	type GetComentsUsersRequest = void;
+	type PostComentsUsersRequest = { id: number; message: string };
+	type GetComentsUsersRequest = number;
+	type CommentPublicLikeResponse = {
+		id: number;
+	};
+
+	type CommentPublicLikeRequest = {
+		id: number;
+	};
 }

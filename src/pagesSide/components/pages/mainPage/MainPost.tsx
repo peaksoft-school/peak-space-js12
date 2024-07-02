@@ -1,47 +1,123 @@
-// @ts-nocheck
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Picker from '@emoji-mart/react';
-import SliderMain from './SliderMain';
-import { useGetMainPageQuery } from '@/src/redux/api/mainPage';
+import {
+	useAddFavoriteMutation,
+	useAddLikeMutation,
+	useDeletePostMutation,
+	useGetMainPageQuery,
+	usePutBlockUserMutation,
+	usePutUnsubscribeMutation
+} from '@/src/redux/api/mainPage';
 import { useGetBlockedUsersQuery } from '@/src/redux/api/blocked';
 import ModalTs from '@/src/ui/modal/Modal';
-
 import {
 	IconHeart,
 	IconMessage,
-	IconCornerUpRight,
-	IconDotsVertical,
+	IconHeartFilled,
 	IconMoodPlus,
-	IconBookmarks,
-	IconX,
-	IconSearch
+	IconBookmark,
+	IconBookmarkFilled,
+	IconSend2,
+	IconDots
 } from '@tabler/icons-react';
 import scss from './Style.module.scss';
-import { useAddFavoriteMutation } from '@/src/redux/api/favourites';
+import { Dropdown, MenuProps, Space } from 'antd';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Navigation, Pagination } from 'swiper/modules';
+import {
+	useAddLikeCommentMutation,
+	useGetComentUsersQuery,
+	usePostComentUsersMutation
+} from '@/src/redux/api/comentsUsers/indexs';
+import {
+	useCommentPostMutation,
+	useInnerCommentByidQuery
+} from '@/src/redux/api/userPublic';
+interface LinkPublicationResponseList {
+	id: number;
+	link: string;
+}
+
+interface PUBLICATION_TYPE {
+	id: number;
+	avatar: string;
+	username: string;
+	location: string;
+	postId: number;
+	description: string;
+	linkPublicationResponseList: LinkPublicationResponseList[];
+	countLikes: number;
+	countComments: number;
+	like: boolean;
+	fromMyBlockAccount: boolean;
+	favorite: boolean;
+}
 
 const MainPost = () => {
 	const { data: items, refetch } = useGetMainPageQuery();
-	console.log(items);
-
 	const [isFavorite] = useAddFavoriteMutation();
+	const [putBlockUser] = usePutBlockUserMutation();
+	const [putUnsubscribe] = usePutUnsubscribeMutation();
+	const [addLike] = useAddLikeMutation();
+	const [deletePost] = useDeletePostMutation();
+	const [postComentUsers] = usePostComentUsersMutation();
+	const [addLikeComment] = useAddLikeCommentMutation();
+	const [commentPost] = useCommentPostMutation();
 
 	const [isModal, setIsModal] = useState(false);
 	const [inputStr, setInputStr] = useState('');
 	const [showPicker, setShowPicker] = useState(false);
-	const [isModal2, setIsModal2] = useState(false);
-	const [usersArray, setUsersArray] = useState<string[]>([]);
-	const navigate = useNavigate();
-	const { data, isLoading } = useGetBlockedUsersQuery();
+	const [commentUserName, setCommentUserName] = useState('');
+	const [isOpenInnerCommnet, setIsOpenInnerCommnet] = useState<{
+		[key: string]: boolean;
+	}>({});
+	const [isOpenInnerCommnetChange, setIsOpenInnerCommnetChange] =
+		useState(false);
+	const [innerCommentValue, setInnerCommentValue] = useState('');
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const [showMessage, setShowMessage] = useState<any>({});
+	const [commentId, setCommentId] = useState(0);
+	const { data } = useGetBlockedUsersQuery();
+	const [comentItem, setComentItem] = useState<PUBLICATION_TYPE>({
+		id: 0,
+		avatar: '',
+		username: '',
+		location: '',
+		postId: 0,
+		description: '',
+		linkPublicationResponseList: [],
+		countLikes: 0,
+		countComments: 0,
+		like: false,
+		fromMyBlockAccount: false,
+		favorite: false
+	});
+	const { data: commentData } = useGetComentUsersQuery(comentItem.postId);
+	const { data: innerComnetData } = useInnerCommentByidQuery(commentId);
+	console.log(innerComnetData, 'alihan');
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const handleGetEmoji = (event: any) => {
+	const [isExpanded, setIsExpanded] = useState(false);
+	const [countLike, setCountLike] = useState(0);
+
+	useEffect(() => {
+		setInnerCommentValue(commentUserName);
+	}, [commentUserName]);
+
+	useEffect(() => {
+		if (innerCommentValue === '') {
+			setIsOpenInnerCommnetChange(false);
+		}
+	}, [innerCommentValue]);
+	const handleGetEmoji = (event: { native: string }) => {
 		setInputStr((prevInput) => prevInput + event.native);
 		setShowPicker(false);
 	};
+
+	const storedValue = localStorage.getItem('userId');
+	const myId: number | null =
+		storedValue !== null ? JSON.parse(storedValue) : null;
 
 	const handleAddFavorite = (postId: number) => {
 		try {
@@ -53,47 +129,141 @@ const MainPost = () => {
 		}
 	};
 
-	const openModal = () => {
+	const openModal = async (item: PUBLICATION_TYPE) => {
 		setIsModal(true);
+		setComentItem(item);
 	};
-	const closeModal = () => {
-		setIsModal(false);
-	};
-	// !2
-	const openModal2 = () => {
-		setIsModal2(true);
-	};
-	const closeModal2 = () => {
-		setIsModal2(false);
-	};
-
-	const handleOpenUsers = (userName: string) => {
-		if (!usersArray.includes(userName)) {
-			setUsersArray((prevValue) => [...prevValue, userName]);
-		} else {
-			const filtred = usersArray.filter((el) => el !== userName);
-			setUsersArray(filtred);
-		}
-	};
-
-	const handleButtonStyleResult = () => {
-		if (usersArray.length !== 0) {
-			return `${scss.noo_active} ${scss.active_button}`;
-		} else {
-			return `${scss.noo_active}`;
-		}
-	};
-
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const ShowMessageAgain = (id: any) => {
-		setShowMessage((prevState: { [x: string]: string }) => ({
-			...prevState,
-			[id]: !prevState[id]
-		}));
-	};
+	const closeModal = () => setIsModal(false);
 
 	const containerStyle =
 		items && items.length > 0 ? scss.main_container : scss.none;
+
+	const handleBlockUser = async (id: number) => {
+		await putBlockUser(id);
+	};
+
+	const handleUnsubscribe = async (id: number) => {
+		await putUnsubscribe(id);
+	};
+
+	const OPTION_ITEMS = (item: PUBLICATION_TYPE): MenuProps['items'] => [
+		{
+			key: '1',
+			label: (
+				<a style={{ color: 'red' }} onClick={() => handleBlockUser(item.id)}>
+					{item.fromMyBlockAccount
+						? 'Разблокировать пользователя'
+						: 'Заблокировать пользователя'}
+				</a>
+			)
+		},
+		{
+			key: '2',
+			label: <a onClick={() => handleUnsubscribe(item.id)}>Отписаться</a>
+		}
+	];
+
+	const handleDeletePost = (id: number) => deletePost(id);
+
+	const OPTION_MY_ITEMS = (item: PUBLICATION_TYPE): MenuProps['items'] => [
+		{
+			key: '1',
+			label: (
+				<a
+					style={{ color: 'red' }}
+					onClick={() => handleDeletePost(item.postId)}
+				>
+					Удаления поста
+				</a>
+			)
+		}
+	];
+
+	const handleToggleLike = (id: number) => addLike({ id });
+
+	const getDisplayText = (text: string) => {
+		const words = text.split(' ');
+		if (isExpanded || words.length <= 20) {
+			return text;
+		} else {
+			return words.slice(0, 20).join(' ');
+		}
+	};
+
+	const toggleText = () => {
+		setIsExpanded(!isExpanded);
+	};
+
+	const doubleClick = (id: number) => {
+		setCountLike((prev) => prev + 1);
+		if (countLike % 2 === 0) {
+			addLike({ id });
+		} else {
+			setCountLike(0);
+		}
+	};
+
+	const timeAgo = (dateString: string): string => {
+		const now = new Date();
+		const pastDate = new Date(dateString);
+		const diff = now.getTime() - pastDate.getTime();
+
+		const seconds = Math.floor(diff / 1000);
+		const minutes = Math.floor(seconds / 60);
+		const hours = Math.floor(minutes / 60);
+		const days = Math.floor(hours / 24);
+		const weeks = Math.floor(days / 7);
+		const months = Math.floor(days / 30);
+		const years = Math.floor(days / 365);
+
+		if (years > 0) {
+			return years === 1 ? '1 year ago' : `${years} years ago`;
+		} else if (months > 0) {
+			return months === 1 ? '1 month ago' : `${months} months ago`;
+		} else if (weeks > 0) {
+			return weeks === 1 ? '1 week ago' : `${weeks} weeks ago`;
+		} else if (days > 0) {
+			return days === 1 ? '1 day ago' : `${days} days ago`;
+		} else if (hours > 0) {
+			return hours === 1 ? '1 hour ago' : `${hours} hours ago`;
+		} else if (minutes > 0) {
+			return minutes === 1 ? '1 minute ago' : `${minutes} minutes ago`;
+		} else {
+			return seconds === 1 ? '1 second ago' : `${seconds} seconds ago`;
+		}
+	};
+
+	const sendComment = (id: number) => {
+		console.log({ id, massage: inputStr });
+
+		if (isOpenInnerCommnetChange) {
+			const newData = { message: innerCommentValue };
+			commentPost({ commentId, newData });
+		} else {
+			postComentUsers({ id, message: inputStr });
+			setInputStr('');
+		}
+	};
+
+	const handleAddLikeCommnet = (id: number) => addLikeComment({ id });
+
+	const handleOpenInnerComent = (id: number) => {
+		setCommentId(id);
+		setIsOpenInnerCommnet({ [id]: true });
+	};
+
+	const handleCloseInnerComent = (id: number) => {
+		setIsOpenInnerCommnet({ [id]: false });
+	};
+
+	const handleInnerComment = (name: string, id: number) => {
+		setIsOpenInnerCommnetChange(true);
+		setCommentUserName(`@${name}`);
+		setCommentId(id);
+	};
+
+	const handleChangeInnerComment = (e: ChangeEvent<HTMLInputElement>) =>
+		setInnerCommentValue(e.target.value);
 
 	return (
 		<div className={containerStyle}>
@@ -104,196 +274,241 @@ const MainPost = () => {
 							<div className={scss.wrapper}>
 								<div className={scss.wrap}>
 									<img src={item.avatar} alt="avatar" />
-									<div>
+									<div className={scss.texts}>
 										<h5>{item.username}</h5>
 										<p>{item.location}</p>
 									</div>
 								</div>
-								<button onClick={() => ShowMessageAgain(item.postId)}>
-									<IconDotsVertical />
-								</button>
+								<Space direction="vertical">
+									<Space wrap>
+										<Dropdown
+											className={scss.story_drop_down}
+											menu={{
+												items:
+													myId === item.id
+														? OPTION_MY_ITEMS(item)
+														: OPTION_ITEMS(item)
+											}}
+											placement="bottomLeft"
+											arrow={{ pointAtCenter: true }}
+										>
+											<IconDots
+												style={{
+													cursor: 'pointer',
+													width: '2rem',
+													height: '2rem'
+												}}
+											/>
+										</Dropdown>
+									</Space>
+								</Space>
 							</div>
-							<div
-								className={
-									showMessage[item.postId]
-										? scss.post_menu_active
-										: scss.post_menu_disable
-								}
-							>
-								<div className={scss.post_menu_container}>
-									<p className={scss.red}>заблокировать пользователя</p>
-									<p>Пожаловаться</p>
-									<p>Отписаться</p>
-								</div>
-							</div>
-							<p className={scss.text}>{item.description}</p>
+
 							<div className={scss.posts}>
-								{item.linkPublicationResponseList?.map((test) => (
-									<img src={test.link} alt="photos" />
-								))}
+								<Swiper
+									slidesPerView={1}
+									spaceBetween={30}
+									pagination={{
+										clickable: true
+									}}
+									navigation={true}
+									modules={[Pagination, Navigation]}
+									className={scss.mySwiper}
+								>
+									{item.linkPublicationResponseList?.map((test, index) => (
+										<SwiperSlide key={index}>
+											<img
+												onClick={() => doubleClick(item.postId)}
+												src={test.link}
+												alt="photo"
+											/>
+										</SwiperSlide>
+									))}
+								</Swiper>
 
 								<div className={scss.icons}>
 									<div className={scss.inner}>
-										<IconHeart />
-										<IconMessage onClick={openModal} />
-										<IconCornerUpRight onClick={openModal2} />
-									</div>
-									<div>
-										<IconBookmarks onClick={() => handleAddFavorite(item.id)} />
-									</div>
-								</div>
-							</div>
-							<p className={scss.comment}>Добавить комментарий...</p>
-
-							<hr />
-
-							<ModalTs open={isModal2} onCancel={closeModal2}>
-								<div className={scss.modalst}>
-									<div className={scss.text}>
-										<p className={scss.p}>Поделиться</p>
-										<IconX
-											onClick={closeModal2}
-											className={scss.icons}
+										{item.like ? (
+											<IconHeartFilled
+												color="red"
+												onClick={() => handleToggleLike(item.postId)}
+											/>
+										) : (
+											<IconHeart
+												color="black"
+												onClick={() => handleToggleLike(item.postId)}
+											/>
+										)}
+										<span className={scss.count}>{item.countLikes}</span>
+										<IconMessage
+											onClick={() => openModal(item)}
 											color="black"
 										/>
+										<span className={scss.count}>{item.countComments}</span>
 									</div>
-									<span></span>
-									<div className={scss.inputs}>
-										<IconSearch color="black" />
-										{usersArray.map((el, index) => (
-											<div
-												className={scss.div_users_names}
-												key={index}
-												onClick={() => handleOpenUsers(el)}
-											>
-												<p>{el}</p>
-												<IconX style={{ cursor: 'pointer' }} />
-											</div>
-										))}
-										<input type="text" placeholder="Поиск" />
-									</div>
-									<span></span>
-
-									<div className={scss.box}>
-										<p>Рекомендуемые</p>
-										{isLoading ? (
-											<>
-												<h1>Loading.......</h1>
-											</>
+									<div>
+										{item.favorite ? (
+											<IconBookmarkFilled
+												color="black"
+												onClick={() => handleAddFavorite(item.postId)}
+											/>
 										) : (
-											<>
-												{data?.map((item) => (
-													<div
-														key={item.id}
-														className={scss.cards}
-														onClick={() => handleOpenUsers(item.name)}
-													>
-														<div className={scss.start}>
-															<img src={item.img} alt={item.name} />
-															<div className={scss.texts}>
-																<h3>{item.name}</h3>
-																<h4>{item.title}</h4>
-															</div>
-														</div>
-														<input
-															type="checkbox"
-															checked={usersArray.includes(item.name)}
-														/>
-													</div>
-												))}
-											</>
+											<IconBookmark
+												color="black"
+												onClick={() => handleAddFavorite(item.postId)}
+											/>
 										)}
 									</div>
-									<span></span>
-									{usersArray.length !== 0 && (
-										<input
-											className={scss.input_users}
-											type="text"
-											placeholder="Напишите Сообщение..."
-										/>
-									)}
-									<button
-										onClick={() => {
-											usersArray.length !== 0 && navigate('/chatperson');
-										}}
-										className={handleButtonStyleResult()}
-									>
-										{usersArray.length === 0 || usersArray.length === 1
-											? 'Отправить'
-											: 'Отправить по отделбности'}
-									</button>
 								</div>
-							</ModalTs>
-
-							<ModalTs open={isModal} onCancel={closeModal}>
-								<div className={scss.modal_aside}>
-									<div className={scss.widget}>
-										<SliderMain />
-									</div>
-									<div className={scss.main}>
-										<div className={scss.excerpt}>
-											<div className={scss.popup}>
-												<div className={scss.bullet}>
-													<img src={item.avatar} alt="avatar" />
-													<div>
-														<h5>{item.username}</h5>
-														<p>{item.location}</p>
-													</div>
-												</div>
-												<IconDotsVertical onClick={closeModal} />
-											</div>
-											<div className={scss.preview}>
-												<img
-													src="https://i.pinimg.com/564x/42/91/b4/4291b466ec6093fd98c40f213e17c8e6.jpg"
-													alt="avatar"
-												/>
-												<div className={scss.tip}>
-													<p>_alina</p>
-													<div className={scss.narrow}>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing
-															elit, sed do eiusmod tempor incididunt ut labore
-															et dolore magna aliqua. Ut enim ad minim veniam,
-															quis nostrud exercitation ullamco laboris nisi ut
-															aliquip
-														</p>
-														<button>
-															<IconHeart />
-														</button>
-													</div>
-													<div className={scss.end_message}>
-														<p>17:27 19.03.2024</p>
-														<h5>Ответить</h5>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div className={scss.input_smile}>
-											<IconMoodPlus
-												onClick={() => setShowPicker((val) => !val)}
-											/>
-											<input
-												type="text"
-												placeholder="Добавить комментарий..."
-												value={inputStr}
-												onChange={(e) => setInputStr(e.target.value)}
-											/>
-											{showPicker && (
-												<Picker
-													data={data}
-													onEmojiSelect={handleGetEmoji}
-													theme={'light'}
-												/>
-											)}
-										</div>
-									</div>
-								</div>
-							</ModalTs>
+								{item.description && (
+									<p className={scss.text}>
+										<span className={scss.user_name}>@{item.username}:</span>{' '}
+										{getDisplayText(item.description)}{' '}
+										{item.description.split(' ').length > 20 && (
+											<span
+												style={{
+													cursor: 'pointer',
+													color: 'black',
+													fontWeight: 'bold'
+												}}
+												onClick={toggleText}
+											>
+												{isExpanded ? '<-' : '. . .'}
+											</span>
+										)}
+									</p>
+								)}
+							</div>
 						</div>
 					</div>
 				</>
 			))}
+
+			<ModalTs open={isModal} onCancel={closeModal}>
+				<div className={scss.modal_aside}>
+					<div className={scss.widget}>
+						<Swiper
+							slidesPerView={1}
+							pagination={{
+								clickable: true
+							}}
+							navigation={true}
+							modules={[Pagination, Navigation]}
+						>
+							{comentItem.linkPublicationResponseList?.map((test, index) => (
+								<SwiperSlide key={index}>
+									<img
+										style={{
+											height: '42rem',
+											marginBottom: '-0.3rem'
+										}}
+										src={test.link}
+										alt="photo"
+									/>
+								</SwiperSlide>
+							))}
+						</Swiper>
+					</div>
+					<div className={scss.main}>
+						<div className={scss.excerpt}>
+							<div className={scss.popup}>
+								<div className={scss.bullet}>
+									<img src={comentItem.avatar} alt="avatar" />
+									<div>
+										<h5>{comentItem.username}</h5>
+										<p>{comentItem.location}</p>
+									</div>
+								</div>
+							</div>
+							{commentData?.map((comment) => (
+								<div className={scss.preview} key={comment.id}>
+									<img src={comment.avatar} alt="avatar" />
+									<div className={scss.tip}>
+										<p>{comment.userName}</p>
+										<div className={scss.narrow}>
+											<p className={scss.comment}>{comment.comment}</p>
+											<div className={scss.like}>
+												<IconHeart
+													style={
+														comment.like ? { fill: 'red', color: 'red' } : {}
+													}
+													onClick={() => handleAddLikeCommnet(comment.id)}
+												/>
+												<p>{comment.countLike}</p>
+											</div>
+										</div>
+										<div className={scss.end_message}>
+											<p>{timeAgo(comment.createdAt)}</p>
+											{!isOpenInnerCommnet[comment.id] ? (
+												<h5 onClick={() => handleOpenInnerComent(comment.id)}>
+													----Посмотреть ответы{' '}
+												</h5>
+											) : (
+												<h5 onClick={() => handleCloseInnerComent(comment.id)}>
+													---- Скрыть ответы
+												</h5>
+											)}
+											<h5
+												onClick={() =>
+													handleInnerComment(comment.userName, comment.id)
+												}
+											>
+												Ответить
+											</h5>
+										</div>
+										{/* <div> */}
+										{isOpenInnerCommnet[comment.id] === true
+											? innerComnetData?.map((innerComnet) => (
+													<div className={scss.innerBox} key={innerComnet.id}>
+														<div className={scss.innerbullet}>
+															<img src={innerComnet.avatar} alt="avatar" />
+															<div>
+																<div className={scss.innerbullet}>
+																	<h5>{innerComnet.userName} .</h5>
+																	<p>{innerComnet.comment}</p>
+																</div>
+																<p>{timeAgo(innerComnet.createdAt)}</p>
+															</div>
+														</div>
+													</div>
+												))
+											: ''}
+										{/* </div> */}
+									</div>
+								</div>
+							))}
+						</div>
+
+						<div className={scss.input_smile}>
+							<IconMoodPlus
+								className={scss.plus}
+								onClick={() => setShowPicker((val) => !val)}
+							/>
+							<input
+								type="text"
+								placeholder="Добавить комментарий..."
+								value={isOpenInnerCommnetChange ? innerCommentValue : inputStr}
+								onChange={
+									isOpenInnerCommnetChange
+										? handleChangeInnerComment
+										: (e) => setInputStr(e.target.value)
+								}
+							/>
+							<IconSend2
+								className={scss.send}
+								onClick={() => sendComment(comentItem.postId)}
+							/>
+							{showPicker && (
+								<Picker
+									data={data}
+									onEmojiSelect={handleGetEmoji}
+									theme={'light'}
+								/>
+							)}
+						</div>
+					</div>
+				</div>
+			</ModalTs>
 		</div>
 	);
 };

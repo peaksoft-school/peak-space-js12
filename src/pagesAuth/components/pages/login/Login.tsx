@@ -46,9 +46,11 @@ const Login = () => {
 		)) as LOGIN.PostRegistrationResponse;
 		if ('data' in response) {
 			if (response.data) {
-				const { token }: any = response.data;
+				const { token, id }: any = response.data;
 				localStorage.setItem('auth_token', token);
 				localStorage.setItem('isAuth', 'true');
+				localStorage.setItem('userId', id);
+
 				navigateToPages();
 				reset();
 			}
@@ -81,10 +83,11 @@ const Login = () => {
 			const response = await postGoogleToken(data);
 
 			if ('data' in response) {
-				const { token } = response.data;
+				const { token, idUser } = response.data;
 				if (rememberMe) {
 					localStorage.setItem('auth_token', JSON.stringify(token));
 					localStorage.setItem('isAuth', 'true');
+					localStorage.setItem('userId', idUser);
 				} else {
 					sessionStorage.setItem('auth_token', JSON.stringify(token));
 					sessionStorage.setItem('isAuth', 'true');
