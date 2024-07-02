@@ -5,7 +5,7 @@ import App from './App.tsx';
 import '@mantine/core/styles.css';
 import './index.scss';
 import ReduxProvider from './providers/ReduxProvider.tsx';
-import { SessionProvider } from '@/src/providers/SessionProvider.tsx';
+// import { SessionProvider } from '@/src/providers/SessionProvider.tsx';
 import { MantineProvider } from '@mantine/core';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -13,9 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 		<MantineProvider>
 			<ReduxProvider>
 				<BrowserRouter>
-					<SessionProvider>
-						<App />
-					</SessionProvider>
+					{/* <SessionProvider> */}
+					<App />
+					{/* </SessionProvider> */}
 				</BrowserRouter>
 			</ReduxProvider>
 		</MantineProvider>
