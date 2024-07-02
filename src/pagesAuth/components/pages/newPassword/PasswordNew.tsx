@@ -130,7 +130,7 @@ const PasswordNew = () => {
 						<span className={scss.error_confirm}>{errors.confirm.message}</span>
 					)}
 
-					<CustomButtonBold children={'сохранить'} type={'submit'} />
+					<CustomButtonBold children={'сохранить'} type={'submit'} disabled={false} />
 				</form>
 				<button onClick={navigateToBack} className={scss.button}>
 					отмена

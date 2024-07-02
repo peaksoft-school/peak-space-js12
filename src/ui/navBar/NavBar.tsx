@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import userProfileImg from '../../assets/FirstMan2.png';
-import userPublicImg from '../../assets/Ellipse 60.svg';
-import bellIcon from '../../assets/bell-24px.svg';
-import settingIcon from '../../assets/carbon_settings.svg';
-import messageIcon from '../../assets/message-bubble.svg';
-import houseIcon from '../../assets/house-24px.svg';
+import {
+	IconMessageCircle,
+	IconHome,
+	IconBell,
+	IconSettings,
+	IconUser,
+	IconUserSquareRounded
+} from '@tabler/icons-react';
+
 import scss from './NavBar.module.scss';
 import Logo from '@/src/assets/peacSpaceLogo.png';
 import MiniLogo from '@/src/assets/mini-logo.svg';
@@ -19,37 +22,81 @@ const NavBar = () => {
 		navigate(path);
 	};
 
-	const isChatPerson = pathname === '/chatperson';
+	const isChatPerson = pathname === '/chat/chatperson';
 
 	const navigationItems = [
 		{
 			path: '/',
-			icon: <img src={houseIcon} className={scss.icon} />,
+			icon: (
+				<IconHome
+					className={
+						pathname === '/' ? `${scss.icon} ${scss.iconActive}` : scss.icon
+					}
+				/>
+			),
 			label: 'Главная'
 		},
 		{
 			path: '/chat',
-			icon: <img src={messageIcon} alt="message" className={scss.icon} />,
+			icon: (
+				<IconMessageCircle
+					className={
+						pathname === '/chat' ? `${scss.icon} ${scss.iconActive}` : scss.icon
+					}
+				/>
+			),
 			label: 'Чаты'
 		},
 		{
 			path: '/notification',
-			icon: <img src={bellIcon} alt="bell" className={scss.icon} />,
+			icon: (
+				<IconBell
+					className={
+						pathname === '/notification'
+							? `${scss.icon} ${scss.iconActive}`
+							: scss.icon
+					}
+				/>
+			),
 			label: 'Уведомления'
 		},
 		{
 			path: '/settings',
-			icon: <img src={settingIcon} className={scss.icon} />,
+			icon: (
+				<IconSettings
+					className={
+						pathname === '/settings'
+							? `${scss.icon} ${scss.iconActive}`
+							: scss.icon
+					}
+				/>
+			),
 			label: 'Настройки'
 		},
 		{
 			path: '/side/public',
-			icon: <img className={scss.img} src={userProfileImg} alt="foto" />,
+			icon: (
+				<IconUser
+					className={
+						pathname === '/side/public'
+							? `${scss.icon} ${scss.iconActive}`
+							: `${scss.icon}`
+					}
+				/>
+			),
 			label: 'Мой профиль'
 		},
 		{
 			path: '/public',
-			icon: <img className={scss.img} src={userPublicImg} alt="foto" />,
+			icon: (
+				<IconUserSquareRounded
+					className={
+						pathname === '/public'
+							? `${scss.icon} ${scss.iconActive}`
+							: `${scss.icon}`
+					}
+				/>
+			),
 			label: 'Мои паблики'
 		}
 	];
@@ -75,6 +122,10 @@ const NavBar = () => {
 							</Link>
 						</li>
 					))}
+				</ul>
+
+				<ul>
+					<li></li>
 				</ul>
 			</nav>
 		</div>

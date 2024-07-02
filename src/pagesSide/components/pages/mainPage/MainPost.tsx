@@ -144,7 +144,7 @@ const MainPost = () => {
 							</div>
 							<p className={scss.comment}>Добавить комментарий...</p>
 
-<hr />
+							<hr />
 
 							<ModalTs open={isModal2} onCancel={closeModal2}>
 								<div className={scss.modalst}>

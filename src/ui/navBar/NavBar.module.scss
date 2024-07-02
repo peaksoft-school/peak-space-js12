@@ -21,11 +21,6 @@
 		padding-bottom: 20px;
 	}
 
-	.icon {
-		width: 30px;
-		height: 30px;
-	}
-
 	.miniLogo {
 		margin-left: -65px;
 		width: 170px;
@@ -104,21 +99,13 @@
 				span {
 					text-align: center;
 					color: rgba(0, 0, 0, 0.8);
-					font-size: 16x;
+					font-size: 20px;
 					font-weight: 400;
 					line-height: 17px;
 				}
 				svg {
-					width: 20px;
-					height: 22px;
-				}
-				.img {
-					height: 20px;
-					width: 20px;
-					border-radius: 50%;
-					&.active_img {
-						border: 2px solid #4c3f9b;
-					}
+					width: 30px;
+					height: 32px;
 				}
 				&.activePage {
 					color: #4c3f9b;
@@ -129,6 +116,7 @@
 				display: flex;
 				align-items: center;
 				gap: 5px;
+				transition: color 0.3s;
 				span {
 					color: #4c3f9b;
 				}
@@ -149,7 +137,6 @@
 				align-items: center;
 				justify-content: space-between;
 				gap: 5px;
-				max-width: 150px;
 				@media (max-width: 768px) {
 					&:hover {
 						display: flex;

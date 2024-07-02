@@ -9,7 +9,7 @@ const ChatMessage = () => {
 	const { data, isLoading } = useGetUsersQuery();
 
 	const chatPerson = () => {
-		navigate('/chatperson');
+		navigate('/chat/chatperson');
 	};
 
 	return (

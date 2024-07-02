@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useEffect, useRef, useState } from 'react';
-import { Select } from 'antd';
-import { SelectProps, Skeleton } from 'antd';
+import { SelectProps, Skeleton, message } from 'antd';
 import ConfidentPage from './ConfidentPage';
 import scss from './Style.module.scss';
 import { PencilIcon } from '@/src/assets/icons';
@@ -11,29 +8,41 @@ import { useGetUserInfoQuery } from '@/src/redux/api/userEditPage';
 import { IconCamera } from '@tabler/icons-react';
 import { useEditPageMutation } from '@/src/redux/api/editPage';
 import { usePostCreateFileMutation } from '@/src/redux/api/publications';
+import CustomButtonWhite from '@/src/ui/customButton/CustomButtonWhite';
 import CustomButton from '@/src/ui/customButton/CustomButton';
+import ModalTs from '@/src/ui/modal/Modal';
+
+interface Type {
+	avatar: string;
+	cover: string;
+	coverImg: string;
+	userName: string;
+	email: string;
+	firstName: string;
+	lastName: string;
+	fathersName: string;
+	aboutYourSelf: string;
+	educationResponses: string[];
+	profession: string;
+	workOrNot: null;
+}
 
 const EditProfilePage = () => {
 	const { data, refetch, isLoading, error } = useGetUserInfoQuery();
-	const [userProfileData, setUserProfileData] = useState([]);
+
+	const [userProfileData, setUserProfileData] = useState<Type>([]);
 	const [putRequest] = useEditPageMutation();
 	const [createFile] = usePostCreateFileMutation();
 
-	// const [userProfileData, setUserProfileData] = useState<any>({});
-	const [avatar, setAvatar] = useState<string>('');
-	const fileInputRefAvatar = useRef<HTMLInputElement>(null);
-	const [coverImg, setCoverImg] = useState<string>('');
+	const [isModal, setIsModal] = useState(false);
+
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const fileInputRefAvatar = useRef<HTMLInputElement>(null);
+	const [avatar, setAvatar] = useState<string>('');
 
-	// const [firstName, setFirstName] = useState<string>('');
-	// const [lastName, setLastName] = useState<string>('');
-	// const [userName, setUserName] = useState<string>('');
-	// const [fathersName, setFathersName] = useState<string>('');
-	// const [aboutYourSelf, setAboutYourSelf] = useState<string>('');
-	// const [educationResponses, setEducationResponses] = useState<any[]>([]);
+	const [coverImg, setCoverImg] = useState<string>('');
 
-	// edit
-	const [isEdit, setIsEdit] = useState(null);
+	const [editProfession, setEditProfession] = useState<string>('');
 	const [editFirstName, setEditFirstName] = useState<string>('');
 	const [editLastName, setEditLastName] = useState<string>('');
 	const [editUserName, setEditUserName] = useState<string>('');
@@ -42,31 +51,46 @@ const EditProfilePage = () => {
 	const [editEducationResponses, setEditEducationResponses] = useState<any[]>(
 		[]
 	);
+	const [isPersonHasAWork, setIsPersonHasAWork] = useState<string | null>(null);
 
-	const edit = (item: any) => {
-		setEditFirstName(item.firstName);
-		setEditLastName(item.lastName);
-		setEditUserName(item.userName);
-		setEditFathersName(item.setFathersName);
-		setEditAboutYourSelf(item.aboutYourSelf);
-		setEditEducationResponses(item.educationResponses);
-		setIsEdit(item.id);
+	const [editCity, setEditCity] = useState<string>('');
+	const [editSchool, setEditSchool] = useState<string>('');
+	const [messageApi, contextHolder] = message.useMessage();
+
+	const success = () => {
+		messageApi.open({
+			type: 'success',
+			content: 'успешно сохранено'
+		});
 	};
 
-	const saveEdit = () => {
+	const saveEdit = async () => {
 		const newData = {
 			avatar: avatar,
 			cover: coverImg,
 			userName: editUserName,
 			firstName: editFirstName,
 			lastName: editLastName,
-			patronymicName: 'string',
+			patronymicName: editFathersName,
 			aboutYourSelf: editAboutYourSelf,
-			profession: 'string',
+			profession: editProfession,
 			workOrNot: true,
-			location: editEducationResponses[0].country
+			location: editCity,
+			educationResponses: [
+				{
+					id: editEducationResponses[0].id,
+					country: editCity,
+					educationalInstitution: editSchool
+				}
+			]
 		};
-		putRequest(newData);
+		const response = await putRequest(newData);
+		if (response.data.httpStatus === 'OK') {
+			closeModal();
+			success();
+		}
+
+		refetch();
 	};
 
 	const handleChooseCover = () => {
@@ -92,7 +116,6 @@ const EditProfilePage = () => {
 			formData.append('file', file);
 
 			try {
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				const response: any = await createFile(formData as any);
 				const test = JSON.parse(response.data);
 				setAvatar(test.object);
@@ -117,7 +140,6 @@ const EditProfilePage = () => {
 			formData.append('file', file);
 
 			try {
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				const response: any = await createFile(formData as any);
 				const test = JSON.parse(response.data);
 				setCoverImg(test.object);
@@ -129,22 +151,30 @@ const EditProfilePage = () => {
 
 	useEffect(() => {
 		if (data) {
-			const userData = [
-				{
-					avatar: data.avatar,
-					cover: data.cover,
-					userName: data.userName,
-					email: data.email,
-					firstName: data.firstName,
-					lastName: data.lastName,
-					fathersName: data.fathersName,
-					aboutYourSelf: data.aboutYourSelf,
-					educationResponses: data.educationResponses,
-					profession: data.profession,
-					workOrNot: data.workOrNot
-				}
-			];
-			setUserProfileData(userData);
+			const userData = {
+				avatar: data.avatar,
+				cover: data.cover,
+				userName: data.userName,
+				email: data.email,
+				firstName: data.firstName,
+				lastName: data.lastName,
+				fathersName: data.fathersName,
+				aboutYourSelf: data.aboutYourSelf,
+				educationResponses: data.educationResponses,
+				profession: data.profession,
+				workOrNot: data.workOrNot
+			};
+			setUserProfileData(userData as any);
+			setCoverImg(data.cover);
+			setAvatar(data.avatar);
+			setEditProfession(data.profession);
+			setEditFirstName(data.firstName);
+			setEditLastName(data.lastName);
+			setEditUserName(data.userName);
+			setEditFathersName(data.fathersName);
+			setEditAboutYourSelf(data.aboutYourSelf);
+			setEditEducationResponses(data.educationResponses);
+			setIsPersonHasAWork(data.workOrNot ? 'has a work' : "doesn't has a work");
 		}
 		refetch();
 	}, [data, refetch]);
@@ -152,7 +182,6 @@ const EditProfilePage = () => {
 	const options: SelectProps['options'] = [];
 	const [isInputsAreaVisible, setIsInputsAreaVisible] =
 		useState<boolean>(false);
-	const [, setIsPersonHasAWork] = useState<string>('');
 
 	for (let i = 10; i < 36; i++) {
 		options.push({
@@ -161,22 +190,13 @@ const EditProfilePage = () => {
 		});
 	}
 
-	const handleChange = (value: string) => {
-		console.log(`selected ${value}`);
+	const openModal = () => {
+		setIsModal(true);
 	};
 
-	// const handleEducationChange = (
-	// 	index: number,
-	// 	field: string,
-	// 	value: string
-	// ) => {
-	// 	const updatedEducationResponses = [...educationResponses];
-	// 	updatedEducationResponses[index] = {
-	// 		...updatedEducationResponses[index],
-	// 		[field]: value
-	// 	};
-	// 	setEducationResponses(updatedEducationResponses);
-	// };
+	const closeModal = () => {
+		setIsModal(false);
+	};
 
 	if (isLoading) {
 		return (
@@ -189,11 +209,7 @@ const EditProfilePage = () => {
 	if (error) {
 		return (
 			<div>
-				<div
-					style={{
-						height: '100vh'
-					}}
-				>
+				<div style={{ height: '100vh' }}>
 					<h1
 						style={{
 							fontFamily: "'Courier New', Courier, monospace",
@@ -211,176 +227,203 @@ const EditProfilePage = () => {
 	return (
 		<div className={scss.section}>
 			<div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
-				{/* <ConfidentPage /> */}
-				{userProfileData.map((userData) => (
-					<>
-						<ConfidentPage />
-						<div className={scss.content}>
-							<div className={scss.head}>
-								<div className={scss.user_img_and_cover}>
-									<img src={userData.cover} alt="" />
-									<div className={scss.edit_img}>
-										<div className={scss.aside}>
-											<input
-												type="file"
-												ref={fileInputRefAvatar}
-												style={{ display: 'none' }}
-												onChange={handleFileChange}
-											/>
-											<img
-												className={scss.userEditProfile}
-												src={avatar ? avatar : userData.avatar}
-												alt=""
-											/>
-											<IconCamera
-												color="rgba(255, 255, 255, 0.637)"
-												onClick={handleChooseFileButtonClick}
-												className={scss.editProfileIcon}
-											/>
-										</div>
-									</div>
-									<div className={scss.user_cover}>
-										<img
-											className={scss.cover_img}
-											style={{ display: coverImg ? 'block' : 'none' }}
-											src={coverImg ? coverImg : userData.cover}
-										/>
-										<input
-											onChange={handleChangeCover}
-											type="file"
-											ref={fileInputRef}
-											style={{ display: 'none' }}
-										/>
-										<div
-											className={scss.cover_choose_btn}
-											onClick={handleChooseCover}
-										>
-											<PencilIcon className={scss.pencil_icon} />
-											<p>
-												{coverImg ? 'Изменить обложку' : 'Добавить обложку'}
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div className={scss.body}>
-									<div className={scss.bar}>
-										<p>Имя пользователя</p>
-										<input
-											type="text"
-											placeholder="Ivanov Ivan"
-											value={userData.firstName}
-										/>
-									</div>
-									<div className={scss.bar}>
-										<p>Фамилия</p>
-										<input
-											type="text"
-											placeholder="Ivanov Ivan Ivanovich"
-											value={userData.lastName}
-										/>
-									</div>
-									<div className={scss.bar}>
-										<p>Имя</p>
-										<input
-											type="text"
-											placeholder="Ivanov Ivan Ivanovich"
-											value={userData.userName}
-										/>
-									</div>
-									<div className={scss.bar}>
-										<p>Отчество</p>
-										<input
-											type="text"
-											placeholder="Ivanov Ivan Ivanovich"
-											value={userData.fathersName}
-										/>
-									</div>
-									<div className={scss.bar}>
-										<p>Обо мне</p>
-										<textarea
-											placeholder="Express yourself with your heart"
-											value={userData.aboutYourSelf}
-										></textarea>
-									</div>
-								</div>
-							</div>
-							<div
-								className={
-									isInputsAreaVisible
-										? scss.Secondary_active
-										: scss.secondary_disable
-								}
-							>
-								<div className={scss.widget}>
-									<p className={scss.text}>Среднее образование</p>
-									<button
-										onClick={handleInputsAreaChangeState}
-										className={scss.educations_button}
-									>
-										{isInputsAreaVisible ? '-' : '+'}
-									</button>
-								</div>
-								<div className={scss.educations_names_area}>
-									<div className={scss.bar}>
-										<p>Город</p>
-										<input
-											type="text"
-											placeholder="Your city"
-											value={userData.educationResponses[0].country}
-										/>
-									</div>
-									<div className={scss.bar}>
-										<p>Школа</p>
-										<input
-											type="text"
-											placeholder="Your school"
-											value={
-												userData.educationResponses[0].educationalInstitution
-											}
-										/>
-									</div>
-								</div>
-							</div>
-
-							<div className={scss.grid}>
-								<div className={scss.col}>
-									<p className={scss.lead}>Позиция</p>
-									<Select
-										mode="tags"
-										style={{ width: '100%' }}
-										placeholder="Tags Mode"
-										onChange={handleChange}
-										options={options}
+				<ConfidentPage />
+				<div className={scss.content}>
+					{contextHolder}
+					<div className={scss.head}>
+						<div className={scss.user_img_and_cover}>
+							<div className={scss.edit_img}>
+								<div className={scss.aside}>
+									<input
+										type="file"
+										ref={fileInputRefAvatar}
+										style={{ display: 'none' }}
+										onChange={handleFileChange}
 									/>
-									<div className={scss.row}>
-										<p style={{ fontWeight: 'bold', fontSize: '20px' }}>
-											Положение дел
-										</p>
-										<div className={scss.radio}>
-											<input
-												type="radio"
-												name="work"
-												value="has a work"
-												onChange={(e) => setIsPersonHasAWork(e.target.value)}
-											/>
-											<p>трудоустройство</p>
-										</div>
-										<div className={scss.radio}>
-											<input
-												type="radio"
-												name="work"
-												value="doesn't has a work"
-												onChange={(e) => setIsPersonHasAWork(e.target.value)}
-											/>
-											<p>безработный</p>
-										</div>
-									</div>
+									<img
+										className={scss.userEditProfile}
+										src={avatar || userProfileData.avatar}
+										alt=""
+									/>
+									<IconCamera
+										color="rgba(255, 255, 255, 0.637)"
+										onClick={handleChooseFileButtonClick}
+										className={scss.editProfileIcon}
+									/>
+								</div>
+							</div>
+							<div className={scss.user_cover}>
+								<img
+									className={scss.cover_img}
+									src={coverImg || userProfileData.coverImg}
+									alt={`cover${userProfileData.userName}`}
+								/>
+								<input
+									onChange={handleChangeCover}
+									type="file"
+									ref={fileInputRef}
+									style={{ display: 'none' }}
+								/>
+								<div
+									className={scss.cover_choose_btn}
+									onClick={handleChooseCover}
+								>
+									<PencilIcon className={scss.pencil_icon} />
+									<p>{coverImg ? 'Изменить обложку' : 'Добавить обложку'}</p>
 								</div>
 							</div>
 						</div>
-					</>
-				))}
+						<div className={scss.body}>
+							<div className={scss.bar}>
+								<p>Имя пользователя</p>
+								<input
+									type="text"
+									placeholder="Ivanov Ivan"
+									value={editFirstName}
+									onChange={(e) => setEditFirstName(e.target.value)}
+								/>
+							</div>
+							<div className={scss.bar}>
+								<p>Фамилия</p>
+								<input
+									type="text"
+									placeholder="Ivanov Ivan Ivanovich"
+									value={editLastName}
+									onChange={(e) => setEditLastName(e.target.value)}
+								/>
+							</div>
+							<div className={scss.bar}>
+								<p>Имя</p>
+								<input
+									type="text"
+									placeholder="Ivanov Ivan Ivanovich"
+									value={editUserName}
+									onChange={(e) => setEditUserName(e.target.value)}
+								/>
+							</div>
+							<div className={scss.bar}>
+								<p>Отчество</p>
+								<input
+									type="text"
+									placeholder="Ivanov Ivan Ivanovich"
+									value={editFathersName}
+									onChange={(e) => setEditFathersName(e.target.value)}
+								/>
+							</div>
+							<div className={scss.bar}>
+								<p>Обо мне</p>
+								<textarea
+									placeholder="Express yourself with your heart"
+									value={editAboutYourSelf}
+									onChange={(e) => setEditAboutYourSelf(e.target.value)}
+								></textarea>
+							</div>
+						</div>
+					</div>
+					<div
+						className={
+							isInputsAreaVisible
+								? scss.Secondary_active
+								: scss.secondary_disable
+						}
+					>
+						<div className={scss.widget}>
+							<p className={scss.text}>Среднее образование</p>
+							<button
+								onClick={handleInputsAreaChangeState}
+								className={scss.educations_button}
+							>
+								{isInputsAreaVisible ? '-' : '+'}
+							</button>
+						</div>
+						<div className={scss.educations_names_area}>
+							{editEducationResponses?.map((el) => (
+								<div>
+									<div className={scss.bar}>
+										<p>Город</p>
+										<input type="text" />
+
+										<input
+											type="text"
+											placeholder="Your city"
+											value={el.country}
+										/>
+									</div>
+									<div className={scss.bar}>
+										<p>ВУЗ</p>
+										<input type="text" />
+										<input
+											type="text"
+											placeholder="Your school"
+											value={el.educationalInstitution}
+										/>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+					<div className={scss.grid}>
+						<div className={scss.col}>
+							<p className={scss.lead}>Должность</p>
+							<input
+								type="text"
+								onChange={(e) => setEditProfession(e.target.value)}
+								value={editProfession}
+							/>
+
+							<div className={scss.row}>
+								<p style={{ fontWeight: 'bold', fontSize: '20px' }}>
+									Положение дел
+								</p>
+								<div className={scss.radio}>
+									<input
+										type="radio"
+										name="work"
+										value="has a work"
+										checked={isPersonHasAWork === 'has a work'}
+										onChange={(e) => setIsPersonHasAWork(e.target.value)}
+									/>
+									<p>трудоустройство</p>
+								</div>
+								<div className={scss.radio}>
+									<input
+										type="radio"
+										name="work"
+										value="doesn't has a work"
+										checked={isPersonHasAWork === "doesn't has a work"}
+										onChange={(e) => setIsPersonHasAWork(e.target.value)}
+									/>
+									<p>безработный</p>
+								</div>
+
+								<ModalTs open={isModal} onCancel={closeModal}>
+									<div className={scss.is_modal}>
+										<div className={scss.modal}>
+											<div className={scss.f}>
+												<img
+													className={scss.userEditProfile}
+													src={avatar || userProfileData.avatar}
+													alt=""
+												/>
+												<p>Cохранить изменения?</p>
+											</div>
+											<div className={scss.s}>
+												<CustomButton onClick={saveEdit}>
+													Сохранить
+												</CustomButton>
+												<CustomButtonWhite
+													children={'отмена'}
+													onClick={closeModal}
+												/>
+											</div>
+										</div>
+									</div>
+								</ModalTs>
+								<CustomButton onClick={openModal}>Сохранить</CustomButton>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
