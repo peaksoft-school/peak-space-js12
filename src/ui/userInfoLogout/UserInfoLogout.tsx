@@ -1,13 +1,10 @@
 import { FC, useState } from 'react';
 import scss from './UserInfoLogout.module.scss';
 import elipse from '../../assets/Rectangle 76.svg';
-import { IconLogout } from '@tabler/icons-react';
 import { Avatar } from 'antd';
-import { useGetMeQuery } from '@/src/redux/api/auth';
 import { useNavigate } from 'react-router-dom';
 
 const UserInfoLogout: FC = () => {
-	const { data } = useGetMeQuery();
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 	const navigate = useNavigate();
 
