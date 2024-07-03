@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useRef } from 'react';
+import { FC, ReactNode, useEffect } from 'react';
 import { useGetMeQuery } from '../redux/api/auth';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,35 +9,6 @@ interface CallDetectorProps {
 const CallDetector: FC<CallDetectorProps> = ({ children }) => {
 	const { data } = useGetMeQuery();
 	const navigate = useNavigate();
-	const socket = useRef<WebSocket | null>(null);
-
-	useEffect(() => {
-		// Подключение к WebSocket
-		socket.current = new WebSocket(import.meta.env.VITE_PUBLIC_API_WSS);
-
-		socket.current.onopen = () => {
-			console.log('Connected to WebSocket server');
-		};
-
-		socket.current.onmessage = (event) => {
-			const message = JSON.parse(event.data);
-			console.log('Received message:', message);
-		};
-
-		socket.current.onclose = () => {
-			console.log('Disconnected from WebSocket server');
-		};
-
-		socket.current.onerror = (error) => {
-			console.error('WebSocket error:', error);
-		};
-
-		return () => {
-			if (socket.current) {
-				socket.current.close();
-			}
-		};
-	}, []);
 
 	useEffect(() => {
 		if (!data?.firstName || !data?.lastName) return;
@@ -111,33 +82,6 @@ const CallDetector: FC<CallDetectorProps> = ({ children }) => {
 			clearInterval(exitButtonCheckIntervalId);
 		};
 	}, [data, navigate]);
-
-	useEffect(() => {
-		console.log('awdawdawd');
-
-		if (!data?.email) return;
-		// Проверка, если мы на странице звонка
-		const isCallPage = window.location.pathname.includes('/call');
-		console.log(isCallPage);
-
-		if (isCallPage) {
-			setTimeout(() => {
-				const email = data?.email;
-
-				if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-					socket.current.send(
-						JSON.stringify({
-							type: 'callRequest',
-							callUrl: localStorage.getItem('meetingLink'),
-							email
-						})
-					);
-				} else {
-					console.error('WebSocket is not connected');
-				}
-			}, 3000);
-		}
-	}, [data]);
 
 	return <>{children}</>;
 };

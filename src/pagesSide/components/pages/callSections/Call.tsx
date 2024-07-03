@@ -25,6 +25,17 @@ export function getUrlParams(
 
 const Call = () => {
 	const roomID = getUrlParams().get('roomID') || randomID(5);
+
+	// Сохранение ссылки для подключения к комнате в localStorage
+	const meetingLink =
+		window.location.protocol +
+		'//' +
+		window.location.host +
+		window.location.pathname +
+		'?roomID=' +
+		roomID;
+	localStorage.setItem('meetingLink', meetingLink);
+
 	const myMeeting = async (element: HTMLDivElement | null) => {
 		// изменен тип element на HTMLDivElement | null
 		// generate Kit Token
@@ -46,13 +57,7 @@ const Call = () => {
 			sharedLinks: [
 				{
 					name: 'Personal link By Elcho911',
-					url:
-						window.location.protocol +
-						'//' +
-						window.location.host +
-						window.location.pathname +
-						'?roomID=' +
-						roomID
+					url: meetingLink
 				}
 			],
 			scenario: {

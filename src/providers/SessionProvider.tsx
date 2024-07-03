@@ -31,6 +31,8 @@ export const SessionProvider: FC<ProtectedRouteProps> = ({ children }) => {
 			case '/side/public':
 			case '/public':
 				if (status === 'rejected') {
+					localStorage.removeItem('auth_token');
+					localStorage.removeItem('isAuth');
 					navigate('/auth/login');
 				}
 				break;

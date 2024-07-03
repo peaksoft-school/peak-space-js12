@@ -8,6 +8,7 @@ import ReduxProvider from './providers/ReduxProvider.tsx';
 import { SessionProvider } from '@/src/providers/SessionProvider.tsx';
 import { MantineProvider } from '@mantine/core';
 import CallDetector from './middleware/CallDetector.tsx';
+import UserConnecting from './middleware/UserConnecting.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
@@ -15,9 +16,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 			<ReduxProvider>
 				<BrowserRouter>
 					<SessionProvider>
-						<CallDetector>
-							<App />
-						</CallDetector>
+						<UserConnecting>
+							<CallDetector>
+								<App />
+							</CallDetector>
+						</UserConnecting>
 					</SessionProvider>
 				</BrowserRouter>
 			</ReduxProvider>
