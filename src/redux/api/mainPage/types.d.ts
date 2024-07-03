@@ -11,6 +11,9 @@ namespace MAIN {
 		countLikes: number;
 		countComments: number;
 		link: string;
+		like: boolean;
+		fromMyBlockAccount: boolean;
+		favorite: boolean;
 	}[];
 	export interface LinkPublicationResponseList {
 		id: number;
@@ -18,4 +21,37 @@ namespace MAIN {
 	}
 	[];
 	type GetMainRequest = void;
+
+	type BlockUserResponse = {
+		httpStatus: string;
+		message: string;
+		isBlock: boolean;
+	};
+	type BlockUserRequest = number | undefined;
+
+	type ComplainRequest = {
+		postId: number;
+		complain: string;
+	};
+
+	type PostPublicFavoriteResponse = {
+		id: number;
+	};
+
+	type PostPublicFavoriteRequest = {
+		id: number;
+	};
+
+	type PostPublicLikeResponse = {
+		id: number;
+	};
+
+	type PostPublicLikeRequest = {
+		id: number;
+	};
+
+	type DeletePostRequest = number;
+	type DeletePostResponse = {
+		_id: number;
+	};
 }

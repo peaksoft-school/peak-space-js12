@@ -108,7 +108,7 @@ export namespace USERPUBLIC {
 		createdAt: string;
 	}[];
 
-	type GetCommentRequest = void;
+	type GetCommentRequest = number;
 
 	type GetCommentResponse = {
 		id: number;

@@ -45,6 +45,13 @@ const Login = () => {
 		const response = await postRequest(data);
 		if ('data' in response) {
 			if (response.data) {
+
+				const { token, id }: any = response.data;
+				localStorage.setItem('auth_token', token);
+				localStorage.setItem('isAuth', 'true');
+				localStorage.setItem('userId', id);
+
+
 				const { token }: { token: string } = response.data;
 				if (rememberMe) {
 					localStorage.setItem('auth_token', JSON.stringify(token));
@@ -53,6 +60,7 @@ const Login = () => {
 					sessionStorage.setItem('auth_token', JSON.stringify(token));
 					sessionStorage.setItem('isAuth', 'true');
 				}
+
 				navigateToPages();
 				reset();
 			}
@@ -85,10 +93,11 @@ const Login = () => {
 			const response = await postGoogleToken(data);
 
 			if ('data' in response) {
-				const { token } = response.data;
+				const { token, idUser } = response.data;
 				if (rememberMe) {
 					localStorage.setItem('auth_token', JSON.stringify(token));
 					localStorage.setItem('isAuth', 'true');
+					localStorage.setItem('userId', idUser);
 				} else {
 					sessionStorage.setItem('auth_token', JSON.stringify(token));
 					sessionStorage.setItem('isAuth', 'true');

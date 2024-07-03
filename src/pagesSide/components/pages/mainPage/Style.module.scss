@@ -2,6 +2,7 @@
 	width: 80%;
 	margin-left: 10px;
 	margin-top: 8px;
+
 	.container {
 		.content {
 			width: 100%;
@@ -9,11 +10,8 @@
 			flex-direction: column;
 			gap: 10px;
 
-			// height: 100vh;
-
 			.keen {
 				display: flex;
-				// height: 100vh;
 				max-height: 290px;
 				padding-block: 8px;
 				padding-inline: 8px;
@@ -93,30 +91,39 @@
 				border-radius: 5px;
 				display: flex;
 				flex-direction: column;
-				gap: 5rem;
-				background-color: white;
+				gap: 0.8rem;
 			}
 
 			.section {
 				width: 100%;
 				background: #fff;
-				padding-inline: 30px;
+				padding-inline: 20rem;
 				border-radius: 5px;
+				padding-bottom: 2rem;
 
 				.holder {
 					display: flex;
 					flex-direction: column;
-					gap: 6px;
 					width: 100%;
 					max-width: 100%;
 					position: relative;
+
 					.posts {
 						img {
 							width: 100%;
 							max-width: 100%;
 							object-fit: cover;
 						}
+
+						.swiper-pagination-bullet {
+							background-color: blue; // Custom bullet color
+						}
+
+						.swiper-pagination-bullet-active {
+							background-color: green; // Custom active bullet color
+						}
 					}
+
 					.post_menu_active {
 						top: 90px;
 						left: 640px;
@@ -198,22 +205,29 @@
 						align-items: center;
 						justify-content: space-between;
 						position: relative;
-						top: 0;
-						left: 0;
+						height: 4.375rem;
+						margin-top: 1.0625rem;
+						margin-bottom: 0.3rem;
 						.wrap {
 							display: flex;
-							gap: 10px;
+							gap: 1rem;
 							align-items: center;
 							&:nth-child(1) {
-								font-size: 25px;
+								font-size: 1.5rem;
 								font-weight: 300;
 								line-height: 29px;
 								p {
 									color: rgba(0, 0, 0, 0.6);
-									font-size: 16px;
+									font-size: 0.9rem;
 									font-weight: 400;
 									line-height: 15px;
 									text-align: left;
+								}
+
+								.texts {
+									display: flex;
+									flex-direction: column;
+									gap: 0.2rem;
 								}
 							}
 
@@ -242,10 +256,34 @@
 						max-height: 634px;
 						height: 100vh;
 					}
+					.text {
+						font-family: Gadugi;
+						font-size: 15px;
+						font-weight: 400;
+						line-height: 19.95px;
+						text-align: left;
+						color: #000000cc;
+						margin-top: 0.5rem;
+					}
+
+					.user_name {
+						font-size: 15px;
+						font-weight: 600;
+						line-height: 19.95px;
+						text-align: left;
+						color: black;
+						margin-top: 0.5rem;
+						margin-bottom: 1rem;
+					}
+					.count {
+						margin-left: -1rem;
+						margin-right: -0.3rem;
+					}
 					.icons {
 						display: flex;
 						justify-content: space-between;
 						align-items: center;
+						margin-top: 0.3rem;
 
 						svg {
 							cursor: pointer;
@@ -300,18 +338,23 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+
 		.excerpt {
 			width: 530px;
 			height: 639px;
+			overflow-y: auto;
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
 			padding-inline: 10px;
 			padding-block: 10px;
+
 			.popup {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+				position: fixed;
+				background-color: white;
 				.bullet {
 					display: flex;
 					align-items: center;
@@ -329,7 +372,7 @@
 						}
 					}
 					img {
-						width: 60px;
+						width: 50px;
 						height: 50px;
 						border-radius: 50%;
 						object-fit: cover;
@@ -338,6 +381,7 @@
 			}
 			.preview {
 				display: flex;
+				margin-top: 4rem;
 				gap: 7px;
 
 				img {
@@ -350,25 +394,44 @@
 					display: flex;
 					flex-direction: column;
 					gap: 5px;
+
+					.innerBox {
+						.innerbullet {
+							display: flex;
+							gap: 1rem;
+						}
+					}
+
 					.narrow {
+						width: 28rem;
 						display: flex;
+						justify-content: space-between;
 						align-items: center;
 						p {
 							color: rgb(0, 0, 0);
 							font-size: 14px;
 							font-weight: 400;
 						}
-						button {
-							background: none;
-							border: none;
-							outline: none;
-							svg {
-								width: 18.83px;
-								height: 17.01px;
-								&:hover {
-									color: red;
-								}
-							}
+						.comment {
+							width: 26rem;
+						}
+
+						.like {
+							width: 1rem;
+							display: flex;
+							flex-direction: column;
+							align-items: center;
+							justify-content: center;
+						}
+
+						svg {
+							cursor: pointer;
+							width: 18.83px;
+							height: 17.01px;
+							// &:hover {
+							// 	fill: red;
+							// 	color: red;
+							// }
 						}
 					}
 					.end_message {
@@ -381,6 +444,9 @@
 							font-weight: 400;
 							line-height: 6px;
 						}
+						h5 {
+							cursor: pointer;
+						}
 					}
 				}
 			}
@@ -391,15 +457,20 @@
 			width: 100%;
 			padding: 5px;
 			position: relative;
-			svg {
+			display: flex;
+			align-items: center;
+			.plus {
 				position: absolute;
-				top: 7px;
+				top: 5px;
 				left: 0;
 				bottom: 6px;
 				cursor: pointer;
-				&:active {
-					color: red;
-				}
+			}
+			.send {
+				position: absolute;
+				top: 5px;
+				right: 0;
+				cursor: pointer;
 			}
 			input {
 				outline: 0;
@@ -410,7 +481,7 @@
 				line-height: 21px;
 				width: calc(100% - 40px);
 				position: relative;
-				left: 18px;
+				left: 30px;
 				&:focus {
 					border: 0;
 					outline: 0;
@@ -976,5 +1047,60 @@
 		border: none;
 		outline: none;
 		padding: 15px;
+	}
+}
+
+.complate_modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.complate_box {
+		width: 520px;
+		min-height: 422px;
+		border-radius: 25px;
+		text-align: center;
+		background: white;
+		position: relative;
+
+		.close {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			cursor: pointer;
+		}
+
+		.heading {
+			font-family: Inter;
+			font-size: 1.5rem;
+			font-weight: 600;
+			line-height: 36.31px;
+			letter-spacing: 0.03em;
+			text-align: center;
+			margin-top: 20px;
+			padding-bottom: 20px;
+			border-bottom: 1px solid #d9d9d9;
+		}
+
+		.subHeading {
+			font-family: Inter;
+			font-size: 1.2rem;
+			font-weight: 500;
+			line-height: 30.26px;
+			padding: 15px 15px 15px;
+			letter-spacing: 0.03em;
+			text-align: left;
+		}
+		.complate {
+			font-family: Inter;
+			font-size: 1rem;
+			font-weight: 300;
+			line-height: 24.2px;
+			letter-spacing: 0.03em;
+			padding: 15px 15px 15px;
+			border-top: 1px solid #d9d9d9;
+			text-align: left;
+			cursor: pointer;
+		}
 	}
 }
