@@ -37,7 +37,6 @@ const Login = () => {
 	} = useForm<LoginFormInputs>({ mode: 'onBlur' });
 
 	const navigateToPages = () => {
-		// window.location.reload();
 		navigate('/');
 	};
 
