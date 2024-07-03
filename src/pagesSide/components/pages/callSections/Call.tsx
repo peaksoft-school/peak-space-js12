@@ -39,8 +39,8 @@ const Call = () => {
 	const myMeeting = async (element: HTMLDivElement | null) => {
 		// изменен тип element на HTMLDivElement | null
 		// generate Kit Token
-		const appID = 836672818;
-		const serverSecret = 'df3bc253ce56f818a0f8c48affb55a9a';
+		const appID = 493178845;
+		const serverSecret = 'cd3222a74b46207caf7f395c8b5fdbd8';
 		const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
 			appID,
 			serverSecret,
