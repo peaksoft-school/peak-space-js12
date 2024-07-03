@@ -729,7 +729,7 @@ const ForMe = () => {
 												: scss.isNotMessage
 										}
 									>
-										{item. id === item.id ? '1' : '2'}
+										{item.id === item.id ? '1' : '2'}
 										<p onClick={() => deleteUserPublic(item.ownerId)}>
 											удалить пользователя
 										</p>
@@ -831,9 +831,9 @@ const ForMe = () => {
 																									</button>
 
 																									<button
-																									// onClick={() =>
-																									// 	handleAddComment(item.id)
-																									// }
+																										onClick={() =>
+																											handleAddComment(item.id)
+																										}
 																									>
 																										Ответить
 																									</button>
