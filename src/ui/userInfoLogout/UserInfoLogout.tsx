@@ -24,22 +24,10 @@ const UserInfoLogout: FC = () => {
 		<div className={scss.UserInfoLogout} onClick={(e) => e.stopPropagation()}>
 			<div className={scss.user_profile} onClick={toggleDropdown}>
 				<Avatar size={40} icon={<img src={elipse} alt="avatar" />} />
-				<p className={scss.user_name}>{data?.userName}</p>
+				<p className={scss.user_name} onClick={handleLogout}>
+					log out
+				</p>
 			</div>
-			{dropdownVisible && (
-				<div
-					className={`${scss.dropdown} ${dropdownVisible ? scss.dropdownVisible : ''}`}
-					onClick={(e) => e.stopPropagation()}
-					style={{ marginTop: '6rem' }}
-				>
-					<div className={scss.user_data}>
-						<button className={scss.logout} onClick={handleLogout}>
-							<IconLogout stroke={2} />
-							Выйти
-						</button>
-					</div>
-				</div>
-			)}
 		</div>
 	);
 };
