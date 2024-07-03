@@ -89,7 +89,7 @@ const PublicPage = () => {
 	const navigateUserPublic = (communityId: number, event: React.MouseEvent) => {
 		event.stopPropagation();
 
-		navigate(`/public/user-public/${communityId}`);
+		navigate(`/users-profile/${communityId}`);
 
 		refetch();
 	};
@@ -182,7 +182,7 @@ const PublicPage = () => {
 													<h4
 														style={{
 															width: '100%',
-															display: '-webkit-box',
+															display: 'flex',
 															maxWidth: '250px',
 															WebkitLineClamp: 1,
 															WebkitBoxOrient: 'vertical',
@@ -216,9 +216,7 @@ const PublicPage = () => {
 							<div key={item.id} className={scss.second_2}>
 								<div className={scss.cover}>
 									<img
-										onClick={(event) =>
-											navigateUserPublic(item.publicId, event)
-										}
+										onClick={(event) => navigateUserPublic(item.id, event)}
 										src={
 											item.cover && item.cover !== 'cover'
 												? item.cover

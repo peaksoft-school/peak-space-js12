@@ -71,7 +71,7 @@ const Registration = () => {
 				if (response.error.status === 400) {
 					messageApi.open({
 						type: 'warning',
-						content: response.error.data?.message
+						content: 'большое шести'
 					});
 				} else if (response.error.status === 417) {
 					messageApi.open({

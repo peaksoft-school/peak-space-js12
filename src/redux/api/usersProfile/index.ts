@@ -15,8 +15,8 @@ const api = index.injectEndpoints({
 			usersProfile.GetFriendsResponse,
 			usersProfile.GetFriendsRequest
 		>({
-			query: (userId) => ({
-				url: `/chapters/all-my-friends/${userId} `,
+			query: (idUser) => ({
+				url: `/chapters/all-my-friends/${idUser} `,
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth_token')}`

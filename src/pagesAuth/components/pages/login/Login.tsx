@@ -37,8 +37,8 @@ const Login = () => {
 	} = useForm<LoginFormInputs>({ mode: 'onBlur' });
 
 	const navigateToPages = () => {
-		window.location.reload();
-		// navigate('/');
+		// window.location.reload();
+		navigate('/');
 	};
 
 	const onSubmit = async (data) => {
@@ -52,14 +52,14 @@ const Login = () => {
 				localStorage.setItem('userId', id);
 
 
-				const { token }: { token: string } = response.data;
-				if (rememberMe) {
-					localStorage.setItem('auth_token', JSON.stringify(token));
-					localStorage.setItem('isAuth', 'true');
-				} else {
-					sessionStorage.setItem('auth_token', JSON.stringify(token));
-					sessionStorage.setItem('isAuth', 'true');
-				}
+				// const { token }: { token: string } = response.data;
+				// if (rememberMe) {
+				// 	localStorage.setItem('auth_token', JSON.stringify(token));
+				// 	localStorage.setItem('isAuth', 'true');
+				// } else {
+				// 	sessionStorage.setItem('auth_token', JSON.stringify(token));
+				// 	sessionStorage.setItem('isAuth', 'true');
+				// }
 
 				navigateToPages();
 				reset();

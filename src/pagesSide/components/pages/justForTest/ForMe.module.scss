@@ -205,7 +205,6 @@ select {
 							line-height: 14px;
 						}
 					}
-
 					.end {
 						display: flex;
 						flex-direction: column;
@@ -294,18 +293,16 @@ select {
 				position: relative;
 				.user_avatar {
 					position: absolute;
-					right: 0px;
 					top: 40px;
 					z-index: 3;
 
 					width: 190px;
-					height: 600px;
+					height: 180px;
 					border-radius: 50%;
 					border: 3px solid #999999;
 					background: rgba(0, 0, 0, 0.4);
 					box-shadow: 0px 4px 4px 0px #57555550;
 					overflow: hidden;
-					position: relative;
 					object-fit: cover;
 					cursor: pointer;
 
@@ -328,22 +325,18 @@ select {
 			.user_cover {
 				height: 253px;
 				position: relative;
+				display: flex;
 
 				.cover_img {
 					object-fit: cover;
-					display: flex;
-					z-index: 1;
-					position: absolute;
-					bottom: 0px;
-					left: 0px;
 					width: 100%;
-					height: 253px;
-					overflow: hidden;
+					margin-top: -2px;
 				}
+
 				.cover_choose_btn {
 					position: absolute;
-					bottom: 210px;
-					left: 805px;
+					top: 10px;
+					left: 920px;
 					z-index: 100;
 					width: 160px;
 					height: 30px;
@@ -410,7 +403,6 @@ select {
 					&:hover {
 						background-color: #d3d8dd;
 					}
-
 					option {
 						padding-block: 3px;
 					}
@@ -663,7 +655,6 @@ select {
 
 			.bar_slider {
 				width: 500px;
-
 				.aside_slider {
 					img {
 						object-fit: cover;
@@ -760,7 +751,6 @@ select {
 
 					.comment_width {
 						width: 100%;
-						max-width: 390px;
 					}
 
 					.heart {
@@ -855,7 +845,6 @@ select {
 				max-width: 490px;
 				padding: 20px;
 				position: fixed;
-				top: 807px;
 				width: 100%;
 				background: white;
 				display: flex;
@@ -893,7 +882,6 @@ select {
 				}
 			}
 		}
-
 		img {
 			width: 520px;
 			object-fit: cover;

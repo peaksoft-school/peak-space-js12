@@ -114,12 +114,12 @@ const ProfilPage = () => {
 			label: 'Избранное',
 			isPage: false
 		},
-		{
-			path: '/side/photo',
-			icon: <IconPinned color="black" />,
-			label: 'Фото с вами',
-			isPage: false
-		}
+		// {
+		// 	path: '/side/photo',
+		// 	icon: <IconPinned color="black" />,
+		// 	label: 'Фото с вами',
+		// 	isPage: false
+		// }
 	];
 
 	useEffect(() => {
@@ -371,7 +371,7 @@ const ProfilPage = () => {
 					<Routes>
 						<Route path="/public" element={<Publications />} />
 						<Route path="/favorite" element={<Favourites />} />
-						<Route path="/photo" element={<PhotoWith />} />
+						{/* <Route path="/photo" element={<PhotoWith />} /> */}
 					</Routes>
 				</div>
 			</div>

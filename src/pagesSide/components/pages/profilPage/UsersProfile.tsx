@@ -440,7 +440,6 @@ interface Types {
 const UsersProfile = () => {
 	const { idUser } = useParams();
 	const { data } = useGetFriendsQuery<Types[]>(idUser as any);
-	console.log(data);
 
 	const [profile, setProfile] = useState<Types[]>([]);
 	const { data: userPhoto } = useGetPhotoFriendQuery(idUser as any);
@@ -465,20 +464,20 @@ const UsersProfile = () => {
 		setComplain(false);
 	};
 
-	const links = [
-		{
-			path: '/user-profile/publics',
-			icon: <IconPhoto color="black" />,
-			label: 'Мои публикации',
-			isPage: true
-		},
-		{
-			path: '/user-profile/photo',
-			icon: <IconPinned color="black" />,
-			label: 'Фото с вами',
-			isPage: false
-		}
-	];
+	// const links = [
+	// 	{
+	// 		path: '/user-profile/publics',
+	// 		icon: <IconPhoto color="black" />,
+	// 		label: 'Мои публикации',
+	// 		isPage: true
+	// 	},
+	// 	{
+	// 		path: '/user-profile/photo',
+	// 		icon: <IconPinned color="black" />,
+	// 		label: 'Фото с вами',
+	// 		isPage: false
+	// 	}
+	// ];
 
 	const success = () => {
 		messageApi.open({

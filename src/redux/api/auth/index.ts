@@ -64,7 +64,7 @@ const api = index.injectEndpoints({
 });
 
 export const {
-	useGetMeQuery,
+		useGetMeQuery,
 	usePostLoginMutation,
 	usePostRegistrationMutation,
 	usePutPasswordMutation,

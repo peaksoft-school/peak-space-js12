@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useConfirmByEmailMutation } from '@/src/redux/api/auth';
 import scss from './Login.module.scss';
 import { Input } from 'antd';
+import CustomButton from '@/src/ui/customButton/CustomButton';
 
 interface ConfirmByEmailForm {
 	codeInEmail: string;
@@ -12,7 +13,7 @@ interface ConfirmByEmailForm {
 
 const ConfirmByEmail = () => {
 	const { id } = useParams<{ id: string }>();
-	const [confirmByEmail] = useConfirmByEmailMutation();
+	const [confirmByEmail, { isLoading }] = useConfirmByEmailMutation();
 	const {
 		control,
 		formState: { errors },
@@ -41,15 +42,18 @@ const ConfirmByEmail = () => {
 	}, [timeLeft, navigate]);
 
 	const onSubmit = async (data: ConfirmByEmailForm) => {
-		console.log(data, 'data');
-		try {
-			await confirmByEmail({ ...data, id }).unwrap();
-			navigate('/', { replace: true });
-			reset();
-			localStorage.removeItem('timeLeft');
-		} catch (error) {
-			console.error('Ошибка подтверждения:', error);
+		const response = await confirmByEmail({ ...data, id }).unwrap();
+		if ('data' in response) {
+			if (response.data) {
+				const { token, id }: any = response.data;
+				localStorage.setItem('auth_token', token);
+				localStorage.setItem('isAuth', 'true');
+				localStorage.setItem('userId', id);
+				localStorage.removeItem('timeLeft');
+			}
 		}
+		reset();
+		navigate('/', { replace: true });
 	};
 
 	return (
@@ -95,10 +99,11 @@ const ConfirmByEmail = () => {
 						)}
 					</div>
 					<div>
-						<button>отменить</button>
-						<button type="submit" className={scss.submitButton}>
-							Отправить
-						</button>
+						<CustomButton
+							type="submit"
+							disabled={isLoading}
+							children={isLoading ? 'Вход...' : 'Войти'}
+						/>
 					</div>
 				</div>
 			</form>
