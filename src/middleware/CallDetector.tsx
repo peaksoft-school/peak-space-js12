@@ -1,6 +1,6 @@
-import { FC, ReactNode, useEffect, useRef } from 'react';
+import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import { useGetMeQuery } from '../redux/api/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface CallDetectorProps {
 	children: ReactNode;
@@ -9,7 +9,9 @@ interface CallDetectorProps {
 const CallDetector: FC<CallDetectorProps> = ({ children }) => {
 	const { data } = useGetMeQuery();
 	const navigate = useNavigate();
+	const { pathname } = useLocation();
 	const socket = useRef<WebSocket | null>(null);
+	const [isWebSocketReady, setIsWebSocketReady] = useState(false);
 
 	useEffect(() => {
 		// Подключение к WebSocket
@@ -17,19 +19,17 @@ const CallDetector: FC<CallDetectorProps> = ({ children }) => {
 
 		socket.current.onopen = () => {
 			console.log('Connected to WebSocket server');
-		};
-
-		socket.current.onmessage = (event) => {
-			const message = JSON.parse(event.data);
-			console.log('Received message:', message);
+			setIsWebSocketReady(true);
 		};
 
 		socket.current.onclose = () => {
 			console.log('Disconnected from WebSocket server');
+			setIsWebSocketReady(false);
 		};
 
 		socket.current.onerror = (error) => {
 			console.error('WebSocket error:', error);
+			setIsWebSocketReady(false);
 		};
 
 		return () => {
@@ -113,14 +113,10 @@ const CallDetector: FC<CallDetectorProps> = ({ children }) => {
 	}, [data, navigate]);
 
 	useEffect(() => {
-		console.log('awdawdawd');
+		if (!data?.email || !isWebSocketReady) return;
 
-		if (!data?.email) return;
-		// Проверка, если мы на странице звонка
-		const isCallPage = window.location.pathname.includes('/call');
-		console.log(isCallPage);
-
-		if (isCallPage) {
+		if ('/call' === pathname) {
+			console.log('Работаю');
 			setTimeout(() => {
 				const email = data?.email;
 
@@ -135,9 +131,9 @@ const CallDetector: FC<CallDetectorProps> = ({ children }) => {
 				} else {
 					console.error('WebSocket is not connected');
 				}
-			}, 3000);
+			}, 1500);
 		}
-	}, [data]);
+	}, [data, isWebSocketReady, pathname]);
 
 	return <>{children}</>;
 };
