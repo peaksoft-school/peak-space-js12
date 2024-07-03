@@ -25,10 +25,13 @@ const UserConnecting: FC<UserConnectingProps> = ({ children }) => {
 	const [modalContainer] = useState(() => document.createElement('div'));
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const socketRef = useRef<WebSocket | null>(null);
-	const playButtonRef = useRef<HTMLButtonElement>(null);
 
 	const openModal = () => {
 		setOpened(true);
+		setTimeout(() => {
+			handlePlayButton();
+		}, 200);
+		setTimeout(closeModal, 25 * 1000);
 	};
 
 	const closeModal = () => {
@@ -99,13 +102,32 @@ const UserConnecting: FC<UserConnectingProps> = ({ children }) => {
 		};
 	}, [data]);
 
+	const simulateClickButton = () => {
+		console.log('Simulating click');
+	};
+
+	useEffect(() => {
+		const simulateClick = () => {
+			if (audioRef.current) {
+				const clickEvent = new MouseEvent('click', {
+					view: window,
+					bubbles: true,
+					cancelable: true
+				});
+				document.body.dispatchEvent(clickEvent);
+				simulateClickButton();
+			}
+		};
+		simulateClick();
+	}, [data]);
+
 	return (
 		<>
 			{children}
 			<audio ref={audioRef} />
 			{opened &&
 				createPortal(
-					<div className={scss.UserConnecting}>
+					<div onClick={simulateClickButton} className={scss.UserConnecting}>
 						<div className={scss.content}>
 							<img
 								src={
@@ -118,16 +140,6 @@ const UserConnecting: FC<UserConnectingProps> = ({ children }) => {
 							<div className={scss.user_info}>
 								<h1 className={scss.name}>{whoCalling?.name}</h1>
 								<h1 className={scss.email}>{whoCalling?.email}</h1>
-							</div>
-							<div className={scss.play_audio}>
-								<p>Нажмите кнопку, чтобы начать воспроизведение аудио:</p>
-								<button
-									ref={playButtonRef}
-									onClick={handlePlayButton}
-									className={scss.play_button}
-								>
-									Play Audio
-								</button>
 							</div>
 							<div className={scss.buttons}>
 								<button
