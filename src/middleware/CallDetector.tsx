@@ -18,12 +18,12 @@ const CallDetector: FC<CallDetectorProps> = ({ children }) => {
 		socket.current = new WebSocket(import.meta.env.VITE_PUBLIC_API_WSS);
 
 		socket.current.onopen = () => {
-			console.log('Connected to WebSocket server');
+			// console.log('Connected to WebSocket server');
 			setIsWebSocketReady(true);
 		};
 
 		socket.current.onclose = () => {
-			console.log('Disconnected from WebSocket server');
+			// console.log('Disconnected from WebSocket server');
 			setIsWebSocketReady(false);
 		};
 
@@ -116,16 +116,22 @@ const CallDetector: FC<CallDetectorProps> = ({ children }) => {
 		if (!data?.email || !isWebSocketReady) return;
 
 		if ('/call' === pathname) {
-			console.log('Работаю');
 			setTimeout(() => {
-				const email = data?.email;
+				// const email = data?.email;
 
 				if (socket.current && socket.current.readyState === WebSocket.OPEN) {
 					socket.current.send(
 						JSON.stringify({
 							type: 'callRequest',
 							callUrl: localStorage.getItem('meetingLink'),
-							email
+							email: localStorage.getItem('meetingCallEmail')
+						})
+					);
+					console.log(
+						JSON.stringify({
+							type: 'callRequest',
+							callUrl: localStorage.getItem('meetingLink'),
+							email: localStorage.getItem('meetingCallEmail')
 						})
 					);
 				} else {

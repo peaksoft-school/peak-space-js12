@@ -6,16 +6,16 @@ import {
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: import.meta.env.VITE_BACKEND_URL,
-	// prepareHeaders: (headers) => {
-	// 	let token = JSON.parse(String(localStorage.getItem('auth_token')));
-	// 	if (!token) {
-	// 		token = JSON.parse(String(sessionStorage.getItem('auth_token')));
-	// 	}
-	// 	if (token) {
-	// 		headers.set('Authorization', `Bearer ${token}`);
-	// 	}
-	// 	return headers;
-	// }
+	prepareHeaders: (headers) => {
+		let token = JSON.parse(String(localStorage.getItem('auth_token')));
+		if (!token) {
+			token = JSON.parse(String(sessionStorage.getItem('auth_token')));
+		}
+		if (token) {
+			headers.set('Authorization', `Bearer ${token}`);
+		}
+		return headers;
+	}
 });
 
 const baseQueryExtended: BaseQueryFn = async (args, api, extraOptions) => {
