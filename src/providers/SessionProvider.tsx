@@ -32,6 +32,9 @@ export const SessionProvider: FC<ProtectedRouteProps> = ({ children }) => {
 					localStorage.removeItem('auth_token');
 					localStorage.removeItem('isAuth');
 					localStorage.removeItem('userId');
+					sessionStorage.removeItem('auth_token');
+					sessionStorage.removeItem('isAuth');
+					sessionStorage.removeItem('userId');
 					navigate('/auth/login');
 				}
 				break;
