@@ -831,9 +831,9 @@ const ForMe = () => {
 																									</button>
 
 																									<button
-																									// onClick={() =>
-																									// 	handleAddComment(item.id)
-																									// }
+																										onClick={() =>
+																											handleAddComment(item.id)
+																										}
 																									>
 																										Ответить
 																									</button>

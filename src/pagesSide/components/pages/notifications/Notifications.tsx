@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
-import NotificationsSlider from './NotificationsSlider';
 import { useGetNotificationQuery } from '@/src/redux/api/notification';
 import ModalTs from '@/src/ui/modal/Modal';
 import { Smile } from '@/src/assets/icons';
@@ -11,24 +10,26 @@ import { Skeleton } from 'antd';
 
 const Notifications = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedNotification, setSelectedNotification] = useState(null);
 	const { data: datas, isLoading, error } = useGetNotificationQuery();
 	console.log(datas);
 
 	const [inputStr, setInputStr] = useState('');
 	const [showPicker, setShowPicker] = useState(false);
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleGetEmoji = (event: any) => {
 		setInputStr((prevInput) => prevInput + event.native);
 		setShowPicker(false);
 	};
 
-	const showModal = () => {
+	const showModal = (notification: any) => {
+		setSelectedNotification(notification);
 		setIsModalOpen(true);
 	};
 
 	const handleCancel = () => {
 		setIsModalOpen(false);
+		setSelectedNotification(null);
 	};
 
 	if (isLoading) {
@@ -85,45 +86,58 @@ const Notifications = () => {
 							</div>
 
 							<div className={scss.end}>
-								<p>{item.createdAt}</p>
+								{/* <p>{item.createdAt}</p> */}
+								<p>
+									{new Date(item.createdAt).toLocaleString('ru-RU', {
+										hour: 'numeric',
+										minute: 'numeric', 
+										day: '2-digit',
+										month: '2-digit',
+									})}
+								</p>
 								<img
-									onClick={showModal}
-									src={item.senderProfileImageUrl}
+									onClick={() => showModal(item)}
+									src={item.publicationOrStoryImageUrl}
 									alt="photo"
 								/>
 							</div>
-
-							<ModalTs open={isModalOpen} onCancel={handleCancel}>
-								<div className={scss.tool_tip}>
-									<div className={scss.open_modal}>
-										<div className={scss.slider}>
-											<img src={item.senderProfileImageUrl} alt="" />
-										</div>
-										<div className={scss.aside_bar}>
-											<div className={scss.input_smile}>
-												<Smile onClick={() => setShowPicker((val) => !val)} />
-												<input
-													type="text"
-													placeholder="Добавить комментарий..."
-													value={inputStr}
-													onChange={(e) => setInputStr(e.target.value)}
-												/>
-												{showPicker && (
-													<Picker
-														data={data}
-														onEmojiSelect={handleGetEmoji}
-														theme={'light'}
-													/>
-												)}
-											</div>
-										</div>
-									</div>
-								</div>
-							</ModalTs>
 						</div>
 					))}
 				</div>
 			</div>
+
+			{selectedNotification && (
+				<ModalTs open={isModalOpen} onCancel={handleCancel}>
+					<div className={scss.tool_tip}>
+						<div className={scss.open_modal}>
+							<div className={scss.slider}>
+								<img
+									src={selectedNotification.publicationOrStoryImageUrl}
+									alt=""
+								/>
+							</div>
+							<div className={scss.aside_bar}>
+								<div className={scss.input_smile}>
+									<Smile onClick={() => setShowPicker((val) => !val)} />
+									<input
+										type="text"
+										placeholder="Добавить комментарий..."
+										value={inputStr}
+										onChange={(e) => setInputStr(e.target.value)}
+									/>
+									{showPicker && (
+										<Picker
+											data={data}
+											onEmojiSelect={handleGetEmoji}
+											theme={'light'}
+										/>
+									)}
+								</div>
+							</div>
+						</div>
+					</div>
+				</ModalTs>
+			)}
 		</div>
 	);
 };
