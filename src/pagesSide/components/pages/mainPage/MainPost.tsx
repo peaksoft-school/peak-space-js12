@@ -238,6 +238,7 @@ const MainPost = () => {
 		if (isOpenInnerCommnetChange) {
 			const newData = { message: innerCommentValue };
 			commentPost({ commentId, newData });
+			setInnerCommentValue('');
 		} else {
 			postComentUsers({ id, message: inputStr });
 			setInputStr('');

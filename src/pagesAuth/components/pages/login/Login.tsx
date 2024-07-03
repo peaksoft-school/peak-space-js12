@@ -38,7 +38,7 @@ const Login = () => {
 
 	const navigateToPages = () => {
 		// window.location.reload();
-		// navigate('/');
+		navigate('/');
 	};
 
 	const onSubmit = async (data) => {
@@ -97,6 +97,7 @@ const Login = () => {
 				} else {
 					sessionStorage.setItem('auth_token', JSON.stringify(token));
 					sessionStorage.setItem('isAuth', 'true');
+					localStorage.setItem('userId', idUser);
 				}
 				navigateToPages();
 				reset();
