@@ -11,8 +11,6 @@ export const SessionProvider: FC<ProtectedRouteProps> = ({ children }) => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
-	// console.log(status);
-
 	const handleNavigation = () => {
 		switch (pathname) {
 			case '/auth/login':
@@ -33,6 +31,10 @@ export const SessionProvider: FC<ProtectedRouteProps> = ({ children }) => {
 				if (status === 'rejected') {
 					localStorage.removeItem('auth_token');
 					localStorage.removeItem('isAuth');
+					localStorage.removeItem('userId');
+					sessionStorage.removeItem('auth_token');
+					sessionStorage.removeItem('isAuth');
+					sessionStorage.removeItem('userId');
 					navigate('/auth/login');
 				}
 				break;

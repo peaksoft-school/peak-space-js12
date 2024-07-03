@@ -3,8 +3,10 @@ import scss from './UserInfoLogout.module.scss';
 import { IconLogout } from '@tabler/icons-react';
 import { Avatar } from 'antd';
 import { useGetMeQuery } from '@/src/redux/api/auth';
+import { useNavigate } from 'react-router-dom';
 
 const UserInfoLogout: FC = () => {
+	const navigate = useNavigate();
 	const { data } = useGetMeQuery();
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 
@@ -14,6 +16,13 @@ const UserInfoLogout: FC = () => {
 
 	const closeDropdown = () => {
 		setDropdownVisible(false);
+		localStorage.removeItem('auth_token');
+		localStorage.removeItem('isAuth');
+		localStorage.removeItem('userId');
+		sessionStorage.removeItem('auth_token');
+		sessionStorage.removeItem('isAuth');
+		sessionStorage.removeItem('userId');
+		navigate('/auth/login');
 	};
 
 	return (

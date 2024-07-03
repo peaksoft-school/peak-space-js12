@@ -45,21 +45,19 @@ const Login = () => {
 		const response = await postRequest(data);
 		if ('data' in response) {
 			if (response.data) {
-
-				const { token, id }: any = response.data;
-				localStorage.setItem('auth_token', token);
-				localStorage.setItem('isAuth', 'true');
-				localStorage.setItem('userId', id);
+				const { token, id }: { token: string; id: number } = response.data;
 
 
-				// const { token }: { token: string } = response.data;
-				// if (rememberMe) {
-				// 	localStorage.setItem('auth_token', JSON.stringify(token));
-				// 	localStorage.setItem('isAuth', 'true');
-				// } else {
-				// 	sessionStorage.setItem('auth_token', JSON.stringify(token));
-				// 	sessionStorage.setItem('isAuth', 'true');
-				// }
+				if (rememberMe) {
+					localStorage.setItem('auth_token', JSON.stringify(token));
+					localStorage.setItem('isAuth', 'true');
+					localStorage.setItem('userId', id);
+				} else {
+					sessionStorage.setItem('auth_token', JSON.stringify(token));
+					sessionStorage.setItem('isAuth', 'true');
+					sessionStorage.setItem('userId', id);
+				}
+
 
 				navigateToPages();
 				reset();
@@ -101,6 +99,7 @@ const Login = () => {
 				} else {
 					sessionStorage.setItem('auth_token', JSON.stringify(token));
 					sessionStorage.setItem('isAuth', 'true');
+					localStorage.setItem('userId', idUser);
 				}
 				navigateToPages();
 				reset();

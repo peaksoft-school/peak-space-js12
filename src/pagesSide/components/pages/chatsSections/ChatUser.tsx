@@ -50,6 +50,8 @@ const ChatUser = () => {
 	}, [initWebSocket]);
 
 	useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+		localStorage.setItem('meetingCallEmail', filteredUserName?.email!);
 		if (socket.current) {
 			socket.current.onmessage = (event: MessageEvent) => {
 				const { payload }: { payload: Message[] } = JSON.parse(event.data);

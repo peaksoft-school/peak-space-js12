@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-nocheck
 import { useRef, useState } from 'react';
 import SliderFoto from './SliderFoto';
 import Picker from '@emoji-mart/react';

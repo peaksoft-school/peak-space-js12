@@ -98,11 +98,13 @@ const MainPost = () => {
 	const { data: commentData } = useGetComentUsersQuery(comentItem.postId);
 	const { data: innerComnetData } = useInnerCommentByidQuery(commentId);
 
+
 	const location = useLocation();
 
 	useEffect(() => {
 		refetch();
 	}, [location.pathname]);
+
 
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [countLike, setCountLike] = useState(0);
@@ -245,6 +247,7 @@ const MainPost = () => {
 		if (isOpenInnerCommnetChange) {
 			const newData = { message: innerCommentValue };
 			commentPost({ commentId, newData });
+			setInnerCommentValue('');
 		} else {
 			postComentUsers({ id, message: inputStr });
 			setInputStr('');

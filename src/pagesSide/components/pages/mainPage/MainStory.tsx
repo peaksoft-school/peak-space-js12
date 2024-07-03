@@ -284,6 +284,8 @@ const MainStory = () => {
 			}
 		}
 	};
+
+	const  MY_ID = localStorage.getItem('')
 	const backCamera = () => setImage('');
 	const handlePostStory = async () => {
 		const newData = {

@@ -27,7 +27,7 @@ const Chats = () => {
 									}
 									key={item.id}
 									to={`/chat/${item.email}`}
-									onClick={() => savePathChat(`/chat/${item.email}`)}
+									onClick={()=> savePathChat(`/chat/${item.email}`)}
 								>
 									<Avatar
 										size={38}

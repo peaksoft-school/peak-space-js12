@@ -7,7 +7,7 @@ import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpaceImg from '../../../../assets/peakSpace.png';
 import scss from './Registration.module.scss';
-import { Input, Checkbox, message } from 'antd';
+import { Input, message } from 'antd';
 
 interface ErrorObject {
 	password: string;
@@ -19,7 +19,6 @@ interface ErrorObject {
 
 const Registration = () => {
 	const [confirmPassword, setConfirmPassword] = useState('');
-	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState('');
 	const [postRequest, { isLoading }] = usePostRegistrationMutation();
 	const [messageApi, contextHolder] = message.useMessage();
@@ -27,10 +26,6 @@ const Registration = () => {
 
 	const handleConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setConfirmPassword(e.target.value);
-	};
-
-	const togglePasswordVisibility = () => {
-		setShowPassword(!showPassword);
 	};
 
 	const {
@@ -219,7 +214,6 @@ const Registration = () => {
 										placeholder=" Пароль"
 										className={scss.input_password}
 										visibilityToggle
-										type={showPassword ? 'text' : 'password'}
 										style={{
 											borderColor: errors.password ? 'red' : '',
 											backgroundColor: errors.password
@@ -251,15 +245,7 @@ const Registration = () => {
 								placeholder="Повторите пароль"
 								className={scss.input_password}
 								visibilityToggle
-								type={showPassword ? 'text' : 'password'}
 							/>
-
-							<Checkbox
-								checked={showPassword}
-								onChange={togglePasswordVisibility}
-							>
-								<p className={scss.text}>Сохранить вход</p>
-							</Checkbox>
 						</div>
 						<CustomButtonBold
 							disabled={isLoading}
