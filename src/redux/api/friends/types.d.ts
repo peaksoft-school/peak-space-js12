@@ -18,6 +18,5 @@ namespace FRIENDS {
 		linkPublications: string[];
 	};
 
-
-	type GetPhotoFriendRequest = void
+	type GetPhotoFriendRequest = void;
 }
