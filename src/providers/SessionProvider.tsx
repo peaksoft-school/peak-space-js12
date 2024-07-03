@@ -11,8 +11,6 @@ export const SessionProvider: FC<ProtectedRouteProps> = ({ children }) => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
-	console.log(status);
-
 	const handleNavigation = () => {
 		switch (pathname) {
 			case '/auth/login':
