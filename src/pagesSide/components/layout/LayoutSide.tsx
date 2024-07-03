@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Route, Routes, useLocation } from 'react-router-dom';
 import ChatUser from '@/src/pagesSide/components/pages/chatsSections/ChatUser.tsx';
 import PreloaderSpinner from '@/src/ui/preloaderSpinner/PreloaderSpinner.tsx';

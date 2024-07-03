@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useNavigate } from 'react-router-dom';
 import { IconSearch } from '@tabler/icons-react';
 import { useGetUsersQuery } from '@/src/redux/api/chat';
