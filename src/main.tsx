@@ -5,17 +5,20 @@ import App from './App.tsx';
 import '@mantine/core/styles.css';
 import './index.scss';
 import ReduxProvider from './providers/ReduxProvider.tsx';
-// import { SessionProvider } from '@/src/providers/SessionProvider.tsx';
+import { SessionProvider } from '@/src/providers/SessionProvider.tsx';
 import { MantineProvider } from '@mantine/core';
+import CallDetector from './middleware/CallDetector.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<MantineProvider>
 			<ReduxProvider>
 				<BrowserRouter>
-					{/* <SessionProvider> */}
-					<App />
-					{/* </SessionProvider> */}
+					<SessionProvider>
+						<CallDetector>
+							<App />
+						</CallDetector>
+					</SessionProvider>
 				</BrowserRouter>
 			</ReduxProvider>
 		</MantineProvider>

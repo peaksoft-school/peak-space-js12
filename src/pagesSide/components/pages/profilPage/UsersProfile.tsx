@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// /* eslint-disable react-hooks/rules-of-hooks */
-// /* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-nocheck
 // import { useState } from 'react';
 // import {
 // 	Link,

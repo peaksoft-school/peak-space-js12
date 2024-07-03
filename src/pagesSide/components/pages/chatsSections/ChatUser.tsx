@@ -8,11 +8,11 @@ import InputEmoji from 'react-input-emoji';
 import { IconPhone } from '@tabler/icons-react';
 
 interface Message {
-	event: string;
+	type: string;
+	roomId?: string;
 	message?: string;
-	username?: string;
+	name?: string;
 	email?: string;
-	room: string;
 }
 
 const ChatUser = () => {
@@ -52,8 +52,8 @@ const ChatUser = () => {
 	useEffect(() => {
 		if (socket.current) {
 			socket.current.onmessage = (event: MessageEvent) => {
-				const { messages }: { messages: Message[] } = JSON.parse(event.data);
-				setMessages(messages);
+				const { payload }: { payload: Message[] } = JSON.parse(event.data);
+				setMessages(payload);
 			};
 		}
 		if (isConnected && filteredUserName?.email && userData?.email) {
@@ -61,7 +61,7 @@ const ChatUser = () => {
 				.split('+')
 				.sort()
 				.join('+');
-			sendWebSocketMessage({ event: 'getChatMessage', room: newRoom });
+			sendWebSocketMessage({ type: 'getMessage', roomId: newRoom });
 		}
 	}, [isConnected, filteredUserName, userData, userEmail]);
 
@@ -78,11 +78,11 @@ const ChatUser = () => {
 
 	const handleOnEnter = (message: string) => {
 		sendWebSocketMessage({
-			event: 'sendChatMessage',
+			type: 'message',
 			message,
-			username: userData?.userName,
+			name: userData?.userName,
 			email: userData?.email,
-			room: `${filteredUserName?.email}+${userData?.email}`
+			roomId: `${filteredUserName?.email}+${userData?.email}`
 				.split('+')
 				.sort()
 				.join('+')
