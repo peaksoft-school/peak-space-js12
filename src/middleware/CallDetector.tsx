@@ -124,7 +124,9 @@ const CallDetector: FC<CallDetectorProps> = ({ children }) => {
 						JSON.stringify({
 							type: 'callRequest',
 							callUrl: localStorage.getItem('meetingLink'),
-							email: localStorage.getItem('meetingCallEmail')
+							email: localStorage.getItem('meetingCallEmail'),
+							name: `${data.firstName} ${data.lastName}`,
+							image: data.avatar
 						})
 					);
 					console.log(
