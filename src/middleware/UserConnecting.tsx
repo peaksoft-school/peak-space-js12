@@ -29,10 +29,6 @@ const UserConnecting: FC<UserConnectingProps> = ({ children }) => {
 
 	const openModal = () => {
 		setOpened(true);
-		setTimeout(() => {
-			// @ts-ignore
-			playButtonRef.current.click();
-		}, 1000);
 	};
 
 	const closeModal = () => {
@@ -123,13 +119,16 @@ const UserConnecting: FC<UserConnectingProps> = ({ children }) => {
 								<h1 className={scss.name}>{whoCalling?.name}</h1>
 								<h1 className={scss.email}>{whoCalling?.email}</h1>
 							</div>
-							<button
-								ref={playButtonRef}
-								onClick={handlePlayButton}
-								style={{ display: 'none' }}
-							>
-								Play Audio
-							</button>
+							<div className={scss.play_audio}>
+								<p>Нажмите кнопку, чтобы начать воспроизведение аудио:</p>
+								<button
+									ref={playButtonRef}
+									onClick={handlePlayButton}
+									className={scss.play_button}
+								>
+									Play Audio
+								</button>
+							</div>
 							<div className={scss.buttons}>
 								<button
 									className={scss.call_on}
