@@ -22,6 +22,8 @@ const UserConnecting: FC<UserConnectingProps> = ({ children }) => {
 	const { data } = useGetMeQuery();
 	const [opened, setOpened] = useState(false);
 	const [whoCalling, setWhoCalling] = useState<CallRequestPayload>();
+	console.log(whoCalling);
+
 	const [modalContainer] = useState(() => document.createElement('div'));
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const socketRef = useRef<WebSocket | null>(null);
