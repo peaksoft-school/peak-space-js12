@@ -15,13 +15,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 		<MantineProvider>
 			<ReduxProvider>
 				<BrowserRouter>
-					{/* <SessionProvider> */}
-					<UserConnecting>
-						<CallDetector>
-							<App />
-						</CallDetector>
-					</UserConnecting>
-					{/* </SessionProvider> */}
+					<SessionProvider>
+						<UserConnecting>
+							<CallDetector>
+								<App />
+							</CallDetector>
+						</UserConnecting>
+					</SessionProvider>
 				</BrowserRouter>
 			</ReduxProvider>
 		</MantineProvider>
