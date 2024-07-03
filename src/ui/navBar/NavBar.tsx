@@ -140,7 +140,7 @@ const NavBar = () => {
 								{!isChatPerson && !isSearchActive && <span>Главная</span>}
 							</Link>
 						</li>
-						<li onClick={() => setIsSearchActive(!isSearchActive)}>
+						{/* <li onClick={() => setIsSearchActive(!isSearchActive)}>
 							<IconSearch
 								className={
 									isSearchActive ? `${scss.icon} ${scss.iconActive}` : scss.icon
@@ -149,7 +149,7 @@ const NavBar = () => {
 							{!isChatPerson && !isSearchActive && (
 								<span className={scss.search_text}>Поиск</span>
 							)}
-						</li>
+						</li> */}
 						{navigationItems.slice(1).map((item) => (
 							<li key={item.path} onClick={() => navigateTo(item.path)}>
 								<Link
@@ -167,13 +167,13 @@ const NavBar = () => {
 						))}
 					</ul>
 				</nav>
-				{isSearchActive && (
+				{/* {isSearchActive && (
 					<input
 						type="text"
 						className={scss.searchInput}
 						placeholder="Search..."
 					/>
-				)}
+				)} */}
 			</div>
 			<div className={scss.bottom}>
 				<UserInfoLogout />

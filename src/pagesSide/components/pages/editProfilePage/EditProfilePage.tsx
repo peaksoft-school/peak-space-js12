@@ -319,6 +319,9 @@ const EditProfilePage = () => {
 							</div>
 						</div>
 					</div>
+
+
+{/* 
 					<div
 						className={
 							isInputsAreaVisible
@@ -358,7 +361,11 @@ const EditProfilePage = () => {
 								</div>
 							))}
 						</div>
-					</div>
+					</div> */}
+
+
+
+
 					<div className={scss.grid}>
 						<div className={scss.col}>
 							<p className={scss.lead}>Должность</p>

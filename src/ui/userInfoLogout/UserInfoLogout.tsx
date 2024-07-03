@@ -28,7 +28,7 @@ const UserInfoLogout: FC = () => {
 	return (
 		<div className={scss.UserInfoLogout} onClick={(e) => e.stopPropagation()}>
 			<div className={scss.user_profile} onClick={toggleDropdown}>
-				<Avatar size={40} icon={<img src={data?.avatar} alt="avatar" />} />
+				<Avatar size={40} icon={<img src={'/src/assets/album.svg'} alt="avatar" />} />
 				<p className={scss.user_name}>{data?.userName}</p>
 			</div>
 			{dropdownVisible && (
@@ -40,10 +40,7 @@ const UserInfoLogout: FC = () => {
 						<p className={scss.user_email}>{data?.email}</p>
 						<div className={scss.existing_accounts}>
 							<div className={scss.account}>
-								<p>existing_user_1@example.com</p>
-							</div>
-							<div className={scss.account}>
-								<p>existing_user_2@example.com</p>
+								<p>{data?.email}</p>
 							</div>
 						</div>
 						<button className={scss.add_account}>+ Добавить аккаунт</button>

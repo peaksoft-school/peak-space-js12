@@ -365,7 +365,9 @@ const MainStory = () => {
 							) : (
 								<>
 									<img className={scss.plus} src={plusIcon} alt="plus icon" />
-									<h1>Добовить Историю</h1>
+									<h1 style={{ fontFamily: 'Arial', textAlign: 'center',marginLeft:"-7px" }}>
+										Добaвить историю
+									</h1>
 								</>
 							)}
 						</div>

@@ -21,10 +21,10 @@
 	}
 
 	.top {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		position: fixed;
+		// display: flex;
+		// flex-direction: column;
+		// justify-content: space-between;
+		// position: fixed;
 
 		.logo {
 			width: 100%;
@@ -191,7 +191,8 @@
 		}
 
 		.searchInput {
-			width: 256px;
+			width: 75%;
+
 			height: 35px;
 			padding: 8px;
 			border: 1px solid #ccc;
@@ -199,7 +200,8 @@
 			margin-top: 10px;
 			position: absolute;
 			left: 62px;
-			top: 16.7%;
+			// top: 14.7%;
+			top: 125px;
 			transform: width 3s;
 		}
 	}

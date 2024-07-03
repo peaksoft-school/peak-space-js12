@@ -36,6 +36,7 @@
 .section {
 	width: 100%;
 	height: 100%;
+
 	// max-width: 1100px;
 
 	.content {
@@ -46,6 +47,7 @@
 		max-width: 900px;
 		border-right: 2px solid #dee3f1;
 		position: relative;
+		overflow: hidden;
 
 		input {
 			width: 100%;

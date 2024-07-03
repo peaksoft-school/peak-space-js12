@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
+
 	baseUrl: import.meta.env.VITE_BACKEND_URL,
 	prepareHeaders: (headers) => {
 		let token = JSON.parse(String(localStorage.getItem('auth_token')));
@@ -16,6 +17,7 @@ const baseQuery = fetchBaseQuery({
 		}
 		return headers;
 	}
+
 });
 
 const baseQueryExtended: BaseQueryFn = async (args, api, extraOptions) => {

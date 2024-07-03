@@ -41,7 +41,7 @@
 	// height: 100%;
 
 	.aside {
-		width: 980px;
+		width: 100%;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
@@ -49,7 +49,6 @@
 
 		.head {
 			width: 100%;
-			max-width: 980px;
 			max-height: 260px;
 			height: 100vh;
 			position: relative;
@@ -113,7 +112,6 @@
 			}
 			img {
 				width: 100%;
-				max-width: 979px;
 				max-height: 224px;
 				object-fit: cover;
 				border-radius: 3px;
@@ -122,7 +120,7 @@
 			.bar {
 				display: flex;
 				align-items: center;
-				width: 980px;
+				width: 100%;
 				height: 90px;
 				background: #ffffff;
 
@@ -137,7 +135,7 @@
 					cursor: pointer;
 				}
 				.side_bar {
-					width: 750px;
+					width: 100%;
 					display: flex;
 					justify-content: space-between;
 					padding-inline: 30px;
@@ -195,12 +193,12 @@
 			justify-content: center;
 			align-items: center;
 			gap: 75px;
+			margin-top: -14px;
 
 			.link {
 				display: flex;
 				align-items: center;
 				gap: 5px;
-
 				p {
 					color: rgb(0, 0, 0);
 					font-size: 16px;
@@ -404,7 +402,8 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
-	width: 980px;
+	width: 100%;
+	margin-top: -70px;
 	// min-height: 100vh;
 	// max-height: 100%;
 	.section {
@@ -422,15 +421,14 @@
 			.image {
 				object-fit: cover;
 
-				width: 320px;
-				height: 320px;
+				width: 360px;
+				height: 360px;
 			}
 			.image:empty {
 				display: none;
 			}
 		}
 	}
-
 	h1 {
 		text-align: center;
 		font-family: 'Courier New';
@@ -438,8 +436,8 @@
 	}
 	.bar {
 		cursor: pointer;
-		width: 320px;
-		height: 320px;
+		width: 360px;
+		height: 360px;
 		background: white;
 		display: grid;
 		align-items: center;
@@ -455,8 +453,8 @@
 	}
 	.edit {
 		width: 100%;
-		max-width: 320px;
-		height: 320px;
+		max-width: 360px;
+		height: 360px;
 	}
 
 	.photos {
@@ -477,8 +475,8 @@
 			cursor: pointer;
 		}
 		img {
-			width: 320px;
-			height: 320px;
+			width: 358px;
+			height: 358px;
 			object-fit: cover;
 		}
 		&:hover {
@@ -668,7 +666,6 @@
 			h4 {
 			}
 		}
-
 		input {
 			border: none;
 			outline: none;
@@ -890,7 +887,6 @@
 		.filter-clarendon {
 			filter: contrast(1.5) brightness(1.2) saturate(1.35);
 		}
-
 		.filter-crema {
 			filter: sepia(0.3) contrast(1.05) brightness(1.05) saturate(1.1);
 		}
@@ -1048,6 +1044,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
+	margin-top: -70px;
 	h1 {
 		text-align: center;
 		font-family: 'Courier New';
@@ -1058,8 +1055,8 @@
 		flex-direction: column;
 		gap: 6px;
 		img {
-			width: 320px;
-			height: 350px;
+			width: 360px;
+			height: 360px;
 			object-fit: cover;
 		}
 	}
@@ -1090,8 +1087,8 @@
 		flex-direction: column;
 		gap: 6px;
 		img {
-			width: 320px;
-			height: 320px;
+			width: 350px;
+			height: 350px;
 			object-fit: cover;
 			cursor: grab;
 		}
@@ -1113,7 +1110,6 @@
 	align-items: center;
 	justify-content: center;
 	position: relative;
-
 	.close {
 		position: absolute;
 		top: 25px;
@@ -1359,7 +1355,6 @@
 		font-size: 16px;
 		max-height: 100%;
 	}
-
 	.buttons {
 		button {
 			cursor: pointer;
@@ -1556,8 +1551,8 @@
 		font-weight: bold;
 	}
 	.bar {
-		width: 320px;
-		height: 320px;
+		width: 355px;
+		height: 355px;
 		background: white;
 		display: grid;
 		align-items: center;
@@ -1616,7 +1611,6 @@
 @media (max-width: 770px) {
 	.favorite {
 		padding-left: 10px;
-
 		.widget {
 			img {
 				width: 300px;
@@ -1861,7 +1855,6 @@
 			ul {
 				display: flex;
 				justify-content: space-between;
-
 				width: 470px;
 				height: 20px;
 			}
@@ -2045,6 +2038,7 @@
 	justify-content: center;
 	.modal {
 		// width: 100%;
+		// width: 900px;
 		height: 800px;
 		border-radius: 10px;
 		background: rgb(255, 255, 255);
@@ -2072,6 +2066,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+
 				// gap: 70px;
 				.chapters_user {
 					display: flex;
@@ -2094,12 +2089,15 @@
 			display: flex;
 			flex-direction: column;
 			gap: 16px;
+			overflow: auto;
+			// width: 770px;
+			// overflow: hidden;
+
 			.center_friends {
 				width: 700px;
 				display: flex;
 				flex-direction: column;
 				gap: 20px;
-
 				.friends {
 					display: flex;
 					align-items: center;

@@ -37,8 +37,8 @@ const Login = () => {
 	} = useForm<LoginFormInputs>({ mode: 'onBlur' });
 
 	const navigateToPages = () => {
-		window.location.reload();
-		// navigate('/');
+		// window.location.reload();
+		navigate('/');
 	};
 
 	const onSubmit = async (data) => {
@@ -46,6 +46,7 @@ const Login = () => {
 		if ('data' in response) {
 			if (response.data) {
 				const { token, id }: { token: string; id: number } = response.data;
+
 
 				if (rememberMe) {
 					localStorage.setItem('auth_token', JSON.stringify(token));
@@ -56,6 +57,7 @@ const Login = () => {
 					sessionStorage.setItem('isAuth', 'true');
 					sessionStorage.setItem('userId', id);
 				}
+
 
 				navigateToPages();
 				reset();

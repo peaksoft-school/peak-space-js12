@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import { useEffect, useRef, useState } from 'react';
 import {
 	useCreatePostMutation,
@@ -112,7 +113,7 @@ const Publications = () => {
 				setFileUrls(newFileUrls);
 				const imageUrl = URL.createObjectURL(file);
 				setPreviewImage(imageUrl);
-				openModal();
+				NursOpen();
 			} catch (error) {
 				console.error('Error uploading file:', error);
 			}
@@ -205,6 +206,10 @@ const Publications = () => {
 		setModalFile(false);
 	};
 
+	const NursOpen = () => {
+		setModalFile(true);
+	};
+
 	const backToOne = () => {
 		setIsModal(true);
 		setModalSecond(false);
@@ -260,9 +265,7 @@ const Publications = () => {
 			<div className={scss.bar} onClick={handleButtonClick}>
 				<label>
 					<PlusIconSecond />
-					<p style={{ textAlign: 'center' }}>
-						Добавить <br /> фото
-					</p>
+					<p style={{ textAlign: 'center' }}>Добавить фото</p>
 				</label>
 				<input
 					placeholder="file"
@@ -306,7 +309,7 @@ const Publications = () => {
 				<div className={scss.finish_modal}>
 					<div className={scss.modal_des}>
 						<div className={scss.finish_header}>
-							<button onClick={backToTwo} className={scss.arrow_button}>
+							<button onClick={handleCloseModal} className={scss.arrow_button}>
 								<IconArrowLeft />
 							</button>
 							<div>
@@ -356,8 +359,8 @@ const Publications = () => {
 									<p className={scss.line}></p>
 								</div>
 								<div>
-									<button onClick={handleCloseModal}>Отмена</button>
-									<button onClick={handleAddPost}>Отправить</button>
+									{/* <button onClick={handleCloseModal}>Отмена</button>
+									<button onClick={handleAddPost}>Отправить</button> */}
 								</div>
 							</div>
 						</div>

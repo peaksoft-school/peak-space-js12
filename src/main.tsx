@@ -16,11 +16,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 			<ReduxProvider>
 				<BrowserRouter>
 					<SessionProvider>
-						<UserConnecting>
-							<CallDetector>
-								<App />
-							</CallDetector>
-						</UserConnecting>
+					<UserConnecting>
+						<CallDetector>
+							<App />
+						</CallDetector>
+					</UserConnecting>
 					</SessionProvider>
 				</BrowserRouter>
 			</ReduxProvider>

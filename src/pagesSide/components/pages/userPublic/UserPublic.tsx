@@ -59,7 +59,6 @@ const UserPublic = () => {
 		useCommentResponseQuery(commentResponseById, {
 			skip: !commentResponseById
 		});
-	console.log(commentResponse, 'nurs');
 
 	// const { pathname } = useLocation();
 

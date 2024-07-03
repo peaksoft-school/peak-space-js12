@@ -63,7 +63,7 @@ const LayoutSide = () => {
 									</Route>
 									<Route path="/notification" element={<Notifications />} />
 									<Route
-										path="/users-profile/:foundUserId/*"
+										path="/users-profile/:idUser"
 										element={<UsersProfile />}
 									/>
 									<Route path="/public" element={<PublicPage />} />

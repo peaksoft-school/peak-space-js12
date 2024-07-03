@@ -36,6 +36,7 @@ import {
 	useCommentPostMutation,
 	useInnerCommentByidQuery
 } from '@/src/redux/api/userPublic';
+import { useLocation } from 'react-router-dom';
 interface LinkPublicationResponseList {
 	id: number;
 	link: string;
@@ -96,6 +97,14 @@ const MainPost = () => {
 	});
 	const { data: commentData } = useGetComentUsersQuery(comentItem.postId);
 	const { data: innerComnetData } = useInnerCommentByidQuery(commentId);
+
+
+	const location = useLocation();
+
+	useEffect(() => {
+		refetch();
+	}, [location.pathname]);
+
 
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [countLike, setCountLike] = useState(0);
