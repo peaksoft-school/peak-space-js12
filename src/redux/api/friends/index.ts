@@ -3,13 +3,26 @@ import { api as index } from '..';
 const api = index.injectEndpoints({
 	endpoints: (builder) => ({
 		getFriends: builder.query<
-			FRIENDS.GetFriendsRespose,
+			FRIENDS.GetFriendsResponse,
 			FRIENDS.GetFriendsRequest
 		>({
-			query: (foundUserId ) => ({
-				url: `/publics/profile-friends/${foundUserId}`,
-				method: 'GET', 
-        headers: {
+			query: (idUser) => ({
+				url: `/publics/profile-friends/${idUser}`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+				}
+			}),
+			providesTags: ['post']
+		}),
+		getPhotoFriend: builder.query<
+			FRIENDS.GetPhotoFriendResponse,
+			FRIENDS.GetPhotoFriendRequest
+		>({
+			query: (idUser) => ({
+				url: `publics/${idUser}`,
+				method: 'GET',
+				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth_token')}`
 				}
 			}),
@@ -18,4 +31,4 @@ const api = index.injectEndpoints({
 	})
 });
 
-export const { useGetFriendsQuery } = api;
+export const { useGetFriendsQuery, useGetPhotoFriendQuery } = api;

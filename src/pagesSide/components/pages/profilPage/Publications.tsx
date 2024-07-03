@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useRef, useState } from 'react';
 import {
 	useCreatePostMutation,
@@ -111,7 +112,6 @@ const Publications = () => {
 				setFileUrls(newFileUrls);
 				const imageUrl = URL.createObjectURL(file);
 				setPreviewImage(imageUrl);
-				localStorage.setItem('previewImage', imageUrl);
 				openModal();
 			} catch (error) {
 				console.error('Error uploading file:', error);
@@ -150,8 +150,7 @@ const Publications = () => {
 			setDescription('');
 			setLocation(null);
 			setPreviewImage(null);
-			localStorage.removeItem('previewImage');
-			localStorage.removeItem('selectedFilter');
+
 			handleCloseModal();
 			console.log('Post added successfully');
 		} catch (error) {
@@ -199,6 +198,7 @@ const Publications = () => {
 	const handleOpenModal = () => {
 		setIsModal(false);
 		setModalSecond(true);
+		localStorage.setItem('selectedFilter', selectedFilter);
 	};
 
 	const handleCloseModal = () => {
@@ -297,7 +297,6 @@ const Publications = () => {
 							>
 								<IconTrash />
 							</button>
-							{/* <p onClick={() => removeId(item.id)}>удалить пост</p> */}
 						</div>
 					</div>
 				</>
@@ -313,6 +312,7 @@ const Publications = () => {
 							<div>
 								<p>Редактировать</p>
 							</div>
+							<button onClick={handleAddPost}>Далее</button>
 						</div>
 
 						<div style={{ display: 'flex' }}>
@@ -321,7 +321,7 @@ const Publications = () => {
 									<img
 										style={{
 											maxWidth: '640px',
-											width: '100%',
+											width: '649px',
 											height: '581.6px',
 											objectFit: 'cover',
 											borderRadius: '5px'
@@ -468,6 +468,7 @@ const Publications = () => {
 								{previewImage && (
 									<img
 										style={{
+											width: '649px',
 											maxWidth: '640px',
 											height: '581.6px',
 											objectFit: 'cover',

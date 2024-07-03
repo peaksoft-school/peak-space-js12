@@ -80,3 +80,33 @@ body {
 	background-color: #443bac;
 	border-radius: 10px;
 }
+
+:root {
+	--purple: #9336fd;
+	--purple-shadow: #7b53f5d9;
+	--error-shadow: #f57165d9;
+	--light-slate: #a8b2d1;
+	--light-navy: #240046;
+	--lightest-navy: #2f2354;
+	--lightest-slate: #d4dcf9;
+	--navy: #0a192f;
+	--navy-shadow: #020c1bb3;
+	--slate: #99a3c0;
+	--black: #000;
+	--white: #fff;
+	--white-bg: #e6f1ff;
+	--white-bg-hover: #f3f9ff;
+	--border-radius: 4px;
+	--transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.react-input-emoji--button {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	svg {
+		display: flex !important;
+		justify-content: center !important;
+		align-items: center !important;
+	}
+}

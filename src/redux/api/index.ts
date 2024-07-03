@@ -5,10 +5,12 @@ import {
 } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-	baseUrl: import.meta.env.VITE_BACKEND_URL
-
+	baseUrl: import.meta.env.VITE_BACKEND_URL,
 	// prepareHeaders: (headers) => {
-	// 	const token = localStorage.getItem('auth_token');
+	// 	let token = JSON.parse(String(localStorage.getItem('auth_token')));
+	// 	if (!token) {
+	// 		token = JSON.parse(String(sessionStorage.getItem('auth_token')));
+	// 	}
 	// 	if (token) {
 	// 		headers.set('Authorization', `Bearer ${token}`);
 	// 	}
@@ -32,10 +34,10 @@ export const api = createApi({
 		'main',
 		'post',
 		'slider',
-		'userProfile',
+		'userInfoLogout',
 		'chat',
 		'registration',
-		'login', 
+		'auth',
 		'blocked',
 		'friends',
 		'comentsUsers'

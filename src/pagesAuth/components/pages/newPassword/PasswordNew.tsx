@@ -2,11 +2,12 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
-import { useCreatePasswordMutation } from '@/src/redux/api/forgetPassword';
+import { useCreatePasswordMutation } from '@/src/redux/api/auth';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import scss from './NewPassword.module.scss';
 import { Input } from 'antd';
+import CustomButton from '@/src/ui/customButton/CustomButton';
 
 interface ErrorProps {
 	password: string;
@@ -130,11 +131,13 @@ const PasswordNew = () => {
 						<span className={scss.error_confirm}>{errors.confirm.message}</span>
 					)}
 
-					<CustomButtonBold children={'сохранить'} type={'submit'} disabled={false} />
+					<CustomButtonBold
+						children={'сохранить'}
+						type={'submit'}
+						disabled={false}
+					/>
+					<CustomButton children={'cancel'} onClick={() => console.log()} />
 				</form>
-				<button onClick={navigateToBack} className={scss.button}>
-					отмена
-				</button>
 			</div>
 		</div>
 	);

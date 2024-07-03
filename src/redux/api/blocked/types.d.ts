@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 namespace BLOCKEDUSERS {
 	type GetBlockedUsersResponse = {
-		
 		id: number;
 		userName: string;
 		avatar: string;
@@ -13,11 +12,5 @@ namespace BLOCKEDUSERS {
 
 	type GetBlockedUsersRequest = void;
 
-	type PutBlockedUsersResponse = {
-		userId: number;
-	};
 
-	type PutBlockedUsersRequest = {
-		userId: number;
-	};
 }

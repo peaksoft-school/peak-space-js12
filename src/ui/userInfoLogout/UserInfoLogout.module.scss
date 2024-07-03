@@ -1,0 +1,91 @@
+.UserInfoLogout {
+	padding: 28px;
+	background: var(--white);
+	border-radius: var(--border-radius);
+	position: fixed;
+	bottom: 0;
+	width: 17.5%;
+	cursor: pointer;
+}
+
+.user_profile {
+	display: flex;
+	align-items: center;
+}
+
+.user_name {
+	margin-left: 10px;
+}
+
+.dropdown {
+	position: absolute;
+	top: -11rem;
+	left: 3rem;
+	background: white;
+	border: 1px solid #ccc;
+	padding: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+	border-radius: 10px;
+	opacity: 0;
+	transform: translateY(20px);
+	transition:
+		opacity 0.3s ease,
+		transform 0.3s ease;
+}
+
+.dropdownVisible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.user_data {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.existing_accounts {
+	margin-top: 10px;
+}
+
+.account {
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.add_account {
+	margin: auto;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	background-color: rgba(230, 223, 223, 0.604);
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	border-radius: 5px;
+}
+
+.add_account:hover {
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.562);
+}
+
+.logout {
+	margin-top: 5px;
+	margin: auto;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	border-radius: 5px;
+	width: 100%;
+	background-color: rgba(230, 223, 223, 0.604);
+}
+
+.logout:hover {
+	background-color: rgba(223, 25, 25, 0.725);
+	color: white;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

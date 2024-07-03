@@ -9,7 +9,11 @@ interface ButtonBoldProps {
 	disabled: boolean;
 }
 
-const CustomButtonBold: FC<ButtonBoldProps> = ({ children, type,disabled }) => {
+const CustomButtonBold: FC<ButtonBoldProps> = ({
+	children,
+	type,
+	disabled
+}) => {
 	return (
 		<>
 			<button className={scss.bold_button} disabled={disabled} type={type}>

@@ -1,11 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-namespace USERSCHAT {
-	type GetUsersResponse = {
-		id: number;
-		img: string;
-		name: string;
-		text: string;
-		title: string;
+namespace CHAT {
+	type GetResponse = {
+		id?: number;
+		avatar: string;
+		firstName: string;
+		lastName: string;
+		userName: string;
+		email: string;
 	}[];
-	type GetUsersRequest = void;
+	type GetRequest = void;
 }

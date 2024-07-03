@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeEvent, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import { usePostRegistrationMutation } from '@/src/redux/api/registration';
+import { usePostRegistrationMutation } from '@/src/redux/api/auth';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import peakSpaceImg from '../../../../assets/peakSpace.png';
@@ -43,39 +42,45 @@ const Registration = () => {
 	} = useForm<ErrorObject>({ mode: 'onBlur' });
 
 	const onSubmit = async (data: any) => {
-		try {
-			const response = await postRequest(data);
-			console.log('Full Response:', response);
-
-			if (password !== confirmPassword) {
-				messageApi.open({
-					type: 'warning',
-					content: 'Пароли не совпадают'
-				});
-				return;
-			}
-
-			navigate(`/auth/confirm-by-email/${response.data?.userId}` as string, {
-				replace: true
+		if (password !== confirmPassword) {
+			messageApi.open({
+				type: 'warning',
+				content: 'Пароли не совпадают'
 			});
-			reset();
-			setConfirmPassword('');
-		} catch (error: any) {
-			console.error('Ошибка регистрации:', error);
+			return;
+		} else {
+			const response = (await postRequest(
+				data
+			)) as REGISTRATION.PostRegistrationResponse;
+			if ('data' in response) {
+				if (response.data) {
+					console.log('Full Response:', response);
 
-			if (error.status === 404) {
-				messageApi.open({
-					type: 'error',
-					content: 'Уже существует аккаунт с таким Gmail'
-				});
-			} else {
-				console.log('Registration failed', error);
-
-				messageApi.open({
-					type: 'warning',
-					content: 'Пароли не совпадают'
-				});
+					navigate(
+						`/auth/confirm-by-email/${response.data?.userId}` as string,
+						{
+							replace: true
+						}
+					);
+					reset();
+					setConfirmPassword('');
+				}
 			}
+			if (response.error) {
+				console.log(response.error.data);
+				if (response.error.status === 400) {
+					messageApi.open({
+						type: 'warning',
+						content: response.error.data?.message
+					});
+				} else if (response.error.status === 417) {
+					messageApi.open({
+						type: 'warning',
+						content: response.error.data?.message
+					});
+				}
+			}
+			console.log(response);
 		}
 	};
 

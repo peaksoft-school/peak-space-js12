@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
@@ -14,99 +13,63 @@ import scss from './Login.module.scss';
 import {
 	usePostLoginMutation,
 	usePostWithGoogleMutation
-} from '@/src/redux/api/login';
+} from '@/src/redux/api/auth';
 import { ToastContainer } from 'react-toastify';
 
-interface ErrorObject {
-	password: string;
+interface LoginFormInputs {
 	email: string;
+	password: string;
 }
 
 const Login = () => {
-	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const [postGoogleToken] = usePostWithGoogleMutation();
 	const [postRequest, { isLoading }] = usePostLoginMutation();
 	const [messageApi, contextHolder] = message.useMessage();
+	const [rememberMe, setRememberMe] = useState<boolean>(false); // новое состояние для чекбокса
 	const navigate = useNavigate();
 
-	const togglePasswordVisibility = () => {
-		setShowPassword(!showPassword);
-	};
-
 	const {
-		register,
 		control,
 		formState: { errors },
 		handleSubmit,
 		reset
-	} = useForm<ErrorObject>({ mode: 'onBlur' });
+	} = useForm<LoginFormInputs>({ mode: 'onBlur' });
 
 	const navigateToPages = () => {
-		navigate('/', { replace: true });
+		// window.location.reload();
+		navigate('/');
 	};
 
-	// const onSubmit = async (data: any) => {
-	// 	try {
-	// 		const response = await postRequest(data);
-	// 		console.log('Full Response:', response);
-
-	// 		if (response.data?.httpStatus === 'OK') {
-	// 			const responseData = response.data;
-	// 			console.log('Response Data:', responseData);
-
-	// 			const status = responseData?.httpStatus;
-	// 			const token = responseData?.token;
-
-	// 			if (status === 'OK') {
-	// 				localStorage.setItem('auth_token', token);
-	// 				localStorage.setItem('isAuth', 'true');
-	// 				navigateToPages();
-	// 				reset();
-	// 			} else {
-	// 				messageApi.open({
-	// 					type: 'warning',
-	// 					content: 'Произошла ошибка на сервере.'
-	// 				});
-	// 			}
-	// 		} else {
-	// 			console.error('Ошибка HTTP:', response.status);
-	// 			messageApi.open({
-	// 				type: 'error',
-	// 				content: 'Произошла ошибка при выполнении запроса, попробуйте снова.'
-	// 			});
-	// 		}
-	// 	} catch (error: any) {
-	// 		console.error('Ошибка входа:', error);
-
-	// 		if (error.response && error.response.status === 404) {
-	// 			const errorMessage =
-	// 				error.response.data?.message || 'Пользователь не найден.';
-	// 			alert(errorMessage);
-	// 		} else {
-	// 			messageApi.open({
-	// 				type: 'error',
-	// 				content: 'Произошла ошибка при входе, попробуйте снова.'
-	// 			});
-	// 		}
-	// 	}
-	// };
-
 	const onSubmit = async (data: any) => {
-		try {
-			const result = await postRequest(data);
-			if ('data' in result) {
-				const { token }: any = result.data;
+		const response = (await postRequest(
+			data
+		)) as LOGIN.PostRegistrationResponse;
+		if ('data' in response) {
+			if (response.data) {
+				const { token }: any = response.data;
 				localStorage.setItem('auth_token', token);
 				localStorage.setItem('isAuth', 'true');
 				navigateToPages();
 				reset();
 			}
-		} catch (error) {
-			console.error('Ошибка входа:', error);
+		}
+		if (response.error) {
+			console.log(response.error.data);
+			if (response.error.status === 404) {
+				messageApi.open({
+					type: 'warning',
+					content: response.error.data?.message
+				});
+			} else if (response.error.status === 417) {
+				messageApi.open({
+					type: 'warning',
+					content: response.error.data?.message
+				});
+			}
 		}
 	};
 
-	const handleWithGoogle = async () => {
+	const handleGoogleLogin = async () => {
 		try {
 			const result = await signInWithPopup(auth, provider);
 			const user = result.user;
@@ -118,9 +81,14 @@ const Login = () => {
 			const response = await postGoogleToken(data);
 
 			if ('data' in response) {
-				const { token }: any = response.data;
-				localStorage.setItem('auth_token', token);
-				localStorage.setItem('isAuth', 'true');
+				const { token } = response.data;
+				if (rememberMe) {
+					localStorage.setItem('auth_token', JSON.stringify(token));
+					localStorage.setItem('isAuth', 'true');
+				} else {
+					sessionStorage.setItem('auth_token', JSON.stringify(token));
+					sessionStorage.setItem('isAuth', 'true');
+				}
 				navigateToPages();
 				reset();
 			}
@@ -139,16 +107,16 @@ const Login = () => {
 						<form onSubmit={handleSubmit(onSubmit)} className={scss.form}>
 							{contextHolder}
 							<Controller
-								{...register('email')}
+								name="email"
 								control={control}
 								defaultValue=""
 								rules={{ required: 'Пожалуйста, введите ваш email.' }}
 								render={({ field }) => (
 									<Input
-										className={scss.input_password}
 										{...field}
 										placeholder="Номер телефона или email"
 										type="email"
+										className={scss.input_password}
 										style={{
 											borderColor: errors.email ? 'red' : '',
 											backgroundColor: errors.email
@@ -163,11 +131,11 @@ const Login = () => {
 									/>
 								)}
 							/>
-							{errors?.email && (
+							{errors.email && (
 								<span className={scss.error_email}>{errors.email.message}</span>
 							)}
 							<Controller
-								{...register('password')}
+								name="password"
 								control={control}
 								defaultValue=""
 								rules={{ required: 'Пароль обязателен к заполнению' }}
@@ -177,10 +145,9 @@ const Login = () => {
 										iconRender={(visible) =>
 											visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
 										}
-										placeholder=" Пароль"
+										placeholder="Пароль"
 										className={scss.input_password}
 										visibilityToggle
-										type={showPassword ? 'text' : 'password'}
 										style={{
 											borderColor: errors.password ? 'red' : '',
 											backgroundColor: errors.password
@@ -197,13 +164,13 @@ const Login = () => {
 							/>
 							{errors.password && (
 								<span className={scss.error_password}>
-									{errors?.password?.message || 'error!'}
+									{errors.password.message}
 								</span>
 							)}
 
 							<Checkbox
-								checked={showPassword}
-								onChange={togglePasswordVisibility}
+								checked={rememberMe}
+								onChange={() => setRememberMe(!rememberMe)}
 							>
 								<p className={scss.text}>Сохранить вход</p>
 							</Checkbox>
@@ -213,14 +180,9 @@ const Login = () => {
 								type="submit"
 							/>
 							<ToastContainer />
-							<div onClick={handleWithGoogle} className={scss.googleOut}>
-								<GoogleImg
-									className={scss.GoogleImg}
-									onClick={function (): void {
-										throw new Error('Function not implemented.');
-									}}
-								/>
-								<p> Войти через Google</p>
+							<div onClick={handleGoogleLogin} className={scss.googleOut}>
+								<GoogleImg className={scss.GoogleImg} onClick={() => {}} />
+								<p>Войти через Google</p>
 							</div>
 							<Link className={scss.link} to="/auth/forgetPassword">
 								Забыли пароль

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Key, ReactNode, ReactPortal, useEffect, useState } from 'react';
+import { ReactNode, ReactPortal, useEffect, useState } from 'react';
 import {
 	Link,
 	Route,
@@ -153,8 +153,8 @@ const ProfilPage = () => {
 		handleCloseModal();
 	};
 
-	const navigateToProfile = (id: number) => {
-		navigate(`users-profile/${id}`);
+	const navigateToProfile = (idUser: number) => {
+		navigate(`/user-profile/${idUser}`);
 	};
 
 	if (isLoading) {
@@ -249,9 +249,11 @@ const ProfilPage = () => {
 																)
 															)}
 														</div>
-														<button onClick={openModal}>
-															<IconCirclePlus />
-														</button>
+														{chapters?.length < 5 && (
+															<button onClick={openModal}>
+																<IconCirclePlus />
+															</button>
+														)}
 
 														<ModalTs open={isModal} onCancel={handleCloseModal}>
 															<div className={scss.modal_chapter}>
@@ -296,6 +298,7 @@ const ProfilPage = () => {
 													<div className={scss.center_friends}>
 														{friendsData?.map(
 															(item: {
+																idUser: number;
 																isUser: number;
 																avatar: string | undefined;
 																userName:
@@ -320,7 +323,7 @@ const ProfilPage = () => {
 																		<img src={item.avatar} alt="" />
 																		<div
 																			onClick={() =>
-																				navigateToProfile(item.isUser)
+																				navigateToProfile(item.idUser!)
 																			}
 																			className={scss.dec}
 																		>

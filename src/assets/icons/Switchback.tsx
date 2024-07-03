@@ -13,7 +13,7 @@
 // 		if (onCancel === true) {
 // 			setEllipsis(onCancel);
 // 		setEllipsis(ellipsis);
-// 		} 
+// 		}
 // 	}, [onCancel]);
 
 // 	return (
