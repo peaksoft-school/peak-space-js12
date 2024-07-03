@@ -96,7 +96,6 @@ const MainPost = () => {
 	});
 	const { data: commentData } = useGetComentUsersQuery(comentItem.postId);
 	const { data: innerComnetData } = useInnerCommentByidQuery(commentId);
-	console.log(innerComnetData, 'alihan');
 
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [countLike, setCountLike] = useState(0);

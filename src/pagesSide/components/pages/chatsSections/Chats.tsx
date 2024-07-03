@@ -8,10 +8,6 @@ const Chats = () => {
 	const { data: userChatData = [] } = useGetChatUserQuery();
 	const { pathname } = useLocation();
 
-	const savePathChat = (path: string) => {
-		localStorage.setItem('historyChatPath', path);
-	};
-
 	return (
 		<section className={scss.Chats}>
 			<div className={scss.container}>
@@ -27,7 +23,6 @@ const Chats = () => {
 									}
 									key={item.id}
 									to={`/chat/${item.email}`}
-									onClick={() => savePathChat(`/chat/${item.email}`)}
 								>
 									<Avatar
 										size={38}
