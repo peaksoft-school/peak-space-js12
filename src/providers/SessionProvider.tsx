@@ -11,7 +11,7 @@ export const SessionProvider: FC<ProtectedRouteProps> = ({ children }) => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
-	console.log(status);
+	// console.log(status);
 
 	const handleNavigation = () => {
 		switch (pathname) {
@@ -25,12 +25,14 @@ export const SessionProvider: FC<ProtectedRouteProps> = ({ children }) => {
 				break;
 			case '/':
 			case '/chat':
-			case '/chats:userName':
+			case '/chat:userName':
 			case '/notifications':
 			case '/settings':
 			case '/side/public':
 			case '/public':
 				if (status === 'rejected') {
+					localStorage.removeItem('auth_token');
+					localStorage.removeItem('isAuth');
 					navigate('/auth/login');
 				}
 				break;

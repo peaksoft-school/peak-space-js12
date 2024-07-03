@@ -11,6 +11,4 @@ namespace BLOCKEDUSERS {
 	}[];
 
 	type GetBlockedUsersRequest = void;
-
-
 }

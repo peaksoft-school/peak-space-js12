@@ -9,7 +9,7 @@ const App = () => {
 			<Routes>
 				<Route path="/*" element={<LayoutSide />} />
 				<Route path="/auth/*" element={<LayoutAuth />} />
-				<Route path="/call" element={<CallPage />} /> 
+				<Route path="/call" element={<CallPage />} />
 			</Routes>
 		</>
 	);

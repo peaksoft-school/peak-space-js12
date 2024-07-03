@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from 'react';
 import CustomButtonBold from '@/src/ui/customButton/CustomButtonBold';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
@@ -36,20 +37,29 @@ const Login = () => {
 	} = useForm<LoginFormInputs>({ mode: 'onBlur' });
 
 	const navigateToPages = () => {
-		// window.location.reload();
-		navigate('/');
+		window.location.reload();
+		// navigate('/');
 	};
 
-	const onSubmit = async (data: any) => {
-		const response = (await postRequest(
-			data
-		)) as LOGIN.PostRegistrationResponse;
+	const onSubmit = async (data) => {
+		const response = await postRequest(data);
 		if ('data' in response) {
 			if (response.data) {
+
 				const { token, id }: any = response.data;
 				localStorage.setItem('auth_token', token);
 				localStorage.setItem('isAuth', 'true');
 				localStorage.setItem('userId', id);
+
+
+				const { token }: { token: string } = response.data;
+				if (rememberMe) {
+					localStorage.setItem('auth_token', JSON.stringify(token));
+					localStorage.setItem('isAuth', 'true');
+				} else {
+					sessionStorage.setItem('auth_token', JSON.stringify(token));
+					sessionStorage.setItem('isAuth', 'true');
+				}
 
 				navigateToPages();
 				reset();
