@@ -12,7 +12,7 @@ const ConfidentPage = () => {
 		{ path: '/confindent', icon: <IconLock />, label: 'Конфиденциальность' },
 		{
 			path: '/blocked',
-			icon: <IconCircleHalf />,
+			icon: <IconCircleHalf className={scss.iconBlock} />,
 			label: 'Заблокированные аккаунты'
 		}
 	];

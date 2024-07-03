@@ -516,6 +516,11 @@
 				display: flex;
 				align-items: center;
 				gap: 15px;
+
+				.iconBlock {
+					rotate: -35deg;
+				}
+
 				svg {
 					width: 25px;
 					height: 25px;
@@ -653,34 +658,42 @@
 	.card {
 		display: flex;
 		align-items: center;
+		flex-direction: column;
 		justify-content: space-between;
+		height: 100%;
 
-		.start {
+		.content {
 			display: flex;
 			align-items: center;
-			gap: 10px;
-		}
+			justify-content: space-between;
+			width: 100%;
 
-		img {
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
-		}
+			.start {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
 
-		.text {
-			display: flex;
-			flex-direction: column;
-		}
+			img {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+			}
 
-		button {
-			width: 120px;
-			height: 30px;
-			background: #535188;
-			border: none;
-			border-radius: 8px;
-			color: white;
-			outline: none;
-			cursor: pointer;
+			.text {
+				display: flex;
+				flex-direction: column;
+			}
+
+			button {
+				height: 30px;
+				background: #535188;
+				border: none;
+				border-radius: 8px;
+				color: white;
+				outline: none;
+				cursor: pointer;
+			}
 		}
 	}
 }

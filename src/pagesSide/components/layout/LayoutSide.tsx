@@ -17,7 +17,7 @@ import ForMe from '../pages/justForTest/ForMe';
 import scss from './LayoutSide.module.scss';
 import Test from '../pages/publicPage/Test';
 import NavBar from '@/src/ui/navBar/NavBar';
-import Footer from './footer/Footer';
+// import Footer from './footer/Footer';
 import { useEffect, useState } from 'react';
 import { useGetMeQuery } from '@/src/redux/api/auth';
 import ChatsPage from '@/src/pagesSide/components/pages/ChatsPage.tsx';
@@ -52,7 +52,6 @@ const LayoutSide = () => {
 					<div className={scss.Layout}>
 						<div style={{ background: '#ebeff3' }} className="alihan">
 							<main className="container">
-								{/* {!isChatPerson && <NavBar />} */}
 								<NavBar />
 								<Routes>
 									<Route path="/" element={<MainPage />} />
@@ -86,11 +85,11 @@ const LayoutSide = () => {
 								</Routes>
 							</main>
 						</div>
-						{!isSettingsPage &&
+						{/* {!isSettingsPage &&
 							!isChat &&
 							!isChatPerson &&
 							!isMainPage &&
-							!isNotification && <Footer />}
+							!isNotification && <Footer />} */}
 					</div>
 				</>
 			)}

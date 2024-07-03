@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import userProfileImg from '../../assets/FirstMan2.png';
-import userPublicImg from '../../assets/Ellipse 60.svg';
 import {
 	IconMessageCircle,
 	IconHome,
 	IconBell,
-	IconSettings
+	IconSettings,
+	IconUser,
+	IconUsersGroup,
+	IconSearch
 } from '@tabler/icons-react';
+
 import scss from './NavBar.module.scss';
 import Logo from '@/src/assets/peacSpaceLogo.png';
 import MiniLogo from '@/src/assets/mini-logo.svg';
@@ -17,29 +19,73 @@ const NavBar = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 	const [test] = useState(false);
+	const [isSearchActive, setIsSearchActive] = useState(false);
 
 	const navigateTo = (path: string) => {
+		setIsSearchActive(false);
 		navigate(path);
 	};
 
-	const isChatPerson = pathname === '/chatperson';
+	const isChatPerson = pathname === '/chat/chatperson';
 
 	const navigationItems = [
-		{ path: '/', icon: <IconHome />, label: 'Главная' },
-		{ path: '/chat', icon: <IconMessageCircle />, label: 'Чаты' },
-		{ path: '/notification', icon: <IconBell />, label: 'Уведомления' },
-		{ path: '/settings', icon: <IconSettings />, label: 'Настройки' },
+		{
+			path: '/',
+			icon: (
+				<IconHome
+					className={
+						pathname === '/' ? `${scss.icon} ${scss.iconActive}` : scss.icon
+					}
+				/>
+			),
+			label: 'Главная'
+		},
+		{
+			path: '/chat',
+			icon: (
+				<IconMessageCircle
+					className={
+						pathname === '/chat' ? `${scss.icon} ${scss.iconActive}` : scss.icon
+					}
+				/>
+			),
+			label: 'Чаты'
+		},
+		{
+			path: '/notification',
+			icon: (
+				<IconBell
+					className={
+						pathname === '/notification'
+							? `${scss.icon} ${scss.iconActive}`
+							: scss.icon
+					}
+				/>
+			),
+			label: 'Уведомления'
+		},
+		{
+			path: '/settings',
+			icon: (
+				<IconSettings
+					className={
+						pathname === '/settings'
+							? `${scss.icon} ${scss.iconActive}`
+							: scss.icon
+					}
+				/>
+			),
+			label: 'Настройки'
+		},
 		{
 			path: '/side/public',
 			icon: (
-				<img
+				<IconUser
 					className={
 						pathname === '/side/public'
 							? `${scss.img} ${scss.active_img}`
 							: scss.img
 					}
-					src={userProfileImg}
-					alt="Profile"
 				/>
 			),
 			label: 'Мой профиль'
@@ -47,15 +93,13 @@ const NavBar = () => {
 		{
 			path: '/public',
 			icon: (
-				<img
+				<IconUsersGroup
 					className={
 						pathname === '/public' ||
 						pathname === '/public/user-public/:communityId/'
 							? `${scss.img} ${scss.active_img}`
 							: scss.img
 					}
-					src={userPublicImg}
-					alt="Public"
 				/>
 			),
 			label: 'Мои паблики'
@@ -79,7 +123,34 @@ const NavBar = () => {
 				)}
 				<nav>
 					<ul className={!test ? scss.isNone : scss.none}>
-						{navigationItems.map((item) => (
+						<li onClick={() => navigateTo('/')}>
+							<Link
+								className={
+									isActive('/') ? scss.active_page : scss.active_default
+								}
+								to="/"
+							>
+								<IconHome
+									className={
+										pathname === '/'
+											? `${scss.icon} ${scss.iconActive}`
+											: scss.icon
+									}
+								/>
+								{!isChatPerson && !isSearchActive && <span>Главная</span>}
+							</Link>
+						</li>
+						<li onClick={() => setIsSearchActive(!isSearchActive)}>
+							<IconSearch
+								className={
+									isSearchActive ? `${scss.icon} ${scss.iconActive}` : scss.icon
+								}
+							/>
+							{!isChatPerson && !isSearchActive && (
+								<span className={scss.search_text}>Поиск</span>
+							)}
+						</li>
+						{navigationItems.slice(1).map((item) => (
 							<li key={item.path} onClick={() => navigateTo(item.path)}>
 								<Link
 									className={
@@ -88,12 +159,21 @@ const NavBar = () => {
 									to={item.path}
 								>
 									{item.icon}
-									{!isChatPerson && <span>{item.label}</span>}
+									{!isChatPerson && !isSearchActive && (
+										<span>{item.label}</span>
+									)}
 								</Link>
 							</li>
 						))}
 					</ul>
 				</nav>
+				{isSearchActive && (
+					<input
+						type="text"
+						className={scss.searchInput}
+						placeholder="Search..."
+					/>
+				)}
 			</div>
 			<div className={scss.bottom}>
 				<UserInfoLogout />

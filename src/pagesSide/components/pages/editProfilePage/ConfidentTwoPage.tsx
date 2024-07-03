@@ -10,6 +10,7 @@ import {
 	IconAt
 } from '@tabler/icons-react';
 import scss from './Style.module.scss';
+import Footer from '../../layout/footer/Footer';
 
 const ConfidentTwoPage: FC = () => {
 	const [isModal, setIsModal] = useState(false);
@@ -90,6 +91,7 @@ const ConfidentTwoPage: FC = () => {
 						хэштегов и мест, а также список ваших подписчиков и подписок.
 					</p>
 				</div>
+				<Footer />
 			</div>
 			<div>
 				<ModalTs open={isModal2} onCancel={closeModal2}>

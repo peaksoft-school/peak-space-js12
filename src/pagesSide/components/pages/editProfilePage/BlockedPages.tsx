@@ -6,6 +6,7 @@ import {
 import ConfidentPage from './ConfidentPage';
 import ModalTs from '@/src/ui/modal/Modal';
 import scss from './Style.module.scss';
+import Footer from '../../layout/footer/Footer';
 
 const BlockedPages = () => {
 	const { data, isLoading } = useGetBlockedUsersQuery();
@@ -46,16 +47,20 @@ const BlockedPages = () => {
 						{data?.map((item) => (
 							<>
 								<div key={item.id} className={scss.card}>
-									<div className={scss.start}>
-										<img src={item.avatar} alt={item.userName} />
-										<div className={scss.text}>
-											<h3>{item.userName}</h3>
-											<p>{item.lastName}</p>
+									<div className={scss.content}>
+										<div className={scss.start}>
+											<img src={item.avatar} alt={item.userName} />
+											<div className={scss.text}>
+												<h3>{item.userName}</h3>
+												<p>{item.lastName}</p>
+											</div>
 										</div>
+										<button onClick={() => openModal(item.id)}>
+											Разблокировать
+										</button>
 									</div>
-									<button onClick={() => openModal(item.id)}>
-										Разблокировать
-									</button>
+
+									<Footer />
 								</div>
 								<ModalTs open={isModal} onCancel={closeModal}>
 									<div className={scss.modals}>
