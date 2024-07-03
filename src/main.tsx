@@ -7,7 +7,7 @@ import './index.scss';
 import ReduxProvider from './providers/ReduxProvider.tsx';
 import { SessionProvider } from '@/src/providers/SessionProvider.tsx';
 import { MantineProvider } from '@mantine/core';
-import CallDetector from './providers/CallDetector.tsx';
+import CallDetector from './middleware/CallDetector.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
