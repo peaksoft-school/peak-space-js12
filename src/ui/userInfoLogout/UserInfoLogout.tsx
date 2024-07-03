@@ -22,13 +22,16 @@ const UserInfoLogout: FC = () => {
 		sessionStorage.removeItem('auth_token');
 		sessionStorage.removeItem('isAuth');
 		sessionStorage.removeItem('userId');
-		navigate('/auth/login');
+		window.location.reload();
 	};
 
 	return (
 		<div className={scss.UserInfoLogout} onClick={(e) => e.stopPropagation()}>
 			<div className={scss.user_profile} onClick={toggleDropdown}>
-				<Avatar size={40} icon={<img src={'/src/assets/album.svg'} alt="avatar" />} />
+				<Avatar
+					size={40}
+					icon={<img src={'/src/assets/album.svg'} alt="avatar" />}
+				/>
 				<p className={scss.user_name}>{data?.userName}</p>
 			</div>
 			{dropdownVisible && (
