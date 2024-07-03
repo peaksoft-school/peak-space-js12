@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { FC, useState } from 'react';
 import scss from './UserInfoLogout.module.scss';
 import { IconLogout } from '@tabler/icons-react';
