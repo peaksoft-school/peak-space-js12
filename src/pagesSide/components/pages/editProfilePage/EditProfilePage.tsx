@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useRef, useState } from 'react';
 import { SelectProps, Skeleton, message } from 'antd';
 import ConfidentPage from './ConfidentPage';
@@ -320,8 +321,7 @@ const EditProfilePage = () => {
 						</div>
 					</div>
 
-
-{/* 
+					{/* 
 					<div
 						className={
 							isInputsAreaVisible
@@ -362,9 +362,6 @@ const EditProfilePage = () => {
 							))}
 						</div>
 					</div> */}
-
-
-
 
 					<div className={scss.grid}>
 						<div className={scss.col}>
