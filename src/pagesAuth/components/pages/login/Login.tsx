@@ -37,8 +37,8 @@ const Login = () => {
 	} = useForm<LoginFormInputs>({ mode: 'onBlur' });
 
 	const navigateToPages = () => {
-		// window.location.reload();
-		navigate('/');
+		window.location.reload();
+		// navigate('/');
 	};
 
 	const onSubmit = async (data) => {

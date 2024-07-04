@@ -4,6 +4,7 @@ import ChatUser from '@/src/pagesSide/components/pages/chatsSections/ChatUser.ts
 import PreloaderSpinner from '@/src/ui/preloaderSpinner/PreloaderSpinner.tsx';
 import ConfidentTwoPage from '../pages/editProfilePage/ConfidentTwoPage';
 import EditProfilePage from '../pages/editProfilePage/EditProfilePage';
+import ChatsPage from '@/src/pagesSide/components/pages/ChatsPage.tsx';
 import BlockedPages from '../pages/editProfilePage/BlockedPages';
 import Notifications from '../pages/notifications/Notifications';
 import UsersProfile from '../pages/profilPage/UsersProfile';
@@ -21,7 +22,6 @@ import NavBar from '@/src/ui/navBar/NavBar';
 // import Footer from './footer/Footer';
 import { useEffect, useState } from 'react';
 import { useGetMeQuery } from '@/src/redux/api/auth';
-import ChatsPage from '@/src/pagesSide/components/pages/ChatsPage.tsx';
 
 const LayoutSide = () => {
 	const { status } = useGetMeQuery();
