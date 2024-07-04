@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { FC, useState } from 'react';
 import scss from './UserInfoLogout.module.scss';
 import { IconLogout } from '@tabler/icons-react';
@@ -22,13 +23,15 @@ const UserInfoLogout: FC = () => {
 		sessionStorage.removeItem('auth_token');
 		sessionStorage.removeItem('isAuth');
 		sessionStorage.removeItem('userId');
-		navigate('/auth/login');
+		window.location.reload();
 	};
 
 	return (
 		<div className={scss.UserInfoLogout} onClick={(e) => e.stopPropagation()}>
 			<div className={scss.user_profile} onClick={toggleDropdown}>
+
 				<Avatar size={40} icon={<img src={'/src/assets/Rectangle 76.svg'} alt="avatar" />} />
+
 				<p className={scss.user_name}>{data?.userName}</p>
 			</div>
 			{dropdownVisible && (

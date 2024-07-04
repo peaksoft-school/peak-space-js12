@@ -47,7 +47,6 @@ const Login = () => {
 			if (response.data) {
 				const { token, id }: { token: string; id: number } = response.data;
 
-
 				if (rememberMe) {
 					localStorage.setItem('auth_token', JSON.stringify(token));
 					localStorage.setItem('isAuth', 'true');
@@ -57,7 +56,6 @@ const Login = () => {
 					sessionStorage.setItem('isAuth', 'true');
 					sessionStorage.setItem('userId', id);
 				}
-
 
 				navigateToPages();
 				reset();
