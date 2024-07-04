@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
+import CallPage from '@/src/pagesSide/components/pages/CallPage.tsx';
 import LayoutAuth from './pagesAuth/components/layout/LayoutAuth';
 import LayoutSide from './pagesSide/components/layout/LayoutSide';
-import CallPage from '@/src/pagesSide/components/pages/CallPage.tsx';
 
 const App = () => {
 	return (
